@@ -1,0 +1,1057 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{amsmath}
+\usepackage{times}
+\end_preamble
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 0.9in
+\topmargin 0.9in
+\rightmargin 0.9in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Fast Fourier Transform Algorithms (MIT IAP 2008)
+\end_layout
+
+\begin_layout Author
+Prof.
+ Steven G.
+ Johnson, MIT Dept.
+ of Mathematics
+\end_layout
+
+\begin_layout Standard
+Fast Fourier transforms (FFTs), 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ algorithms to compute a discrete Fourier transform (DFT) of size 
+\begin_inset Formula $N$
+\end_inset
+
+, have been called one of the ten most important algorithms of the 20th
+ century.
+ They are what make Fourier transforms practical on a computer, and Fourier
+ transforms (which express any function as a sum of pure sinusoids) are
+ used in everything from solving partial differential equations to digital
+ signal processing (e.g.
+ MP3 compression) to multiplying large numbers (for computing 
+\begin_inset Formula $\pi$
+\end_inset
+
+ to 
+\begin_inset Formula $10^{12}$
+\end_inset
+
+ decimal places).
+ Although the applications are important and numerous, the FFT algorithms
+ themselves reveal a surprisingly rich variety of mathematics that has been
+ the subject of active research for 40+ years, and into which this lecture
+ will attempt to dip your toes.
+ The DFT and its inverse are defined by the following relation between 
+\begin_inset Formula $N$
+\end_inset
+
+ inputs 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $N$
+\end_inset
+
+ outputs 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ (all 
+\emph on
+complex
+\emph default
+ numbers): 
+\begin_inset Formula \begin{equation}
+\textrm{DFT}(x_{n})\textrm{:\,\,\,\,}y_{k}=\sum_{n=0}^{N-1}x_{n}e^{-\frac{2\pi i}{N}nk},\label{eq:DFT}\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula \begin{equation}
+\textrm{inverse DFT}(y_{k})\textrm{:\,\,\,\,}x_{n}=\frac{1}{N}\sum_{k=0}^{N-1}y_{k}e^{+\frac{2\pi i}{N}nk}\label{eq:IDFT}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula $i=\sqrt{{-1}}$
+\end_inset
+
+, recalling Euler's identity that 
+\begin_inset Formula $e^{i\phi}=\cos\phi+i\sin\phi$
+\end_inset
+
+.
+ Each of the 
+\begin_inset Formula $N$
+\end_inset
+
+ DFT outputs 
+\begin_inset Formula $k=0,\cdots,N-1$
+\end_inset
+
+ is the sum of 
+\begin_inset Formula $N$
+\end_inset
+
+ terms, so evaluating this formula directly requires 
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+ operations.
+\begin_inset Foot
+status open
+
+\begin_layout Standard
+Read 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ as 
+\begin_inset Quotes eld
+\end_inset
+
+roughly proportional, for large 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+ e.g.
+ 
+\begin_inset Formula $15N^{2}+24N$
+\end_inset
+
+ is 
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+.
+ (Technically, I should really say 
+\begin_inset Formula $\Theta(N^{2})$
+\end_inset
+
+, but I'm not going to get that formal.)
+\end_layout
+
+\end_inset
+
+ The trick is to rearrange this computation to expose redundant calculations
+ that we can factor out.
+\end_layout
+
+\begin_layout Standard
+The most important FFT algorithm is called the Cooley-Tukey (C-T) algorithm,
+ after the two authors who popularized it in 1965 (unknowingly re-inventing
+ an algorithm known to Gauss in 1805).
+ It works for any 
+\emph on
+composite
+\emph default
+ size 
+\begin_inset Formula $N=N_{1}N_{2}$
+\end_inset
+
+ by re-expressing the DFT of size 
+\begin_inset Formula $N$
+\end_inset
+
+ in terms of smaller DFTs of size 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ (which are themselves broken down, recursively, into smaller DFTs until
+ the prime factors are reached).
+ Effectively, C-T expresses the array 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ of length 
+\begin_inset Formula $N$
+\end_inset
+
+ as a 
+\begin_inset Quotes eld
+\end_inset
+
+two-dimensional
+\begin_inset Quotes erd
+\end_inset
+
+ array of size 
+\begin_inset Formula $N_{1}\times N_{2}$
+\end_inset
+
+ indexed by 
+\begin_inset Formula $(n_{1},n_{2}),$
+\end_inset
+
+ so that 
+\begin_inset Formula $n=N_{1}n_{2}+n_{1}$
+\end_inset
+
+ (where 
+\begin_inset Formula $n_{1,2}=0,\cdots,N_{1,2}-1)$
+\end_inset
+
+.
+ Similarly, the output is expressed as a 
+\emph on
+transposed
+\emph default
+ 2d array, 
+\begin_inset Formula $N_{2}\times N_{1}$
+\end_inset
+
+, indexed by 
+\begin_inset Formula $(k_{2},k_{1})$
+\end_inset
+
+, so that 
+\begin_inset Formula $k=N_{2}k_{1}+k_{2}$
+\end_inset
+
+.
+ Substituted into the DFT above, this gives: 
+\begin_inset Formula \begin{multline}
+y_{N_{2}k_{1}+k_{2}}=\\
+\sum_{n_{1}=0}^{N_{1}-1}\left(\left\{ e^{-\frac{2\pi i}{N}n_{1}k_{2}}\right\} \left[\sum_{n_{2}=0}^{N_{2}-1}e^{-\frac{2\pi i}{N_{2}}n_{2}k_{2}}x_{N_{1}n_{2}+n_{1}}\right]\right)e^{-\frac{2\pi i}{N_{1}}n_{1}k_{1}}\label{eq:CT}\end{multline}
+
+\end_inset
+
+ where we have used the fact that 
+\begin_inset Formula $e^{-2\pi in_{2}k_{1}}=1$
+\end_inset
+
+ (for any integers 
+\begin_inset Formula $n_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+).
+ Here, the outer sum is exactly a length-
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ DFT of the 
+\begin_inset Formula $(\cdots)$
+\end_inset
+
+ terms, one for each value of 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+; and the inner sum in 
+\begin_inset Formula $[\cdots]$
+\end_inset
+
+ is a length-
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ DFT, one for each value of 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+.
+ The phase in the 
+\begin_inset Formula $\{\cdots\}$
+\end_inset
+
+ is called the 
+\begin_inset Quotes eld
+\end_inset
+
+twiddle factor
+\begin_inset Quotes erd
+\end_inset
+
+ (honest).
+ Assuming that 
+\begin_inset Formula $N$
+\end_inset
+
+ has small (bounded) prime factors, this algorithm requires 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ operations when carried out recursively --- the key savings coming from
+ the fact that we have exposed a repeated calculation: the 
+\begin_inset Formula $[\cdots]$
+\end_inset
+
+ DFTs need only be carried out 
+\emph on
+once
+\emph default
+ for 
+\emph on
+all
+\emph default
+ 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ outputs.
+\end_layout
+
+\begin_layout Standard
+For a given 
+\begin_inset Formula $N$
+\end_inset
+
+, there are many choices of factorizations (e.g.
+ 
+\begin_inset Formula $12=3\cdot4$
+\end_inset
+
+ and 
+\begin_inset Formula $4\cdot3$
+\end_inset
+
+ give a different sequence of computations).
+ Moreover, the transposition from input to output implies a data rearrangement
+ process that can be accomplished in many ways.
+ As a result, many different strategies for evaluating the C-T algorithm
+ have been proposed (each with its own name), and the optimal approach is
+ still a matter of active research.
+ Commonly, either 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ or 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ is a small (bounded) constant factor, called the 
+\emph on
+radix
+\emph default
+, and the approach is called decimation in time (DIT) for 
+\begin_inset Formula $N_{1}=\textrm{radix}$
+\end_inset
+
+ or frequency (DIF) for 
+\begin_inset Formula $N_{2}=\textrm{radix}$
+\end_inset
+
+.
+ Textbook examples are typically radix-2 DIT (dividing 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ into two interleaved halves with each step), but serious implementations
+ employ more sophisticated strategies.
+\end_layout
+
+\begin_layout Standard
+There are many other FFT algorithms and there are also many different ways
+ to view the 
+\emph on
+same
+\emph default
+ algorithms.
+ One fruitful way is to view the DFT in terms of operations on 
+\emph on
+polynomials
+\emph default
+.
+ In particular, define a polynomial 
+\begin_inset Formula $x(z)$
+\end_inset
+
+ by 
+\begin_inset Formula \begin{equation}
+x(z)=\sum_{n=0}^{N-1}x_{n}z^{n}.\label{eq:x-poly}\end{equation}
+
+\end_inset
+
+Then 
+\begin_inset Formula \begin{equation}
+y_{k}=x(e^{-\frac{2\pi i}{N}k})=x(z)\mod(z-e^{-\frac{2\pi i}{N}k}),\label{eq:DFT-poly}\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $x(z)\mod u(z)$
+\end_inset
+
+ (
+\begin_inset Formula $x(z)$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+modulo
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $u(z)$
+\end_inset
+
+) means the 
+\emph on
+remainder
+\emph default
+ of dividing 
+\begin_inset Formula $x(z)$
+\end_inset
+
+ by 
+\begin_inset Formula $u(z)$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $u(z)\mod u(z)=0$
+\end_inset
+
+, taking 
+\begin_inset Formula $x(z)\mod u(z)$
+\end_inset
+
+ is equivalent to setting 
+\begin_inset Formula $u(z)=0$
+\end_inset
+
+, which in this case means setting 
+\begin_inset Formula $z=e^{-\frac{2\pi i}{N}k}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The DFT corresponds to computing 
+\begin_inset Formula $x(z)\mod(z-e^{-\frac{2\pi i}{N}k})$
+\end_inset
+
+ for all 
+\begin_inset Formula $k=0\ldots N-1$
+\end_inset
+
+, which would take 
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+ operations if done directly.
+ The key observation, from a polynomial viewpoint, is that we can do this
+ modulo operation 
+\emph on
+recursively
+\emph default
+ by 
+\emph on
+combining
+\emph default
+ the factors 
+\begin_inset Formula $(z-e^{-\frac{2\pi i}{N}k})$
+\end_inset
+
+.
+ In particular, it is easy to show that 
+\begin_inset Formula $x(z)\mod u(z)=[x(z)\mod u(z)v(z)]\mod u(z)$
+\end_inset
+
+ for any 
+\begin_inset Formula $u(z)$
+\end_inset
+
+and 
+\begin_inset Formula $v(z)$
+\end_inset
+
+.
+ This means that we can first compute 
+\begin_inset Formula $x(z)$
+\end_inset
+
+ modulo the 
+\emph on
+product
+\emph default
+ of the factors, and then recursively evaluate the remainder by a 
+\emph on
+recursive factorization
+\emph default
+ of this product.
+ But the product 
+\begin_inset Formula $\prod_{k}(z-e^{-\frac{2\pi i}{N}k})=z^{N}-1$
+\end_inset
+
+, since the 
+\begin_inset Formula $e^{-\frac{2\pi i}{N}k}$
+\end_inset
+
+ are just the 
+\begin_inset Formula $N$
+\end_inset
+
+th roots of unity (solutions of 
+\begin_inset Formula $z^{N}-1=0$
+\end_inset
+
+).
+ It follows that any recursive factorization of 
+\begin_inset Formula $z^{N}-1$
+\end_inset
+
+ into 
+\begin_inset Formula $N\log N$
+\end_inset
+
+ bounded-degree factors gives us an 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ FFT algorithm! In particular, the radix-2 Cooley-Tukey algorithm is 
+\emph on
+equivalent
+\emph default
+ to the recursive factorization (for 
+\begin_inset Formula $N$
+\end_inset
+
+ a power of 2): 
+\begin_inset Formula $z^{N}-a=(z^{N/2}-\sqrt{a})(z^{N/2}+\sqrt{a})$
+\end_inset
+
+, where we start with 
+\begin_inset Formula $a=1$
+\end_inset
+
+ and end up with 
+\begin_inset Formula $a=e^{-i\frac{2\pi i}{N}k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Different recursive factorizations of 
+\begin_inset Formula $z^{N}-1$
+\end_inset
+
+ lead to different FFT algorithms, one of which you will examine for homework.
+ Many other FFT algorithms exist as well, from the 
+\begin_inset Quotes eld
+\end_inset
+
+prime-factor algorithm
+\begin_inset Quotes erd
+\end_inset
+
+ (1958) that exploits the Chinese remainder theorem for 
+\begin_inset Formula $\gcd(N_{1},N_{2})=1$
+\end_inset
+
+, to FFT algorithms that work for 
+\emph on
+prime
+\emph default
+ 
+\begin_inset Formula $N$
+\end_inset
+
+, one of which we give below.
+\end_layout
+
+\begin_layout Standard
+The core of the DFT is the constant 
+\begin_inset Formula $\omega_{N}=e^{-\frac{2\pi i}{N}}$
+\end_inset
+
+; because this is a primitive root of unity (
+\begin_inset Formula $\omega_{N}^{N}=1$
+\end_inset
+
+), any exponent of 
+\begin_inset Formula $\omega_{N}$
+\end_inset
+
+ is evaluated 
+\emph on
+modulo
+\emph default
+ 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ That is, 
+\begin_inset Formula $\omega_{N}^{m}=\omega_{N}^{r}$
+\end_inset
+
+ where 
+\begin_inset Formula $r$
+\end_inset
+
+ is the remainder when we divide 
+\begin_inset Formula $m$
+\end_inset
+
+ by 
+\begin_inset Formula $N$
+\end_inset
+
+ (
+\begin_inset Formula $r=m\mod N$
+\end_inset
+
+).
+ A great body of number theory has been developed around such 
+\begin_inset Quotes eld
+\end_inset
+
+modular arithmetic
+\begin_inset Quotes erd
+\end_inset
+
+, and we can exploit it to develop FFT algorithms different from C-T.
+ For example, Rader's algorithm (1968) allows us to compute 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ FFTs of 
+\emph on
+prime
+\emph default
+ sizes 
+\begin_inset Formula $N$
+\end_inset
+
+, by turning the DFT into a cyclic 
+\emph on
+convolution
+\emph default
+ of length 
+\begin_inset Formula $N-1,$
+\end_inset
+
+ which in turn is evaluated by (non-prime) FFTs.
+ Given 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{n}$
+\end_inset
+
+ (
+\begin_inset Formula $n=0,\cdots,N-1$
+\end_inset
+
+), their convolution 
+\begin_inset Formula $c_{n}$
+\end_inset
+
+ is defined by the sum 
+\begin_inset Formula \begin{equation}
+c_{n}=\sum_{m=0}^{N-1}a_{m}b_{n-m},\label{eq:conv}\end{equation}
+
+\end_inset
+
+ where the convolution is 
+\emph on
+cyclic
+\emph default
+ if the 
+\begin_inset Formula $n-m$
+\end_inset
+
+ subscript is 
+\begin_inset Quotes eld
+\end_inset
+
+wrapped
+\begin_inset Quotes erd
+\end_inset
+
+ periodically onto 
+\begin_inset Formula $0,\cdots,N-1$
+\end_inset
+
+.
+ This operation is central to digital filtering, differential equations,
+ and other applications, and is evaluated in 
+\begin_inset Formula $O(N\log N$
+\end_inset
+
+) time by the 
+\emph on
+convolution theorem
+\emph default
+: 
+\begin_inset Formula $c_{n}=\textrm{inverse FFT$(\textrm{FFT$(a_{n})\cdot\textrm{FFT$(b_{n})$}$}).$}$
+\end_inset
+
+ Now, back to the FFT...
+\end_layout
+
+\begin_layout Standard
+For prime 
+\begin_inset Formula $N$
+\end_inset
+
+, there exists a 
+\emph on
+generator
+\emph default
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ of the multiplicative group modulo 
+\begin_inset Formula $N$
+\end_inset
+
+: this means that 
+\begin_inset Formula $g^{p}\mod\textrm{N}$
+\end_inset
+
+ for 
+\begin_inset Formula $p=0,\cdots,N-2$
+\end_inset
+
+ produces all 
+\begin_inset Formula $n=1,\cdots,N-1$
+\end_inset
+
+ exactly once (but not in order!).
+ Thus, we can write all non-zero 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+ in the form 
+\begin_inset Formula $n=g^{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $k=g^{N-1-q}$
+\end_inset
+
+ for some 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $q$
+\end_inset
+
+, and rewrite the DFT as 
+\begin_inset Formula \begin{equation}
+y_{0}=\sum_{n=0}^{N-1}x_{n},\label{eq:rader1}\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula \begin{equation}
+y_{k\neq0}=y_{g^{N-1-q}}=x_{0}+\sum_{p=0}^{N-2}\omega_{N}^{g^{p+N-1-q}}x_{g^{p}},\label{eq:rader2}\end{equation}
+
+\end_inset
+
+ where (
+\begin_inset LatexCommand \ref{eq:rader2}
+
+\end_inset
+
+) is exactly the cyclic convolution of 
+\begin_inset Formula $a_{p}=x_{g^{p}}$
+\end_inset
+
+ with 
+\begin_inset Formula $b_{p}=\omega_{N}^{g^{N-1-p}}$
+\end_inset
+
+.
+ This convolution has non-prime length 
+\begin_inset Formula $N-1$
+\end_inset
+
+, and so we can evaluate it via the convolution theorem with FFTs in 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ time (except for some unusual cases).
+\end_layout
+
+\begin_layout Subsection*
+Further Reading
+\end_layout
+
+\begin_layout Itemize
+D.
+ N.
+ Rockmore, 
+\begin_inset Quotes eld
+\end_inset
+
+The FFT: An Algorithm the Whole Family Can Use,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Comput.
+ Sci.
+ Eng.
+
+\emph default
+ 
+\series bold
+2
+\series default
+ (1), 60 (2000).
+ Special issue on 
+\begin_inset Quotes eld
+\end_inset
+
+top ten
+\begin_inset Quotes erd
+\end_inset
+
+ algorithms of century.
+ See: http://tinyurl.com/3wjvk and http://tinyurl.com/yvonp8
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Fast Fourier transform,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Wikipedia: The Free Encyclopedia
+\emph default
+ (http://tinyurl.com/5c6f3).
+ Edited by SGJ for correctness as of 10 Jan 2006 (along with subsidiary
+ articles on C-T and other specific algorithms).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+The Fastest Fourier Transform in the West,
+\begin_inset Quotes erd
+\end_inset
+
+ a free FFT implementation obviously named by arrogant MIT graduate students.
+ http://www.fftw.org/
+\end_layout
+
+\begin_layout Standard
+\InsetSpace ~
+ 
+\newline
+
+\end_layout
+
+\begin_layout Subsection*
+Homework Problems
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Problem 1:
+\series default
+ Prove that equation\InsetSpace ~
+(
+\begin_inset LatexCommand \ref{eq:IDFT}
+
+\end_inset
+
+) really is the inverse of equation\InsetSpace ~
+(
+\begin_inset LatexCommand \ref{eq:DFT}
+
+\end_inset
+
+).
+ Hint: subsitute (
+\begin_inset LatexCommand \ref{eq:DFT}
+
+\end_inset
+
+) into (
+\begin_inset LatexCommand \ref{eq:IDFT}
+
+\end_inset
+
+), interchange the order of the two sums, and sum the geometric series.
+\newline
+
+\series bold
+Problem 2:
+\series default
+ 
+\series bold
+(a)
+\series default
+ Prove that for 
+\begin_inset Formula $N$
+\end_inset
+
+ a power of 2, we can recursively factorize 
+\begin_inset Formula $z^{N}-1$
+\end_inset
+
+ into polynomials of the form 
+\begin_inset Formula $z^{M}-1$
+\end_inset
+
+ and 
+\begin_inset Formula $z^{2M}+az^{M}+1$
+\end_inset
+
+ with 
+\begin_inset Formula $a$
+\end_inset
+
+ some real numbers and 
+\begin_inset Formula $|a|\leq2$
+\end_inset
+
+, for a decreasing sequence of 
+\begin_inset Formula $M$
+\end_inset
+
+ all the way down to 
+\begin_inset Formula $M=1$
+\end_inset
+
+.
+ (The final quadratic factors for 
+\begin_inset Formula $M=1$
+\end_inset
+
+ can then be factored into conjugate pairs of roots of unity 
+\begin_inset Formula $e^{\frac{2\pi i}{N}k}$
+\end_inset
+
+.) This gives an FFT algorithm due to Bruun (1978), distinct from Cooley-Tukey
+ in that all of its multiplicative constants (
+\begin_inset Formula $a$
+\end_inset
+
+'s) are 
+\emph on
+real
+\emph default
+ numbers until the very last step.
+ 
+\series bold
+(b)
+\series default
+ Apply this algorithm to write down the steps for a 
+\begin_inset Quotes eld
+\end_inset
+
+Bruun
+\begin_inset Quotes erd
+\end_inset
+
+ FFT of size 
+\begin_inset Formula $N=8$
+\end_inset
+
+, and count the number of required real additions and multiplications (not
+ counting operations for 
+\begin_inset Formula $x$
+\end_inset
+
+-independent constants like 
+\begin_inset Formula $2\cdot\sqrt{2}$
+\end_inset
+
+ that can be precomputed, and not counting trivial multiplications by 
+\begin_inset Formula $\pm1$
+\end_inset
+
+ or 
+\begin_inset Formula $\pm i$
+\end_inset
+
+).
+ Compare this to the minimum known operation count of 56 total real additions
+ and multiplications for 
+\begin_inset Formula $N=8$
+\end_inset
+
+ (achieved by the 
+\begin_inset Quotes eld
+\end_inset
+
+split-radix
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm).
+\end_layout
+
+\end_body
+\end_document

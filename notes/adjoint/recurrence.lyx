@@ -1,0 +1,975 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\end_preamble
+\language english
+\inputencoding latin9
+\fontscheme times
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on adjoint methods for recurrence relations
+\end_layout
+
+\begin_layout Author
+Steven G.
+ Johnson
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+In these notes, we consider solutions 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ (
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ is some 
+\begin_inset Formula $K$
+\end_inset
+
+-component vector at a discrete 
+\begin_inset Quotes eld
+\end_inset
+
+time
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $n$
+\end_inset
+
+) to a discrete recurrence relation that depends upon some parameters 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ (a 
+\begin_inset Formula $P$
+\end_inset
+
+-component vector), and derive how to compute gradients of functions 
+\begin_inset Formula $g(\vec{x})$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ by using an adjoint method.
+ Adjoint methods and gradients are used to perform sensitivity analyses,
+ gradient-based optimization, etcetera, and the key fact is that they provide
+ ways to compute derivatives of 
+\begin_inset Formula $g$
+\end_inset
+
+ with respect to many parameters 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ in about the same time as it takes to compute 
+\begin_inset Formula $g$
+\end_inset
+
+ twice.
+ (In contrast, finite-difference differentiation, or even straightforward
+ symbolic differentiation, would have a cost proportional to the cost of
+ evaluating 
+\begin_inset Formula $g$
+\end_inset
+
+ multiplied by the number 
+\begin_inset Formula $P$
+\end_inset
+
+ of parameters to differentiate by.)
+\end_layout
+
+\begin_layout Standard
+For a general overview of adjoint methods in simple circumstances, see our
+ notes for 18.336 at MIT 
+\begin_inset LatexCommand \cite{Johnson06-notes}
+
+\end_inset
+
+.
+ The method presented here for recurrence relations, however, is more complicate
+d, and is based in spirit on a related method developed for differential-algebra
+ic equations 
+\begin_inset LatexCommand \cite{Cao03}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Problem formulation and notation
+\end_layout
+
+\begin_layout Standard
+A general recurrence relation for 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ is a relationship between 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{x}^{n-1}$
+\end_inset
+
+ of the form: 
+\begin_inset Formula \begin{equation}
+\vec{f}^{n}\triangleq\vec{f}(\vec{x}^{n},\vec{x}^{n-1},n,\vec{p})=\vec{0},\label{eq:recurrence}\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula $\vec{f}(\vec{x},\vec{y},n,\vec{p})$
+\end_inset
+
+ is some given function, possibly depending explicitly on 
+\begin_inset Formula $n$
+\end_inset
+
+ and on the parameters 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+.
+ We use superscripts 
+\begin_inset Formula $n$
+\end_inset
+
+ to indicate the 
+\begin_inset Quotes eld
+\end_inset
+
+time
+\begin_inset Quotes erd
+\end_inset
+
+ of evaluation.
+ For example, a simple recurrence relation 
+\begin_inset Formula $\vec{x}^{n}=2\vec{x}^{n-1}$
+\end_inset
+
+ would be represented by 
+\begin_inset Formula $\vec{f}(\vec{x},\vec{y},n,\vec{p})=\vec{x}-2\vec{y}$
+\end_inset
+
+.
+ One might imagine that a more general recurrence relation could be obtained
+ in which 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ depends on both 
+\begin_inset Formula $\vec{x}^{n-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{x}^{n-2}$
+\end_inset
+
+, and so on, but this can still be expressed in the form (
+\begin_inset LatexCommand \ref{eq:recurrence}
+
+\end_inset
+
+) by replacing 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ with a new vector of twice the length containing both 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{x}^{n-1}$
+\end_inset
+
+ (in much the same way that a 2nd-order ODE can be converted into two 1st-order
+ ODEs).
+ Of course, we also need an initial condition (which may depend on 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+): 
+\begin_inset Formula \[
+\vec{x}^{0}=\vec{b}(\vec{p}).\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now suppose that we have some function 
+\begin_inset Formula $g^{n}\triangleq g(\vec{x}^{n},n,\vec{p})$
+\end_inset
+
+ that we want to compute derivatives of with respect to 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+.
+ Similar to Cao et al.
+ 
+\begin_inset LatexCommand \cite{Cao03}
+
+\end_inset
+
+, it turns out to be easier to first consider a more general function, by
+ 
+\begin_inset Quotes eld
+\end_inset
+
+integrating
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $n$
+\end_inset
+
+: 
+\begin_inset Formula \[
+G^{N}\triangleq G(N,\vec{p})=\sum_{n=0}^{N}g(\vec{x}^{n},n,\vec{p})=\sum_{n=0}^{N}g^{n}.\]
+
+\end_inset
+
+ Now, we want to compute the gradient 
+\begin_inset Formula $\frac{dG^{N}}{d\vec{p}}$
+\end_inset
+
+, which is formally given by: 
+\begin_inset Formula \[
+\frac{dG^{N}}{d\vec{p}}=\sum_{n=0}^{N}\left[g_{\vec{p}}^{n}+g_{\vec{x}}^{n}\vec{x}_{\vec{p}}^{n}\right],\]
+
+\end_inset
+
+ where subscripts denote partial derivatives, and should be thought of as
+ row vectors (versus column vectors 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+).
+ The problem with the expression above is that computing 
+\begin_inset Formula $\vec{x}_{\vec{p}}$
+\end_inset
+
+ (a 
+\begin_inset Formula $K\times P$
+\end_inset
+
+ matrix) is hard.
+ The idea of the adjoint method is to use an algebraic trick to eliminate
+ this troublesome term.
+\end_layout
+
+\begin_layout Section
+The adjoint method for 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The basic trick behind the adjoint method is to insert a new auxiliary vector
+ 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+ (also 
+\begin_inset Formula $K$
+\end_inset
+
+ components), similar in some ways to a Lagrange multiplier, and an auxiliary
+ function 
+\begin_inset Formula $\tilde{G}^{N}$
+\end_inset
+
+, chosen so that the derivatives of 
+\begin_inset Formula $\tilde{G}^{N}$
+\end_inset
+
+ match the derivatives of 
+\begin_inset Formula $G$
+\end_inset
+
+ but without the troublesome 
+\begin_inset Formula $\vec{x}_{\vec{p}}$
+\end_inset
+
+ term.
+ 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+ will turn out to be the solution of another recurrence relation, going
+ 
+\emph on
+backwards 
+\emph default
+from 
+\begin_inset Formula $n=N$
+\end_inset
+
+ to 
+\begin_inset Formula $n=0$
+\end_inset
+
+, so that to find both 
+\begin_inset Formula $G$
+\end_inset
+
+ and its gradient you only need to solve two recurrence relations.
+ In particular, we define 
+\begin_inset Formula $\tilde{G}^{N}$
+\end_inset
+
+ by: 
+\begin_inset Formula \[
+\tilde{G}^{N}\triangleq G^{N}-\sum_{n=1}^{N}\boldsymbol{\lambda}^{n-1}\cdot\vec{f}^{n}.\]
+
+\end_inset
+
+ Note that, since 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ solves the recurrence relation 
+\begin_inset Formula $\vec{f}^{n}=\vec{0}$
+\end_inset
+
+, we have just added zero to 
+\begin_inset Formula $G^{N}$
+\end_inset
+
+, which obviously doesn't change the gradient 
+\emph on
+regardless
+\emph default
+ of the value of 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+.
+ However, it 
+\emph on
+does
+\emph default
+ allow us to express the gradient in a different way, by choosing 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+ appropriately.
+ In particular: 
+\begin_inset Formula \[
+\frac{d\tilde{G}^{N}}{d\vec{p}}=g_{\vec{p}}^{0}+g_{\vec{x}}^{0}\vec{b}_{\vec{p}}+\sum_{n=1}^{N}\left[g_{\vec{p}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{p}}^{n}+\left(g_{\vec{x}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{x}}^{n}\right)\vec{x}_{\vec{p}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{y}}^{n}\vec{x}_{\vec{p}}^{n-1}\right],\]
+
+\end_inset
+
+ in which the last term can be re-indexed (
+\begin_inset Formula $n-1\to n$
+\end_inset
+
+) in order to group all of the 
+\begin_inset Formula $\vec{x}_{\vec{p}}$
+\end_inset
+
+ terms together:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \begin{multline*}
+\frac{d\tilde{G}^{N}}{d\vec{p}}=g_{\vec{p}}^{0}+g_{\vec{x}}^{0}\vec{b}_{\vec{p}}-\boldsymbol{\lambda}^{0}\cdot\vec{f}_{\vec{y}}^{1}\vec{b}_{\vec{p}}+g_{\vec{p}}^{N}-\boldsymbol{\lambda}^{N-1}\cdot\vec{f}_{\vec{p}}^{N}+\left(g_{\vec{x}}^{N}-\boldsymbol{\lambda}^{N-1}\cdot\vec{f}_{\vec{x}}^{N}\right)\vec{x}_{\vec{p}}^{N}\\
++\sum_{n=1}^{N-1}\left[g_{\vec{p}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{p}}^{n}+\left(g_{\vec{x}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{x}}^{n}-\boldsymbol{\lambda}^{n}\cdot\vec{f}_{\vec{y}}^{n+1}\right)\vec{x}_{\vec{p}}^{n}\right].\end{multline*}
+
+\end_inset
+
+ This expression looks rather complicated, but it can be vastly simplified:
+ so far, 
+\begin_inset Formula $\vec{\boldsymbol{\lambda}}^{n}$
+\end_inset
+
+ has been completely arbitrary, so we can choose it to be 
+\emph on
+anything
+\emph default
+ we want to make the gradient easier to compute.
+ In particular, we will choose 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+ to eliminate the troublesome 
+\begin_inset Formula $\vec{x}_{\vec{p}}$
+\end_inset
+
+ terms, by simply setting the parenthesized expressions 
+\begin_inset Formula $(\cdots)$
+\end_inset
+
+ to zero.
+ This gives us two equations for 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\boldsymbol{\lambda}^{N-1}\cdot\vec{f}_{\vec{x}}^{N}=g_{\vec{x}}^{N},\label{eq:lambda-final}\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula \begin{equation}
+\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{x}}^{n}=g_{\vec{x}}^{n}-\boldsymbol{\lambda}^{n}\cdot\vec{f}_{\vec{y}}^{n+1}.\label{eq:lambda-recur}\end{equation}
+
+\end_inset
+
+ The second equation is a 
+\emph on
+backwards recurrence
+\emph default
+ equation for 
+\begin_inset Formula $\boldsymbol{\lambda}^{n-1}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\boldsymbol{\lambda}^{n}$
+\end_inset
+
+ (or rather, a set of 
+\begin_inset Formula $K$
+\end_inset
+
+ equations in 
+\begin_inset Formula $K$
+\end_inset
+
+ unknowns), and the first equation is the 
+\begin_inset Quotes eld
+\end_inset
+
+initial
+\begin_inset Quotes erd
+\end_inset
+
+ condition for this 
+\begin_inset Quotes eld
+\end_inset
+
+adjoint
+\begin_inset Quotes erd
+\end_inset
+
+ recurrence.
+\end_layout
+
+\begin_layout Standard
+Once we have solved these adjoint recurrences (
+\begin_inset LatexCommand \ref{eq:lambda-final}
+
+\end_inset
+
+--
+\begin_inset LatexCommand \ref{eq:lambda-recur}
+
+\end_inset
+
+), we can then plug them back in to find our gradient:
+\begin_inset Formula \begin{multline}
+\frac{dG^{N}}{d\vec{p}}=\frac{d\tilde{G}^{N}}{d\vec{p}}=g_{\vec{p}}^{0}+g_{\vec{x}}^{0}\vec{b}_{\vec{p}}-\boldsymbol{\lambda}^{0}\cdot\vec{f}_{\vec{y}}^{1}\vec{b}_{\vec{p}}+\sum_{n=1}^{N}\left[g_{\vec{p}}^{n}-\boldsymbol{\lambda}^{n-1}\cdot\vec{f}_{\vec{p}}^{n}\right].\label{eq:dG-adjoint}\end{multline}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The adjoint method for 
+\begin_inset Formula $g$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+In many cases, we only care about the gradient of 
+\begin_inset Formula $g^{N}$
+\end_inset
+
+, not 
+\begin_inset Formula $G^{N}$
+\end_inset
+
+.
+ That is, we have a function just of the final result of the recurrence,
+ not of all the intermediate steps.
+ We can immediately compute this from our result (
+\begin_inset LatexCommand \ref{eq:dG-adjoint}
+
+\end_inset
+
+) above since, by definition, 
+\begin_inset Formula $g^{N}=G^{N}-G^{N-1}$
+\end_inset
+
+.
+ However, one must be careful of one thing: the 
+\begin_inset Formula $\vec{\boldsymbol{\lambda}}^{n}$
+\end_inset
+
+ adjoint variables are different when taking the gradient of 
+\begin_inset Formula $G^{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $G^{N-1}$
+\end_inset
+
+, since the initial condition (
+\begin_inset LatexCommand \ref{eq:lambda-final}
+
+\end_inset
+
+) changes.
+ Denote the latter adjoint variable by 
+\begin_inset Formula $\mu^{n}$
+\end_inset
+
+ (the solution to the adjoint recurrence with 
+\begin_inset Formula $N$
+\end_inset
+
+ replaced by 
+\begin_inset Formula $N-1$
+\end_inset
+
+).
+ The expressions that will appear in our gradient equation will involve
+ 
+\begin_inset Formula $\tilde{\boldsymbol{\lambda}}^{n}=\boldsymbol{\lambda}^{n}-\mu^{n}$
+\end_inset
+
+.
+ In particular, we obtain: 
+\begin_inset Formula \begin{equation}
+\frac{dg^{N}}{d\vec{p}}=\frac{dG^{N}}{d\vec{p}}-\frac{dG^{N-1}}{d\vec{p}}=g_{\vec{p}}^{N}-\boldsymbol{\lambda}^{N-1}\cdot\vec{f}_{\vec{p}}^{N}-\tilde{\boldsymbol{\lambda}}^{0}\cdot\vec{f}_{\vec{y}}^{1}\vec{b}_{\vec{p}}-\sum_{n=1}^{N-1}\tilde{\boldsymbol{\lambda}}^{n-1}\cdot\vec{f}_{\vec{p}}^{n}.\label{eq:dg-adjoint}\end{equation}
+
+\end_inset
+
+ In order to evaluate this expression, we need 
+\begin_inset Formula $\boldsymbol{\lambda}^{N-1}$
+\end_inset
+
+ from eq.\InsetSpace ~
+(
+\begin_inset LatexCommand \ref{eq:lambda-final}
+
+\end_inset
+
+), and we also need 
+\begin_inset Formula $\tilde{\boldsymbol{\lambda}}^{n}$
+\end_inset
+
+.
+ However, because the adjoint recurrence (
+\begin_inset LatexCommand \ref{eq:lambda-recur}
+
+\end_inset
+
+) is 
+\emph on
+linear
+\emph default
+ in 
+\begin_inset Formula $\boldsymbol{\lambda}$
+\end_inset
+
+ (
+\emph on
+regardless
+\emph default
+ of whether the original recurrence in 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ was linear), we can simply subtract the 
+\begin_inset Formula $\boldsymbol{\lambda}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu$
+\end_inset
+
+ recurrences to get a single simplified recurrence in 
+\begin_inset Formula $\tilde{\boldsymbol{\lambda}}$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\tilde{\boldsymbol{\lambda}}^{n-1}\cdot\vec{f}_{\vec{x}}^{n}=-\tilde{\boldsymbol{\lambda}}^{n}\cdot\vec{f}_{\vec{y}}^{n+1}.\label{eq:lambdat-recur}\end{equation}
+
+\end_inset
+
+ The initial condition for this backwards recurrence is the following equation
+ for 
+\begin_inset Formula $\tilde{\boldsymbol{\lambda}}^{N-2}$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\tilde{\boldsymbol{\lambda}}^{N-2}\cdot\vec{f}_{\vec{x}}^{N-1}=-\boldsymbol{\lambda}^{N-1}\cdot\vec{f}_{\vec{y}}^{N}\label{eq:lambdat-final}\end{equation}
+
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\boldsymbol{\lambda}^{N-1}$
+\end_inset
+
+ from eq.\InsetSpace ~
+(
+\begin_inset LatexCommand \ref{eq:lambda-final}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Equation\InsetSpace ~
+(
+\begin_inset LatexCommand \ref{eq:dg-adjoint}
+
+\end_inset
+
+) doesn't seem as nice as one might like when one thinks of the computational
+ cost.
+ First, one solves two recurrences, one for 
+\begin_inset Formula $\vec{x}^{n}$
+\end_inset
+
+ and one for 
+\begin_inset Formula $\tilde{\boldsymbol{\lambda}}^{n}$
+\end_inset
+
+, which isn't bad.
+ Then, to evaluate equation (
+\begin_inset LatexCommand \ref{eq:dg-adjoint}
+
+\end_inset
+
+) the first three terms require 
+\begin_inset Formula $O(PK)$
+\end_inset
+
+ work independent of 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ However, the last term, the 
+\begin_inset Formula $\sum_{n}$
+\end_inset
+
+, seems problematic: 
+\begin_inset Formula $\vec{f}_{\vec{p}}$
+\end_inset
+
+ is a 
+\begin_inset Formula $K\times P$
+\end_inset
+
+ matrix, so evaluating each summand requires 
+\begin_inset Formula $O(PK)$
+\end_inset
+
+ work and thus the sum requires 
+\begin_inset Formula $O(NPK)$
+\end_inset
+
+ work in general.
+ Assuming that each solution of the recurrence takes 
+\begin_inset Formula $O(NK)$
+\end_inset
+
+ time, which is typical (although it could be worse, e.g.
+ if a 
+\begin_inset Formula $K\times K$
+\end_inset
+
+ matrix must be inverted for each 
+\begin_inset Formula $n$
+\end_inset
+
+), then the gradient evaluation seems to require roughly 
+\begin_inset Formula $P$
+\end_inset
+
+ times the work of evaluating 
+\begin_inset Formula $g^{N}$
+\end_inset
+
+ once---this is the thing we are trying to 
+\emph on
+avoid
+\emph default
+ with adjoint methods!
+\end_layout
+
+\begin_layout Standard
+However, the situation in practice is unlikely to be this bad, because often
+ the matrix 
+\begin_inset Formula $\vec{f}_{\vec{p}}$
+\end_inset
+
+ will be very sparse.
+ For example, each component of 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ may affect only a few 
+\begin_inset Formula $n$
+\end_inset
+
+, or a few components of 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+.
+ An example of this is given below.
+\end_layout
+
+\begin_layout Section
+A simple example
+\end_layout
+
+\begin_layout Standard
+The above is rather abstract, so it is good to illustrate it with a simple
+ example.
+ Consider the following two-component (
+\begin_inset Formula $K=2$
+\end_inset
+
+) recurrence: 
+\begin_inset Formula \[
+\vec{x}^{n}=\left(\begin{array}{cc}
+1 & 0.1\\
+0.1 & 1\end{array}\right)\vec{x}^{n-1}+\left(\begin{array}{c}
+0\\
+p_{n}\end{array}\right)=A\vec{x}^{n-1}+\left(\begin{array}{c}
+0\\
+p_{n}\end{array}\right)\]
+
+\end_inset
+
+ with initial conditions 
+\begin_inset Formula $\vec{b}=(1,0)$
+\end_inset
+
+.
+ That is, in this case our parameters 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ are a 
+\begin_inset Quotes eld
+\end_inset
+
+source
+\begin_inset Quotes erd
+\end_inset
+
+ term 
+\begin_inset Formula $p_{n}$
+\end_inset
+
+ at every 
+\begin_inset Formula $n$
+\end_inset
+
+ (so that 
+\begin_inset Formula $P=N$
+\end_inset
+
+).
+ The corresponding function 
+\begin_inset Formula $\vec{f}^{n}$
+\end_inset
+
+ is: 
+\begin_inset Formula \[
+\vec{f}^{n}(\vec{x},\vec{y},\vec{p})=\vec{x}-A\vec{y}-\left(\begin{array}{c}
+0\\
+p_{n}\end{array}\right).\]
+
+\end_inset
+
+ Now, we must pick some function 
+\begin_inset Formula $g$
+\end_inset
+
+ to take the gradient of.
+ For simplicity, let's just take 
+\begin_inset Formula \[
+g(\vec{x})=x_{1},\]
+
+\end_inset
+
+ with no explicit dependence on 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+At this point, we merely take the appropriate derivatives to write down
+ our adjoint equations (
+\begin_inset LatexCommand \ref{eq:lambda-final}
+
+\end_inset
+
+,
+\begin_inset LatexCommand \ref{eq:lambdat-recur}
+
+\end_inset
+
+--
+\begin_inset LatexCommand \ref{eq:lambdat-final}
+
+\end_inset
+
+).
+ 
+\begin_inset Formula $\vec{f}_{\vec{x}}$
+\end_inset
+
+ here is the identity matrix, and 
+\begin_inset Formula $\vec{f}_{\vec{y}}=-A$
+\end_inset
+
+, so: 
+\begin_inset Formula \[
+\boldsymbol{\lambda}^{N-1}=\left(\begin{array}{c}
+1\\
+0\end{array}\right),\quad\tilde{\boldsymbol{\lambda}}^{N-2}=A\boldsymbol{\lambda}^{N-1},\]
+
+\end_inset
+
+ 
+\begin_inset Formula \[
+\tilde{\boldsymbol{\lambda}}^{n-1}=A\tilde{\boldsymbol{\lambda}}^{n},\]
+
+\end_inset
+
+ thereby obtaining our gradient:
+\begin_inset Formula \[
+\frac{dg^{N}}{dp_{N}}=\boldsymbol{\lambda}^{N-1}\cdot\left(\begin{array}{c}
+0\\
+1\end{array}\right),\]
+
+\end_inset
+
+ 
+\begin_inset Formula \[
+\frac{dg^{N}}{dp_{n<N}}=\tilde{\boldsymbol{\lambda}}^{n-1}\cdot\left(\begin{array}{c}
+0\\
+1\end{array}\right),\]
+
+\end_inset
+
+ where we have used the fact that 
+\begin_inset Formula $\vec{f}_{\vec{p}}^{n}$
+\end_inset
+
+ is a 
+\begin_inset Formula $2\times N$
+\end_inset
+
+ matrix that is all zeros except for its 
+\begin_inset Formula $n$
+\end_inset
+
+th column 
+\begin_inset Formula $(0,-1)$
+\end_inset
+
+.
+ In this way, evaluating the gradient requires only 
+\begin_inset Formula $O(N)$
+\end_inset
+
+ time, as opposed to 
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+ time if we had proceeded naively.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+bibliographystyle{ieeetr}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset LatexCommand \bibtex[ieeetr]{/homeg/stevenj/papers/teaching/18.336/adjoint/adjoint}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

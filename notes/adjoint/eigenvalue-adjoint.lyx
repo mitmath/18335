@@ -1,0 +1,1062 @@
+#LyX 1.5.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 276
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\end_preamble
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Sensitivity analysis and steepest-ascent directions for degenerate-eigenvalue
+ problems
+\end_layout
+
+\begin_layout Author
+Steven G.
+ Johnson
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+In this note, we review the techniques used to perform sensitivity analysis
+ in design problems involving eigenvalues with multiplicity 
+\begin_inset Formula $\geq1$
+\end_inset
+
+, which require special care 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+ compared to the ordinary adjoint methods 
+\begin_inset LatexCommand cite
+key "Johnson06-notes"
+
+\end_inset
+
+ typically used for sensitivity analysis.
+ In particular, we consider the case where one is optimizing some function
+ of an eigenvalue of an 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ generalized eigenvalue problem
+\begin_inset Formula \begin{equation}
+A(\vec{p})\vec{x}=\lambda B(\vec{p})\vec{x}\label{eq:eigenproblem}\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\vec{x}\in\mathbb{C}^{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $A(\vec{p}),B(\vec{p})\in\mathbb{C}^{N\times N}$
+\end_inset
+
+ are self-adjoint matrices (and 
+\begin_inset Formula $B$
+\end_inset
+
+ is positive-definite, leading to real 
+\begin_inset Formula $\lambda$
+\end_inset
+
+) that are explicit functions of 
+\begin_inset Formula $M$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+design parameters
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $\vec{p}\in\mathbb{R}^{M}$
+\end_inset
+
+.
+ We wish to compute the 
+\emph on
+sensitivity
+\emph default
+ of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ to small changes in 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+, i.e.
+ the rate of change 
+\begin_inset Formula $\frac{d\lambda}{d\epsilon}$
+\end_inset
+
+ when 
+\begin_inset Formula $\vec{p}\to\vec{p}+\epsilon\vec{d}$
+\end_inset
+
+ for any given direction 
+\begin_inset Formula $\vec{d}\in\mathbb{R}^{M}$
+\end_inset
+
+.
+ We also wish to compute the 
+\emph on
+steepest-ascent direction
+\emph default
+ 
+\begin_inset Formula $\vec{g}\in\mathbb{R^{M}}$
+\end_inset
+
+: the direction in which to change 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ to make 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ increase most quickly.
+\end_layout
+
+\begin_layout Standard
+For a simple (non-degenerate) eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, both of these questions are answered by computing the gradient 
+\begin_inset Formula $\nabla_{\vec{p}}\lambda$
+\end_inset
+
+, giving the sensitivity or directional derivative 
+\begin_inset Formula $\frac{d\lambda}{d\epsilon}=\vec{d}\cdot\nabla_{\vec{p}}\lambda$
+\end_inset
+
+ and the steepest-ascent direction 
+\begin_inset Formula $\vec{g}\propto\nabla_{\vec{p}}\lambda$
+\end_inset
+
+; the gradient can be computed easily from 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ via first-order perturbation theory 
+\begin_inset LatexCommand cite
+key "Tannoudji77:pert"
+
+\end_inset
+
+ or (equivalently) by an adjoint method 
+\begin_inset LatexCommand cite
+key "Johnson06-notes"
+
+\end_inset
+
+.
+ However, the problem is considerably complicated in cases involving degenerate
+ eigenvalues (multiplicity 
+\begin_inset Formula $>1$
+\end_inset
+
+), in which case the gradient 
+\emph on
+per se
+\emph default
+ is not even well-defined 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+.
+ Degenerate eigenvalues arise surprisingly often in cases involving optimization
+ of eigenvalues, unfortunately.
+ For example, a typical problem is the maximization of the minimum eigenvalue
+ (e.g.
+ the maximization of the minimum vibration frequency of some mechanical
+ structure 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+), and in this case the optimization will often naturally push the system
+ towards a case where the minimum eigenvalue is repeated.
+ As another example, in maximization of band gaps (eigenvalue splittings)
+ of periodic structures, the optimum often occurs at a degenerate case where
+ the gap edge is tangent to more than one eigenvalue band 
+\begin_inset LatexCommand cite
+key "Sigmund03"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fortunately, in these cases a generalization of the gradient/adjoint analysis
+ is possible that allows one to compute both sensitivities and steepest-ascent
+ directions very efficiently from the solution of the unperturbed problem
+ (
+\begin_inset LatexCommand ref
+reference "eq:eigenproblem"
+
+\end_inset
+
+).
+ The sensitivity analysis is equivalent to what is called 
+\emph on
+degenerate perturbation theory
+\emph default
+ in quantum mechanics 
+\begin_inset LatexCommand cite
+key "Tannoudji77:pert"
+
+\end_inset
+
+, while the determination of the steepest-ascent direction requires additional
+ steps 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Sensitivity analysis & generalized gradients
+\end_layout
+
+\begin_layout Standard
+Let us suppose that the eigenproblem (
+\begin_inset LatexCommand ref
+reference "eq:eigenproblem"
+
+\end_inset
+
+) has 
+\begin_inset Formula $K$
+\end_inset
+
+ solutions 
+\begin_inset Formula $\vec{x}^{(k)}$
+\end_inset
+
+, for 
+\begin_inset Formula $k=1,\ldots,K$
+\end_inset
+
+, with the same eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ (i.e., 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ has multiplicity 
+\begin_inset Formula $K$
+\end_inset
+
+), and we have orthonormalized these so that 
+\begin_inset Formula $\vec{x}^{(k)}\cdot B\vec{x}^{(k')}=\delta_{kk'}$
+\end_inset
+
+ (where 
+\begin_inset Formula $\delta_{kk'}$
+\end_inset
+
+ is the Kronecker delta and the inner product is 
+\begin_inset Formula $\vec{x}\cdot\vec{y}=\vec{x}^{\dagger}\vec{y}$
+\end_inset
+
+, with 
+\begin_inset Formula $\dagger$
+\end_inset
+
+ the conjugate-transpose).
+ The choice of eigenvectors is, of course, not unique, because any linear
+ combination also gives an eigenvector for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ Now, we perform a small perturbation 
+\begin_inset Formula $\vec{p}\to\vec{p}+\epsilon\vec{d}$
+\end_inset
+
+ for some direction 
+\begin_inset Formula $\vec{d}$
+\end_inset
+
+, and we wish to know the rate of change 
+\begin_inset Formula $d\lambda/d\epsilon$
+\end_inset
+
+.
+ The difficulty is that the perturbation will, in general, break the degeneracy,
+ so that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ splits into multiple distinct eigenvalues, but we don't know which linear
+ combination of the 
+\begin_inset Formula $\vec{x}^{(k)}$
+\end_inset
+
+'s will go with which split eigenvalue.
+ Fortunately, this problem can be solved via a small 
+\begin_inset Formula $K\times K$
+\end_inset
+
+ eigenproblem as follows.
+\end_layout
+
+\begin_layout Standard
+First, we form an arbitrary linear combination 
+\begin_inset Formula \begin{equation}
+\vec{x}=\sum_{k}u_{k}\vec{x}^{(k)}\label{eq:eig-superpos}\end{equation}
+
+\end_inset
+
+ of the degenerate eigenvectors, where 
+\begin_inset Formula $\vec{u}\in\mathbb{C}^{K}$
+\end_inset
+
+ is an unknown to be determined.
+ This 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ is itself an eigenvector, of course, and satisfies (
+\begin_inset LatexCommand ref
+reference "eq:eigenproblem"
+
+\end_inset
+
+).
+ Now, we simply differentiate both sides of (
+\begin_inset LatexCommand ref
+reference "eq:eigenproblem"
+
+\end_inset
+
+) with respect to 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ (assuming 
+\begin_inset Formula $\vec{u}$
+\end_inset
+
+ will be chosen to yield an eigevector even after an infinitesimal perturbation)
+, and then take the inner product of both sides with 
+\begin_inset Formula $\vec{x}^{(k)}$
+\end_inset
+
+ for any 
+\begin_inset Formula $k$
+\end_inset
+
+, to obtain: 
+\begin_inset Formula \begin{equation}
+\vec{x}^{(k)}\cdot\left(\frac{dA}{d\epsilon}\vec{x}+A\frac{d\vec{x}}{d\epsilon}\right)=\vec{x}^{(k)}\cdot\left(\frac{d\lambda}{d\epsilon}B\vec{x}+\lambda\frac{dB}{d\epsilon}\vec{x}+\lambda B\frac{d\vec{x}}{d\epsilon}\right).\label{eq:eigenproblem-deriv}\end{equation}
+
+\end_inset
+
+Because 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are self-adjoint and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is real, however, we obtain 
+\begin_inset Formula $\vec{x}^{(k)}\cdot A\frac{d\vec{x}}{d\epsilon}=A\vec{x}^{(k)}\cdot\frac{d\vec{x}}{d\epsilon}=\lambda\vec{x}^{(k)}\cdot B\frac{d\vec{x}}{d\epsilon}$
+\end_inset
+
+, which cancels the 
+\begin_inset Formula $\frac{d\vec{x}}{d\epsilon}$
+\end_inset
+
+ term on the right-hand side of (
+\begin_inset LatexCommand ref
+reference "eq:eigenproblem-deriv"
+
+\end_inset
+
+).
+ The remaining terms can be solved for the sensitivity 
+\begin_inset Formula $\frac{d\lambda}{d\epsilon}$
+\end_inset
+
+:
+\begin_inset Formula \begin{align*}
+\vec{x}^{(k)}\cdot\left(\frac{dA}{d\epsilon}-\lambda\frac{dB}{d\epsilon}\right)\vec{x} & =\frac{d\lambda}{d\epsilon}\vec{x}^{(k)}\cdot B\vec{x}=\frac{d\lambda}{d\epsilon}c_{k}\\
+ & =\sum_{k'}C_{kk'}c_{k'},\end{align*}
+
+\end_inset
+
+ where 
+\begin_inset Formula \begin{equation}
+C_{kk'}=\vec{x}^{(k)}\cdot\left(\frac{dA}{d\epsilon}-\lambda\frac{dB}{d\epsilon}\right)\vec{x}^{(k')}=\overline{C_{k'k}},\label{eq:C-def}\end{equation}
+
+\end_inset
+
+where the overline denotes complex conjugation.
+ But this is precisely a 
+\begin_inset Formula $K\times K$
+\end_inset
+
+ self-adjoint eigenproblem
+\begin_inset Formula \begin{equation}
+C\vec{u}=\frac{d\lambda}{d\epsilon}\vec{u}.\label{eq:sensitivity-eigenproblem}\end{equation}
+
+\end_inset
+
+ The eigenvalues of 
+\begin_inset Formula $C$
+\end_inset
+
+ in eq.\InsetSpace ~
+(
+\begin_inset LatexCommand ref
+reference "eq:sensitivity-eigenproblem"
+
+\end_inset
+
+) are the rates of change 
+\begin_inset Formula $\frac{d\lambda}{d\epsilon}$
+\end_inset
+
+ of the 
+\begin_inset Formula $K$
+\end_inset
+
+ degenerate eigenvalues 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, and the 
+\begin_inset Formula $K$
+\end_inset
+
+ eigenvectors are the coefficients 
+\begin_inset Formula $\vec{c}$
+\end_inset
+
+ of the resulting eigenvectors 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ (to zero-th order in 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+) after the eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is split by the perturbation (if 
+\begin_inset Formula $C$
+\end_inset
+
+ has distinct eigenvalues).
+\end_layout
+
+\begin_layout Standard
+Of course, the matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ depends on the perturbation direction 
+\begin_inset Formula $\vec{d}$
+\end_inset
+
+.
+ For example, 
+\begin_inset Formula $\frac{dA_{nn'}}{d\epsilon}=\sum_{m}d_{m}\frac{\partial A_{nn'}}{\partial p_{m}}=\vec{d}\cdot\nabla_{\vec{p}}A_{nn'}.$
+\end_inset
+
+ Applying this to both 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ and substituting into eq.\InsetSpace ~
+(
+\begin_inset LatexCommand ref
+reference "eq:C-def"
+
+\end_inset
+
+), we obtain 
+\begin_inset Formula \begin{equation}
+C_{kk'}=\vec{d}\cdot\vec{f}^{(kk')},\label{eq:C-def2}\end{equation}
+
+\end_inset
+
+where the vectors 
+\begin_inset Formula $\vec{f}^{(kk')}\in\mathbb{C}^{M}$
+\end_inset
+
+ are the 
+\begin_inset Quotes eld
+\end_inset
+
+generalized gradient
+\begin_inset Quotes erd
+\end_inset
+
+ vectors 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+ with components: 
+\begin_inset Formula \begin{equation}
+f_{m}^{(kk')}=\vec{x}^{(k)}\cdot\left(\frac{dA}{dp_{m}}-\lambda\frac{dB}{dp_{m}}\right)\vec{x}^{(k')}=\overline{f_{m}^{(k'k)}}.\label{eq:gen-gradient}\end{equation}
+
+\end_inset
+
+ We will use these vectors further in the next section to find the steepest-asce
+nt direction.
+\end_layout
+
+\begin_layout Section
+Steepest-ascent direction
+\end_layout
+
+\begin_layout Standard
+In this section, we derive the steepest-ascent direction, which is used
+ as part of numerous gradient-based local-optimization algorithms, and is
+ critical for efficient search of high-dimensional parameter spaces.
+ What is presented here is a much-abbreviated version of the more complete
+ analysis in Ref.\InsetSpace ~
+
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+, which also includes the possibility of a linear constraint on 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ in addition to the eigenproblem.
+\end_layout
+
+\begin_layout Standard
+The key observation is that, in optimization problems involving a degenerate
+ eigenvalue, we need to push 
+\emph on
+all
+\emph default
+ the degenerate eigenvalues 
+\emph on
+together
+\emph default
+.
+ It does no good to push one of the eigenvalues in the direction you want
+ if another eigenvalue goes in the opposite direction (e.g.
+ if you are trying to maximize the minimum eigenvalue).
+ Nor is it ideal to push one eigenvalue by a lot if another one moves only
+ a little---you want all of the eigenvalues to move by the same amount.
+ This criterion, however, corresponds simply to the requirement that 
+\begin_inset Formula $C$
+\end_inset
+
+ be proportional to the identity matrix.
+ In particular, we want to find a direction 
+\begin_inset Formula $\vec{g}\in\vec{R}^{M}$
+\end_inset
+
+ so that 
+\begin_inset Formula \begin{equation}
+C_{kk'}=\vec{g}\cdot\vec{f}^{(kk')}=\delta_{kk'}.\label{eq:g-condition}\end{equation}
+
+\end_inset
+
+Without loss of generality, we can restrict ourselves to considering 
+\begin_inset Formula $\vec{g}$
+\end_inset
+
+ in the span of the 
+\begin_inset Formula $\vec{f}^{(kk')}$
+\end_inset
+
+---any component of 
+\begin_inset Formula $\vec{g}$
+\end_inset
+
+ in the orthogonal complement of the 
+\begin_inset Formula $\vec{f}^{(kk')}$
+\end_inset
+
+ has no effect on 
+\begin_inset Formula $C$
+\end_inset
+
+ and hence is irrelevant to the sensitivity.
+ That is, we can write 
+\begin_inset Formula \begin{equation}
+\vec{g}=\sum_{kk'}\gamma_{kk'}\vec{f}^{(kk')}\label{eq:gamma-def}\end{equation}
+
+\end_inset
+
+for some 
+\begin_inset Formula $\gamma_{kk'}\in\mathbb{C}$
+\end_inset
+
+ satisfying 
+\begin_inset Formula $\gamma_{kk'}=\overline{\gamma_{k'k}}$
+\end_inset
+
+ (so that 
+\begin_inset Formula $\vec{g}$
+\end_inset
+
+ is real).
+ Combining eqs.\InsetSpace ~
+(
+\begin_inset LatexCommand ref
+reference "eq:g-condition"
+
+\end_inset
+
+--
+\begin_inset LatexCommand ref
+reference "eq:gamma-def"
+
+\end_inset
+
+), we obtain the following equations for the unknown coefficients 
+\begin_inset Formula $\gamma_{kk'}$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\sum_{kk'}\left[\overline{\vec{f}^{(\ell\ell')}}\cdot\vec{f}^{(kk')}\right]\gamma_{kk'}=\delta_{\ell\ell'}.\label{eq:gamma-eq}\end{equation}
+
+\end_inset
+
+Because the 
+\begin_inset Formula $\ell\ell'$
+\end_inset
+
+ and 
+\begin_inset Formula $\ell'\ell$
+\end_inset
+
+ equations are complex conjugates, this yields exactly the right number
+ of equations to solve for the unknowns 
+\begin_inset Formula $\gamma_{kk'}$
+\end_inset
+
+.
+ In the end, we have 
+\begin_inset Formula $K+K(K-1)=K^{2}$
+\end_inset
+
+ equations for the 
+\begin_inset Formula $K^{2}$
+\end_inset
+
+ distinct real and imaginary parts of 
+\begin_inset Formula $\gamma_{kk'}$
+\end_inset
+
+ for complex-Hermitian matrices 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+, or 
+\begin_inset Formula $K+K(K-1)/2=K(K+1)/2$
+\end_inset
+
+ equations for the distinct real 
+\begin_inset Formula $\gamma_{kk'}$
+\end_inset
+
+ for real-symmetric 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ These equations must be nonsingular if such a 
+\begin_inset Formula $C$
+\end_inset
+
+ exists.
+ More generally, they can be shown to be singular only when no direction
+ exists that pushes all the eigenvalues in the same direction---this is
+ equivalent to the optimality criterion in an optimization problem, because
+ in that case it is impossible to push 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ further in the direction that you want 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+However, in practice, it is desirable to modify the 
+\begin_inset Formula $\ell=\ell'$
+\end_inset
+
+ equations of (
+\begin_inset LatexCommand ref
+reference "eq:gamma-eq"
+
+\end_inset
+
+) slightly, to account for the fact that in numerical computations the eigenvalu
+es are never exactly degenerate.
+ In particular, if two eigenvalues 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{k'}$
+\end_inset
+
+ are close enough to one another, say 
+\begin_inset Formula $|\lambda_{k}-\lambda_{k'}|<\delta$
+\end_inset
+
+ for some small 
+\begin_inset Formula $\delta$
+\end_inset
+
+, you want to treat them as degenerate---otherwise, optimizing one eigenvalue
+ may still push the other nearby eigenvalue in the other direction, so that
+ they cross and your objective function is worsened rather than improved.
+ Instead, if the eigenvalues are close enough, then you want your next optimizat
+ion step to push them in the same direction.
+ However, say you are maximizing/minimizing the minimum/maximum eigenvalue
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, respectively---in that case, you want to push the 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+ that are closer to 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ by more than the 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+ that are farther from 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ This can be achieved by changing eq.\InsetSpace ~
+(
+\begin_inset LatexCommand ref
+reference "eq:gamma-eq"
+
+\end_inset
+
+) for 
+\begin_inset Formula $\ell=\ell'$
+\end_inset
+
+ to, for example: 
+\begin_inset Formula \begin{equation}
+C_{\ell\ell}=\sum_{kk'}\left[\overline{\vec{f}^{(\ell\ell)}}\cdot\vec{f}^{(kk')}\right]\gamma_{kk'}=1-|\lambda-\lambda_{\ell}|.\label{eq:gamma-eq-diag}\end{equation}
+
+\end_inset
+
+The reason why this works is that the diagonals 
+\begin_inset Formula $C_{\ell\ell}$
+\end_inset
+
+ are precisely proportional to the rates of change of each 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+ for distinct 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+, because they correspond to the nondegenerate (
+\begin_inset Formula $K=1$
+\end_inset
+
+) version of the sensitivity equation (
+\begin_inset LatexCommand ref
+reference "eq:sensitivity-eigenproblem"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+Now, the vector 
+\begin_inset Formula $\vec{g}$
+\end_inset
+
+ is the steepest-ascent direction, but what should its magnitude be? Most
+ optimization software will expect you to supply a steepest-ascent direction
+ whose magnitude is equal to the directional derivative in that direction,
+ just like the 
+\begin_inset Quotes eld
+\end_inset
+
+real
+\begin_inset Quotes erd
+\end_inset
+
+ gradient.
+ That is, we want the 
+\begin_inset Quotes eld
+\end_inset
+
+effective gradient
+\begin_inset Quotes erd
+\end_inset
+
+ vector 
+\begin_inset Formula $\widetilde{\nabla_{\vec{p}}\lambda}=\alpha\vec{g}$
+\end_inset
+
+, for some 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, such that, for a change 
+\begin_inset Formula $\vec{p}\to\vec{p}+\epsilon(\vec{g}/\Vert\vec{g}\Vert)$
+\end_inset
+
+, we obtain the directional derivative 
+\begin_inset Formula $\widetilde{\nabla_{\vec{p}}\lambda}\cdot(\vec{g}/\Vert\vec{g}\Vert)=d\lambda/d\epsilon$
+\end_inset
+
+.
+ From the sensitivity equation\InsetSpace ~
+(
+\begin_inset LatexCommand ref
+reference "eq:sensitivity-eigenproblem"
+
+\end_inset
+
+), since 
+\begin_inset Formula $C$
+\end_inset
+
+ is proportional to the identity for this direction, 
+\begin_inset Formula $d\lambda/d\epsilon=(\vec{g}/\Vert\vec{g}\Vert)\cdot\vec{f}^{(kk')}=1/\Vert\vec{g}\Vert=(\alpha\vec{g})\cdot(\vec{g}/\Vert\vec{g}\Vert)=\overline{\alpha}\Vert\vec{g}\Vert,$
+\end_inset
+
+ and hence 
+\begin_inset Formula $\alpha=1/\Vert\vec{g}\Vert^{2}$
+\end_inset
+
+.
+ In short, our 
+\begin_inset Quotes eld
+\end_inset
+
+effective gradient
+\begin_inset Quotes erd
+\end_inset
+
+ vector for use in optimization is:
+\begin_inset Formula \begin{equation}
+\widetilde{\nabla_{\vec{p}}\lambda}=\vec{g}/\Vert\vec{g}\Vert^{2}.\label{eq:eff-gradient}\end{equation}
+
+\end_inset
+
+As we approach the optimality criterion on 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, the equations for 
+\begin_inset Formula $\gamma_{kk'}$
+\end_inset
+
+ become singular and the length 
+\begin_inset Formula $\Vert\vec{g}\Vert$
+\end_inset
+
+ diverges 
+\begin_inset LatexCommand cite
+key "Seyranian94"
+
+\end_inset
+
+---thus, the effective gradient 
+\begin_inset Formula $\widetilde{\nabla_{\vec{p}}\lambda}$
+\end_inset
+
+ goes to zero at optimality as you might expect.
+ (Note that this is 
+\emph on
+not
+\emph default
+ a true gradient, however, in that it gives the correct directional derivative
+ only for directions parallel to 
+\begin_inset Formula $\vec{g}$
+\end_inset
+
+!)
+\end_layout
+
+\begin_layout Standard
+There is one important special case that arises in optimization of band
+ structures 
+\begin_inset LatexCommand cite
+key "Sigmund03"
+
+\end_inset
+
+: the 
+\begin_inset Quotes eld
+\end_inset
+
+multiplicity
+\begin_inset Quotes erd
+\end_inset
+
+ of a given eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ will often come from eigensolutions at different Bloch wavevectors in the
+ band diagram.
+ In this case, the proper inner product to compute 
+\begin_inset Formula $\vec{f}^{(kk')}$
+\end_inset
+
+ between two eigensolutions at different wavevectors involves an integral
+ over all space, and the difference in wavevectors will yield 
+\begin_inset Formula $\vec{f}^{(kk')}=0$
+\end_inset
+
+ for 
+\begin_inset Formula $k$
+\end_inset
+
+ and 
+\begin_inset Formula $k'$
+\end_inset
+
+ corresponding to different wavevectors (assuming the change in 
+\begin_inset Formula $\vec{p}$
+\end_inset
+
+ preserves the underlying periodicity).
+ We can then freely set 
+\begin_inset Formula $\gamma_{kk'}=0$
+\end_inset
+
+ for that 
+\begin_inset Formula $(k,k')$
+\end_inset
+
+ pair, reducing the number of unknowns to solve for (and requiring only
+ inner products over the unit cell for degenerate eigensolutions at equal
+ wavevectors).
+ If 
+\emph on
+all
+\emph default
+ the degeneracies come from distinct wavevectors, then we will only have
+ 
+\begin_inset Formula $K$
+\end_inset
+
+ equations to solve for the diagonal 
+\begin_inset Formula $\gamma_{kk}$
+\end_inset
+
+ coefficients.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand bibtex
+options "ieeetr"
+bibfiles "adjoint"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

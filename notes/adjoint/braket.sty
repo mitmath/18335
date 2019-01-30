@@ -1,0 +1,59 @@
+% braket.sty          Macros for Dirac bra-ket <|> notation and sets {|}
+% Donald Arseneau     asnd@triumf.ca     Last modified 05-Dec-1999.
+% This is free, unencumbered, unsupported software.
+%
+% Commands defined are:
+% \bra{ }   \ket{ }   \braket{ }   \set{ }    (small versions)
+% \Bra{ }   \Ket{ }   \Braket{ }   \Set{ }    (expanding versions)
+% 
+% The "small versions" use fixed-size brackets independent of their
+% contents, whereas the "expanding versions" make the brackets and 
+% vertical lines expand to envelop their contents (internally using 
+% the \left and \right commands).  You should use the vertical bar
+% character "|" to input any extra vertical lines.  In \Braket these
+% vertical lines will expand to match the arguments, and in \Set the
+% first vertical will expand this way.  E.g.,
+%   \Braket{ \phi | \frac{\partial^2}{\partial t^2} | \psi }
+%   \Set{ x\in\mathbf{R} | 0<{|x|}<5 }
+%
+% NOT defined is "\ketbra" (for projection operators) because I prefer
+% \ket{ } \bra{ }.
+%
+% Because each definition is so small, it makes no sense to have a 
+% complicated generic version for many bracket styles.  Instead, 
+% you can just copy the definitions and change \langle or \rangle,
+% < and > to what you like.
+%
+\def\bra#1{\mathinner{\langle{#1}|}}
+\def\ket#1{\mathinner{|{#1}\rangle}}
+\def\braket#1{\mathinner{\langle{#1}\rangle}}
+\def\Bra#1{\left<#1\right|}
+\def\Ket#1{\left|#1\right>}
+{\catcode`\|=\active 
+  \gdef\Braket#1{\left<\mathcode`\|"8000\let|\BraVert {#1}\right>}}
+\def\BraVert{\egroup\,\mid@vertical\,\bgroup}
+% The \mid@vertical is \vrule with ordinary TeX but \middle| in eTeX.
+% We always avoid a \mathchoice in making the inner vertical lines.  
+% Note that \right>, prints the same as \right\rangle but is faster.  
+%
+% \def\ketbra#1#2{\ket{#1}\bra{#2}}
+% \def\Ketbra#1#2{\left|{#1}\vphantom{#2}\right>\left<{#2}\vphantom{#1}\right|}
+
+% \Set{...|...} Only the first | is treated specially.
+{\catcode`\|=\active
+  \gdef\set#1{\mathinner{\lbrace\,{\mathcode`\|"8000\let|\midvert #1}\,\rbrace}}
+  \gdef\Set#1{\left\{\:{\mathcode`\|"8000\let|\SetVert #1}\:\right\}}}
+\def\midvert{\egroup\mid\bgroup}
+\def\SetVert{\egroup\;\mid@vertical\;\bgroup}
+
+% If the user is using e-TeX with its \middle primitive, use that for
+% verticals instead of \vrule.
+%
+\begingroup
+ \edef\@tempa{\meaning\middle}
+ \edef\@tempb{\string\middle}
+\expandafter \endgroup \ifx\@tempa\@tempb
+ \def\mid@vertical{\middle|}
+\else
+ \let\mid@vertical\vrule
+\fi

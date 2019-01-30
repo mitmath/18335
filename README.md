@@ -38,17 +38,17 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 4)
 
-**Handouts:** a printout of this webpage (i.e., the syllabus). [Newton's method for square roots](newton-sqrt.pdf) and accompanying [notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Newton-Square-Roots.ipynb)
+**Handouts:** a printout of this webpage (i.e., the syllabus). [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb)
 
 Brief overview of the huge field of numerical methods, and outline of the small portion that this course will cover. Key new concerns in numerical analysis, which don't appear in more abstract mathematics, are (i) performance (traditionally, arithmetic counts, but now memory access often dominates) and (ii) accuracy (both floating-point roundoff errors and also convergence of intrinsic approximations in the algorithms).
 
 As a starting example, considered the convergence of Newton's method (as applied to square roots); see the handout and Julia notebook above.
 
-**Further reading:** Googling "Newton's method" will find lots of references; as usual, the [Wikipedia article on Newton's method](https://en.wikipedia.org/wiki/Newton's_method) is a reasonable starting point. Beware that the terminology for the [convergence order](https://en.wikipedia.org/wiki/Rate_of_convergence) (linear, quadratic, etc.) is somewhat different in this context from the terminology for discretization schemes (first-order, second-order, etc.); see e.g. the linked Wikipedia article. Homer Reid's [notes on machine arithmetic](http://homerreid.dyndns.org/teaching/18.330/Notes/RootFinding.pdf) for [18.330](http://homerreid.dyndns.org/teaching/18.330/) are an excellent introduction that covers several applications and algorithms for root-finding. For numerical computation in 18.335, we will be using the Julia language: see this [information on Julia at MIT](https://github.com/stevengj/julia-mit).
+**Further reading:** Googling "Newton's method" will find lots of references; as usual, the [Wikipedia article on Newton's method](https://en.wikipedia.org/wiki/Newton's_method) is a reasonable starting point. Beware that the terminology for the [convergence order](https://en.wikipedia.org/wiki/Rate_of_convergence) (linear, quadratic, etc.) is somewhat different in this context from the terminology for discretization schemes (first-order, second-order, etc.); see e.g. the linked Wikipedia article. Homer Reid's [notes on machine arithmetic](http://homerreid.dyndns.org/teaching/18.330/Notes/RootFinding.pdf) for [18.330](http://homerreid.dyndns.org/teaching/18.330/) are an excellent introduction that covers several applications and algorithms for root-finding. For numerical computation in 18.335, we will be using the Julia language: see this [information on Julia at MIT](https://github.com/mitmath/julia-mit).
 
 ### Lecture 2 (Feb 6)
 
-**Handouts:** [notes on floating-point](http://persson.berkeley.edu/18.335/lec8handout6pp.pdf) (18.335 Fall 2007; [slides](http://persson.berkeley.edu/18.335/lec8.pdf)); Julia [floating-point notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Floating-Point-Intro.ipynb), some [floating-point myths](fp-myths.pdf); [pset 1](pset1-s15.pdf) and accompanying [notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/pset1-template-s15.ipynb) (due Feb 17 — TUESDAY = MIT Monday)
+**Handouts:** [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; [slides](notes/lec8.pdf)); Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb), some [floating-point myths](notes/fp-myths.pdf); [pset 1](psets/pset1-s15.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1-template-s15.ipynb) (due Feb 17 — TUESDAY = MIT Monday)
 
 New topic: **Floating-point arithmetic**
 
@@ -60,11 +60,11 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 
 Overview of **floating-point** representations, focusing on the IEEE 754 standard (see also handout from previous lecture). The key point is that the nearest floating-point number to _x_, denoted fl(_x_), has the property of _uniform relative precision_ (for |_x_| and 1/|_x_| < than some _range_, ≈10308 for double precision) that |fl(_x_)−_x_| ≤ εmachine|_x_|, where εmachine is the relative "machine precision" (about 10−16 for double precision). There are also a few special values: ±Inf (e.g. for [overflow](https://en.wikipedia.org/wiki/Arithmetic_overflow)), [NaN](https://en.wikipedia.org/wiki/NaN), and ±0 (e.g. for [underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow)).
 
-**Further reading:** [What Every Computer Scientist Should Know About Floating Point Arithmetic](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.22.6768) (David Goldberg, ACM 1991). William Kahan, [How Java's floating-point hurts everyone everywhere](http://www.cs.berkeley.edu/~wkahan/JAVAhurt.pdf) (2004): contains a nice discussion of floating-point myths and misconceptions. Trefethen, lecture 13. Homer Reid's [notes on machine arithmetic](http://homerreid.dyndns.org/teaching/18.330/Notes/MachineArithmetic.pdf) for [18.330](http://homerreid.dyndns.org/teaching/18.330/) are an excellent introduction to this material.
+**Further reading:** [What Every Computer Scientist Should Know About Floating Point Arithmetic](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.22.6768) (David Goldberg, ACM 1991). William Kahan, [How Java's floating-point hurts everyone everywhere](http://www.cs.berkeley.edu/~wkahan/JAVAhurt.pdf) (2004): contains a nice discussion of floating-point myths and misconceptions. Trefethen, lecture 13. Homer Reid's [notes on machine arithmetic](http://homerreid.com/teaching/18.330/Notes/MachineArithmetic.pdf) for [18.330](http://homerreid.com/teaching/18.330/) are another nice introduction to this material.
 
 ### Lecture 3 (Feb 1)
 
-**Handout:** [notes on backwards stability of summation](summation-stability.pdf)
+**Handout:** [notes on backwards stability of summation](notes/summation-stability.pdf)
 
 **Stability:** Gave the obvious definition of **accuracy**, or more technically stability: "forwards stability" = almost the right answer for the right input. Showed that this is often too strong; e.g. adding a sequence of numbers is not forwards stable. (Basically because the denominator in the relative forwards error, which is the exact sum, can be made arbitrarily small via cancellations.)
 
@@ -82,7 +82,7 @@ Often, it is sufficient to prove "backwards stability" = right answer for almost
 
 On Monday, 9 Wednesday 11 February (I hope), at 4:30pm in 1-190, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md).
 
-Please **bring your laptops**, and try to install Julia and the IJulia interface first via the abovementioned tutorial notes. Several people will be at the tutorial session to help answer installation questions. Alternatively, you can use Julia online at [JuliaBox](https://juliabox.org/) without installing anything (although running things on your own machine is usually faster).
+Please **bring your laptops**, and try to install Julia and the IJulia interface first via the abovementioned tutorial notes. Several people will be at the tutorial session to help answer installation questions. Alternatively, you can use Julia online at [JuliaBox](https://juliabox.com/) without installing anything (although running things on your own machine is usually faster).
 
 ### Lecture 4 (Feb 13)
 
@@ -96,7 +96,7 @@ Started discussing matrix norms. The most important matrix norms are those that 
 
 ### Lecture 5 (Feb 17 — note that TUESDAY is an "MIT Monday")
 
-**Handout:** [notes on the equivalence of norms](norm-equivalence.pdf)
+**Handout:** [notes on the equivalence of norms](notes/norm-equivalence.pdf)
 
 Equivalence of norms. Described fact that any two norms are equivalent up to a constant bound, and showed that this means that **stability in one norm implies stability in all norms.** Sketched proof (_only skimmed this_): (i) show we can reduce the problem to proving any norm is equivalent to _L_1 on (ii) the unit circle; (iii) show any norm is continuous; and (ii) use a result from real analysis: a continuous function on a closed/bounded (compact) set achieves its maximum and minimum, the [extreme value theorem](http://en.wikipedia.org/wiki/Extreme_value_theorem). See notes handout.
 
@@ -106,7 +106,7 @@ Relate backwards error to forwards error, and backwards stability to forwards er
 
 ### Lecture 6 (Feb 18)
 
-**Handout:** [pset 1 solutions](pset1sol-s15.pdf) and [Julia notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/pset1sol-s15.ipynb); [pset 2](pset2-s15.pdf) (due Fri 2/27).
+**Handout:** [pset 1 solutions](psets/pset1sol-s15.pdf) and [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1sol-s15.ipynb); [pset 2](psets/pset2-s15.pdf) (due Fri 2/27).
 
 Calculated condition number for square root, summation, and matrix-vector multiplication, as well as solving Ax=b, similar to the book. Defined the condition number of a matrix.
 
@@ -128,7 +128,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 8 (Feb 23)
 
-**Handouts:** [least-squares IJulia notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Least-squares.ipynb)
+**Handouts:** [least-squares IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Least-squares.ipynb)
 
 Introduced least-squares problems, gave example of polynomial fitting, gave normal equations, and derived them from the condition that the L2 error be minimized.
 
@@ -140,7 +140,7 @@ Introduced the alternative of QR factorization (finding an orthonormal basis for
 
 ### Lecture 9 (Feb 25)
 
-**Handouts:** [Gram-Schmidt IJulia notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Gram-Schmidt.ipynb)
+**Handouts:** [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
 
 Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.
 
@@ -148,11 +148,11 @@ Discussed loss of orthogonality in classical Gram-Schmidt, using a simple exampl
 
 Re-interpret Gram-Schmidt in matrix form as Q = AR1R2..., i.e. as multiplying A on the right by a sequence of upper-triangular matrices to get Q. The problem is that these matrices R may be very badly conditioned, leading to an inaccurate Q and loss of orthogonality. Instead of multiplying A on the right by R's to get Q, however, we can instead multiply A on the left by Q's to get R. This leads us to the Householder QR algorithm.
 
-**Further reading:** Trefethen, lectures 7, 8, 18, 19. Per Persson's [2004 18.335 Gram-Schmidt notes](http://persson.berkeley.edu/18.335/lec5.pdf) are also helpful, as is the [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process). It turns out that modified GS is backwards stable in the sense that the product QR is close to A, i.e. the function f(A) = Q\*R is backwards stable in MGS; this is why solving systems with Q,R (appropriately used as discussed in Trefethen lecture 19) is an accurate approximation to solving them with A. For a review of the literature on backwards-stability proofs of MGS, see e.g. [this 2006 paper by Paige et al.](http://www.cs.cas.cz/miro/prs05.pdf) \[_SIAM J. Matrix Anal. Appl._ **28**, pp. 264-284\].
+**Further reading:** Trefethen, lectures 7, 8, 18, 19. Per Persson's [2006 18.335 Gram-Schmidt notes](notes/lec5.pdf) are also helpful, as is the [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process). It turns out that modified GS is backwards stable in the sense that the product QR is close to A, i.e. the function f(A) = Q\*R is backwards stable in MGS; this is why solving systems with Q,R (appropriately used as discussed in Trefethen lecture 19) is an accurate approximation to solving them with A. For a review of the literature on backwards-stability proofs of MGS, see e.g. [this 2006 paper by Paige et al.](http://www.cs.cas.cz/miro/prs05.pdf) \[_SIAM J. Matrix Anal. Appl._ **28**, pp. 264-284\].
 
 ### Lecture 10 (Feb 27)
 
-**Handouts:** [pset 2 solutions](pset2sol-s15.pdf)
+**Handouts:** [pset 2 solutions](psets/pset2sol-s15.pdf)
 
 Introduced Householder QR, emphasized the inherent stability properties of multiplying by a sequence of unitary matrices (as shown in pset 2). Show how we can convert a matrix to upper-triangular form (superficially similar to Gaussian elimination) via unitary Householder reflectors.
 
@@ -164,7 +164,7 @@ Operation count for Gram-Schmidt (2mn2) and Householder (2mn2 - 2n3/3), using th
 
 ### Lecture 11 (Mar 2)
 
-**Handouts:** performance experiments with matrix multiplication ([one-page](matmuls-handout.pdf) or [full-size](matmuls.pdf) versions); [ideal-cache terminology](ideal-cache.pdf); [IJulia matrix-multiplication notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Matrix-multiplication-experiments.ipynb)
+**Handouts:** performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions); [ideal-cache terminology](notes/ideal-cache.pdf); [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Matrix-multiplication-experiments.ipynb)
 
 Counting arithmetic operation counts is no longer enough. Illustrate this with some performance experiments on a much simpler problem, matrix multiplication (see handouts). This leads us to analyze memory-access efficiency and caches and points the way to restructuring many algorithms.
 
@@ -178,7 +178,7 @@ Discussed some practical difficulties of the blocked matrix multiplication: algo
 
 ### Lecture 12 (Mar 4)
 
-**Handouts:** experiments with cache-oblivious matrix-multiplication ([handout](oblivious-matmul-handout.pdf) or [full-size slides](oblivious-matmul.pdf)); see also notebook from previous lecture; [pset 3](pset3-s15.pdf) and [notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/pset3-s15.ipynb) (due Friday Mar 13).
+**Handouts:** experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf)); see also notebook from previous lecture; [pset 3](psets/pset3-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset3-s15.ipynb) (due Friday Mar 13).
 
 Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout and Frigo et. al paper above).
 
@@ -208,11 +208,11 @@ As a result, all eigenproblem methods must be _iterative_: they must consist of 
 
 However, finding roots of the characteristic polynomial is generally a terrible way to find eigenvalues. Actually computing the characteristic polynomial coefficients and then finding the roots somehow (Newton's method?) is a disaster, incredibly ill-conditioned: gave the example of [Wilkinson's polynomial](http://en.wikipedia.org/wiki/Wilkinson%27s_polynomial). If we can compute the characteristic polynomial values implicitly somehow, directly from the determinant, then it is not too bad (if you are looking only for eigenvalues in some known interval, for example), but we haven't learned an efficient way to do that yet. The way LAPACK and Matlab actually compute eigenvalues, the QR method and its descendants, wasn't discovered until 1960.
 
-**Further reading:** Trefethen, lecture 24, 25. See [this Wilkinson polynomial Julia notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Wilkinson-Polynomial.ipynb) for some experiments with polynomial roots in Julia.
+**Further reading:** Trefethen, lecture 24, 25. See [this Wilkinson polynomial Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Wilkinson-Polynomial.ipynb) for some experiments with polynomial roots in Julia.
 
 ### Lecture 15 (Mar 11)
 
-**Handouts:** [notes on Hessenberg factorization](http://persson.berkeley.edu/18.335/lec14handout6pp.pdf)
+**Handouts:** [notes on Hessenberg factorization](notes/lec14handout6pp.pdf)
 
 The key to making most of the eigensolver algorithms efficient is reducing A to **Hessenberg form**: A=QHQ\* where H is upper triangular plus one nonzero value below each diagonal. Unlike Schur form, Hessenberg factorization _can_ be done exactly in a finite number \[Θ(m3)\] of steps (in exact arithmetic). H and A are similar: they have the same eigenvalues, and the eigenvector are related by Q. And once we reduce to Hessenberg form, all the subsequent operations we might want to do (determinants, LU or QR factorization, etcetera), will be fast. In the case of Hermitian A, showed that H is tridiagonal; in this case, most subsequent operations (even LU and QR factorization) will be Θ(m) (you will show this in HW)!
 
@@ -224,11 +224,11 @@ Discussed power method for biggest-|λ| eigenvector/eigenvalue, and (re-)introdu
 
 Discussed how to use the power method to get multiple eigenvalues/vectors of Hermitian matrices by "deflation" (using orthogonality of eigenvectors). Discussed how, in principle, QR factorization of _An_ for large _n_ will give the eigenvectors and eigenvalues in descending order of magnitude, but how this is killed by roundoff errors.
 
-**Further reading:** See Trefethen, lecture 27, and these [2007 notes](http://persson.berkeley.edu/18.335/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration.
+**Further reading:** See Trefethen, lecture 27, and these [2006 notes](notes/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration.
 
 ### Lecture 16 (Mar 13)
 
-**Handouts:** [pset 3 solutions](pset3sol-s15.pdf) and [notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/pset3sol-s15.ipynb)
+**Handouts:** [pset 3 solutions](psets/pset3sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset3sol-s15.ipynb)
 
 Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent to QR factorizing _An_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
 
@@ -244,7 +244,7 @@ There are a number of additional tricks to further improve things, the most impo
 
 Briefly discussed Golub–Kahn bidiagonalization method for SVD, just to get the general flavor. At this point, however, we are mostly through with details of dense linear-algebra techniques: the important thing is to grasp the fundamental ideas rather than zillions of little details, since in practice you're just going to use LAPACK anyway.
 
-**Further reading:** See Trefethen, lectures 27–30, and Per Persson's [2007 notes](http://persson.berkeley.edu/18.335/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration and on QR ([part 1](http://persson.berkeley.edu/18.335/lec15handout6pp.pdf) and [part 2](http://persson.berkeley.edu/18.335/lec16handout6pp.pdf)).
+**Further reading:** See Trefethen, lectures 27–30, and Per Persson's [2006 notes](notes/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration and on QR ([part 1](notes/lec15handout6pp.pdf) and [part 2](notes/lec16handout6pp.pdf)).
 
 ### Lecture 17 (Mar 16)
 
@@ -264,7 +264,7 @@ Also showed that the max/min Ritz values are the maximum/minimum of the Rayleigh
 
 ### Lecture 18 (Mar 18)
 
-**Handouts**: [Arnoldi-iteration experiments](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Arnoldi.ipynb), [pset 4](pset4-s15.pdf) (due Monday March 30).
+**Handouts**: [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb), [pset 4](psets/pset4-s15.pdf) (due Monday March 30).
 
 Showed that the Ritz (Galerkin) matrix of the Arnoldi process is actually an upper-Hessenberg matrix H whose entries are generated during the Arnoldi algorithm itself.
 
@@ -288,7 +288,7 @@ Introduced the **GMRES** algorithm: compute Q as in Arnoldi, but then minimize t
 
 ### Lecture 20 (Mar 30)
 
-**Handouts:** [pset 4 solutions](pset4sol-s15.pdf)
+**Handouts:** [pset 4 solutions](psets/pset4sol-s15.pdf)
 
 Discussed the convergence rate of GMRES and Arnoldi in terms of polynomial approximations. Following the book closely, showed that the relative errors (the residual norm for GMRES) can be bounded by minimizing the value p(λ) of a polynomial p(z) evaluated at the eigenvalues, where p(0)=1 and p has degree _n_ after the _n_\-th iteration. (There is also a factor of the condition number of the eigenvector matrix in GMRES, so it is favorable for the eigenvectors to be near-orthogonal, i.e for the matrix to be near-[normal](http://en.wikipedia.org/wiki/Normal_matrix).)
 
@@ -324,7 +324,7 @@ Via a simple analysis of the discretized Poisson's equation in 1d (which easily 
 
 ### Midterm (Apr 6)
 
-Midterm [exam](midterm-s15.pdf) and [solutions](midtermsol-s15.pdf).
+Midterm [exam](exams/midterm-s15.pdf) and [solutions](exams/midtermsol-s15.pdf).
 
 ### Lecture 23 (Apr 8)
 
@@ -334,7 +334,7 @@ Outlined application of nonlinear CG to Hermitian eigenproblems by minimizing th
 
 ### Lecture 24 (Apr 10)
 
-**Handouts:** [summary of options for solving linear systems](solver-options.pdf)
+**Handouts:** [summary of options for solving linear systems](notes/solver-options.pdf)
 
 Discussed the polynomial viewpoint in the textbook, which views conjugate gradient (and other algorithms) as trying to find a polynomial that is as small as possible at the eigenvalues. This gives a nice way to think about how fast iterative methods converge and the impact of the eigenvalue spectrum. As with GMRES, the most favorable situation occurs when the eigenvalues are grouped into a small cluster, or perhaps a few small clusters, since we can then make p(λ) small with a low-degree polynomial that concentrates a few roots in each cluster.
 
@@ -350,7 +350,7 @@ Concluded with some rules of thumb (see handout) about which type of solvers to 
 
 ### Lecture 25 (Apr 13)
 
-**Handouts:** [notes on sparse-direct solvers](http://persson.berkeley.edu/18.335/lec20handout6pp.pdf) from Fall 2007; [IJulia notebook on sparse-direct solvers](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Nested-Dissection.ipynb)
+**Handouts:** [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006; [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Nested-Dissection.ipynb)
 
 **Sparse-direct solvers:** For many problems, there is an intermediate between the dense Θ(m3) solvers of LAPACK and iterative algorithms: for a sparse matrix A, we can sometimes perform an LU or Cholesky factorization while maintaining sparsity, storing and computing only nonzero entries for vast savings in storage and work. In particular, did a Matlab demo, a few experiments with a simple test case: the "discrete Laplacian" center-difference matrix on uniform grids that we've played with previously in 18.335. In 1d, this matrix is tridiagonal and LU/Cholesky factorization produces a bidiagonal matrix: Θ(m) storage and work! For a 2d grid, there are 4 off-diagonal elements, and showed how elimination introduces Θ(√m) nonzero entries in each column, or Θ(m3/2) nonzero entries in total. This is still not too bad, but we can do better. First, showed that this "fill-in" of the sparsity depends strongly on the ordering of the degrees of freedom: as an experiment, tried a _random_ reordering, and found that we obtain Θ(m2) nonzero entries (~10% nonzero). Alternatively, one can find re-orderings that greatly reduce the fill-in. One key observation is that the fill-in only depends on the pattern of the matrix, which can be interpreted as a [graph](http://en.wikipedia.org/wiki/Graph_%28mathematics%29): m vertices, and edges for the nonzero entries of A (an [adjacency matrix](http://en.wikipedia.org/wiki/Adjacency_matrix) of the graph), and sparse-direct algorithms are closely related to graph-theory problems. For our simple 2d Laplacian, the graph is just the picture of the grid connecting the points. One simple algorithm is the [nested dissection algorithm](http://en.wikipedia.org/wiki/Nested_dissection): recursively find a separator of the graph, then re-order the vertices to put the separator last. This reorders the matrix into a mostly block-diagonal form, with large blocks of zeros that are preserved by elimination, and if we do this recursively we greatly reduce the fill-in. Did a crude analysis of the the fill-in structure, resulting in the time/space complexity on the last page of the handoutw, for our 2d grid where separators are obvious; for more general matrices finding separators is a hard and important problem in graph theory.
 
@@ -358,7 +358,7 @@ Concluded with some rules of thumb (see handout) about which type of solvers to 
 
 ### Lecture 26 (Apr 15)
 
-**Handouts:** [overview of optimization](optimization-handout.pdf) ([full-page slides](optimization.pdf))
+**Handouts:** [overview of optimization](notes/optimization-handout.pdf) ([full-page slides](notes/optimization.pdf))
 
 Several of the iterative algorithms so far have worked, conceptually at least, by turning the original linear-algebra problem into a minimization problem. It is natural to ask, then, whether we can use similar ideas to solve more general **optimization problems**, which will be the next major topic in 18.335.
 
@@ -366,13 +366,13 @@ Broad overview of optimization problems (see handout). The most general formulat
 
 ### Lecture 27 (Apr 17)
 
-**Handouts:** [notes on adjoint methods](http://math.mit.edu/~stevenj/18.336/adjoint.pdf) to compute gradients; [notes on adjoint methods for recurrence relations](http://math.mit.edu/~stevenj/18.336/recurrence2.pdf); [adjoint example notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/Adjoint-method.ipynb)
+**Handouts:** [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients; [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf); [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/adjoint/Adjoint-method.ipynb)
 
 Introduction to **adjoint** methods and the remarkable fact that one can compute the gradient of a complicated function with about the same number of additional operations as computing the function _once_.
 
 ### Lecture 28 (Apr 22)
 
-**Handouts:** [notes on adjoint methods for recurrence relations](http://math.mit.edu/~stevenj/18.336/recurrence2.pdf); see pages 1–10 of [Svanberg (2002) paper on CCSA algorithms](
+**Handouts:** [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf); see pages 1–10 of [Svanberg (2002) paper on CCSA algorithms](
 http://dx.doi.org/10.1137/S1052623499362822)
 
 Adjoint methods for recurrence relations, following notes.
@@ -407,7 +407,7 @@ Discussed how quasi-Newton methods are used: they are used to generate not reall
 
 ### Lecture 31 (Apr 29)
 
-**Handouts:** [pset 5](pset5-s15.pdf) (due Mon May 11).
+**Handouts:** [pset 5](psets/pset5-s15.pdf) (due Mon May 11).
 
 Outlined four desirable properties of approximate Hessian matrix: positive definiteness, convergence to exact Hessian for quadratic objectives, multiplying it by the change in _x_ should give the change in the gradient for the most recent step (the "secant condition"), and it should have as much "memory" as possible (minimizing the change to the Hessian or its inverse in some norm).
 
@@ -466,12 +466,12 @@ Using Chebyshev approximation, explained how lots of problems can be solved by f
 
 ### Lecture 36 (May 11)
 
-**Handout:** [notes on FFTs](fft-iap3.pdf), [pset 5 solutions](pset5sol-s15.pdf) and [notebook](http://nbviewer.ipython.org/url/math.mit.edu/~stevenj/18.335/pset5sol-s15.ipynb)
+**Handout:** [notes on FFTs](notes/fft-iap3.pdf), [pset 5 solutions](pset5sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/pset5sol-s15.ipynb)
 
 Overview of fast Fourier transform (FFT) algorithms, and in particular derived the Cooley-Tukey algorithm and analyzed its complexity. Briefly commented on the existence of O(N log N) FFT algorithms for prime sizes and gave the example of [Rader's algorithm](https://en.wikipedia.org/wiki/Rader%27s_FFT_algorithm).
 
-**Further reading:** [notes on FFTs](fft-iap3.pdf) and references therein. The Wikipedia page on [fast Fourier transforms](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is reasonably accurate and links to descriptions of many algorithms (largely written by SGJ).
+**Further reading:** [notes on FFTs](notes/fft-iap3.pdf) and references therein. The Wikipedia page on [fast Fourier transforms](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is reasonably accurate and links to descriptions of many algorithms (largely written by SGJ).
 
 ### Lecture 37 (May 13)
 
-**Handout:** [slides on FFTs and FFTW](FFTW-Alan-2008.pdf)
+**Handout:** [slides on FFTs and FFTW](notes/FFTW-Alan-2008.pdf)
