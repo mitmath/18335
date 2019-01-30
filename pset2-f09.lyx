@@ -1,0 +1,565 @@
+#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 276
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 2
+\end_layout
+
+\begin_layout Standard
+Due Friday, 2 October 2009.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Floating-point
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, probem 13.2.
+ (For part 
+\emph on
+c
+\emph default
+, you can use Matlab, which employs IEEE double precision by default.)
+\end_layout
+
+\begin_layout Enumerate
+A generalization of Trefethen, problem 14.2: given a function 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ that is analytic (i.e., has a Taylor series) for 
+\begin_inset Formula $|x|$
+\end_inset
+
+ sufficiently small, and 
+\begin_inset Formula $g'(0)\neq0$
+\end_inset
+
+, show that 
+\begin_inset Formula $g(O(\epsilon))=g(0)+g'(0)O(\epsilon)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Addition
+\end_layout
+
+\begin_layout Standard
+This problem is about the floating-point error involved in summing 
+\begin_inset Formula $n$
+\end_inset
+
+ numbers, i.e.
+ in computing the function 
+\begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $x\in\mathbb{F}^{n}$
+\end_inset
+
+ (
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ being the set of floating-point numbers), where the sum is done in the
+ most obvious way, in sequence.
+ In pseudocode:
+\end_layout
+
+\begin_layout LyX-Code
+sum = 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+for 
+\begin_inset Formula $i$
+\end_inset
+
+ = 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+   sum = sum + 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $f(x)$
+\end_inset
+
+ = sum
+\end_layout
+
+\begin_layout Standard
+For analysis, it is a bit more convenient to define the process inductively:
+ 
+\begin_inset Formula \begin{eqnarray*}
+s_{0} & = & 0\\
+s_{k} & = & s_{k-1}+x_{k}\;\mbox{for }0<k\leq n,\end{eqnarray*}
+
+\end_inset
+
+with 
+\begin_inset Formula $f(x)=s_{n}$
+\end_inset
+
+.
+ When we implement this in floating-point, we get the function 
+\begin_inset Formula $\tilde{f}(x)=\tilde{s}_{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{s}_{k}=\tilde{s}_{k-1}\oplus x_{k}$
+\end_inset
+
+, with 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ denoting (correctly rounded) floating-point addition.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $\tilde{f}(x)=(x_{1}+x_{2})\prod_{k=2}^{n}(1+\epsilon_{k})+\sum_{i=3}^{n}x_{i}\prod_{k=i}^{n}(1+\epsilon_{k})$
+\end_inset
+
+, where the numbers 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ satisfy 
+\begin_inset Formula $|\epsilon_{k}|\leq\epsilon_{\mbox{machine}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $\prod_{k=i}^{n}(1+\epsilon_{k})=1+\delta_{i}$
+\end_inset
+
+ where 
+\begin_inset Formula $|\delta_{i}|\leq(n-i+1)\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that the error can be bounded as: 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose that the 
+\begin_inset Formula $\epsilon_{\mbox{k}}$
+\end_inset
+
+ values are uniformly randomly distributed in 
+\begin_inset Formula $[-\epsilon_{\mbox{machine}},+\epsilon_{\mbox{machine}}]$
+\end_inset
+
+.
+ Show that the 
+\emph on
+mean
+\emph default
+ error can be bounded by 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=O\left(\sqrt{n}\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|\right)$
+\end_inset
+
+.
+ (Hint: google 
+\begin_inset Quotes eld
+\end_inset
+
+random walk
+\begin_inset Quotes erd
+\end_inset
+
+...you can just quote standard statistical results for random walks, no need
+ to copy the proofs.)
+\end_layout
+
+\begin_layout Enumerate
+Compare your error bounds above to numerical experiments in Matlab.
+ Here, we will use an old trick to compute the floating-point errors: compare
+ the results computed in one precision to the 
+\begin_inset Quotes eld
+\end_inset
+
+exact
+\begin_inset Quotes erd
+\end_inset
+
+ results computed in a higher precision.
+ In particular, we will use the Matlab 
+\family typewriter
+single()
+\family default
+ function to accumulate the sum in single precision, rather than Matlab's
+ default double precision.
+ Plot the error 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|/\sum_{i}|x_{i}|$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $n$
+\end_inset
+
+ on a log-log scale (Matlab's 
+\family typewriter
+loglog
+\family default
+ command), and explain your observation in terms of your results above.
+\begin_inset Foot
+status open
+
+\begin_layout Standard
+Use enough 
+\begin_inset Formula $n$
+\end_inset
+
+ values to get a clear result.
+ e.g.
+ the command 
+\family typewriter
+n = round(logspace(2,6,100))
+\family default
+ gives 100 logarithmically spaced 
+\begin_inset Formula $n$
+\end_inset
+
+ values from 
+\begin_inset Formula $10^{2}$
+\end_inset
+
+ to 
+\begin_inset Formula $10^{6}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\newline
+
+\newline
+This is implemented in the example file 
+\family typewriter
+loopsum.m
+\family default
+, posted on the course page, which computes the sum 
+\begin_inset Formula $f(x)=$
+\end_inset
+
+
+\family typewriter
+loopsum(x)
+\family default
+ via the above algorithm in single precision.
+ For your numerical experiment, compute the sum of 
+\begin_inset Formula $n$
+\end_inset
+
+ random inputs 
+\begin_inset Formula $x\in[0,1)^{n}$
+\end_inset
+
+ via Matlab's 
+\family typewriter
+rand(1,n)
+\family default
+ function.
+ You can then compute 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|/\sum_{i}|x_{i}|$
+\end_inset
+
+ for a given 
+\begin_inset Formula $n$
+\end_inset
+
+ via
+\newline
+
+\newline
+
+\family typewriter
+x = rand(1,n);
+\newline
+err = abs(loopsum(x) - sum(x)) / sum(abs(x));
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Addition, another way
+\end_layout
+
+\begin_layout Standard
+Here you will analyze 
+\begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
+\end_inset
+
+ as in problem\InsetSpace ~
+2, but this time you will compute 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ in a different way.
+ In particular, compute 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ by a recursive divide-and-conquer approach, recursively dividing the set
+ of values to be summed in two halves and then summing the halves: 
+\begin_inset Formula \[
+\tilde{f}(x)=\begin{cases}
+0 & \mbox{if }n=0\\
+x_{1} & \mbox{if }n=1\\
+\tilde{f}(x_{1:\left\lfloor n/2\right\rfloor })\oplus\tilde{f}(x_{\left\lfloor n/2\right\rfloor +1:n}) & \mbox{if }n>1\end{cases},\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\left\lfloor y\right\rfloor $
+\end_inset
+
+ denotes the greatest integer 
+\begin_inset Formula $\leq y$
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ rounded down).
+ In exact arithmetic, this computes 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ exactly, but in floating-point arithmetic this will have very different
+ error characteristics than the simple loop-based summation in problem\InsetSpace ~
+2.
+\end_layout
+
+\begin_layout Enumerate
+For simplicity, assume 
+\begin_inset Formula $n$
+\end_inset
+
+ is a power of 2 (so that the set of numbers to add divides evenly in two
+ at each stage of the recursion).
+ With an analysis similar to that of problem\InsetSpace ~
+2, prove that 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq\epsilon_{\mbox{machine}}\log_{2}(n)\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+ That is, show that the worst-case error bound grows 
+\emph on
+logarithmically
+\emph default
+ rather than 
+\emph on
+linearly
+\emph default
+ with 
+\begin_inset Formula $n$
+\end_inset
+
+!
+\end_layout
+
+\begin_layout Enumerate
+If the floating-point rounding errors are randomly distributed as in problem
+ 2, estimate the average-case error bound.
+\end_layout
+
+\begin_layout Enumerate
+Pete R.
+ Stunt, a Microsoft employee, complains, 
+\begin_inset Quotes eld
+\end_inset
+
+While doing this kind of recursion may have nice error characteristics in
+ theory, it is ridiculous in the real world because it will be insanely
+ slow---I'm proud of my efficient software and can't afford to have a function-c
+all overhead for every number I want to add!
+\begin_inset Quotes erd
+\end_inset
+
+ Explain to Pete how to implement a slight variation of this algorithm with
+ the same logarithmic error bounds (possibly with a worse constant factor)
+ but roughly the same performance as a simple loop (hint: look at how I
+ implemented recursive matrix multiplication in my cache-oblivious handout
+ from lecture\InsetSpace ~
+3).
+\begin_inset Foot
+status collapsed
+
+\begin_layout Standard
+In fact, there is a common real-world algorithm that does summation in precisely
+ this recursive way: the Cooley-Tukey fast Fourier transform.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+On the course web page, I've posted a file div2sum.m that computes 
+\begin_inset Formula $\tilde{f}(x)=$
+\end_inset
+
+div2sum(x) by the above algorithm.
+ Modify it to not be horrendously slow via your suggestion in (c), and then
+ plot its errors for random inputs as a function of 
+\begin_inset Formula $n$
+\end_inset
+
+ as in problem\InsetSpace ~
+2.
+ Are your results consistent with your error estimates above?
+\end_layout
+
+\begin_layout Enumerate
+Suppose we now multiply two 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ random matrices 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ (
+\begin_inset Formula $\in[0,1)^{m\times m}$
+\end_inset
+
+, uniformly distributed) to form 
+\begin_inset Formula $C=AB$
+\end_inset
+
+.
+ If you look at any given entry 
+\begin_inset Formula $c_{ij}$
+\end_inset
+
+ of 
+\begin_inset Formula $C$
+\end_inset
+
+, how quickly do you expect the errors to grow with 
+\begin_inset Formula $m$
+\end_inset
+
+ if you compute 
+\begin_inset Formula $AB$
+\end_inset
+
+ via the simple 3-loop row-column algorithm? What if you use the optimal
+ cache-oblivious algorithm from class?
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Stability
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 15.1.
+ [In parts (e) and (f), assume that 
+\begin_inset Formula $\frac{1}{k!}$
+\end_inset
+
+ can be computed to 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ and concentrate on the accumulation of errors in the summations.]
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 16.1.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

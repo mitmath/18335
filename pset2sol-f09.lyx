@@ -1,0 +1,1667 @@
+#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 276
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\newcommand{\fl}{\operatorname{fl}}
+\end_preamble
+\language english
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 2 Solutions
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Floating-point
+\end_layout
+
+\begin_layout Enumerate
+The smallest integer that cannot be exactly represented is 
+\begin_inset Formula $n=\beta^{t}+1$
+\end_inset
+
+ (for base-
+\begin_inset Formula $\beta$
+\end_inset
+
+ with a 
+\begin_inset Formula $t$
+\end_inset
+
+-digit mantissa).
+ You might be tempted to think that 
+\begin_inset Formula $\beta^{t}$
+\end_inset
+
+ cannot be represented, since a 
+\begin_inset Formula $t$
+\end_inset
+
+-digit number, at first glance, only goes up to 
+\begin_inset Formula $\beta^{t}-1$
+\end_inset
+
+ (e.g.
+ three base-10 digits can only represent up to 999, not 1000).
+ However, 
+\begin_inset Formula $\beta^{t}$
+\end_inset
+
+ can be represented by 
+\begin_inset Formula $\beta^{t-1}\cdot\beta^{1}$
+\end_inset
+
+, where the 
+\begin_inset Formula $\beta^{1}$
+\end_inset
+
+ is absorbed in the exponent.
+\newline
+
+\newline
+In IEEE single and double precision, 
+\begin_inset Formula $\beta=2$
+\end_inset
+
+ and 
+\begin_inset Formula $t=24$
+\end_inset
+
+ and 
+\begin_inset Formula $53$
+\end_inset
+
+, respectively, giving 
+\begin_inset Formula $2^{24}+1=16,777,217$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{53}+1=9,007,199,254,740,993$
+\end_inset
+
+.
+\newline
+
+\newline
+Evidence that 
+\begin_inset Formula $n=2^{53}+1$
+\end_inset
+
+ is not exactly represented but that numbers less than that are can be found
+ by looking at the last few decimal digits as we increment the numbers.
+ e.g.
+ the last 3 decimal digits of 
+\begin_inset Formula $m$
+\end_inset
+
+ in Matlab are returned by 
+\family typewriter
+rem(m,1000)
+\family default
+.
+ 
+\family typewriter
+rem(2^53-2,1000)=990
+\family default
+, 
+\family typewriter
+rem(2^53-1,1000)=991
+\family default
+, 
+\family typewriter
+rem(2^53,1000)=992
+\family default
+, 
+\family typewriter
+rem(2^53+1,1000)=992
+\family default
+, 
+\family typewriter
+rem(2^53+2,1000)=994
+\family default
+, 
+\family typewriter
+rem(2^53+3,1000)=996
+\family default
+, and 
+\family typewriter
+rem(2^53+4,1000)=996
+\family default
+.
+ That is, incrementing up to 
+\begin_inset Formula $n-1$
+\end_inset
+
+ increments the last digit as expected, while going from 
+\begin_inset Formula $n-1$
+\end_inset
+
+ to 
+\begin_inset Formula $n$
+\end_inset
+
+ the last digit (and indeed, the whole number) doesn't change, and after
+ that the last digit increments in steps of 2.
+ In particular, 
+\begin_inset Formula $n+1$
+\end_inset
+
+ and 
+\begin_inset Formula $n+3$
+\end_inset
+
+ are both exactly represented, because they are even numbers: a factor of
+ two can be pulled into the exponent, since 
+\begin_inset Formula $2^{53}+2=(2^{52}+1)\cdot2$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{53}+4=(2^{52}+2)\cdot2$
+\end_inset
+
+, and hence the significand is still exactly represented.
+\end_layout
+
+\begin_layout Enumerate
+What we want to show, for a function 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ with a convergent Taylor series at 
+\begin_inset Formula $x=0$
+\end_inset
+
+, that 
+\begin_inset Formula $g(O(\epsilon))=g(0)+g'(0)O(\epsilon)$
+\end_inset
+
+.
+ [We must also assume 
+\begin_inset Formula $g'(0)\neq0$
+\end_inset
+
+, otherwise it is obviously false.] The first thing we need to do is to write
+ down precisely what this means.
+ We know what it means for a function 
+\begin_inset Formula $f(\epsilon)$
+\end_inset
+
+ to be 
+\begin_inset Formula $O(\epsilon)$
+\end_inset
+
+: it means that, for 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ sufficiently small (
+\begin_inset Formula $0\leq\epsilon<\delta$
+\end_inset
+
+ for some 
+\begin_inset Formula $\delta$
+\end_inset
+
+), then 
+\begin_inset Formula $|f(\epsilon)|<C_{1}\epsilon$
+\end_inset
+
+ for some 
+\begin_inset Formula $C_{1}>0$
+\end_inset
+
+.
+ Then, by 
+\begin_inset Formula $g(O(\epsilon))$
+\end_inset
+
+, we mean 
+\begin_inset Formula $g(f(\epsilon))$
+\end_inset
+
+ for any 
+\begin_inset Formula $f(\epsilon)\in O(\epsilon)$
+\end_inset
+
+; we wish to show that 
+\begin_inset Formula $f(\epsilon)$
+\end_inset
+
+ being 
+\begin_inset Formula $O(\epsilon)$
+\end_inset
+
+ implies that 
+\begin_inset Formula \[
+g(f(\epsilon))=g(0)+g'(0)h(\epsilon)\]
+
+\end_inset
+
+ for some 
+\begin_inset Formula $h(\epsilon)$
+\end_inset
+
+ that is also 
+\begin_inset Formula $O(\epsilon$
+\end_inset
+
+).
+\newline
+
+\newline
+Since 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ has a convergent Taylor series, we can explicitly write 
+\begin_inset Formula \[
+h(\epsilon)=f(\epsilon)+\frac{1}{g'(0)}\sum_{n=2}^{\infty}\frac{g^{(n)}(0)}{n!}f(\epsilon)^{n}.\]
+
+\end_inset
+
+But since 
+\begin_inset Formula $|f(\epsilon)|<C_{1}\epsilon$
+\end_inset
+
+ for some 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ (and for sufficiently small 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+), it immediately follows that 
+\begin_inset Formula \[
+|h(\epsilon)|<C_{1}\epsilon\left[1+\frac{1}{|g'(0)|}\sum_{n=1}^{\infty}\frac{\left|g^{(n+1)}(0)\right|}{(n+1)!}C_{1}^{n}\epsilon^{n}\right],\]
+
+\end_inset
+
+which is clearly 
+\begin_inset Formula $<2C_{1}\epsilon$
+\end_inset
+
+ for sufficiently small 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ (and indeed, is 
+\begin_inset Formula $<C_{2}\epsilon$
+\end_inset
+
+ for any 
+\begin_inset Formula $C_{2}>C_{1}$
+\end_inset
+
+), since the summation of 
+\begin_inset Formula $\epsilon^{n}$
+\end_inset
+
+ must go to zero as 
+\begin_inset Formula $\epsilon\to0$
+\end_inset
+
+ [if it doesn't, it is trivial to show that the Taylor series won't converge
+ to a function with the correct derivative 
+\begin_inset Formula $g'(0)$
+\end_inset
+
+ at 
+\begin_inset Formula $\epsilon=0$
+\end_inset
+
+].
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Addition
+\end_layout
+
+\begin_layout Enumerate
+We can prove this by induction on 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ For the base case of 
+\begin_inset Formula $n=2$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{f}(x)=(0\oplus x_{1})\oplus x_{2}=x_{1}\oplus x_{2}=(x_{1}+x_{2})(1+\epsilon_{2})$
+\end_inset
+
+ for 
+\begin_inset Formula $|\epsilon_{2}|\leq\epsilon_{\mbox{machine}}$
+\end_inset
+
+ is a consequence of the correct rounding of 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ (
+\begin_inset Formula $0\oplus x_{1}$
+\end_inset
+
+ must equal 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $x_{1}\oplus x_{2}$
+\end_inset
+
+ must be within 
+\begin_inset Formula $\epsilon_{\mbox{machine}}$
+\end_inset
+
+ of the exact result).
+\newline
+
+\newline
+Now for the inductive step.
+ Suppose 
+\begin_inset Formula $\tilde{s}_{n-1}=(x_{1}+x_{2})\prod_{k=2}^{n-1}(1+\epsilon_{k})+\sum_{i=3}^{n-1}x_{i}\prod_{k=i}^{n-1}(1+\epsilon_{k})$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\tilde{s}_{n}=\tilde{s}_{n-1}\oplus x_{n}=(\tilde{s}_{n-1}+x_{n})(1+\epsilon_{n})$
+\end_inset
+
+ where 
+\begin_inset Formula $|\epsilon_{n}|<\epsilon_{\mbox{machine}}$
+\end_inset
+
+ is guaranteed by floating-point addition.
+ The result follows by inspection: the previous terms are all multiplied
+ by 
+\begin_inset Formula $(1+\epsilon_{n})$
+\end_inset
+
+, and we add a new term 
+\begin_inset Formula $x_{n}(1+\epsilon_{n})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+This is trivial: just multiplying out the terms 
+\begin_inset Formula $(1+\epsilon_{i})\cdots(1+\epsilon_{n})=1+\sum_{k=i}^{n}\epsilon_{k}+(\mbox{products of }\epsilon)=1+\delta_{i}$
+\end_inset
+
+, where the products of 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ terms are 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+, and hence (by the triangle inequality) 
+\begin_inset Formula $|\delta_{i}|\leq\sum_{k=i}^{n}|\epsilon_{k}|+O(\epsilon_{\mbox{machine}}^{2})\leq(n-i+1)\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+We have: 
+\begin_inset Formula $\tilde{f}(x)=f(x)+(x_{1}+x_{2})\delta_{2}+\sum_{i=3}^{n}x_{i}\delta_{i}$
+\end_inset
+
+, and hence (by the triangle inequality): 
+\begin_inset Formula \[
+|\tilde{f}(x)-f(x)|\leq|x_{1}|\,|\delta_{2}|+\sum_{i=2}^{n}|x_{i}|{\,|\delta}_{i}|.\]
+
+\end_inset
+
+But 
+\begin_inset Formula $|\delta_{i}|\leq n\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+ for all 
+\begin_inset Formula $i$
+\end_inset
+
+, from the previous part, and hence 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+For uniform random 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+, since 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+ is the sum of 
+\begin_inset Formula $(n-i+1)$
+\end_inset
+
+ random variables with variance 
+\begin_inset Formula $\sim\epsilon_{\mbox{machine}}$
+\end_inset
+
+, it follows from the usual properties of random walks that the mean 
+\begin_inset Formula $|\delta_{i}|$
+\end_inset
+
+ has magnitude 
+\begin_inset Formula $\sim\sqrt{n-i+1}O(\epsilon_{\mbox{machine}})\leq\sqrt{n}O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+ Hence 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=O\left(\sqrt{n}\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Results of the suggested numerical experiment are plotted in figure\InsetSpace ~
+
+\begin_inset LatexCommand ref
+reference "fig:prob2e"
+
+\end_inset
+
+.
+ For each 
+\begin_inset Formula $n$
+\end_inset
+
+, I averaged the error 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|/\sum_{i}|x_{i}|$
+\end_inset
+
+ over 100 runs to reduce the variance.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename prob2e.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+\begin_inset LatexCommand label
+name "fig:prob2e"
+
+\end_inset
+
+Error 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|/\sum_{i}|x_{i}|$
+\end_inset
+
+ for random 
+\begin_inset Formula $x\in[0,1)^{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ is computed by a simple loop in single precision, averaged over 100 random
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ vectors, as a function of 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Notice that it fits very well to 
+\begin_inset Formula $\approx1.2\times10^{-8}\sqrt{n}$
+\end_inset
+
+, matching the expected 
+\begin_inset Formula $\sqrt{n}$
+\end_inset
+
+ growth for random errors.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Addition, another way
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $n=2^{m}$
+\end_inset
+
+ with 
+\begin_inset Formula $m\geq1$
+\end_inset
+
+.
+ We will first show that 
+\begin_inset Formula \[
+\tilde{f}(x)=\sum_{i=1}^{n}x_{i}\prod_{k=1}^{m}(1+\epsilon_{i,k})\]
+
+\end_inset
+
+where 
+\begin_inset Formula $|\epsilon_{i,k}|\leq\epsilon_{\mbox{machine}}$
+\end_inset
+
+.
+ We prove the above relationship by induction.
+ For 
+\begin_inset Formula $n=2$
+\end_inset
+
+ it follows from the definition of floating-point arithmetic.
+ Now, suppose it is true for 
+\begin_inset Formula $n$
+\end_inset
+
+ and we wish to prove it for 
+\begin_inset Formula $2n$
+\end_inset
+
+.
+ The sum of 
+\begin_inset Formula $2n$
+\end_inset
+
+ number is first summing the two halves recursively (which has the above
+ bound for each half since they are of length 
+\begin_inset Formula $n$
+\end_inset
+
+) and then adding the two sums, for a total result of 
+\begin_inset Formula \[
+\tilde{f}(x\in\mathbb{R}^{2n})=\left[\sum_{i=1}^{n}x_{i}\prod_{k=1}^{m}(1+\epsilon_{i,k})+\sum_{i=n+1}^{2n}x_{i}\prod_{k=1}^{m}(1+\epsilon_{i,k})\right](1+\epsilon)\]
+
+\end_inset
+
+for 
+\begin_inset Formula $|\epsilon|<\epsilon_{\mbox{machine}}$
+\end_inset
+
+.
+ The result follows by inspection, with 
+\begin_inset Formula $\epsilon_{i,m+1}=\epsilon$
+\end_inset
+
+.
+\newline
+
+\newline
+Then, we use the result from problem\InsetSpace ~
+2 that 
+\begin_inset Formula $\prod_{k=1}^{m}(1+\epsilon_{i,k})=1+\delta_{i}$
+\end_inset
+
+ with 
+\begin_inset Formula $|\delta_{i}|\leq m\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $m=\log_{2}(n)$
+\end_inset
+
+, the desired result follows immediately.
+\end_layout
+
+\begin_layout Enumerate
+As in problem\InsetSpace ~
+2, our 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+ factor is now a sum of random 
+\begin_inset Formula $\epsilon_{i,k}$
+\end_inset
+
+ values and grows as 
+\begin_inset Formula $\sqrt{m}$
+\end_inset
+
+.
+ That is, we expect that the average error grows as 
+\begin_inset Formula $\sqrt{\log_{2}n}O(\epsilon_{\mbox{machine}})\sum_{i}|x_{i}|$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Just enlarge the base case.
+ Instead of recursively dividing the problem in two until 
+\begin_inset Formula $n<2$
+\end_inset
+
+, divide the problem in two until 
+\begin_inset Formula $n<N$
+\end_inset
+
+ for some 
+\begin_inset Formula $N$
+\end_inset
+
+, at which point we sum the 
+\begin_inset Formula $<N$
+\end_inset
+
+ numbers with a simple loop as in problem 2.
+ A little arithmetic reveals that this produces 
+\begin_inset Formula $\sim2n/N$
+\end_inset
+
+ function calls---this is negligible compared to the 
+\begin_inset Formula $n-1$
+\end_inset
+
+ additions required as long as 
+\begin_inset Formula $N$
+\end_inset
+
+ is sufficiently large (say, 
+\begin_inset Formula $N=200$
+\end_inset
+
+), and the efficiency should be roughly that of a simple loop.
+\newline
+
+\newline
+Using a simple
+ loop has error bounds that grow as 
+\begin_inset Formula $N$
+\end_inset
+
+ as you showed above, but 
+\begin_inset Formula $N$
+\end_inset
+
+ is just a constant, so this doesn't change the overall logarithmic nature
+ of the error growth with 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ A more careful analysis analogous to above reveals that the worst-case
+ error grows as 
+\begin_inset Formula $[N+\log_{2}(n/N)]\epsilon_{\mbox{machine}}\sum_{i}|x_{i}|$
+\end_inset
+
+.
+ Asymptotically, this is not only 
+\begin_inset Formula $\log_{2}(n)\epsilon_{\mbox{machine}}\sum_{i}|x_{i}|$
+\end_inset
+
+ error growth, but with the same asymptotic constant factor!
+\end_layout
+
+\begin_layout Enumerate
+Instead of 
+\begin_inset Quotes eld
+\end_inset
+
+if (n < 2),
+\begin_inset Quotes erd
+\end_inset
+
+ just do 
+\begin_inset Quotes eld
+\end_inset
+
+if (n < 200)
+\begin_inset Quotes erd
+\end_inset
+
+.
+ To keep everything in single precision, one should, strictly speaking,
+ call loopsum instead of the built-in function sum (which uses at least
+ double precision, and probably uses extended precision).
+\newline
+
+\newline
+The logarithmic
+ error growth is actually so slow that it is practically impossible to see
+ the errors growing at all.
+ In an attempt to see it more clearly, I wrote a C program to implement
+ the same function (orders of magnitude quicker than doing recursion in
+ Matlab), and went up to 
+\begin_inset Formula $n=10^{9}$
+\end_inset
+
+ or so.
+ As in problem 2, I averaged over 100 random 
+\begin_inset Formula $x$
+\end_inset
+
+ to reduce the variance.
+ The results are plotted in figure\InsetSpace ~
+
+\begin_inset LatexCommand ref
+reference "fig:prob3d"
+
+\end_inset
+
+ for two cases: 
+\begin_inset Formula $N=1$
+\end_inset
+
+ (trivial base case) and 
+\begin_inset Formula $N=200$
+\end_inset
+
+ (large base case, much faster).
+ Asymptotically, the error is growing extremely slowly with 
+\begin_inset Formula $n$
+\end_inset
+
+, as expected, although it is hard to see even a logarithmic growth; it
+ looks pretty flat.
+ There are also a few surprises.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename prob3d.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Caption
+
+\begin_layout Standard
+\begin_inset LatexCommand label
+name "fig:prob3d"
+
+\end_inset
+
+Error 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|/\sum_{i}|x_{i}|$
+\end_inset
+
+ for random 
+\begin_inset Formula $x_{i}\in[0,1)^{n}$
+\end_inset
+
+, averaged over 100 
+\begin_inset Formula $x$
+\end_inset
+
+ vectors, for 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ computed in single precision by recursively dividing the sum in two halves
+ until 
+\begin_inset Formula $n<N$
+\end_inset
+
+, at which point a simple loop is employed.
+ Results for 
+\begin_inset Formula $N=1$
+\end_inset
+
+ and 
+\begin_inset Formula $N=200$
+\end_inset
+
+ base cases are shown.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\newline
+
+\newline
+First, we see that the errors are oscillating, at a constant rate on a semilog
+ scale.
+ In fact, the period of the oscillations corresponds to powers of two---the
+ error decreases as a power of two is approached, and then jumps up again
+ when 
+\begin_inset Formula $n$
+\end_inset
+
+ exceeds a power of 2.
+ Intuitively, what is happening is this: the reason for the slow error growth
+ is that we are recursively dividing 
+\begin_inset Formula $x$
+\end_inset
+
+ into equal-sized chunks, and are therefore adding quantities with nearly
+ equal magnitudes on average (which minimized roundoff error), but when
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ is not a power of two some of the chunks are unequal in size and the error
+ increases.
+\newline
+
+\newline
+Second, for the 
+\begin_inset Formula $N=200$
+\end_inset
+
+ base case, the errors initially increase much faster---as 
+\begin_inset Formula $\sqrt{n}$
+\end_inset
+
+, in fact, and then come back down for 
+\begin_inset Formula $n\gg N$
+\end_inset
+
+.
+ Obviously, for 
+\begin_inset Formula $n<N$
+\end_inset
+
+ the errors must increase as 
+\begin_inset Formula $\sqrt{n}$
+\end_inset
+
+ as in problem\InsetSpace ~
+2, since for this case we do no recursion and just sum via
+ a loop.
+ However, when 
+\begin_inset Formula $n\gg N$
+\end_inset
+
+, the logarithmic terms in the error dominate over the 
+\begin_inset Formula $O(N)$
+\end_inset
+
+ term, and the error approaches the error for 
+\begin_inset Formula $N=1$
+\end_inset
+
+ with the same constant factor, as predicted above!
+\newline
+
+\newline
+However, predicting the
+ exact functional dependence is clearly quite difficult!
+\end_layout
+
+\begin_layout Enumerate
+An 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix multiplication is just a bunch of length-
+\begin_inset Formula $m$
+\end_inset
+
+ dot products.
+ The only error accumulation in a dot product will occur in the summation,
+ so the error growth with 
+\begin_inset Formula $m$
+\end_inset
+
+ should be basically the same as in our analysis of the corresponding summation
+ algorithm.
+\newline
+
+\newline
+If you use the simple 3-loop row-column algorithm, you are doing
+ the summation(s) via simple loops, and the errors should thus grow as 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}}\sqrt{m})$
+\end_inset
+
+ on average as above.
+ The cache-oblivious algorithm, on the other hand, corresponds to recursively
+ dividing each dot product in two, and hence the errors should grow as 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}}\sqrt{\log m})$
+\end_inset
+
+ as above.
+\newline
+
+\newline
+In most cases, however, 
+\begin_inset Formula $m$
+\end_inset
+
+ isn't large enough for people to care about this difference in accuracy
+ for matrix multiplies.
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Stability
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 15.1.
+ In the following, I abbreviate 
+\begin_inset Formula $\epsilon_{\mbox{machine}}=\epsilon_{m}$
+\end_inset
+
+, and I use the fact (from problem 1) that we can replace any 
+\begin_inset Formula $g(O(\epsilon))$
+\end_inset
+
+ with 
+\begin_inset Formula $g(0)+g'(0)O(\epsilon)$
+\end_inset
+
+.
+ I also assume that 
+\begin_inset Formula $\fl(x)$
+\end_inset
+
+ is deterministic---by a stretch of Trefethen's definitions, it could conceivabl
+y be nondeterministic in which case one of the answers changes as noted
+ below, but this seems crazy to me (and doesn't correspond to any real machine).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Backward stable.
+ 
+\begin_inset Formula $x\oplus x=\fl(x)\oplus\fl(x)=[x(1+\epsilon_{1})+x(1+\epsilon_{1})](1+\epsilon_{2})=2\tilde{x}$
+\end_inset
+
+ for 
+\begin_inset Formula $|\epsilon_{i}|\leq\epsilon_{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{x}=x(1+\epsilon_{1}+\epsilon_{2}+2\epsilon_{1}\epsilon_{2})=x[1+O(\epsilon_{m})]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Backward stable.
+ 
+\begin_inset Formula $x\otimes x=\fl(x)\otimes\fl(x)=[x(1+\epsilon_{1})\times x(1+\epsilon_{1})](1+\epsilon_{2})=\tilde{x}^{2}$
+\end_inset
+
+ for 
+\begin_inset Formula $|\epsilon_{i}|\leq\epsilon_{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{x}=x(1+\epsilon_{1})\sqrt{1+\epsilon_{2}}=x[1+O(\epsilon_{m})]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Stable but not backwards stable.
+ 
+\begin_inset Formula $x\oslash x=[\fl(x)/\fl(x)](1+\epsilon)=1+\epsilon$
+\end_inset
+
+ (not including 
+\begin_inset Formula $x=0$
+\end_inset
+
+ or 
+\begin_inset Formula $\infty$
+\end_inset
+
+, which give NaN).
+ This is actually forwards stable, but there is no 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\tilde{x}/\tilde{x}\neq1$
+\end_inset
+
+ so it is not backwards stable.
+ (Under the stronger assumption of correctly rounded arithmetic, this will
+ give exactly 1, however.)
+\end_layout
+
+\begin_layout Enumerate
+Backwards stable.
+ 
+\begin_inset Formula $x\ominus x=[\fl(x)-\fl(x)](1+\epsilon)=0$
+\end_inset
+
+.
+ This is the correct answer for 
+\begin_inset Formula $\tilde{x}=x$
+\end_inset
+
+.
+ (In the crazy case where 
+\begin_inset Formula $\fl$
+\end_inset
+
+ is not deterministic, then it might give a nonzero answer, in which case
+ it is unstable.)
+\end_layout
+
+\begin_layout Enumerate
+Unstable.
+ It is definitely not backwards stable, because there is no data (and hence
+ no way to choose 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ to match the output).
+ To be stable, it would have to be forwards stable, but it isn't because
+ the errors decrease more slowly than 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+.
+ More explicitly, 
+\begin_inset Formula $1\oplus\frac{1}{2}\oplus\frac{1}{6}\oplus\cdots$
+\end_inset
+
+ summed from left to right will give 
+\begin_inset Formula $((1+\frac{1}{2})(1+\epsilon_{1})+\frac{1}{6})(1+\epsilon_{2})\cdots=e+\frac{3}{2}\epsilon_{1}+\frac{10}{6}\epsilon_{2}+\cdots$
+\end_inset
+
+
+\size normal
+\noun off
+\color none
+ 
+\family roman
+\series medium
+\shape up
+\emph off
+\bar no
+dropping terms of
+\family default
+\series default
+\shape default
+\emph default
+\bar default
+ 
+\size default
+\noun default
+
+\begin_inset Formula $O(\epsilon^{2})$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+, where the coefficients of the
+\family default
+\series default
+\shape default
+\emph default
+\bar default
+ 
+\size default
+\noun default
+
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+ factors converge to
+\family default
+\series default
+\shape default
+\emph default
+\bar default
+ 
+\size default
+\noun default
+
+\begin_inset Formula $e$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+ The number of terms is 
+\begin_inset Formula $n$
+\end_inset
+
+ where 
+\begin_inset Formula $n$
+\end_inset
+
+ satisfies 
+\begin_inset Formula $n!\approx1/\epsilon_{m}$
+\end_inset
+
+, which is a function that grows very slowly with 
+\begin_inset Formula $1/\epsilon_{m}$
+\end_inset
+
+, and hence the error from the additions alone is bounded above by 
+\begin_inset Formula $\approx n\epsilon_{m}$
+\end_inset
+
+.
+ The key point is that the errors grow at least as fast as 
+\begin_inset Formula $n\epsilon_{m}$
+\end_inset
+
+ (not even counting errors from truncation of the series, approximation
+ of 
+\begin_inset Formula $1/k!$
+\end_inset
+
+, etcetera), which is 
+\emph on
+not
+\emph default
+ 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+ because 
+\begin_inset Formula $n$
+\end_inset
+
+ grows slowly with decreasing 
+\begin_inset Formula $\epsilon_{m}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Stable.
+ As in (e), it is not backwards stable, so the only thing is to check forwards
+ stability.
+ Again, there will be 
+\begin_inset Formula $n$
+\end_inset
+
+ terms in the series, where 
+\begin_inset Formula $n$
+\end_inset
+
+ is a slowly growing function of 
+\begin_inset Formula $1/\epsilon_{m}$
+\end_inset
+
+ (
+\begin_inset Formula $n!\approx1/\epsilon_{m}$
+\end_inset
+
+).
+ However, the summation errors no longer grow as 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ From right to left, we are summing 
+\begin_inset Formula $\frac{1}{n!}\oplus\frac{1}{(n-1)!}\oplus\cdots\oplus1$
+\end_inset
+
+.
+ But this gives 
+\begin_inset Formula $((\frac{1}{n!}+\frac{1}{(n-1)!})(1+\epsilon_{n-1})+\frac{1}{(n-2)!})(1+\epsilon_{n-2})\cdots,$
+\end_inset
+
+and the linear terms in the 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ are then bounded by 
+\begin_inset Formula \[
+\left|\sum_{k=1}^{n-1}\epsilon_{k}\sum_{j=k}^{n}\frac{1}{j!}\right|\leq\epsilon_{m}\sum_{k=1}^{n-1}\sum_{j=k}^{n}\frac{1}{j!}=\epsilon_{m}\left[\frac{n-1}{n!}+\sum_{j=1}^{n-1}\frac{j}{j!}\right]\approx\epsilon_{m}e=O(\epsilon_{m}).\]
+
+\end_inset
+
+The key point is that the coefficients of the 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ coefficients grow smaller and smaller with 
+\begin_inset Formula $k$
+\end_inset
+
+, rather than approaching 
+\begin_inset Formula $e$
+\end_inset
+
+ as for left-to-right summation, and the sum of the coefficients converges.
+ The truncation error is of 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+, and we assume 
+\begin_inset Formula $1/k!$
+\end_inset
+
+ can also be calculated to within 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+, e.g.
+ via Stirling's approximation for large 
+\begin_inset Formula $k$
+\end_inset
+
+, so the overall error is 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+ and the algorithm is forwards stable.
+\end_layout
+
+\begin_layout Enumerate
+Unstable.
+ Not backwards stable since no data, but what about forwards stability?
+ The problem is the squaring of the sine function.
+ Suppose 
+\begin_inset Formula $x=\pi-\delta$
+\end_inset
+
+ and 
+\begin_inset Formula $x'=x(1+\epsilon_{m})$
+\end_inset
+
+ for some small 
+\begin_inset Formula $\delta>0$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\sin(x)\sin(x')\approx\delta(\delta-\epsilon_{m}\pi)+O(\delta^{2})$
+\end_inset
+
+.
+ In exact arithmetic, this goes to zero for 
+\begin_inset Formula $\delta=0$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $x=\pi$
+\end_inset
+
+.
+ However, it goes to zero too rapidly: if 
+\begin_inset Formula $\delta=O(\sqrt{\epsilon_{m}}),$
+\end_inset
+
+then 
+\begin_inset Formula $\sin(x)\sin(x')=O(\epsilon_{m})$
+\end_inset
+
+, and an 
+\begin_inset Formula $O(\epsilon_{m})$
+\end_inset
+
+ floating-point error in computing 
+\begin_inset Formula $\sin$
+\end_inset
+
+ will cause the product to pass through zero.
+ Therefore, this procedure only finds 
+\begin_inset Formula $\pi$
+\end_inset
+
+ to 
+\begin_inset Formula $O(\sqrt{\epsilon_{m}}),$
+\end_inset
+
+ which is too slow to be considered stable.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Trefethen, exercise 16.1.
+ Since stability under all norms is equivalent, we are free to choose 
+\begin_inset Formula $\Vert\cdot\Vert$
+\end_inset
+
+ to be the 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ norm (and the corresponding induced norm for matrices), for convenience,
+ since that norm is preserved by unitary matrices.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+First, we need to show that multiplication of 
+\begin_inset Formula $A$
+\end_inset
+
+ by a 
+\emph on
+single
+\emph default
+ unitary matrix 
+\begin_inset Formula $Q$
+\end_inset
+
+ is backwards stable.
+ That is, we need to find a 
+\begin_inset Formula $\delta A$
+\end_inset
+
+ with 
+\begin_inset Formula $\Vert\delta A\Vert=\Vert A\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ such that 
+\begin_inset Formula $\widetilde{QA}=Q(A+\delta A)$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $\Vert Q\delta A\Vert=\Vert\delta A\Vert$
+\end_inset
+
+, however, this is equivalent to showing 
+\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert=\Vert A\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+ It is sufficient to look at the error in the 
+\begin_inset Formula $ij$
+\end_inset
+
+-th element of 
+\begin_inset Formula $QA$
+\end_inset
+
+, i.e.
+ the error in computing 
+\begin_inset Formula $\sum_{k}q_{ik}a_{kj}$
+\end_inset
+
+.
+ Assuming we do this sum by a straightforward loop, the analysis is exactly
+ the same as in problem\InsetSpace ~
+2, except that there is an additional 
+\begin_inset Formula $(1+\epsilon)$
+\end_inset
+
+ factor in each term for the error in the product 
+\begin_inset Formula $q_{ik}a_{kj}$
+\end_inset
+
+ [or 
+\begin_inset Formula $(1+2\epsilon)$
+\end_inset
+
+ if we include the rounding of 
+\begin_inset Formula $q_{ik}$
+\end_inset
+
+ to 
+\begin_inset Formula $\tilde{q}_{ik}=\fl(q_{ik})$
+\end_inset
+
+].
+ Hence, the error in the 
+\begin_inset Formula $ij$
+\end_inset
+
+-th element is bounded by 
+\begin_inset Formula $mO(\epsilon_{\mbox{machine}})\sum_{k}|q_{ik}a_{kj}|$
+\end_inset
+
+, and (using the unitarity of 
+\begin_inset Formula $Q$
+\end_inset
+
+, which implies that 
+\begin_inset Formula $|q_{ik}|\leq1$
+\end_inset
+
+, and the equivalence of norms) this in turn is bounded by 
+\begin_inset Formula $mO(\epsilon_{\mbox{machine}})\sum_{k}|a_{kj}|\leq mO(\epsilon_{\mbox{machine}})\sum_{kj}|a_{kj}|\leq mO(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\end_inset
+
+.
+ Summing 
+\begin_inset Formula $m^{2}$
+\end_inset
+
+ of these errors in the individual elements of 
+\begin_inset Formula $QA$
+\end_inset
+
+, again using norm equivalence, we obtain 
+\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert\leq O(1)\sum_{ij}|(\widetilde{QA}-QA)_{ij}|\leq m^{3}O(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\end_inset
+
+.
+ Thus, we have proved backwards stability for multiplying by one unitary
+ matrix (with a very pessimistic 
+\begin_inset Formula $m^{3}$
+\end_inset
+
+ coefficient, but that doesn't matter here).
+\newline
+
+\newline
+Now, we will show by induction
+ that multiplying by 
+\begin_inset Formula $k$
+\end_inset
+
+ unitary matrices is backwards stable.
+ Suppose we have proved it for 
+\begin_inset Formula $k$
+\end_inset
+
+, and want to prove for 
+\begin_inset Formula $k+1$
+\end_inset
+
+.
+ That is, consider 
+\begin_inset Formula $QQ_{1}\cdots Q_{k}A$
+\end_inset
+
+.
+ By assumption, 
+\begin_inset Formula $Q_{1}\cdots Q_{k}A$
+\end_inset
+
+ is backwards stable, and hence 
+\begin_inset Formula $B=\widetilde{Q_{1}\cdots Q_{k}A}=Q_{1}\cdots Q_{k}(A+\delta A_{k})$
+\end_inset
+
+ for some 
+\begin_inset Formula $\Vert\delta A_{k}\Vert=O(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\end_inset
+
+.
+ Also, from above, 
+\begin_inset Formula $\widetilde{QB}=Q(B+\delta B)$
+\end_inset
+
+ for some 
+\begin_inset Formula $\Vert\delta B\Vert=O(\epsilon_{\mbox{machine}})\Vert B\Vert$
+\end_inset
+
+.
+ Furthermore, 
+\begin_inset Formula $\Vert B\Vert=\Vert Q_{1}\cdots Q_{k}(A+\delta A_{k})\Vert=\Vert A+\delta A_{k}\Vert\leq\Vert A\Vert+\Vert\delta A_{k}\Vert=\Vert A\Vert[1+O(\epsilon_{\mbox{machine}})]$
+\end_inset
+
+.
+ Hence, 
+\begin_inset Formula $\widetilde{QQ_{1}\cdots Q_{k}A}=\widetilde{QB}=Q[Q_{1}\cdots Q_{k}(A+\delta A_{k})+\delta B]=QQ_{1}\cdots Q_{k}(A+\delta A)$
+\end_inset
+
+ where 
+\begin_inset Formula $\delta A=\delta A_{k}+[Q_{1}\cdots Q_{k}]^{-1}\delta B$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\delta A\Vert\leq\Vert\delta A_{k}\Vert+\Vert\delta B\Vert=O(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Enumerate
+Consider 
+\begin_inset Formula $XA$
+\end_inset
+
+, where 
+\begin_inset Formula $X$
+\end_inset
+
+ is some rank-1 matrix 
+\begin_inset Formula $xy^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $A$
+\end_inset
+
+ has rank 
+\begin_inset Formula $>1$
+\end_inset
+
+.
+ The product 
+\begin_inset Formula $XA$
+\end_inset
+
+ has rank\InsetSpace ~
+1 in exact arithmetic, but after floating-point errors it is unlikely
+ that 
+\begin_inset Formula $\widetilde{XA}$
+\end_inset
+
+ will be exactly rank 1.
+ Hence it is not backwards stable, because 
+\begin_inset Formula $X\tilde{A}$
+\end_inset
+
+ will be rank\InsetSpace ~
+1 regardless of 
+\begin_inset Formula $\tilde{A}$
+\end_inset
+
+, and thus is 
+\begin_inset Formula $\neq\widetilde{XA}$
+\end_inset
+
+.
+ (See also example 15.2 in the text.)
+\end_layout
+
+\end_body
+\end_document
