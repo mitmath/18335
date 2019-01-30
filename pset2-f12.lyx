@@ -55,7 +55,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 30 September 2011.
+Due Fri., 28 September 2012.
 \end_layout
 
 \begin_layout Subsection*
@@ -200,6 +200,17 @@ Show that
 \end_inset
 
 .
+ Equivalently, show that 
+\begin_inset Formula \[
+\tilde{f}(x)=\sum_{i=1}^{n}x_{i}\prod_{k=i}^{n}(1+\epsilon_{k}),\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\epsilon_{1}=0$
+\end_inset
+
+ (assuming correct rounding).
 \end_layout
 
 \begin_layout Enumerate

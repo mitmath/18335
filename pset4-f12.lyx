@@ -1,4 +1,4 @@
-#LyX 1.6.9 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -57,7 +57,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Monday, 17 October 2011.
+Due Friday, 26 October 2012.
 \end_layout
 
 \begin_layout Subsection*
@@ -277,6 +277,30 @@ eig(A)
 \family default
 , and apply Newton's method starting at a few different points to converge
  to some different eigenvalues.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(If you make your matrix too big, you might encounter overflow problems
+ in which the determinant is bigger than the largest representable value,
+ and you get 
+\begin_inset Formula $\pm\infty$
+\end_inset
+
+.
+ This is easily fixed by modifying your 
+\family typewriter
+evalpoly
+\family default
+ routine to scale its result, but you needn't bother.
+ Just use a smaller matrix, say 
+\begin_inset Formula $100\times100$
+\end_inset
+
+.)
 \end_layout
 
 \begin_layout Subsection*
@@ -296,8 +320,13 @@ Reminder: final project proposals
 \end_layout
 
 \begin_layout Standard
-A half-page final-project proposal is due on October 28, outlining the goal
- and scope of your proposed paper.
+A half-page final-project proposal is 
+\series bold
+due on October 26
+\series default
+ (same day as the pset!), outlining the goal and scope of your proposed
+ paper---this is mainly so that I can give you feedback on whether your
+ project is reasonable.
  Problems motivated by your research are perfectly fine, although you shouldn't
  simply recycle something you've already done.
  The only restriction is that, since PDEs are covered in 18.336 and other
@@ -323,6 +352,31 @@ Numerical Recipes
 Numerical Recipes
 \emph default
  are not always trustworthy guides to a specific field).
+\end_layout
+
+\begin_layout Standard
+You should 
+\series bold
+email
+\series default
+ your final-project proposal to me; include 
+\emph on
+18.335 final project proposal
+\emph default
+ in the 
+\series bold
+subject
+\series default
+ of the email.
+ You can email the proposal to me early if you want! Your proposal should
+ cite a couple of references that you will use as starting points.
+ 
+\end_layout
+
+\begin_layout Standard
+See also the 18.335 web page, which answers some common questions about final
+ projects.
+ 
 \end_layout
 
 \end_body

@@ -57,80 +57,11 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 28 October 2011.
-\end_layout
-
-\begin_layout Subsection*
-Problem 0:
-\end_layout
-
-\begin_layout Standard
-Trefethen, problem 33.2.
+Due Friday, 16 November 2011.
 \end_layout
 
 \begin_layout Subsection*
 Problem 1: 
-\end_layout
-
-\begin_layout Enumerate
-Trefethen, 36.3.
- Plot the error in this eigenvalue as a function of how many 
-\begin_inset Formula $Ax$
-\end_inset
-
- matrix-vector multiplies you perform (use a semilog or log-log scale as
- appropriate).
- (The files lanczos.m and A363.m posted on the web page are helpful.) Also
- plot the values of smallest 
-\emph on
-three
-\emph default
- 
-\begin_inset Formula $\lambda$
-\end_inset
-
-'s versus the iteration, and show when ghost eigenvalues enter.
-\end_layout
-
-\begin_layout Enumerate
-Same problem, but use restarted Lanczos: after every 10 iterations of Lanzcos,
- restart with the best Ritz vector from those 10 iterations.
- Again, plot the error in 
-\begin_inset Formula $\lambda_{1}$
-\end_inset
-
- vs.
- matrix-vector multiply count.
-\end_layout
-
-\begin_layout Enumerate
-The above questions asked for the minimum-
-\begin_inset Formula $\lambda$
-\end_inset
-
- eigenvalue (which may be negative).
- Plot what happens if, instead, you try to get the minimum-
-\begin_inset Formula $|\lambda|$
-\end_inset
-
- eigenvalue by these techniques.
- (Aside: a better way is to use Lanczos on 
-\begin_inset Formula $A^{-1}$
-\end_inset
-
-, but that requires a fast way to solve 
-\begin_inset Formula $Ax=b$
-\end_inset
-
- in order to multiply by 
-\begin_inset Formula $A^{-1}$
-\end_inset
-
-.)
-\end_layout
-
-\begin_layout Subsection*
-Problem 2: 
 \end_layout
 
 \begin_layout Standard
@@ -139,7 +70,7 @@ Trefethen, problem 38.6.
 \end_layout
 
 \begin_layout Subsection*
-Problem 3:
+Problem 2:
 \end_layout
 
 \begin_layout Standard

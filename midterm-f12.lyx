@@ -1,0 +1,509 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\sign}{\operatorname{sign}}
+
+\renewcommand{\span}[1]{\operatorname{span}\langle #1 \rangle}
+\newcommand{\fl}{\operatorname{fl}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Midterm, Fall 2012
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (25 points)
+\end_layout
+
+\begin_layout Enumerate
+Your friend Alyssa P.
+ Hacker claims that the function 
+\begin_inset Formula $f(x)=\sin x$
+\end_inset
+
+ can be computed accurately (small forward relative error) near 
+\begin_inset Formula $x=0$
+\end_inset
+
+, but not near 
+\begin_inset Formula $x=2\pi$
+\end_inset
+
+, despite the fact that the function is periodic in exact arithmetic.
+ True or false? Why?
+\end_layout
+
+\begin_layout Enumerate
+Matlab provides a function 
+\family typewriter
+log1p(x)
+\family default
+ that computes 
+\begin_inset Formula $\ln(1+x)$
+\end_inset
+
+.
+ What is the point of providing such a function, as opposed to just letting
+ the user compute 
+\begin_inset Formula $\ln(1+x)$
+\end_inset
+
+ herself? (Hint: not performance.) Outline a possible implementation of 
+\family typewriter
+log1p(x)
+\family default
+ [rough pseudocode is fine].
+\end_layout
+
+\begin_layout Enumerate
+Matlab provides a function 
+\family typewriter
+gamma(x)
+\family default
+ that computes the 
+\begin_inset Quotes eld
+\end_inset
+
+Gamma
+\begin_inset Quotes erd
+\end_inset
+
+ function 
+\begin_inset Formula $\Gamma(x)=\int_{0}^{\infty}e^{-t}t^{x-1}dt$
+\end_inset
+
+, which is a generalization of factorials, since 
+\begin_inset Formula $\Gamma(n+1)=n!$
+\end_inset
+
+.
+ Matlab also provides a function 
+\family typewriter
+gammaln(x)
+\family default
+ that computes 
+\begin_inset Formula $\ln[\Gamma(x)]$
+\end_inset
+
+.
+ What is the point of providing a separate 
+\family typewriter
+gammaln
+\family default
+ function? (Hint: not performance.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (5+10+10 points)
+\end_layout
+
+\begin_layout Standard
+Recall that a floating-point implementation 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ of a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ (between two normed vector spaces) is said to be 
+\emph on
+backwards stable
+\emph default
+ if, for every 
+\begin_inset Formula $x$
+\end_inset
+
+, there exists some 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\tilde{f}(x)=f(\tilde{x})$
+\end_inset
+
+ for 
+\begin_inset Formula $\Vert\tilde{x}-x\Vert=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+ Consider how you would apply this definition to a function 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+ of 
+\emph on
+two
+\emph default
+ arguments 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Two possibilities are:
+\end_layout
+
+\begin_layout Itemize
+First: The most direct application of the original definition would be to
+ define a single vector space on pairs 
+\begin_inset Formula $v=(x,y)$
+\end_inset
+
+ in the obvious way [
+\begin_inset Formula $(x_{1},y_{1})+(x_{2},y_{2})=(x_{1}+x_{2},y_{1}+y_{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha\cdot(x,y)=(\alpha x,\alpha y)$
+\end_inset
+
+], with some norm 
+\begin_inset Formula $\Vert(x,y)\Vert$
+\end_inset
+
+ on pairs.
+ Then 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ is backwards stable if for every 
+\begin_inset Formula $(x,y)$
+\end_inset
+
+ there exist 
+\begin_inset Formula $(\tilde{x},\tilde{y})$
+\end_inset
+
+ with 
+\begin_inset Formula $\tilde{f}(x,y)=f(\tilde{x},\tilde{y})$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert(\tilde{x},\tilde{y})-(x,y)\Vert=\Vert(x,y)\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Second: Alternatively, we could say 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ is backwards stable if for every 
+\begin_inset Formula $x,y$
+\end_inset
+
+ there exist 
+\begin_inset Formula $\tilde{x},\tilde{y}$
+\end_inset
+
+ with 
+\begin_inset Formula $\tilde{f}(x,y)=f(\tilde{x},\tilde{y})$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\tilde{x}-x\Vert=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ 
+\emph on
+and
+\emph default
+ 
+\begin_inset Formula $\Vert\tilde{y}-y\Vert=\Vert y\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Given norms 
+\begin_inset Formula $\Vert x\Vert$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert y\Vert$
+\end_inset
+
+ on 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+, give an example of a valid norm 
+\begin_inset Formula $\Vert(x,y)\Vert$
+\end_inset
+
+ on the vector space of pairs 
+\begin_inset Formula $(x,y)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Does 
+\begin_inset Formula $\mbox{First}\implies\mbox{Second}$
+\end_inset
+
+, or 
+\begin_inset Formula $\mbox{Second}\implies\mbox{First}$
+\end_inset
+
+, or both, or neither? Why?
+\end_layout
+
+\begin_layout Enumerate
+In class, we proved that summation of 
+\begin_inset Formula $n$
+\end_inset
+
+ floating-point numbers, in some sequential order, is backwards stable.
+ Suppose we sum 
+\begin_inset Formula $m+n$
+\end_inset
+
+ floating point numbers 
+\begin_inset Formula $x\in\mathbb{R}^{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $y\in\mathbb{R}^{n}$
+\end_inset
+
+ by 
+\begin_inset Formula $\tilde{f}(x,y)=x_{1}\oplus x_{2}\oplus x_{3}\oplus\cdots\oplus x_{m}\oplus y_{1}\oplus y_{2}\oplus\cdots\oplus y_{n}$
+\end_inset
+
+, doing the floating-point additions (
+\begin_inset Formula $\oplus$
+\end_inset
+
+) sequentially from left to right.
+ Is this backwards stable in the First sense? In the Second sense? (No complicat
+ed proof required, but give a brief justification if true and a counterexample
+ if false.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (25 points)
+\end_layout
+
+\begin_layout Standard
+Say 
+\begin_inset Formula $A$
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ diagonalizable matrix with eigenvectors 
+\begin_inset Formula $x_{1},x_{2},\ldots,x_{m}$
+\end_inset
+
+ (normalized to 
+\begin_inset Formula $\Vert x_{k}\Vert_{2}=1$
+\end_inset
+
+ for convenience) and distinct-magnitude eigenvalues 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+ such that 
+\begin_inset Formula $|\lambda_{1}|>|\lambda_{2}|>\cdots>|\lambda_{m}|$
+\end_inset
+
+.
+ In class, we showed that 
+\begin_inset Formula $n$
+\end_inset
+
+ steps of the QR algorithm produce a matrix 
+\begin_inset Formula $A_{n}=Q^{(n)*}AQ^{(n)}$
+\end_inset
+
+ where 
+\begin_inset Formula $Q^{(n)}$
+\end_inset
+
+ is equivalent (in exact arithmetic) to QR factorizing 
+\begin_inset Formula $A^{n}=Q^{(n)}R^{(n)}$
+\end_inset
+
+.
+ This proof was general for all 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ For the specific case of 
+\begin_inset Formula $A=A^{*}$
+\end_inset
+
+ where the eigenvectors are orthonormal, we concluded that as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ we obtain 
+\begin_inset Formula $Q^{(n)}\to\mbox{eigenvectors }(x_{1}\cdots x_{m})$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{n}\to\Lambda=\operatorname{diag}(\lambda_{1},\ldots,\lambda_{m})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Show
+\series default
+ that if 
+\begin_inset Formula $A\neq A^{*}$
+\end_inset
+
+ (so that the eigenvectors 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ are no longer in generally orthogonal), the QR algorithm approaches 
+\begin_inset Formula $A_{n}\to T$
+\end_inset
+
+ and 
+\begin_inset Formula $Q^{(n)}\to Q$
+\end_inset
+
+ where 
+\begin_inset Formula $T=Q^{*}AQ$
+\end_inset
+
+ is the 
+\series bold
+Schur factorization
+\series default
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ (Hint: show that 
+\begin_inset Formula $q_{k}=Q^{(n)}e_{k}$
+\end_inset
+
+, the 
+\begin_inset Formula $k$
+\end_inset
+
+-th column of 
+\begin_inset Formula $Q^{(n)}$
+\end_inset
+
+, is in the span 
+\begin_inset Formula $\langle x_{1},x_{2},\ldots,x_{k}\rangle$
+\end_inset
+
+ as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+, by considering 
+\begin_inset Formula $v_{k}=A^{n}e_{k}$
+\end_inset
+
+, the 
+\begin_inset Formula $k$
+\end_inset
+
+-th column of 
+\begin_inset Formula $A^{n}$
+\end_inset
+
+.
+ Similar to class, think about the power method 
+\begin_inset Formula $A^{n}e_{k}$
+\end_inset
+
+, and what Gram-Schmidt does to this.)
+\end_layout
+
+\end_body
+\end_document

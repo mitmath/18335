@@ -1,0 +1,569 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.2in
+\rightmargin 1.2in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on the equivalence of norms
+\end_layout
+
+\begin_layout Author
+Steven G.
+ Johnson, MIT Course 18.335
+\end_layout
+
+\begin_layout Standard
+If we are given two norms 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\cdot\Vert_{b}$
+\end_inset
+
+ on some finite-dimensional vector space 
+\begin_inset Formula $V$
+\end_inset
+
+ over 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+, a very useful fact is that they are always within a constant factor of
+ one another.
+ Specifically, there exists a pair of real numbers 
+\begin_inset Formula $0<C_{1}\leq C_{2}$
+\end_inset
+
+ such that, for all 
+\begin_inset Formula $x\in V$
+\end_inset
+
+, the following inequality holds: 
+\begin_inset Formula 
+\[
+C_{1}\Vert x\Vert_{b}\leq\Vert x\Vert_{a}\leq C_{2}\Vert x\Vert_{b}.
+\]
+
+\end_inset
+
+Note that any 
+\emph on
+finite
+\emph default
+-dimensional vector space, by definition, is spanned by a 
+\emph on
+basis
+\emph default
+ 
+\begin_inset Formula $e_{1},e_{2},\ldots,e_{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the 
+\emph on
+dimension
+\emph default
+ of the vector space.
+ (The basis is often chosen to be orthonormal if we have an inner product,
+ but non-orthonormal bases are fine too.) That is, any vector 
+\begin_inset Formula $x$
+\end_inset
+
+ can be written 
+\begin_inset Formula 
+\[
+x=\sum_{i=1}^{n}\alpha_{i}e_{i}
+\]
+
+\end_inset
+
+where the 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ are some scalars depending on 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Now, we can prove equivalence of norms in four steps, the last of which
+ requires some knowledge of analysis.
+ (I have seen other proofs as well, but they all require some theorem of
+ analysis.)
+\end_layout
+
+\begin_layout Subsection*
+Step 1: It is sufficient to consider 
+\begin_inset Formula $\Vert\cdot\Vert_{b}=\Vert\cdot\Vert_{1}$
+\end_inset
+
+ (transitivity).
+\end_layout
+
+\begin_layout Standard
+First, us define an 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+-style norm by 
+\begin_inset Formula 
+\[
+\Vert x\Vert_{1}=\sum_{i=1}^{n}|\alpha_{i}|.
+\]
+
+\end_inset
+
+(It is easy to see this is a norm.
+ The linear independence of any basis 
+\begin_inset Formula $\{e_{i}\}$
+\end_inset
+
+ means that 
+\begin_inset Formula $x\neq0\Longleftrightarrow\alpha_{j}\neq0$
+\end_inset
+
+ for some 
+\begin_inset Formula $j$
+\end_inset
+
+ 
+\begin_inset Formula $\Longleftrightarrow\Vert x\Vert_{1}>0$
+\end_inset
+
+.
+ The triangle inequality and the scaling property are obvious and follow
+ from the usual properties of 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+ norms on 
+\begin_inset Formula $\alpha\in\mathbb{C}^{n}$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Standard
+We will show that it is sufficient for to prove that 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ is equivalent to 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+, because norm equivalence is 
+\emph on
+transitive:
+\emph default
+ if two norms are equivalent to 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+, then they are equivalent to each other.
+ In particular, suppose both 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\cdot\Vert_{a'}$
+\end_inset
+
+ are equivalent to 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+ for constants 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $0<C_{1}\leq C_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $0<C_{1}'\leq C_{2}'$
+\end_inset
+
+, respectively:
+\begin_inset Formula 
+\[
+C_{1}\Vert x\Vert_{1}\leq\Vert x\Vert_{a}\leq C_{2}\Vert x\Vert_{1},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{1}'\Vert x\Vert_{1}\leq\Vert x\Vert_{a'}\leq C_{2}'\Vert x\Vert_{1}.
+\]
+
+\end_inset
+
+It immediately follows that 
+\begin_inset Formula 
+\[
+\frac{C_{1}'}{C_{2}}\Vert x\Vert_{a}\leq\Vert x\Vert_{a'}\leq\frac{C_{2}'}{C_{1}}\Vert x\Vert_{a},
+\]
+
+\end_inset
+
+and hence 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\cdot\Vert_{a'}$
+\end_inset
+
+ are equivalent.
+ Q.E.D.
+\end_layout
+
+\begin_layout Subsection*
+Step 2: 
+\begin_inset Formula $ $
+\end_inset
+
+It is sufficient to consider only 
+\begin_inset Formula $x$
+\end_inset
+
+ with 
+\begin_inset Formula $\Vert x\Vert_{1}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We wish to show that 
+\begin_inset Formula 
+\[
+C_{1}\Vert x\Vert_{1}\leq\Vert x\Vert_{a}\leq C_{2}\Vert x\Vert_{1},
+\]
+
+\end_inset
+
+ is true for 
+\emph on
+all
+\emph default
+ 
+\begin_inset Formula $x\in V$
+\end_inset
+
+ for some 
+\begin_inset Formula $C_{1},C_{2}$
+\end_inset
+
+.
+ It is trivially true for 
+\begin_inset Formula $x=0$
+\end_inset
+
+, so we need only consider 
+\begin_inset Formula $x\neq0$
+\end_inset
+
+, in which case we can divide by 
+\begin_inset Formula $\Vert x\Vert_{1}$
+\end_inset
+
+ to obtain the condition
+\begin_inset Formula 
+\[
+C_{1}\leq\Vert u\Vert_{a}\leq C_{2},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $u=x/\Vert x\Vert_{1}$
+\end_inset
+
+ has norm 
+\begin_inset Formula $\Vert u\Vert_{1}=1$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Subsection*
+Step 3: Any norm 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ is continuous under 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We wish to show that any norm 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ is a continuous function on 
+\begin_inset Formula $V$
+\end_inset
+
+ under the topology induced by the norm 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+.
+ That is, we wish to show that for any 
+\begin_inset Formula $\epsilon>0$
+\end_inset
+
+, there exists a 
+\begin_inset Formula $\delta>0$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\[
+\Vert x-x'\Vert_{1}<\delta\implies\left|\Vert x\Vert_{a}-\Vert x'\Vert_{a}\right|<\epsilon.
+\]
+
+\end_inset
+
+ We prove this in two steps.
+ First, by the triangle inequality on 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+, it follows that
+\begin_inset Formula 
+\[
+\Vert x\Vert_{a}-\Vert x'\Vert_{a}=\Vert x'+(x-x')\Vert_{a}-\Vert x'\Vert_{a}\leq\Vert x-x'\Vert_{a}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Vert x'\Vert_{a}-\Vert x\Vert_{a}=\Vert x-(x-x')\Vert_{a}-\Vert x\Vert_{a}\leq\Vert x-x'\Vert_{a}
+\]
+
+\end_inset
+
+ and hence 
+\begin_inset Formula 
+\[
+\left|\Vert x\Vert_{a}-\Vert x'\Vert_{a}\right|\leq\Vert x-x'\Vert_{a}
+\]
+
+\end_inset
+
+Second, applying the triangle inequality again, and writing 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $x=\sum_{i=1}^{n}\alpha_{i}e_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $x'=\sum_{i=1}^{n}\alpha_{i}'e_{i}$
+\end_inset
+
+ in our basis, we obtain 
+\begin_inset Formula 
+\[
+\Vert x-x'\Vert_{a}\leq\sum_{i=1}^{n}|\alpha_{i}-\alpha_{i}'|\cdot\Vert e_{i}\Vert_{a}\leq\Vert x-x'\Vert_{1}\left(\max_{i}\Vert e_{i}\Vert_{a}\right).
+\]
+
+\end_inset
+
+Therefore, if we choose 
+\begin_inset Formula 
+\[
+\delta=\frac{\epsilon}{\max_{i}\Vert e_{i}\Vert_{a}},
+\]
+
+\end_inset
+
+it immediately follows that
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula 
+\[
+\Vert x-x'\Vert_{1}<\delta\implies\left|\Vert x\Vert_{a}-\Vert x'\Vert_{a}\right|\leq\Vert x-x'\Vert_{a}<\epsilon.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Step 4: The maximum and minimum of 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ on the unit sphere
+\end_layout
+
+\begin_layout Standard
+It is a standard theorem of analysis, the 
+\emph on
+extreme value theorem
+\emph default
+, that a continuous function (e.g.
+ 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+, from step 3) on compact set (e.g.
+ the unit 
+\begin_inset Quotes eld
+\end_inset
+
+sphere
+\begin_inset Quotes erd
+\end_inset
+
+ defined by 
+\begin_inset Formula $\{u\mbox{ for }\Vert u\Vert_{1}=1\}$
+\end_inset
+
+, a closed and bounded set) must achieve a maximum and minimum value on
+ the set (it cannot merely approach them).
+ Let
+\begin_inset Formula 
+\[
+C_{1}=\min_{\Vert u\Vert_{1}=1}\Vert u\Vert_{a},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{2}=\max_{\Vert u\Vert_{1}=1}\Vert u\Vert_{a}.
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $u\neq0$
+\end_inset
+
+ for 
+\begin_inset Formula $\Vert u\Vert_{1}=1$
+\end_inset
+
+, it follows that 
+\begin_inset Formula $C_{2}\geq C_{1}>0$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+C_{1}\leq\Vert u\Vert_{a}\leq C_{2}
+\]
+
+\end_inset
+
+as required by step
+\begin_inset space ~
+\end_inset
+
+2.
+ We are done!
+\end_layout
+
+\end_body
+\end_document

@@ -56,7 +56,7 @@
 \end_layout
 
 \begin_layout Subsection*
-Problem 1: Floating-point
+Problem 1: (5+10)
 \end_layout
 
 \begin_layout Enumerate
@@ -370,7 +370,7 @@ which is clearly
 \end_layout
 
 \begin_layout Subsection*
-Problem 2: Addition
+Problem 2: (5+5+5+5+5)
 \end_layout
 
 \begin_layout Enumerate
@@ -484,7 +484,7 @@ We have:
 
 , and hence (by the triangle inequality): 
 \begin_inset Formula \[
-|\tilde{f}(x)-f(x)|\leq|x_{1}|\,|\delta_{2}|+\sum_{i=2}^{n}|x_{i}|{\,|\delta}_{i}|.\]
+|\tilde{f}(x)-f(x)|\leq|x_{1}|\,|\delta_{2}|+\sum_{i=2}^{n}|x_{i}|\,|\delta_{i}|.\]
 
 \end_inset
 
@@ -501,6 +501,39 @@ But
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note: This does 
+\emph on
+not
+\emph default
+ correspond to forwards stability, since we have only shown that 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+, which is different from 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=|f(x)|O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+! Our 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ is indeed uniformly convergent, however (i.e.
+ the constant factors are independent of 
+\begin_inset Formula $x$
+\end_inset
+
+, although they depend on 
+\begin_inset Formula $n$
+\end_inset
+
+), which allows us to use it for Trefethen exercise 16.1 below.
 \end_layout
 
 \begin_layout Enumerate
@@ -633,7 +666,7 @@ Error
 \end_layout
 
 \begin_layout Subsection*
-Problem 3: Addition, another way
+Problem 3: (5+5+5+5)
 \end_layout
 
 \begin_layout Enumerate
@@ -1093,7 +1126,7 @@ In most cases, however,
 \end_layout
 
 \begin_layout Subsection*
-Problem 4: Stability
+Problem 4: (14+(10+5))
 \end_layout
 
 \begin_layout Enumerate
@@ -1503,16 +1536,33 @@ then
 \end_deeper
 \begin_layout Enumerate
 Trefethen, exercise 16.1.
- Since stability under all norms is equivalent, we are free to choose 
-\begin_inset Formula $\Vert\cdot\Vert$
+ Note that we are free to switch norms as needed, by norm equivalence.
+ 
+\emph on
+Notation:
+\emph default
+ the floating-point algorithm for computing 
+\begin_inset Formula $f(A)=QA$
 \end_inset
 
- to be the 
-\begin_inset Formula $L_{2}$
+ will be denoted 
+\begin_inset Formula $\tilde{f}(A)=\widetilde{QA}$
 \end_inset
 
- norm (and the corresponding induced norm for matrices), for convenience,
- since that norm is preserved by unitary matrices.
+; I will assume that we simply use the obvious three-loop algorithm, i.e.
+ computing the row--column dot products with in-order (
+\begin_inset Quotes eld
+\end_inset
+
+recursive
+\begin_inset Quotes erd
+\end_inset
+
+) summation, allowing us to re-use the summation analysis from problem
+\begin_inset space ~
+\end_inset
+
+2.
 \end_layout
 
 \begin_deeper
@@ -1525,7 +1575,11 @@ We will proceed by induction on
 \begin_inset Formula $A$
 \end_inset
 
- by a single 
+ by a 
+\emph on
+single
+\emph default
+ 
 \begin_inset Formula $Q$
 \end_inset
 
@@ -1546,8 +1600,7 @@ We will proceed by induction on
 \begin_inset Newline newline
 \end_inset
 
-First, the base case.
- That is, we need to find a 
+First, the base case: we need to find a 
 \begin_inset Formula $\delta A$
 \end_inset
 
@@ -1561,19 +1614,22 @@ First, the base case.
 
 .
  Since 
-\begin_inset Formula $\Vert Q\delta A\Vert=\Vert\delta A\Vert$
+\begin_inset Formula $\Vert\delta A\Vert=\Vert Q^{*}\widetilde{QA}-A\Vert=\Vert Q(Q^{*}\widetilde{QA}-A)\Vert=\Vert\widetilde{QA}-QA\Vert$
 \end_inset
 
-, however, this is equivalent to showing 
-\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert=\Vert Q\delta A\Vert=\Vert A\Vert O(\epsilon_{\mbox{machine}})$
+ in the 
+\begin_inset Formula $L_{2}$
 \end_inset
 
- (i.e.
- we can look at the 
+ norm, however, this is equivalent to showing 
+\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert=\Vert A\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+; that is, we can look at the 
 \emph on
 forwards
 \emph default
- error, which is a bit easier).
+ error, which is a bit easier.
  It is sufficient to look at the error in the 
 \begin_inset Formula $ij$
 \end_inset
@@ -1638,7 +1694,11 @@ forwards
 \begin_inset Formula $\sum_{kj}|a_{kj}|$
 \end_inset
 
- is just an L1 Frobenius norm of 
+ is just an 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+ Frobenius norm of 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1652,12 +1712,12 @@ forwards
 \end_inset
 
 , again using norm equivalence, we obtain 
-\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert\leq O(1)\sum_{ij}|(\widetilde{QA}-QA)_{ij}|\leq m^{3}O(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\begin_inset Formula $\Vert\widetilde{QA}-QA\Vert=O(\sum_{ij}|(\widetilde{QA}-QA)_{ij}|)=m^{3}O(\epsilon_{\mbox{machine}})\Vert A\Vert$
 \end_inset
 
 .
  Thus, we have proved backwards stability for multiplying by one unitary
- matrix (with a very pessimistic 
+ matrix (with a overly pessimistic 
 \begin_inset Formula $m^{3}$
 \end_inset
 
@@ -1715,7 +1775,7 @@ Now, we will show by induction that multiplying by
 \end_inset
 
  where 
-\begin_inset Formula $\delta A=\delta A_{k}+[Q_{k}\cdots Q_{1}]\delta\tilde{B}$
+\begin_inset Formula $\delta A=\delta A_{k}+[Q_{1}^{*}\cdots Q_{k}^{*}]\delta\tilde{B}$
 \end_inset
 
  and 
@@ -1783,7 +1843,7 @@ Consider
 \end_layout
 
 \begin_layout Subsection*
-Problem 5: SVD and low-rank approximations (5+10+10+10 pts)
+Problem 5: SVD and low-rank approximations (5+5+5+5 pts)
 \end_layout
 
 \begin_layout Enumerate
