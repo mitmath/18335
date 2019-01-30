@@ -1,5 +1,5 @@
-#LyX 1.6.9 created this file. For more info see http://www.lyx.org/
-\lyxformat 345
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -14,41 +14,68 @@
 \renewcommand{\Im}{\operatorname{Im}}
 \end_preamble
 \use_default_options false
+\maintain_unincluded_children false
 \language english
+\language_package default
 \inputencoding auto
+\fontencoding global
 \font_roman times
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
+\use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
 \paperfontsize default
 \spacing single
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 2
-\use_esint 0
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
+\use_indices false
 \paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
 \topmargin 1in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
-\defskip medskip
+\paragraph_indentation default
 \quotes_language english
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
-\author "" 
-\author "" 
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
 \end_header
 
 \begin_body
@@ -58,7 +85,7 @@
 \end_layout
 
 \begin_layout Subsection*
-Problem 2: QR and orthogonal bases (10+5+10+(5+5+5) pts)
+Problem 2: QR and orthogonal bases (10+(5+5+5) pts)
 \end_layout
 
 \begin_layout Enumerate
@@ -116,191 +143,6 @@ y for a Hermitian
 \end_inset
 
  are the eigenvectors.
-\end_layout
-
-\begin_layout Enumerate
-We perform the QR factorization of the 
-\begin_inset Formula $m\times(n+1)$
-\end_inset
-
- matrix 
-\begin_inset Formula $(A,\vec{b})$
-\end_inset
-
- to form 
-\begin_inset Formula \[
-B=(A,\vec{b})=\hat{Q}'\hat{R}'=(\hat{Q},\hat{q}_{b})\left(\begin{array}{cc}
-\hat{R} & \vec{c}\\
-0 & \gamma\end{array}\right)=(\hat{Q}\hat{R},\hat{Q}\vec{c}+\gamma\hat{q}_{b}),\]
-
-\end_inset
-
-where the 0's arise because 
-\begin_inset Formula $\hat{R}'$
-\end_inset
-
- is upper-triangular.
- By inspection, 
-\begin_inset Formula $A=\hat{Q}\hat{R}$
-\end_inset
-
-, so the first 
-\begin_inset Formula $n$
-\end_inset
-
- columns of 
-\begin_inset Formula $\hat{Q}'$
-\end_inset
-
- give 
-\begin_inset Formula $\hat{Q}$
-\end_inset
-
- and the upper-left 
-\begin_inset Formula $n\times n$
-\end_inset
-
- corner of 
-\begin_inset Formula $\hat{R}'$
-\end_inset
-
- gives 
-\begin_inset Formula $\hat{R}$
-\end_inset
-
-.
- Also by inspection, 
-\begin_inset Formula $\vec{b}=\hat{Q}\vec{c}+\gamma\hat{q}_{b}$
-\end_inset
-
-, so that 
-\begin_inset Formula $\hat{Q}^{*}\vec{b}=\vec{c}$
-\end_inset
-
- (since 
-\begin_inset Formula $\hat{q}_{b}$
-\end_inset
-
- must be 
-\begin_inset Formula $\perp$
-\end_inset
-
- 
-\begin_inset Formula $\hat{Q}$
-\end_inset
-
-).
- Hence, the first 
-\begin_inset Formula $n$
-\end_inset
-
- entries in the last column of 
-\begin_inset Formula $\hat{R}'$
-\end_inset
-
- gives 
-\begin_inset Formula $\hat{Q}^{*}\vec{b}$
-\end_inset
-
- as desired.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-There is one wrinkle: what happens if 
-\begin_inset Formula $\vec{b}$
-\end_inset
-
- is linearly dependent on the columns of 
-\begin_inset Formula $A$
-\end_inset
-
-? i.e.
- 
-\begin_inset Formula $\vec{b}\in C(A)$
-\end_inset
-
- and the 
-\begin_inset Formula $A\vec{x}=\vec{b}$
-\end_inset
-
- problem has an exact solution.
- In this case, the QR factorization must break down in the last step, so
- that 
-\begin_inset Formula $\gamma=0$
-\end_inset
-
- and 
-\begin_inset Formula $\hat{q}_{b}$
-\end_inset
-
- is (at best) some arbitrary vector 
-\begin_inset Formula $\perp\hat{Q}$
-\end_inset
-
- or (at worst) infinities or NaN's.
- It doesn't matter, however, since we don't actually use 
-\begin_inset Formula $\hat{q}_{b}$
-\end_inset
-
- or 
-\begin_inset Formula $\gamma$
-\end_inset
-
-.
- 
-\begin_inset Formula $\vec{b}=\hat{Q}\vec{c}$
-\end_inset
-
- in this case, and so we can still solve 
-\begin_inset Formula $\hat{R}\vec{x}=\vec{c}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-An easy way to approach this problem is to look at the explicit construction
- of 
-\begin_inset Formula $\hat{R}$
-\end_inset
-
- via the Gram-Schmidt algorithms.
- By inspection, 
-\begin_inset Formula $r_{ij}=q_{i}^{*}v_{j}$
-\end_inset
-
- is zero if 
-\begin_inset Formula $i$
-\end_inset
-
- is even and 
-\begin_inset Formula $j$
-\end_inset
-
- is odd or vice-versa.
- Because of this, 
-\begin_inset Formula $\hat{R}$
-\end_inset
-
- will have a checkerboard pattern of nonzero values: 
-\begin_inset Formula \[
-\hat{R}=\left(\begin{array}{cccccccc}
-\times &  & \times &  & \times &  & \times\\
- & \times &  & \times &  & \times &  & \times\\
- &  & \times &  & \times &  & \times\\
- &  &  & \times &  & \times &  & \times\\
- &  &  &  & \times &  & \times\\
- &  &  &  &  & \times &  & \times\\
- &  &  &  &  &  & \times\\
- &  &  &  &  &  &  & \times\end{array}\right).\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Enumerate
@@ -407,20 +249,28 @@ e.g.
 \end_inset
 
 ): 
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 \left(\begin{array}{cc}
 c_{2} & s_{2}\\
--s_{2} & c_{2}\end{array}\right)\left(\begin{array}{cc}
+-s_{2} & c_{2}
+\end{array}\right)\left(\begin{array}{cc}
 -1 & 0\\
-0 & 1\end{array}\right)\left(\begin{array}{cc}
+0 & 1
+\end{array}\right)\left(\begin{array}{cc}
 c_{2} & -s_{2}\\
-s_{2} & c_{2}\end{array}\right)=\left(\begin{array}{cc}
+s_{2} & c_{2}
+\end{array}\right)=\left(\begin{array}{cc}
 -c_{2} & s_{2}\\
-s_{2} & c_{2}\end{array}\right)\left(\begin{array}{cc}
+s_{2} & c_{2}
+\end{array}\right)\left(\begin{array}{cc}
 c_{2} & -s_{2}\\
-s_{2} & c_{2}\end{array}\right)=\left(\begin{array}{cc}
+s_{2} & c_{2}
+\end{array}\right)=\left(\begin{array}{cc}
 -c & s\\
-s & c\end{array}\right)=F,\]
+s & c
+\end{array}\right)=F,
+\]
 
 \end_inset
 
@@ -455,13 +305,15 @@ The key thing is to focus on how we perform elimination under a single column
  2-component vector 
 \begin_inset Formula $x=\left(\begin{array}{c}
 a\\
-b\end{array}\right)$
+b
+\end{array}\right)$
 \end_inset
 
  into 
 \begin_inset Formula $Jx=\left(\begin{array}{c}
 \Vert x\Vert_{2}\\
-0\end{array}\right)$
+0
+\end{array}\right)$
 \end_inset
 
 , where 
@@ -562,11 +414,34 @@ The flops to compute the
  flops overall.
  That is, asymptotically 4 flops per row per column.
  The 6 flops of Givens is 50% more than the 4 of Householder.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The reason that Givens is still considered interesting and useful is that
+ (as we shall see in the next problem set), it can be used to exploit 
+\emph on
+sparsity
+\emph default
+: because it rotates only two elements at a time in each column, from the
+ bottom up, if a column ends in zeros then the zero portion of the column
+ can be skipped.
 \end_layout
 
 \end_deeper
 \begin_layout Subsection*
-Problem 2: Schur fine (10 + 15 points)
+Problem 2: Matrix addition and the CPU (10+5+10)
+\end_layout
+
+\begin_layout Standard
+See the pset 3 solution IJulia notebook.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Schur fine (10 + 15 points)
 \end_layout
 
 \begin_layout Enumerate
@@ -796,14 +671,18 @@ The eigenvalues are the roots of
 \end_inset
 
  satisfies
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 0=(T-t_{i,i}I)x=\left(\begin{array}{ccc}
 T_{1} & u & B\\
  & 0 & v^{*}\\
- &  & T_{2}\end{array}\right)\left(\begin{array}{c}
+ &  & T_{2}
+\end{array}\right)\left(\begin{array}{c}
 x_{1}\\
 \alpha\\
-x_{2}\end{array}\right),\]
+x_{2}
+\end{array}\right),
+\]
 
 \end_inset
 
@@ -816,7 +695,7 @@ where we have broken up
 \end_inset
 
  rows 
-\begin_inset Formula $(T_{1}\, u\, B)$
+\begin_inset Formula $(T_{1}\,u\,B)$
 \end_inset
 
 , the 
@@ -1013,6 +892,402 @@ Now, let us count the number of operations.
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Caches and backsubstitution (5+15 points)
+\end_layout
+
+\begin_layout Enumerate
+For each column of 
+\begin_inset Formula $X$
+\end_inset
+
+ we get a cache miss to read each entry 
+\begin_inset Formula $r_{ij}$
+\end_inset
+
+ of the matrix 
+\begin_inset Formula $R$
+\end_inset
+
+, an there are roughly 
+\begin_inset Formula $m^{2}/2$
+\end_inset
+
+ of these.
+ For large enough 
+\begin_inset Formula $m$
+\end_inset
+
+, where 
+\begin_inset Formula $m^{2}>Z$
+\end_inset
+
+, these are no-longer in-cache when the next column is prcoessed, and hence
+ incur new misses on each of the 
+\begin_inset Formula $n$
+\end_inset
+
+ columns.
+ Hence there are at least 
+\begin_inset Formula $m^{2}n/2$
+\end_inset
+
+, or 
+\begin_inset Formula $\Theta(m^{2}n)$
+\end_inset
+
+ misses.
+ There are also 
+\begin_inset Formula $\Theta(m^{2}n)$
+\end_inset
+
+ misses in reading 
+\begin_inset Formula $X$
+\end_inset
+
+, but this only change the constant factor.
+ The 
+\begin_inset Formula $\Theta(mn)$
+\end_inset
+
+ misses in reading 
+\begin_inset Formula $B$
+\end_inset
+
+ (each entry is used exactly once) are asymptotically negligible.
+ [Since 
+\begin_inset Formula $\Theta(m^{2}n)$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $Z$
+\end_inset
+
+ there is no asymptotic benefit from the cache: we have a 
+\emph on
+pessimal
+\emph default
+ cache-oblivious algorithm that achieves the worst case independent of 
+\begin_inset Formula $Z$
+\end_inset
+
+.]
+\end_layout
+
+\begin_layout Enumerate
+We can solve this problem in a cache-oblivious or cache-aware fashion.
+ I find the cache-oblivious algorithm to be more beautiful, so let's do
+ that.
+ We'll divide 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $X$
+\end_inset
+
+, and 
+\begin_inset Formula $B$
+\end_inset
+
+ into 
+\begin_inset Formula $\frac{m}{2}\times\frac{m}{2}$
+\end_inset
+
+ blocks for sufficiently large 
+\begin_inset Formula $m$
+\end_inset
+
+:
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $m$
+\end_inset
+
+ is not even, then we round as needed: 
+\begin_inset Formula $R_{11}$
+\end_inset
+
+ is 
+\begin_inset Formula $\left\lceil \frac{m}{2}\right\rceil \times\left\lceil \frac{m}{2}\right\rceil $
+\end_inset
+
+, 
+\begin_inset Formula $R_{12}$
+\end_inset
+
+ is 
+\begin_inset Formula $\left\lceil \frac{m}{2}\right\rceil \times\left\lfloor \frac{m}{2}\right\rfloor $
+\end_inset
+
+, 
+\begin_inset Formula $R_{21}$
+\end_inset
+
+ is 
+\begin_inset Formula $\left\lfloor \frac{m}{2}\right\rfloor \times\left\lceil \frac{m}{2}\right\rceil $
+\end_inset
+
+, and 
+\begin_inset Formula $R_{22}$
+\end_inset
+
+is 
+\begin_inset Formula $\left\lfloor \frac{m}{2}\right\rfloor \times\left\lfloor \frac{m}{2}\right\rfloor $
+\end_inset
+
+; similarly for 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ These bookkeeping details don't change anything, though, so it is fine
+ to just assume that 
+\begin_inset Formula $m$
+\end_inset
+
+ is a power of 2 for simplicity.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\left(\begin{array}{cc}
+R_{11} & R_{12}\\
+0 & R_{22}
+\end{array}\right)\left(\begin{array}{cc}
+X_{11} & X_{12}\\
+X_{21} & X_{22}
+\end{array}\right)=\left(\begin{array}{cc}
+B_{11} & B_{12}\\
+B_{21} & B_{22}
+\end{array}\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $R_{11}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{22}$
+\end_inset
+
+ are upper-triangular.
+ Now we solve this, analogous to backsubstitution, from bottom to top.
+ First, for 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+, we solve 
+\begin_inset Formula 
+\[
+R_{22}X_{2k}=B_{2k}
+\]
+
+\end_inset
+
+recursively for 
+\begin_inset Formula $X_{2k}$
+\end_inset
+
+.
+ Then, for 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+ we solve 
+\begin_inset Formula 
+\[
+R_{11}X_{1k}=B_{1k}-R_{12}X_{2k}
+\]
+
+\end_inset
+
+recursively for 
+\begin_inset Formula $X_{1k}$
+\end_inset
+
+.
+ We use a cache-optimal algorithm (from class) for the dense matrix multiplies
+ 
+\begin_inset Formula $R_{12}X_{2k}$
+\end_inset
+
+, which requires 
+\begin_inset Formula $f(m)\in\Theta(m^{3}/\sqrt{Z})$
+\end_inset
+
+ misses for each 
+\begin_inset Formula $\frac{m}{2}\times\frac{m}{2}$
+\end_inset
+
+ multiply.
+ The number 
+\begin_inset Formula $Q(m)$
+\end_inset
+
+ of cache misses then satisfies the recurrence: 
+\begin_inset Formula 
+\[
+Q(m)=4Q(m/2)+2f(m)+4m^{2},
+\]
+
+\end_inset
+
+where the 
+\begin_inset Formula $4Q(m/2)$
+\end_inset
+
+ is for the four recursive backsubsitutions and the 
+\begin_inset Formula $4m^{2}$
+\end_inset
+
+ is for the two matrix subtractions 
+\begin_inset Formula $B_{1k}-R_{12}X_{2k}$
+\end_inset
+
+.
+ This recurrence terminates when the problem fits in cache, i.e.
+ when 
+\begin_inset Formula $2m^{2}+m^{2}/2\leq Z$
+\end_inset
+
+, at which point only 
+\begin_inset Formula $\sim3m^{2}/2$
+\end_inset
+
+ misses are required.
+ (Since we are only interested in the asymptotic 
+\begin_inset Formula $\Theta$
+\end_inset
+
+ results, these little factors of 3 and 4 don't matter much, and I'll be
+ dropping them soon.) Noting that 
+\begin_inset Formula $f(m/2)\approx f(m)/8$
+\end_inset
+
+ , we can solve this recurrence as in class by just plugging it in a few
+ times and seeing the pattern: 
+\begin_inset Formula 
+\begin{eqnarray*}
+Q(m) & \approx & 4[4Q(m/4)+2f(m)/8+4m^{2}/4]+2f(m)+4m^{2}\\
+ & = & 4^{2}Q(m/4)+2f(m)\,\left[1+\frac{1}{2}\right]+4m^{2}\,\left[1+1\right]\\
+ & \approx & 4^{3}Q(m/8)+2f(m)\,\left[1+\frac{1}{2}+\frac{1}{2^{2}}\right]+4m^{2}\,\left[1+1+1\right]\\
+ & \approx & \cdots\\
+ & \approx & 4^{k}\Theta[(m/2^{k})^{2}]+2f(m)\,\left[1+\frac{1}{2}+\cdots+\frac{1}{2^{k-1}}\right]+4m^{2}\,\left[k\right]\\
+ & \approx & \Theta(m^{2})+\Theta(m^{3}/\sqrt{Z})+\Theta(m^{2})k
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\left[1+\frac{1}{2}+\cdots+\frac{1}{2^{k-1}}\right]\leq2$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+ is the number of times we have to divide the problem to fit in cache, i.e.
+ 
+\begin_inset Formula $3(m/2^{k})^{2}/2\approx Z$
+\end_inset
+
+ so 
+\begin_inset Formula $k$
+\end_inset
+
+ is 
+\begin_inset Formula $\Theta[\log(m^{2}/Z)]$
+\end_inset
+
+.
+ Hence, for large 
+\begin_inset Formula $m$
+\end_inset
+
+ where the 
+\begin_inset Formula $m^{3}$
+\end_inset
+
+term dominates over the 
+\begin_inset Formula $m^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $m^{2}\log m$
+\end_inset
+
+ terms, we obtain 
+\begin_inset Formula 
+\[
+Q(m;Z)=\Theta(m^{3}/\sqrt{Z})
+\]
+
+\end_inset
+
+and hence we can, indeed, achieve the same asymptotic cache complexity as
+ for matrix multiplication.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We could also get the same cache complexity in a cache-aware fashion by
+ blocking the problem into 
+\begin_inset Formula $m/b$
+\end_inset
+
+ blocks of size 
+\begin_inset Formula $b\times b$
+\end_inset
+
+, where 
+\begin_inset Formula $b$
+\end_inset
+
+ is some 
+\begin_inset Formula $\Theta(\sqrt{Z})$
+\end_inset
+
+ size chosen so that pairwise operations on the individual blocks fit in
+ cache.
+ Again, one would work on rows of blocks from bottom to top, and the algorithm
+ would look much like the ordinary backsubstitution algorithm except that
+ the numbers 
+\begin_inset Formula $b_{ij}$
+\end_inset
+
+ etcetera are replaced by blocks.
+ The number of misses is 
+\begin_inset Formula $\Theta(b^{2})=\Theta(Z)$
+\end_inset
+
+ per block, and there are 
+\begin_inset Formula $\Theta(\frac{m}{b}\times\frac{m}{b}\times\frac{n}{b})$
+\end_inset
+
+ block operations, hence 
+\begin_inset Formula $\Theta(\frac{m^{2}n}{b^{3}}\times b^{2})=\Theta(m^{2}n/\sqrt{Z})$
+\end_inset
+
+ misses.
+ This is a perfectly acceptable answer, too.
 \end_layout
 
 \end_body

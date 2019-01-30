@@ -1,0 +1,648 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 5
+\end_layout
+
+\begin_layout Standard
+Due Monday, 11 May.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Convexity
+\end_layout
+
+\begin_layout Standard
+Recall from class that a 
+\emph on
+convex function
+\emph default
+ is a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ such that 
+\begin_inset Formula $f(\alpha x+(1-\alpha)y)\leq\alpha f(x)+(1-\alpha)f(y)$
+\end_inset
+
+, for 
+\begin_inset Formula $\alpha\in[0,1]$
+\end_inset
+
+, where 
+\begin_inset Formula $x\in\mathbb{R}^{n}$
+\end_inset
+
+.
+ The inequality is 
+\begin_inset Formula $\geq$
+\end_inset
+
+ for 
+\emph on
+concave
+\emph default
+ functions, and = for 
+\emph on
+affine
+\emph default
+ functions.
+ A 
+\emph on
+convex set 
+\begin_inset Formula $X\subseteq\mathbb{R}^{n}$
+\end_inset
+
+
+\emph default
+ satisfies the property that if 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ are in 
+\begin_inset Formula $X$
+\end_inset
+
+, then so is the line connecting 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+, i.e.
+ so is 
+\begin_inset Formula $\alpha x+(1-\alpha)y$
+\end_inset
+
+ for 
+\begin_inset Formula $\alpha\in[0,1]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Show that the feasible region satisfying 
+\begin_inset Formula $m$
+\end_inset
+
+ constraints 
+\begin_inset Formula $f_{i}(x)\leq0$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,\ldots,m$
+\end_inset
+
+, is a convex set if the constraint functions are convex.
+\end_layout
+
+\begin_layout Enumerate
+Suppose that the feasible region is convex, but a constraint 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ is 
+\emph on
+not
+\emph default
+ convex.
+ Why might this make optimization harder?
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Adjoints
+\end_layout
+
+\begin_layout Standard
+Consider a recurrence relation 
+\begin_inset Formula $x^{n}=f(x^{n-1},p,n)\in\mathbb{R}^{K}$
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $x^{0}=b(p)$
+\end_inset
+
+ and 
+\begin_inset Formula $P$
+\end_inset
+
+ parameters 
+\begin_inset Formula $p\in\mathbb{R}^{P}$
+\end_inset
+
+, as in the notes from class (see the handout on the web page).
+ In class, and in the handout, we used the adjoint method to derive an expressio
+n for the derivatives 
+\begin_inset Formula $\frac{dg^{N}}{dx}$
+\end_inset
+
+ of a function 
+\begin_inset Formula $g(x^{n},p,n)\triangleq g^{n}$
+\end_inset
+
+ evaluated after 
+\begin_inset Formula $N$
+\end_inset
+
+ steps.
+\end_layout
+
+\begin_layout Standard
+In this problem, suppose that instead we want the derivative of a function
+ 
+\begin_inset Formula $G$
+\end_inset
+
+ that depends on the values of 
+\begin_inset Formula $x^{n}$
+\end_inset
+
+ from 
+\emph on
+every
+\emph default
+ 
+\begin_inset Formula $n\in\{0,1,\ldots,N\}$
+\end_inset
+
+ as follows: 
+\begin_inset Formula 
+\[
+G(p,N)=\sum_{n=0}^{N}g(x^{n},p,n)
+\]
+
+\end_inset
+
+for some function 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+One could simply use the adjoint formula from class to obtain 
+\begin_inset Formula $\frac{dG}{dp}=\sum_{n}\frac{dg^{n}}{dp}$
+\end_inset
+
+.
+ Explain why this is inefficient.
+\end_layout
+
+\begin_layout Enumerate
+Describe an efficient adjoint method to compute 
+\begin_inset Formula $\frac{dG}{dp}$
+\end_inset
+
+.
+ (Hint: modify the recurrence relation for 
+\begin_inset Formula $\lambda^{n}$
+\end_inset
+
+ from class to compute 
+\begin_inset Formula $\sum_{n}\frac{dg^{n}}{dp}$
+\end_inset
+
+ via the results of a 
+\emph on
+single
+\emph default
+ recurrence.)
+\end_layout
+
+\begin_layout Enumerate
+Apply this to the example 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ recurrence and 
+\begin_inset Formula $g$
+\end_inset
+
+ function from the notes, and implement your adjoint method in Julia.
+ Check your derivative 
+\begin_inset Formula $\frac{dG}{dp}$
+\end_inset
+
+ with 
+\begin_inset Formula $N=5$
+\end_inset
+
+ against the center-difference approximation 
+\begin_inset Formula $\frac{dG}{dp_{i}}=[G(p_{i}+\delta)-G(p_{i}-\delta)]/2\delta$
+\end_inset
+
+ for 
+\begin_inset Formula $p=(1,2,3,4,5)^{T}$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta p=10^{-5}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: BFGS
+\end_layout
+
+\begin_layout Standard
+In class, we covered BFGS updates to the approximate Hessian 
+\begin_inset Formula $H^{(n)}$
+\end_inset
+
+ from the 
+\begin_inset Formula $n$
+\end_inset
+
+-th optimization step for minimizing a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $x^{n}$
+\end_inset
+
+ be the guess for 
+\begin_inset Formula $x\in R^{N}$
+\end_inset
+
+ on the 
+\begin_inset Formula $n$
+\end_inset
+
+-th step.
+ Denote 
+\begin_inset Formula $f^{n}=f(x^{n})$
+\end_inset
+
+, 
+\begin_inset Formula $g^{n}=\left.\nabla f\right|_{x^{n}}$
+\end_inset
+
+ as in class.
+ The BFGS update is: 
+\begin_inset Formula 
+\[
+H^{(n+1)}=H^{(n)}+\frac{\gamma\gamma^{T}}{\gamma^{T}\delta}-\frac{H^{(n)}\delta\delta^{T}H^{(n)}}{\delta^{T}H^{(n)}\delta},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\delta=x^{n+1}-x^{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma=g^{n+1}-g^{n}$
+\end_inset
+
+.
+ Equivalently, since this is a pair of rank-1 updates, we can invert it
+ via the Sherman--Morrison formula to get an update for 
+\begin_inset Formula $\left[H^{(n)}\right]^{-1}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\left[H^{(n+1)}\right]^{-1}=\left[H^{(n)}\right]^{-1}+\frac{1}{\gamma^{T}\delta}\left\{ \left(1+\frac{\gamma^{T}\left[H^{(n)}\right]^{-1}\gamma}{\gamma^{T}\delta}\right)\delta\delta^{T}-\left[H^{(n)}\right]^{-1}\gamma\delta^{T}-\delta\gamma^{T}\left[H^{(n)}\right]^{-1}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, you want to show that this update 
+\emph on
+minimizes
+\emph default
+ a certain norm 
+\begin_inset Formula $\Vert E\Vert$
+\end_inset
+
+ where 
+\begin_inset Formula $E=\left[H^{(n+1)}\right]^{-1}-\left[H^{(n)}\right]^{-1}$
+\end_inset
+
+, subject to the following two constraints:
+\end_layout
+
+\begin_layout Itemize
+The secant condition: 
+\begin_inset Formula $H^{(n+1)}\delta=\gamma\implies\left[H^{(n+1)}\right]^{-1}\gamma=\delta=\left[H^{(n)}\right]^{-1}\gamma+E\gamma\implies\boxed{E\gamma=r}$
+\end_inset
+
+, where 
+\begin_inset Formula $r=\delta-\left[H^{(n)}\right]^{-1}\gamma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $H^{(n+1)}$
+\end_inset
+
+ is still symmetric, hence 
+\begin_inset Formula $\boxed{E=E^{T}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In particular, we consider the weighted Frobenius norm 
+\begin_inset Formula 
+\[
+F(E)=\Vert E\Vert^{2}=\Vert MEM^{T}\Vert_{F}^{2}=\tr(ME^{T}M^{T}MEM^{T})=\tr(M^{T}MEM^{T}ME^{T})=\boxed{\tr(WEWE^{T})}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $M$
+\end_inset
+
+ is some full-rank matrix and 
+\begin_inset Formula $W$
+\end_inset
+
+ is therefore a positive-definite symmetrix 
+\begin_inset Quotes eld
+\end_inset
+
+weight
+\begin_inset Quotes erd
+\end_inset
+
+ matrix 
+\emph on
+to be determined
+\emph default
+.
+ Strong duality holds because 
+\begin_inset Formula $F$
+\end_inset
+
+ is a convex quadratic function of 
+\begin_inset Formula $E$
+\end_inset
+
+ and the constraints are affine.
+ Furthermore, the problem is convex and satisfies Slater's condition (there
+ are no inequality constraints), so the KKT equations (
+\begin_inset Formula $\partial L/\partial E=0$
+\end_inset
+
+ + feasibility) are necessary and sufficient conditions for optimality.
+ Hence we can solve the KKT equations to determine 
+\begin_inset Formula $E$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Write down the Lagrangian in the form 
+\begin_inset Formula $L(E,\lambda,\Gamma)=\tr(\cdots)$
+\end_inset
+
+ for minimizing 
+\begin_inset Formula $F(E)$
+\end_inset
+
+ subject to these constraints, where 
+\begin_inset Formula $\lambda\in\mathbb{R}^{N}$
+\end_inset
+
+ are the Lagrange multipliers for 
+\begin_inset Formula $E\gamma=r$
+\end_inset
+
+ and 
+\begin_inset Formula $\Gamma^{T}\in\mathbb{R}^{N\times N}$
+\end_inset
+
+ are Lagrange multipliers for the 
+\begin_inset Formula $N^{2}$
+\end_inset
+
+ constraints (albeit half redundant) 
+\begin_inset Formula $E=E^{T}$
+\end_inset
+
+ [i.e.
+ they should give a term: 
+\begin_inset Formula $\tr\Gamma(E-E^{T})$
+\end_inset
+
+].
+ 
+\end_layout
+
+\begin_layout Enumerate
+Obtain the equation 
+\begin_inset Formula $0=\frac{\partial L}{\partial E}$
+\end_inset
+
+ from 
+\begin_inset Formula $0\approx L(E+\Delta)-L(E)$
+\end_inset
+
+ for arbitrary matrix 
+\begin_inset Formula $\Delta$
+\end_inset
+
+, dropping 
+\begin_inset Formula $O(\Delta^{2})$
+\end_inset
+
+ terms.
+ Solve for 
+\begin_inset Formula $E$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+From 
+\begin_inset Formula $E=E^{T}$
+\end_inset
+
+, solve for 
+\begin_inset Formula $\Gamma^{T}-\Gamma$
+\end_inset
+
+ and combine with your previous part to find 
+\begin_inset Formula $E$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ alone.
+\end_layout
+
+\begin_layout Enumerate
+From 
+\begin_inset Formula $E\gamma=r$
+\end_inset
+
+, solve for 
+\begin_inset Formula $\lambda=\mbox{(some expression involving \ensuremath{\lambda^{T}W^{-1}\gamma}})$
+\end_inset
+
+.
+ Hence, solve for 
+\begin_inset Formula $\lambda^{T}W^{-1}\gamma$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $r,\gamma,W$
+\end_inset
+
+.
+ Combine with the previous part to solve for 
+\begin_inset Formula $E$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $r,\gamma,W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If we choose 
+\begin_inset Formula $W=H^{(n+1)}$
+\end_inset
+
+ (which is symmetric and, as shown in class, positive definite if 
+\begin_inset Formula $\delta$
+\end_inset
+
+ came from a sufficiently good line minimization), the secant condition
+ gives 
+\begin_inset Formula $W^{-1}\gamma=\delta$
+\end_inset
+
+.
+ Show that this makes your 
+\begin_inset Formula $E$
+\end_inset
+
+ formula yield the BFGS update for 
+\begin_inset Formula $\left[H^{(n)}\right]^{-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+[Problem is based on Greenstadt and Goldfarb (1970).] 
+\end_layout
+
+\end_body
+\end_document

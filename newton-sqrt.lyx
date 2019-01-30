@@ -1,0 +1,727 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter courier
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5in
+\rightmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Square Roots via Newton's Method
+\end_layout
+
+\begin_layout Author
+S.
+ G.
+ Johnson, MIT Course 18.335
+\end_layout
+
+\begin_layout Section
+Overview
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Numerical methods
+\series default
+ can be distinguished from other branches of analysis and computer science
+ by three characteristics:
+\end_layout
+
+\begin_layout Itemize
+They work with arbitrary 
+\series bold
+real
+\series default
+ numbers (and vector spaces/extensions thereof): the desired results are
+ not restricted to integers or exact rationals (although in practice we
+ only ever compute 
+\emph on
+rational approximations
+\emph default
+ of irrational results).
+\end_layout
+
+\begin_layout Itemize
+Like in computer science (= math + time = math + money), we are concerned
+ not only with existence and correctness of the solutions (as in analysis),
+ but with the 
+\series bold
+time
+\series default
+ (and other computational resources, e.g.
+ memory) required to compute the result.
+\end_layout
+
+\begin_layout Itemize
+We are also concerned with 
+\series bold
+accuracy
+\series default
+ of the results, because in practice we only ever have 
+\series bold
+approximate
+\series default
+ answers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Some algorithms may be intrinsically approximate---like the Newton's-method
+ example shown below, they converge 
+\emph on
+towards
+\emph default
+ the desired result but never 
+\emph on
+reach
+\emph default
+ it in a finite number of steps.
+ 
+\emph on
+How fast they converge
+\emph default
+ is a key question.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Arithmetic with real numbers is approximate
+\emph default
+ on a computer, because we approximate the set 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ of real numbers by the set 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ of 
+\series bold
+floating-point numbers
+\series default
+, and the result of every elementary operation (
+\begin_inset Formula $+$
+\end_inset
+
+,
+\begin_inset Formula $-$
+\end_inset
+
+,
+\begin_inset Formula $\times$
+\end_inset
+
+,
+\begin_inset Formula $\div$
+\end_inset
+
+) is 
+\series bold
+rounded
+\series default
+ to the nearest element of 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+.
+ We need to understand 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ and how 
+\emph on
+accumulation
+\emph default
+ of these rounding errors affects different algorithms.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Square roots
+\end_layout
+
+\begin_layout Standard
+A classic algorithm that illustrates many of these concerns is 
+\begin_inset Quotes eld
+\end_inset
+
+Newton's
+\begin_inset Quotes erd
+\end_inset
+
+ method to compute square roots 
+\begin_inset Formula $x=\sqrt{a}$
+\end_inset
+
+ for 
+\begin_inset Formula $a>0$
+\end_inset
+
+, i.e.
+ to solve 
+\begin_inset Formula $x^{2}=a$
+\end_inset
+
+.
+ The algorithm starts with some guess 
+\begin_inset Formula $x_{1}>0$
+\end_inset
+
+ and computes the sequence of improved guesses 
+\begin_inset Formula 
+\[
+x_{n+1}=\frac{1}{2}\left(x_{n}+\frac{a}{x_{n}}\right).
+\]
+
+\end_inset
+
+The intuition is very simple: if 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ is too big (
+\begin_inset Formula $>\sqrt{a}$
+\end_inset
+
+), then 
+\begin_inset Formula $a/x_{n}$
+\end_inset
+
+ will be too small (
+\begin_inset Formula $<\sqrt{a}$
+\end_inset
+
+), and so their arithmetic mean 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+ will be closer to 
+\begin_inset Formula $\sqrt{a}$
+\end_inset
+
+.
+ It turns out that this algorithm is very old, dating at least to the ancient
+ Babylonians circa 1000
+\begin_inset space ~
+\end_inset
+
+BCE.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See e.g.
+ Boyer, 
+\emph on
+A History of Mathematics
+\emph default
+, ch.
+ 3; the Babylonians used base 60 and a famous tablet (YBC 7289) shows 
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ to about six decimal digits.
+\end_layout
+
+\end_inset
+
+ In modern times, this was seen to be equivalent to Newton's method to find
+ a root of 
+\begin_inset Formula $f(x)=x^{2}-a$
+\end_inset
+
+.
+ Recall that Newton's method finds an approximate root of 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+ from a guess 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ by approximating 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ as its tangent line 
+\begin_inset Formula $f(x_{n})+f'(x_{n})\,(x-x_{n})$
+\end_inset
+
+, leading to an improved guess 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+ from the root of the tangent: 
+\begin_inset Formula 
+\[
+x_{n+1}=x_{n}-\frac{f(x_{n})}{f'(x_{n})},
+\]
+
+\end_inset
+
+and for 
+\begin_inset Formula $f(x)=x^{2}-a$
+\end_inset
+
+ this yields the Babylonian formula above.
+\end_layout
+
+\begin_layout Subsection
+Convergence proof
+\end_layout
+
+\begin_layout Standard
+A classic analysis text (Rudin, 
+\emph on
+Principles of Mathematical Analysis
+\emph default
+) approaches the proof of convergence of this algorithm as follows: we prove
+ that the sequence converges monotonically and is bounded, and hence it
+ has a limit; we then easily see that the limit is 
+\begin_inset Formula $\sqrt{a}$
+\end_inset
+
+.
+ In particular:
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $x_{n}>\sqrt{a}$
+\end_inset
+
+, then it follows 
+\begin_inset Formula $\sqrt{a}<x_{n+1}<x_{n}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x_{n+1}-x_{n}=\frac{1}{2}(\frac{a}{x_{n}}-x_{n})=\frac{a-x_{n}^{2}}{2x_{n}}<0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x_{n+1}^{2}-a=\frac{1}{4}(x_{n}^{2}+2a+\frac{a^{2}}{x_{n}^{2}})-a=\frac{1}{4}(x_{n}^{2}-2a+\frac{a^{2}}{x_{n}^{2}})=\frac{1}{4}(x_{n}-\frac{a}{x_{n}})^{2}=\frac{(x_{n}^{2}-a)^{2}}{4x_{n}^{2}}>0$
+\end_inset
+
+ (regardless of whether 
+\begin_inset Formula $x_{n}>\sqrt{a}$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A monotonic-decreasing sequence that is bounded below converges (Rudin theorem
+ 3.14).
+ If 
+\begin_inset Formula $x_{1}<\sqrt{a}$
+\end_inset
+
+, the second property above means that 
+\begin_inset Formula $x_{2}>\sqrt{a}$
+\end_inset
+
+; then for 
+\begin_inset Formula $n>2$
+\end_inset
+
+ it is monotonically decreasing and bounded below by 
+\begin_inset Formula $\sqrt{a}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The limit 
+\begin_inset Formula $x=\lim_{n\to\infty}x_{n}$
+\end_inset
+
+ satisfies 
+\begin_inset Formula $x=\frac{1}{2}(x+\frac{a}{x})$
+\end_inset
+
+, which is easily solved to show that 
+\begin_inset Formula $x^{2}=a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+However, this proof by itself tells us nothing about 
+\emph on
+how fast
+\emph default
+ the sequence converges
+\end_layout
+
+\begin_layout Subsection
+Convergence example
+\end_layout
+
+\begin_layout Standard
+Using the accompanying Julia notebook, we will apply this method to compute
+ the most famous root of all, 
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+.
+ (Supposedly, the Greek who discovered that 
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ is irrational was thrown off a cliff by his Pythagorean colleagues.).
+ As a starting guess, we will use 
+\begin_inset Formula $x_{1}=1$
+\end_inset
+
+, producing the following sequence when computed with about 60 digits of
+ accuracy, where the correct digits are shown in boldface:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1
+\series default
+.5
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1
+\series default
+.
+\series bold
+41
+\series default
+66666666666666666666666666666666666666666666666666666666675
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1.41421
+\series default
+56862745098039215686274509803921568627450980392156862745
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1.41421356237
+\series default
+46899106262955788901349101165596221157440445849057
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1.41421356237309504880168
+\series default
+96235025302436149819257761974284982890
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1.41421356237309504880168872420969807856967187537
+\series default
+72340015610125
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\series bold
+1.4142135623730950488016887242096980785696718753769480731766796
+\end_layout
+
+\begin_layout Standard
+\noindent
+Looking carefully, we see that the 
+\series bold
+number of accurate digits approximately doubles on each iteration
+\series default
+.
+ This fantastic convergence rate means that we only need seven Newton iterations
+ to obtain more than 60 accurate digits---the accuracy is quickly limited
+ only by the precision of our floating-point numbers, a topic we will discuss
+ in more detail later on.
+\end_layout
+
+\begin_layout Subsection
+Convergence rate
+\end_layout
+
+\begin_layout Standard
+Let us analyze the convergence rate quantitatively---given a small error
+ 
+\begin_inset Formula $\delta_{n}$
+\end_inset
+
+ on the 
+\begin_inset Formula $n$
+\end_inset
+
+-th iteration, we will determine how much smaller the error 
+\begin_inset Formula $\delta_{n+1}$
+\end_inset
+
+ is in the next iteration.
+\end_layout
+
+\begin_layout Standard
+In particular, let us define 
+\begin_inset Formula $x_{n}=x\,(1+\delta_{n})$
+\end_inset
+
+, where 
+\begin_inset Formula $x=\sqrt{a}$
+\end_inset
+
+ is the exact solution.
+ This corresponds to defining 
+\begin_inset Formula $|\delta_{n}|$
+\end_inset
+
+ as the 
+\series bold
+relative error
+\series default
+:
+\begin_inset Formula 
+\[
+|\delta_{n}|=\frac{|x_{n}-x|}{|x|},
+\]
+
+\end_inset
+
+also called the 
+\series bold
+fractional error
+\series default
+ (the error as a fraction of the exact value).
+ Relative error is typically the most useful way to quantify the error because
+ it is a 
+\emph on
+dimensionless
+\emph default
+ quantity (independent of the units or overal scalling of 
+\begin_inset Formula $x$
+\end_inset
+
+).
+ The logarithm (
+\begin_inset Formula $-\log_{10}\delta_{n}$
+\end_inset
+
+) of the relative error is roughly the number of 
+\series bold
+accurate significant digits
+\series default
+ in the answer 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can plug this definition of 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ (and 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+) in terms of 
+\begin_inset Formula $\delta_{n}$
+\end_inset
+
+ (and 
+\begin_inset Formula $\delta_{n+1}$
+\end_inset
+
+) into our Newton iteration formula to solve for the iteration of 
+\begin_inset Formula $\delta_{n}$
+\end_inset
+
+, using the fact that 
+\begin_inset Formula $a/x=x$
+\end_inset
+
+ to divide both sides by 
+\begin_inset Formula $x$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+1+\delta_{n+1}=\frac{1}{2}\left(1+\delta_{n}+\frac{1}{1+\delta_{n}}\right)=\frac{1}{2}\left[1+\delta_{n}+1-\delta_{n}+\delta_{n}^{2}+O(\delta_{n}^{3})\right],
+\]
+
+\end_inset
+
+where we have Taylor-expanded 
+\begin_inset Formula $(1-\delta_{n})^{-1}$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $O(\delta_{n}^{3})$
+\end_inset
+
+ means roughly 
+\begin_inset Quotes eld
+\end_inset
+
+terms of order 
+\begin_inset Formula $\delta_{n}^{3}$
+\end_inset
+
+ or smaller;
+\begin_inset Quotes erd
+\end_inset
+
+ we will define it more precisely later on.
+ Because the sequence converges, we are entitled to assume that 
+\begin_inset Formula $|\delta_{n}|^{3}\ll1$
+\end_inset
+
+ for sufficiently large 
+\begin_inset Formula $n$
+\end_inset
+
+, and so the 
+\begin_inset Formula $\delta_{n}^{3}$
+\end_inset
+
+ and higher-order terms are eventually negligible compared to 
+\begin_inset Formula $\delta_{n}^{2}$
+\end_inset
+
+.
+ We obtain:
+\begin_inset Formula 
+\[
+\delta_{n+1}=\frac{\delta_{n}^{2}}{2}+O(\delta_{n}^{3}),
+\]
+
+\end_inset
+
+which means the 
+\series bold
+error roughly squares
+\series default
+ (and halves) on each iteration once we are close to the solution.
+ Squaring the relative error corresponds precisely to doubling the number
+ of significant digits, and hence explains the phenomenon above.
+ This is known as 
+\series bold
+quadratic convergence
+\series default
+ (not to be confused with 
+\begin_inset Quotes eld
+\end_inset
+
+second-order
+\begin_inset Quotes erd
+\end_inset
+
+ convergence, which unfortunately refers to an entirely different concept).
+\end_layout
+
+\end_body
+\end_document

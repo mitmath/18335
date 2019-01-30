@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -21,13 +21,13 @@
 \font_roman times
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -38,15 +38,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 2
-\use_esint 0
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -75,7 +84,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Monday, 28 October 2013.
+Due Monday, 30 March 2015.
 \end_layout
 
 \begin_layout Subsection*
@@ -174,90 +183,6 @@ Problem 3: Arnoldi
 
 \begin_layout Standard
 Trefethen, problem 33.2.
-\end_layout
-
-\begin_layout Subsection*
-Problem 4: GMRES
-\end_layout
-
-\begin_layout Standard
-Trefethen, problem 35.4.
-\end_layout
-
-\begin_layout Subsection*
-Reminder: final project proposals
-\end_layout
-
-\begin_layout Standard
-A half-page final-project proposal is 
-\series bold
-due on October 25
-\series default
-, outlining the goal and scope of your proposed paper---this is mainly so
- that I can give you feedback on whether your project is reasonable.
- Problems motivated by your research are perfectly fine, although you shouldn't
- simply recycle something you've already done, and I am mainly looking for
- 
-\emph on
-review
-\emph default
- papers (of 
-\emph on
-published
-\emph default
- results) rather than 
-\emph on
-research
-\emph default
- papers (unpublished results).
- The only restriction is that, since PDEs are covered in 18.336 and other
- courses, I don't want projects where the primary focus is how to discretize
- the PDE (e.g.
- no projects on discontinuous Galerkin methods or stable time-stepping,
- please).
- It is fine to take a discretized PDE as 
-\emph on
-input
-\emph default
-, however, and then work on solvers, preconditioning, optimization, etcetera.
- Methods for ODEs are also fair game (especially recent developments that
- go beyond classic Runge-Kutta).
- One source of ideas might be to thumb through a copy of 
-\emph on
-Numerical Recipes
-\emph default
- or a similar book and find a topic that interests you.
- Then go read some recent review papers on that topic (overview books like
- 
-\emph on
-Numerical Recipes
-\emph default
- are not always trustworthy guides to a specific field).
-\end_layout
-
-\begin_layout Standard
-You should 
-\series bold
-email
-\series default
- your final-project proposal to me; include 
-\emph on
-18.335 final project proposal
-\emph default
- in the 
-\series bold
-subject
-\series default
- of the email.
- You can email the proposal to me early if you want! Your proposal should
- cite a couple of references that you will use as starting points.
- 
-\end_layout
-
-\begin_layout Standard
-See also the 18.335 web page, which answers some common questions about final
- projects.
- 
 \end_layout
 
 \end_body

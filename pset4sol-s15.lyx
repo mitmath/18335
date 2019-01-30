@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -24,13 +24,13 @@
 \font_roman times
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -41,15 +41,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 2
-\use_esint 0
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -91,7 +100,7 @@ In finite precision, instead of
 \end_inset
 
  where 
-\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\, w$
+\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\,w$
 \end_inset
 
  (from the formula on page 95), where 
@@ -100,7 +109,7 @@ In finite precision, instead of
 
  is the backwards error.
  [Note that we cannot use 
-\begin_inset Formula $\delta w\approx-A^{-1}\delta A\, w$
+\begin_inset Formula $\delta w\approx-A^{-1}\delta A\,w$
 \end_inset
 
 , which neglects the 
@@ -201,7 +210,7 @@ status collapsed
 
 \begin_layout Plain Layout
 Write 
-\begin_inset Formula $(A+\delta A)^{-1}=[A(I+A^{-1}\delta A)]^{-1}=(I+A^{-1}\delta A)^{-1}A^{-1}\approx(I-A^{-1}\delta A)A^{-1}=A^{-1}-A^{-1}\delta A\, A^{-1}$
+\begin_inset Formula $(A+\delta A)^{-1}=[A(I+A^{-1}\delta A)]^{-1}=(I+A^{-1}\delta A)^{-1}A^{-1}\approx(I-A^{-1}\delta A)A^{-1}=A^{-1}-A^{-1}\delta A\,A^{-1}$
 \end_inset
 
 .
@@ -230,7 +239,7 @@ Write
 \end_inset
 
 , 
-\begin_inset Formula $B_{1}=-B_{0}\delta A\, A^{-1}=-A^{-1}\delta A\, A^{-1}$
+\begin_inset Formula $B_{1}=-B_{0}\delta A\,A^{-1}=-A^{-1}\delta A\,A^{-1}$
 \end_inset
 
 , and so on.
@@ -239,7 +248,7 @@ Write
 \end_inset
 
  
-\begin_inset Formula $(A+\delta A)^{-1}=A^{-1}-A^{-1}\delta A\, A^{-1}+O(\epsilon_{\mbox{machine }}^{2})$
+\begin_inset Formula $(A+\delta A)^{-1}=A^{-1}-A^{-1}\delta A\,A^{-1}+O(\epsilon_{\mbox{machine }}^{2})$
 \end_inset
 
 .
@@ -261,7 +270,7 @@ any
 
  component much more than any other component.
  In particular, the vector 
-\begin_inset Formula $\delta A\, w$
+\begin_inset Formula $\delta A\,w$
 \end_inset
 
  is a vector in a random direction (since 
@@ -275,7 +284,7 @@ any
 
  component.
  Thus, 
-\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\, w=\beta_{1}q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
+\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\,w=\beta_{1}q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
 \end_inset
 
  for some constant 
@@ -1069,6 +1078,10 @@ generalized
 Problem 3 (5+5+5+5+5 pts): 
 \end_layout
 
+\begin_layout Standard
+Trefethen, problem 33.2:
+\end_layout
+
 \begin_layout Enumerate
 In this case, the 
 \begin_inset Formula $q_{n+1}$
@@ -1253,291 +1266,6 @@ If
 
 .
  Q.E.D.
-\end_layout
-
-\begin_layout Subsection*
-Problem 4: (10+10 points)
-\end_layout
-
-\begin_layout Standard
-Trefethen, problem 35.4.
-\end_layout
-
-\begin_layout Enumerate
-Similar to Trefethen problem 28.2, above, we can exploit the fact that the
- 
-\begin_inset Formula $(n+1)\times n$
-\end_inset
-
- matrix 
-\begin_inset Formula $\tilde{H}_{n}$
-\end_inset
-
- is upper-Hessenberg to save a lot of work in the QR factorization.
- Similar to above, it will look something like this: 
-\begin_inset Formula 
-\[
-\left(\begin{array}{cccccc}
-\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
-\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
- & \cdot & \cdot & \cdot & \cdot & \cdot\\
- &  & \cdot & \cdot & \cdot & \cdot\\
- &  &  & \cdot & \cdot & \cdot\\
- &  &  &  & \cdot & \cdot
-\end{array}\right)\rightarrow\left(\begin{array}{cccccc}
-\bullet & \bullet & \bullet & \bullet & \bullet & \bullet\\
-0 & \bullet & \bullet & \bullet & \bullet & \bullet\\
- & \cdot & \cdot & \cdot & \cdot & \cdot\\
- &  & \cdot & \cdot & \cdot & \cdot\\
- &  &  & \cdot & \cdot & \cdot\\
- &  &  &  & \cdot & \cdot
-\end{array}\right)\rightarrow\left(\begin{array}{cccccc}
-\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
-0 & \bullet & \bullet & \bullet & \bullet & \bullet\\
- & 0 & \bullet & \bullet & \bullet & \bullet\\
- &  & \cdot & \cdot & \cdot & \cdot\\
- &  &  & \cdot & \cdot & \cdot\\
- &  &  &  & \cdot & \cdot
-\end{array}\right)\rightarrow\left(\begin{array}{cccccc}
-\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
-0 & \cdot & \cdot & \cdot & \cdot & \cdot\\
- & 0 & \bullet & \bullet & \bullet & \bullet\\
- &  & 0 & \bullet & \bullet & \bullet\\
- &  &  & \cdot & \cdot & \cdot\\
- &  &  &  & \cdot & \cdot
-\end{array}\right),
-\]
-
-\end_inset
-
- where 
-\begin_inset Formula $\cdot$
-\end_inset
-
- indicates a nonzero value and 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $\bullet$
-\end_inset
-
- indicates a nonzero value that changes on that step.
- When introducing a zero in column 
-\begin_inset Formula $j$
-\end_inset
-
-, only one Givens rotation is needed, and that Givens rotation need only
- rotate two rows (starting at column 
-\begin_inset Formula $j$
-\end_inset
-
-).
- Therefore, each Givens rotation does 
-\begin_inset Formula $\Theta(n)$
-\end_inset
-
- work on average, and there are 
-\begin_inset Formula $\Theta(n)$
-\end_inset
-
- columns, for 
-\begin_inset Formula $\Theta(n^{2})$
-\end_inset
-
- complexity overall in the QR process.
-\end_layout
-
-\begin_layout Enumerate
-Now, suppose that we have already solved 
-\begin_inset Formula $\tilde{H}_{n-1}=\tilde{Q}_{n-1}R_{n-1}$
-\end_inset
-
-, and we want to QR factorize 
-\begin_inset Formula $\tilde{H}_{n}$
-\end_inset
-
-.
- In particular, suppose we have saved the sequence of 
-\begin_inset Formula $n-2$
-\end_inset
-
- Givens rotations from the factorization of 
-\begin_inset Formula $\tilde{H}_{n-1}$
-\end_inset
-
-.
- Note that 
-\begin_inset Formula $\tilde{H}_{n}$
-\end_inset
-
- looks like: 
-\begin_inset Formula 
-\[
-\tilde{H}_{n}=\left(\begin{array}{cc}
-\tilde{H}_{n-1} & \vec{h}\\
-0 & h_{n+1,n}
-\end{array}\right),
-\]
-
-\end_inset
-
-i.e.
- it is 
-\begin_inset Formula $\tilde{H}_{n-1}$
-\end_inset
-
- with an extra column, and an extra row that is zero in the first 
-\begin_inset Formula $n-1$
-\end_inset
-
- columns.
- When we go through the QR factorization of 
-\begin_inset Formula $\tilde{H}_{n}$
-\end_inset
-
-, we will use the 
-\emph on
-same
-\emph default
- Givens rotations on the first 
-\begin_inset Formula $n-1$
-\end_inset
-
- columns, and hence after processing the first 
-\begin_inset Formula $n$
-\end_inset
-
- columns we will have: 
-\begin_inset Formula 
-\[
-\left(\begin{array}{cc}
-R_{n-1} & \tilde{Q}_{n-1}^{*}\vec{h}\\
-0 & h_{n+1,n}
-\end{array}\right),
-\]
-
-\end_inset
-
-where the upper-left 
-\begin_inset Formula $R_{n-1}$
-\end_inset
-
- corner is free (it is obtained from the 
-\begin_inset Formula $n-1$
-\end_inset
-
- step), and 
-\begin_inset Formula $\tilde{Q}_{n-1}^{*}\vec{h}$
-\end_inset
-
- consists of 
-\begin_inset Formula $n-2$
-\end_inset
-
- Givens rotations of 
-\begin_inset Formula $\vec{h}$
-\end_inset
-
- and hence costs 
-\begin_inset Formula $\Theta(n)$
-\end_inset
-
- work.
- Finally, we must do one last Givens rotation to eliminate the 
-\begin_inset Formula $h_{n+1,n}$
-\end_inset
-
- in the lower-right corner, to make the matrix upper-triangular, but since
- this Givens rotation only acts on the last two columns of the matrix it
- requires 
-\begin_inset Formula $\Theta(1)$
-\end_inset
-
- work.
-\end_layout
-
-\begin_layout Standard
-I should note that the question was somewhat ambiguously worded: it may
- not have been clear whether you were intended to solve the QR factorization
- alone, or to solve the whole least-squares problem.
- The latter requires an additional backsubstitution step in order to solve
- the 
-\begin_inset Formula $Ry=Q^{*}b$
-\end_inset
-
- equation, in order to get the solution 
-\begin_inset Formula $x=Q_{n}y\in\mathcal{K}_{n}$
-\end_inset
-
-.
- Solving this requires 
-\begin_inset Formula $\Theta(n^{2})$
-\end_inset
-
- work, and there is no way (as far as I can tell) to reduce this to 
-\begin_inset Formula $\Theta(n)$
-\end_inset
-
- given the solution from the previous step.
- However, in practice, this is 
-\emph on
-not
-\emph default
- necessary: we don't actually solve the least-square problem until we have
- converged, since while we are iterating GMRES all we need to compute is
- the updated residual vector 
-\begin_inset Formula $r=b-Ax$
-\end_inset
-
- (in order to check for convergence from 
-\begin_inset Formula $\Vert r\Vert$
-\end_inset
-
-).
- The residual in a least-squares problem can be computed 
-\emph on
-without
-\emph default
- solving it, given the QR factorization of 
-\begin_inset Formula $\tilde{H}_{n}$
-\end_inset
-
- ...
- I will leave it as an exercise to figure out how.
-\end_layout
-
-\begin_layout Standard
-In practice, all of this is probably irrelevant, since typically GMRES is
- used for 
-\begin_inset Formula $m\times m$
-\end_inset
-
- matrices where 
-\begin_inset Formula $m\gg n$
-\end_inset
-
----typically, 
-\begin_inset Formula $m>10^{5}$
-\end_inset
-
- and 
-\begin_inset Formula $n<100$
-\end_inset
-
----in which case even a 
-\begin_inset Formula $\Theta(n^{3})$
-\end_inset
-
- update step would be computationally negligible.
 \end_layout
 
 \end_body
