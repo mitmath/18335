@@ -1,5 +1,5 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -12,6 +12,7 @@
 
 \newcommand{\tr}{\operatorname{tr}}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman times
@@ -22,9 +23,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -43,7 +46,8 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
-\author ""
+\author "" 
+\author "" 
 \end_header
 
 \begin_body
@@ -159,10 +163,12 @@ in the lower-right.
 \end_inset
 
  as desired.
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 This gives a three-term recurrence relation, since the determinant of each
  submatrix is given in terms of the the determinants of the two smaller
@@ -207,10 +213,12 @@ This gives a three-term recurrence relation, since the determinant of each
 
  diagonals).
  The code is given in part (b) below (including the derivative.
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 To test it, we computed a random 
 \begin_inset Formula $H$
@@ -272,13 +280,17 @@ using the fact that for
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 This is implemented in the following Matlab function:
-\begin_inset Include \verbatiminput{evalpoly.m}
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "evalpoly.m"
 
 \end_inset
 
@@ -374,7 +386,9 @@ by hand
 .
  (Better stopping criteria could be devised, but this works well enough
  for illustration purposes.)
-\begin_inset Include \verbatiminput{newtpoly.m}
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "newtpoly.m"
 
 \end_inset
 
@@ -400,7 +414,9 @@ format long
  to have Matlab print out values to 15 decimal places, to better see what
  is going on.
  A typical output is:
-\begin_inset Include \verbatiminput{p2.out}
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "p2.out"
 
 \end_inset
 
@@ -429,7 +445,8 @@ quadratic
 \end_inset
 
  convergence.
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
 \end_layout
@@ -458,7 +475,7 @@ If you tried a test case with a bigger value of
 \begin_inset Foot
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 W.
  Barth, R.
  S.
@@ -571,10 +588,12 @@ In finite precision, instead of
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 First, exactly as in our analysis of the power method, note that 
 \begin_inset Formula $w=A^{-1}v=\alpha_{1}q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
@@ -603,10 +622,12 @@ First, exactly as in our analysis of the power method, note that
 
 .
  
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 Second, if we Taylor-expand 
 \begin_inset Formula $(A+\delta A)^{-1}$
@@ -662,10 +683,12 @@ any
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 Putting these things together, we see that 
 \begin_inset Formula $\tilde{w}=(\alpha_{1}+\beta_{1})q_{1}[1+O(\lambda_{1}/\lambda_{2})],$
@@ -730,10 +753,12 @@ In general,
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 Each column of the 
 \begin_inset Formula $Q$
@@ -819,6 +844,51 @@ uses
 \end_layout
 
 \begin_layout Enumerate
+
+\series bold
+Note:
+\series default
+ In the problem, you are told that 
+\begin_inset Formula $A$
+\end_inset
+
+ is symmetric and tridiagonal.
+ You must also assume that 
+\begin_inset Formula $A$
+\end_inset
+
+ is real, or alternatively that 
+\begin_inset Formula $A$
+\end_inset
+
+ is Hermitian and tridiagonal.
+ (This is what must be meant in the problem, since tridiagonal matrices
+ only arise in the QR method if the starting point is Hermitian.) In contrast,
+ if 
+\begin_inset Formula $A$
+\end_inset
+
+ is complex tridiagonal with 
+\begin_inset Formula $A^{T}=A$
+\end_inset
+
+, the stated result is not true (
+\begin_inset Formula $RQ$
+\end_inset
+
+ is not in general tridiagonal, as can easily be verified using a random
+ tridiagonal complex 
+\begin_inset Formula $A$
+\end_inset
+
+ in Matlab).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 It is sufficient to show that 
 \begin_inset Formula $RQ$
 \end_inset
@@ -849,10 +919,12 @@ It is sufficient to show that
 \end_inset
 
  is upper-Hessenberg.
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 Consider the 
 \begin_inset Formula $(i,j)$
@@ -1061,6 +1133,42 @@ where
 \end_deeper
 \begin_layout Subsection*
 Problem 3 (5+5+5+5+5 pts): 
+\end_layout
+
+\begin_layout Standard
+The underlying point in this problem is that Arnoldi will only stop partway
+ if the starting vector 
+\begin_inset Formula $\vec{b}$
+\end_inset
+
+ is in the span of a subset of only 
+\begin_inset Formula $n$
+\end_inset
+
+ of the eigenvectors.
+ This is why multiplying by 
+\begin_inset Formula $A$
+\end_inset
+
+ more than 
+\begin_inset Formula $n$
+\end_inset
+
+ times does not give any new vectors, why the Ritz vectors are exact eigenvector
+s (spanned by 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+), and why 
+\begin_inset Formula $A\vec{x}=\vec{b}$
+\end_inset
+
+ has a solution 
+\begin_inset Formula $\vec{x}\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ These results are shown explicitly by algebraic manipulation below.
 \end_layout
 
 \begin_layout Enumerate

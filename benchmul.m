@@ -1,5 +1,7 @@
-gflops = zeros(1,1000);
-for m = 1:1000
+ms = round(logspace(1, 3, 50));
+gflops = zeros(1,length(ms));
+for i = 1:length(ms)
+  m = ms(i);
   A = rand(m,m);
   B = rand(m,m);
   t = 0;
@@ -13,5 +15,8 @@ for m = 1:1000
     t = toc; % elapsed time in seconds
     iters = iters * 2;
   end
-  gflops(m) = 2*m^3 * 1e-9 / (t * 2/iters);
+  gflops(i) = 2*m^3 * 1e-9 / (t * 2/iters);
+  disp(sprintf('gflops for m=%d = %g after %d iters',m,gflops(i),iters/2));
+  drawnow update;
 end
+plot(ms, gflops, 'r-')

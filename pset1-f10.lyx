@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -10,6 +10,7 @@
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman default
@@ -20,9 +21,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 1
@@ -52,7 +55,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Monday, 21 September 2009.
+Due Monday, 20 September 2010.
 \end_layout
 
 \begin_layout Subsection*
@@ -222,6 +225,22 @@ If
 ? Explain.
 \end_layout
 
+\begin_layout Enumerate
+Explain why the statement, 
+\begin_inset Quotes eld
+\end_inset
+
+The running time of this algorithm is 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+ or worse,
+\begin_inset Quotes erd
+\end_inset
+
+ cannot provide any information about the algorithm.
+\end_layout
+
 \begin_layout Subsection*
 Problem 3: Caches and matrix multiplications
 \end_layout
@@ -283,8 +302,9 @@ matmul_bycolumn.m
 \end_inset
 
 /nanoseconds) in an array gflops(m), is: 
-\begin_inset Include \verbatiminput{benchmul.m}
-preview false
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "benchmul.m"
 
 \end_inset
 

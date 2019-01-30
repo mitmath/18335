@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -11,6 +11,7 @@
 \renewcommand{\labelenumii}{(\roman{enumii})}
 \newcommand{\fl}{\operatorname{fl}}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman times
@@ -21,9 +22,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -42,6 +45,7 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
+\author "" 
 \author "" 
 \end_header
 
@@ -96,9 +100,13 @@ The smallest integer that cannot be exactly represented is
 \end_inset
 
  is absorbed in the exponent.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 In IEEE single and double precision, 
 \begin_inset Formula $\beta=2$
 \end_inset
@@ -120,9 +128,13 @@ In IEEE single and double precision,
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 Evidence that 
 \begin_inset Formula $n=2^{53}+1$
 \end_inset
@@ -286,9 +298,13 @@ g(f(\epsilon))=g(0)+g'(0)h(\epsilon)\]
 \end_inset
 
 ).
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 Since 
 \begin_inset Formula $g(x)$
 \end_inset
@@ -396,9 +412,13 @@ We can prove this by induction on
 \end_inset
 
  of the exact result).
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 Now for the inductive step.
  Suppose 
 \begin_inset Formula $\tilde{s}_{n-1}=(x_{1}+x_{2})\prod_{k=2}^{n-1}(1+\epsilon_{k})+\sum_{i=3}^{n-1}x_{i}\prod_{k=i}^{n-1}(1+\epsilon_{k})$
@@ -507,9 +527,13 @@ For uniform random
 \end_layout
 
 \begin_layout Enumerate
-Results of the suggested numerical experiment are plotted in figure\InsetSpace ~
+Results of the suggested numerical experiment are plotted in figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:prob2e"
 
 \end_inset
@@ -529,7 +553,7 @@ wide false
 sideways false
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob2e.eps
@@ -540,11 +564,12 @@ status open
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob2e"
 
 \end_inset
@@ -657,10 +682,17 @@ for
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-Then, we use the result from problem\InsetSpace ~
+
+\begin_inset Newline newline
+\end_inset
+
+Then, we use the result from problem
+\begin_inset space ~
+\end_inset
+
 2 that 
 \begin_inset Formula $\prod_{k=1}^{m}(1+\epsilon_{i,k})=1+\delta_{i}$
 \end_inset
@@ -678,7 +710,10 @@ Then, we use the result from problem\InsetSpace ~
 \end_layout
 
 \begin_layout Enumerate
-As in problem\InsetSpace ~
+As in problem
+\begin_inset space ~
+\end_inset
+
 2, our 
 \begin_inset Formula $\delta_{i}$
 \end_inset
@@ -736,11 +771,14 @@ Just enlarge the base case.
 \end_inset
 
 ), and the efficiency should be roughly that of a simple loop.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-Using a simple
- loop has error bounds that grow as 
+
+\begin_inset Newline newline
+\end_inset
+
+Using a simple loop has error bounds that grow as 
 \begin_inset Formula $N$
 \end_inset
 
@@ -788,12 +826,15 @@ if (n < 200)
  To keep everything in single precision, one should, strictly speaking,
  call loopsum instead of the built-in function sum (which uses at least
  double precision, and probably uses extended precision).
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-The logarithmic
- error growth is actually so slow that it is practically impossible to see
- the errors growing at all.
+
+\begin_inset Newline newline
+\end_inset
+
+The logarithmic error growth is actually so slow that it is practically
+ impossible to see the errors growing at all.
  In an attempt to see it more clearly, I wrote a C program to implement
  the same function (orders of magnitude quicker than doing recursion in
  Matlab), and went up to 
@@ -806,9 +847,13 @@ The logarithmic
 \end_inset
 
  to reduce the variance.
- The results are plotted in figure\InsetSpace ~
+ The results are plotted in figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:prob3d"
 
 \end_inset
@@ -834,7 +879,7 @@ wide false
 sideways false
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob3d.eps
@@ -845,11 +890,12 @@ status open
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob3d"
 
 \end_inset
@@ -895,9 +941,13 @@ Error
 \end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 First, we see that the errors are oscillating, at a constant rate on a semilog
  scale.
  In fact, the period of the oscillations corresponds to powers of two---the
@@ -920,9 +970,13 @@ First, we see that the errors are oscillating, at a constant rate on a semilog
 
  is not a power of two some of the chunks are unequal in size and the error
  increases.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 Second, for the 
 \begin_inset Formula $N=200$
 \end_inset
@@ -944,9 +998,11 @@ Second, for the
 \begin_inset Formula $\sqrt{n}$
 \end_inset
 
- as in problem\InsetSpace ~
-2, since for this case we do no recursion and just sum via
- a loop.
+ as in problem
+\begin_inset space ~
+\end_inset
+
+2, since for this case we do no recursion and just sum via a loop.
  However, when 
 \begin_inset Formula $n\gg N$
 \end_inset
@@ -960,11 +1016,14 @@ Second, for the
 \end_inset
 
  with the same constant factor, as predicted above!
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-However, predicting the
- exact functional dependence is clearly quite difficult!
+
+\begin_inset Newline newline
+\end_inset
+
+However, predicting the exact functional dependence is clearly quite difficult!
 \end_layout
 
 \begin_layout Enumerate
@@ -984,11 +1043,15 @@ An
 
  should be basically the same as in our analysis of the corresponding summation
  algorithm.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-If you use the simple 3-loop row-column algorithm, you are doing
- the summation(s) via simple loops, and the errors should thus grow as 
+
+\begin_inset Newline newline
+\end_inset
+
+If you use the simple 3-loop row-column algorithm, you are doing the summation(s
+) via simple loops, and the errors should thus grow as 
 \begin_inset Formula $O(\epsilon_{\mbox{machine}}\sqrt{m})$
 \end_inset
 
@@ -999,9 +1062,13 @@ If you use the simple 3-loop row-column algorithm, you are doing
 \end_inset
 
  as above.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 In most cases, however, 
 \begin_inset Formula $m$
 \end_inset
@@ -1485,7 +1552,10 @@ single
 
 .
  Assuming we do this sum by a straightforward loop, the analysis is exactly
- the same as in problem\InsetSpace ~
+ the same as in problem
+\begin_inset space ~
+\end_inset
+
 2, except that there is an additional 
 \begin_inset Formula $(1+\epsilon)$
 \end_inset
@@ -1547,11 +1617,14 @@ single
 \end_inset
 
  coefficient, but that doesn't matter here).
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-Now, we will show by induction
- that multiplying by 
+
+\begin_inset Newline newline
+\end_inset
+
+Now, we will show by induction that multiplying by 
 \begin_inset Formula $k$
 \end_inset
 
@@ -1639,9 +1712,12 @@ Consider
 \begin_inset Formula $XA$
 \end_inset
 
- has rank\InsetSpace ~
-1 in exact arithmetic, but after floating-point errors it is unlikely
- that 
+ has rank
+\begin_inset space ~
+\end_inset
+
+1 in exact arithmetic, but after floating-point errors it is unlikely that
+ 
 \begin_inset Formula $\widetilde{XA}$
 \end_inset
 
@@ -1650,7 +1726,10 @@ Consider
 \begin_inset Formula $X\tilde{A}$
 \end_inset
 
- will be rank\InsetSpace ~
+ will be rank
+\begin_inset space ~
+\end_inset
+
 1 regardless of 
 \begin_inset Formula $\tilde{A}$
 \end_inset
@@ -1663,5 +1742,6 @@ Consider
  (See also example 15.2 in the text.)
 \end_layout
 
+\end_deeper
 \end_body
 \end_document

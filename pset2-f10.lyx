@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -10,6 +10,7 @@
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman default
@@ -20,9 +21,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 1
@@ -52,7 +55,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 2 October 2009.
+Due Friday, 1 October 2010.
 \end_layout
 
 \begin_layout Subsection*
@@ -284,7 +287,7 @@ loglog
 \begin_inset Foot
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Use enough 
 \begin_inset Formula $n$
 \end_inset
@@ -313,9 +316,13 @@ n = round(logspace(2,6,100))
 \end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 This is implemented in the example file 
 \family typewriter
 loopsum.m
@@ -351,13 +358,19 @@ rand(1,n)
 \end_inset
 
  via
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 
 \family typewriter
 x = rand(1,n);
-\newline
+\begin_inset Newline newline
+\end_inset
+
 err = abs(loopsum(x) - sum(x)) / sum(abs(x));
 \end_layout
 
@@ -370,7 +383,10 @@ Here you will analyze
 \begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
 \end_inset
 
- as in problem\InsetSpace ~
+ as in problem
+\begin_inset space ~
+\end_inset
+
 2, but this time you will compute 
 \begin_inset Formula $\tilde{f}(x)$
 \end_inset
@@ -409,7 +425,10 @@ where
 \end_inset
 
  exactly, but in floating-point arithmetic this will have very different
- error characteristics than the simple loop-based summation in problem\InsetSpace ~
+ error characteristics than the simple loop-based summation in problem
+\begin_inset space ~
+\end_inset
+
 2.
 \end_layout
 
@@ -420,7 +439,10 @@ For simplicity, assume
 
  is a power of 2 (so that the set of numbers to add divides evenly in two
  at each stage of the recursion).
- With an analysis similar to that of problem\InsetSpace ~
+ With an analysis similar to that of problem
+\begin_inset space ~
+\end_inset
+
 2, prove that 
 \begin_inset Formula $|\tilde{f}(x)-f(x)|\leq\epsilon_{\mbox{machine}}\log_{2}(n)\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})$
 \end_inset
@@ -463,12 +485,15 @@ all overhead for every number I want to add!
  the same logarithmic error bounds (possibly with a worse constant factor)
  but roughly the same performance as a simple loop (hint: look at how I
  implemented recursive matrix multiplication in my cache-oblivious handout
- from lecture\InsetSpace ~
+ from lecture
+\begin_inset space ~
+\end_inset
+
 3).
 \begin_inset Foot
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 In fact, there is a common real-world algorithm that does summation in precisely
  this recursive way: the Cooley-Tukey fast Fourier transform.
 \end_layout
@@ -489,7 +514,10 @@ div2sum(x) by the above algorithm.
 \begin_inset Formula $n$
 \end_inset
 
- as in problem\InsetSpace ~
+ as in problem
+\begin_inset space ~
+\end_inset
+
 2.
  Are your results consistent with your error estimates above?
 \end_layout

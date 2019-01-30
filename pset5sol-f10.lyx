@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -12,6 +12,7 @@
 
 \newcommand{\tr}{\operatorname{tr}}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman times
@@ -22,9 +23,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -58,9 +61,13 @@ Problem 1 (10+10+10 pts):
 \end_layout
 
 \begin_layout Standard
-The results for parts (a) and (b) are shown in figure\InsetSpace ~
+The results for parts (a) and (b) are shown in figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:prob2"
 
 \end_inset
@@ -103,7 +110,7 @@ wide false
 sideways false
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob2.eps
@@ -114,11 +121,12 @@ status collapsed
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob2"
 
 \end_inset
@@ -139,8 +147,9 @@ Fractional error in minimum eigenvalue
 \end_inset
 
 
-\begin_inset Include \verbatiminput{lanczos-sol.m}
-preview false
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "lanczos-sol.m"
 
 \end_inset
 
@@ -185,9 +194,13 @@ know
 
  this fact, and Lanczos is much better at getting extremal (min/max) eigenvalues
  correct than eigenvalues in the interior of the spectrum.
- The results are shown in figure\InsetSpace ~
+ The results are shown in figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:prob2c"
 
 \end_inset
@@ -198,11 +211,11 @@ wide false
 sideways false
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob2c.eps
@@ -213,11 +226,12 @@ status collapsed
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob2c"
 
 \end_inset
@@ -241,7 +255,7 @@ Fractional error in minimum-
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -264,9 +278,13 @@ Problem 2 (25 pts):
 \end_layout
 
 \begin_layout Standard
-The residual curves are plotted in figure\InsetSpace ~
+The residual curves are plotted in figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:prob3"
 
 \end_inset
@@ -277,11 +295,11 @@ wide false
 sideways false
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob3.eps
@@ -292,11 +310,12 @@ status collapsed
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob3"
 
 \end_inset
@@ -314,7 +333,7 @@ Convergence of the residual for problem 38.6, using conjugate-gradient (CG)
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -445,8 +464,9 @@ s would give a condition number of 8.4.
 The code for SD was posted on the web site; my code for CG in this problem
  is listed below (modified to add an additional stopping criteria for problem
  3).
-\begin_inset Include \verbatiminput{CG.m}
-preview false
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "CG.m"
 
 \end_inset
 
@@ -458,8 +478,18 @@ Problem 3 (15 points)
 \end_layout
 
 \begin_layout Standard
-The results for this problem are shown in problem\InsetSpace ~
-xxx.
+The results for this problem are shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:prob3new"
+
+\end_inset
+
+.
  They are a bit odd, in that the conjugate-gradient method indeed converges
  to a null-space vector, but when the residual 
 \begin_inset Formula $\Vert Ax\Vert$
@@ -483,11 +513,11 @@ wide false
 sideways false
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prob3new.eps
@@ -498,11 +528,12 @@ status collapsed
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:prob3new"
 
 \end_inset
@@ -536,7 +567,7 @@ s.
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -564,7 +595,7 @@ ty of breakdown of the conjugate-gradient algorithm resurfaces.
 \begin_inset Foot
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 See, e.g., Paige, Parlett, and Van der Vorst, 
 \begin_inset Quotes eld
 \end_inset

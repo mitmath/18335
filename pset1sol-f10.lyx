@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -10,6 +10,7 @@
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman default
@@ -20,9 +21,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 1
@@ -388,14 +391,76 @@ Problem 2: Asymptotic notation
  
 \end_layout
 
+\begin_layout Enumerate
+If the running time is 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+, that means that the time is 
+\begin_inset Formula $\leq n^{2}$
+\end_inset
+
+ multiplied by a constant, asymptotically.
+ If it is 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+ or worse
+\begin_inset Quotes erd
+\end_inset
+
+, that would mean that the time is bounded above by any function 
+\begin_inset Formula $\geq n^{2}$
+\end_inset
+
+, which is true of 
+\emph on
+every
+\emph default
+ function! Usually, when you hear things like this, what people really mean
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\Theta(n^{2})$
+\end_inset
+
+ or worse,
+\begin_inset Quotes erd
+\end_inset
+
+ or equivalently 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\Omega(n^{2})$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection*
 Problem 3: Caches and matrix multiplications
 \end_layout
 
 \begin_layout Enumerate
-See figure\InsetSpace ~
+See figure
+\begin_inset space ~
+\end_inset
 
-\begin_inset LatexCommand ref
+
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:core2"
 
 \end_inset
@@ -407,7 +472,7 @@ wide false
 sideways false
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename core2.eps
@@ -418,11 +483,12 @@ status open
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:core2"
 
 \end_inset
@@ -607,21 +673,29 @@ Since
 
 .
  
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 let 
 \begin_inset Formula $y=A_{:,1:\alpha Z}x_{1:\alpha Z}$
 \end_inset
 
  (first block)
-\newline
+\begin_inset Newline newline
+\end_inset
+
 let 
 \begin_inset Formula $y=y+A_{:,(\alpha Z+1):2\alpha Z}x_{(\alpha Z+1):2\alpha Z}$
 \end_inset
 
  (next block)
-\newline
+\begin_inset Newline newline
+\end_inset
+
 
 \emph on
 et cetera,
@@ -635,9 +709,13 @@ et cetera,
 
 \emph default
  blocks
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 Now, what should 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -710,11 +788,15 @@ Now, what should
 \end_inset
 
  we can save for a matrix-matrix multiply!
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-You might wonder whether we can
- gain some additional savings by blocking 
+
+\begin_inset Newline newline
+\end_inset
+
+You might wonder whether we can gain some additional savings by blocking
+ 
 \begin_inset Formula $y$
 \end_inset
 
@@ -784,12 +866,16 @@ Yes.
 \end_inset
 
  factor makes the cache-miss cost negligible.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-It ultimately achieves roughly
- the peak flop rate, as in class; note that if you have multiple CPUs, it
- may be impossible to prevent Matlab from using at least 2 processors.
+
+\begin_inset Newline newline
+\end_inset
+
+It ultimately achieves roughly the peak flop rate, as in class; note that
+ if you have multiple CPUs, it may be impossible to prevent Matlab from
+ using at least 2 processors.
  Even calling 
 \family typewriter
 maxNumCompThreads(1)
@@ -800,16 +886,24 @@ maxNumCompThreads(1)
 Grrr.
 
 \emph default
- Hence, I got a peak flop rate of almost 10\InsetSpace ~
-gflops on the 2.6GHz Intel Core
- 2 (two processors, ~5\InsetSpace ~
-gflops peak for each using SSE2 instructions).
-\newline
+ Hence, I got a peak flop rate of almost 10
+\begin_inset space ~
+\end_inset
 
-\newline
-Note
- that, for small matrix sizes, the performance is a lot lower in both cases,
- but especially in the by-column multiply.
+gflops on the 2.6GHz Intel Core 2 (two processors, ~5
+\begin_inset space ~
+\end_inset
+
+gflops peak for each using SSE2 instructions).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note that, for small matrix sizes, the performance is a lot lower in both
+ cases, but especially in the by-column multiply.
  This is simply the overhead of the Matlab interpreter, which is much larger
  for the by-column case because that has a Matlab loop (versus a single
  Matlab call for the ordinary matrix-multiply).
@@ -822,11 +916,15 @@ Note
 \end_inset
 
 , however.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-(I'm not sure what the temporary drop in the ordinary matrix-multiply
- case is around 
+
+\begin_inset Newline newline
+\end_inset
+
+(I'm not sure what the temporary drop in the ordinary matrix-multiply case
+ is around 
 \begin_inset Formula $m=100$
 \end_inset
 
@@ -900,7 +998,7 @@ We can solve this problem in a cache-oblivious or cache-aware fashion.
 \begin_inset Foot
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 If 
 \begin_inset Formula $m$
 \end_inset
@@ -1117,11 +1215,15 @@ Q(m;Z)\in\Theta(m^{3}/\sqrt{Z})\]
 
 and hence we can, indeed, achieve the same asymptotic cache complexity as
  for matrix multiplication.
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
-We could also get the same cache complexity in
- a cache-aware fashion by blocking the problem into 
+
+\begin_inset Newline newline
+\end_inset
+
+We could also get the same cache complexity in a cache-aware fashion by
+ blocking the problem into 
 \begin_inset Formula $m/b$
 \end_inset
 

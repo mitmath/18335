@@ -1,5 +1,5 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -13,6 +13,7 @@
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman times
@@ -23,9 +24,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -44,8 +47,8 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
-\author ""
-\author ""
+\author "" 
+\author "" 
 \end_header
 
 \begin_body
@@ -55,7 +58,46 @@
 \end_layout
 
 \begin_layout Subsection*
-Problem 1: SVD and low-rank approximations (10+10+10 pts)
+Problem 1: SVD and low-rank approximations (5+10+10+10 pts)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $A=\hat{Q}\hat{R}$
+\end_inset
+
+, where the columns of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ are orthonormal and hence 
+\begin_inset Formula $\hat{Q}^{*}\hat{Q}=I$
+\end_inset
+
+.
+ Therefore, 
+\begin_inset Formula $A^{*}A=(\hat{Q}\hat{R})^{*}(\hat{Q}\hat{R})=\hat{R}^{*}(\hat{Q}^{*}\hat{Q})\hat{R}=\hat{R}^{*}\hat{R}$
+\end_inset
+
+.
+ But the singular values of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{R}$
+\end_inset
+
+ are the square roots of the nonzero eigenvalues of 
+\begin_inset Formula $A^{*}A$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{R}^{*}\hat{R}$
+\end_inset
+
+, respectively, and since these two matrices are the same the singular values
+ are the same.
+ Q.E.D.
 \end_layout
 
 \begin_layout Enumerate
@@ -167,7 +209,7 @@ not
 \begin_inset Foot
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 There is a slight wrinkle if there are repeated eigenvalues, e.g.
  
 \begin_inset Formula $\sigma_{1}=\sigma_{2}$
@@ -297,10 +339,12 @@ doc imread
 \begin_deeper
 \begin_layout Enumerate
 This is plotted on a semilog scale in Fig
-\InsetSpace ~
+\begin_inset space ~
+\end_inset
 
 
-\begin_inset LatexCommand ref
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:svals"
 
 \end_inset
@@ -323,26 +367,27 @@ wide false
 sideways false
 status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-    filename svals.eps
-    width 60col%
+	filename svals.eps
+	width 60col%
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:svals"
 
 \end_inset
@@ -352,10 +397,12 @@ Distribution of the singular values
 \end_inset
 
  in the image of Fig.
-\InsetSpace ~
+\begin_inset space ~
+\end_inset
 
 
-\begin_inset LatexCommand ref
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:stevenj"
 
 \end_inset
@@ -372,7 +419,7 @@ reference "fig:stevenj"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -383,10 +430,12 @@ reference "fig:stevenj"
 
 \begin_layout Enumerate
 Figure
-\InsetSpace ~
+\begin_inset space ~
+\end_inset
 
 
-\begin_inset LatexCommand ref
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "fig:stevenj"
 
 \end_inset
@@ -405,35 +454,36 @@ wide false
 sideways false
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Graphics
-    filename stevenj.jpg
-    width 30col%
+	filename stevenj.jpg
+	width 30col%
 
 \end_inset
 
 
 \begin_inset Graphics
-    filename stevenj32.jpg
-    width 30col%
+	filename stevenj32.jpg
+	width 30col%
 
 \end_inset
 
 
 \begin_inset Graphics
-    filename stevenj8.jpg
-    width 30col%
+	filename stevenj8.jpg
+	width 30col%
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption
 
-\begin_layout Standard
-\begin_inset LatexCommand label
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
 name "fig:stevenj"
 
 \end_inset
@@ -848,10 +898,12 @@ s)
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 The (1,1) entry of 
 \begin_inset Formula $T^{*}T$
@@ -906,10 +958,12 @@ The (1,1) entry of
 
 , i.e.
  that the first row is diagonal.
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 We proceed by induction.
  Suppose that the first 
@@ -1033,10 +1087,12 @@ The eigenvalues are the roots of
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
 \begin_inset Formula $x$
@@ -1185,10 +1241,12 @@ where we have broken up
 \end_inset
 
 .
-\newline
+\begin_inset Newline newline
+\end_inset
 
 
-\newline
+\begin_inset Newline newline
+\end_inset
 
 Now, let us count the number of operations.
  For the 

@@ -1,5 +1,5 @@
-#LyX 1.5.5 created this file. For more info see http://www.lyx.org/
-\lyxformat 276
+#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass article
@@ -12,6 +12,7 @@
 
 \newcommand{\tr}{\operatorname{tr}}
 \end_preamble
+\use_default_options false
 \language english
 \inputencoding auto
 \font_roman times
@@ -22,9 +23,11 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize default
 \use_geometry true
 \use_amsmath 2
@@ -54,7 +57,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Monday, 26 October 2009.
+Due Friday, 22 October 2010.
 \end_layout
 
 \begin_layout Subsection*
@@ -203,15 +206,21 @@ Not
 
 .
  That is, your function should look like:
-\newline
+\begin_inset Newline newline
+\end_inset
+
 
 \family typewriter
 [p,pderiv] = evalpoly(H,z)
-\newline
+\begin_inset Newline newline
+\end_inset
+
 ......compute p, pderiv.....
 \family default
 
-\newline
+\begin_inset Newline newline
+\end_inset
+
 Check that your function works by comparing your 
 \begin_inset Formula $p'(z)$
 \end_inset
@@ -236,9 +245,13 @@ Using your function evalpoly, implement Newton's method to compute some
  eigenvalues of a random real-symmetric matrix, and compare them to those
  returned by Matlab's eig function---how many significant digits of accuracy
  do you get?
-\newline
+\begin_inset Newline newline
+\end_inset
 
-\newline
+
+\begin_inset Newline newline
+\end_inset
+
 That is, to get a random real-symmetric 
 \begin_inset Formula $A$
 \end_inset
@@ -290,7 +303,7 @@ Reminder: final project proposals
 \end_layout
 
 \begin_layout Standard
-A half-page final-project proposal is due on October 30, outlining the goal
+A half-page final-project proposal is due on October 29, outlining the goal
  and scope of your proposed paper.
  Problems motivated by your research are perfectly fine, although you shouldn't
  simply recycle something you've already done.
