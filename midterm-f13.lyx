@@ -1,0 +1,531 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\sign}{\operatorname{sign}}
+
+\renewcommand{\span}[1]{\operatorname{span}\langle #1 \rangle}
+\newcommand{\fl}{\operatorname{fl}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Midterm, Fall 2013
+\end_layout
+
+\begin_layout Standard
+Each problem has 
+\series bold
+equal weight
+\series default
+.
+ You have 1 hour and 55 minutes.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: GMRES (20 points)
+\end_layout
+
+\begin_layout Standard
+From class, the GMRES algorithm iteratively builds up an orthonormal basis
+ 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ for the Krylov space 
+\begin_inset Formula $\mathcal{K}_{n}=\span{b,Ab,\ldots,A^{n-1}b}$
+\end_inset
+
+ and then uses this basis to solve 
+\begin_inset Formula $\min_{x\in\mathcal{K}_{n}}\Vert Ax-b\Vert_{2}$
+\end_inset
+
+.
+ Assume 
+\begin_inset Formula $A$
+\end_inset
+
+ is nonsingular.
+\end_layout
+
+\begin_layout Enumerate
+We normally assume that each iteration 
+\begin_inset Formula $n$
+\end_inset
+
+ gives us a linearly independent vector, i.e.
+ that 
+\begin_inset Formula $A^{n}b$
+\end_inset
+
+ is not in 
+\begin_inset Formula $\mathcal{K}_{n}$
+\end_inset
+
+.
+ What happens if this is false, i.e.
+ 
+\begin_inset Formula $A^{n}b\in\mathcal{K}_{n}$
+\end_inset
+
+ (
+\begin_inset Quotes eld
+\end_inset
+
+breakdown
+\begin_inset Quotes erd
+\end_inset
+
+)? Show that in the (unlikely) event that this occurs, it is a 
+\emph on
+good
+\emph default
+ thing, not a bad thing, for solving 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Given an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ (which you can assume to have distinct eigenvalues and hence be diagonalizable)
+, how would you (theoretically) construct a 
+\begin_inset Formula $b$
+\end_inset
+
+ such that breakdown occurs after 
+\begin_inset Formula $n<m$
+\end_inset
+
+ steps (in exact arithmetic)?
+\end_layout
+
+\begin_layout Standard
+For reference, the GMRES algorithm is listed below.
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $q_{1}=b/\Vert b\Vert_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+for 
+\begin_inset Formula $n=1,2,\ldots$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\begin_inset Formula $v=Aq_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+for 
+\begin_inset Formula $j=1,2,\ldots,n$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\begin_inset Formula $h_{jn}=q_{j}^{*}v$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $v=v-h_{jn}q_{j}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\begin_inset Formula $h_{n+1,n}=\Vert v\Vert_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $q_{n+1}=v/h_{n+1,n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+solve 
+\begin_inset Formula $\min_{x\in\mathcal{K}_{n}}\Vert Ax-b\Vert_{2}\implies\min_{y\in\mathbb{C}^{n}}\left\Vert \tilde{H}_{n}y-e_{1}\Vert b\Vert_{2}\right\Vert _{2}\implies x_{n+1}=Q_{n}y$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Problem 2: Conditioning (20 points)
+\end_layout
+
+\begin_layout Standard
+The following parts can be solved 
+\emph on
+independently
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose that 
+\begin_inset Formula $A$
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ matrix (of rank 
+\begin_inset Formula $n<m$
+\end_inset
+
+).
+ In some applications, only certain elements 
+\begin_inset Formula $C_{ij}$
+\end_inset
+
+ of 
+\begin_inset Formula $C=(A^{*}A)^{-1}$
+\end_inset
+
+ are required.
+ If you are given a few desired 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $j$
+\end_inset
+
+, outline an efficient, well-conditioned algorithm to compute those 
+\begin_inset Formula $C_{ij}$
+\end_inset
+
+.
+ (You can use as subroutines any of the algorithms described in class...you
+ need not reproduce their details here.)
+\end_layout
+
+\begin_layout Enumerate
+Compare the condition numbers of 
+\begin_inset Formula $f(x)=Ax$
+\end_inset
+
+ and 
+\begin_inset Formula $f(A)=Ax$
+\end_inset
+
+ (for 
+\begin_inset Formula $A\in\mathbb{C}^{m\times n}$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathbb{C}^{n}$
+\end_inset
+
+), using the 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ norm for vectors and a 
+\emph on
+Frobenius
+\emph default
+ norm for matrices 
+\begin_inset Formula $A$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Recall that, for a differentiable function 
+\begin_inset Formula $g(z)$
+\end_inset
+
+ mapping 
+\begin_inset Formula $z\in\mathbb{C}^{p}$
+\end_inset
+
+ to 
+\begin_inset Formula $g(z)\in\mathbb{C}^{q}$
+\end_inset
+
+, the condition number is 
+\begin_inset Formula $\kappa(z)=\frac{\Vert J\Vert}{\Vert g(z)\Vert/\Vert z\Vert}$
+\end_inset
+
+ where 
+\begin_inset Formula $\Vert J\Vert$
+\end_inset
+
+ is the 
+\emph on
+induced
+\emph default
+ norm (
+\begin_inset Formula $\sup_{z\neq0}\frac{\Vert Jz\Vert}{\Vert z\Vert}$
+\end_inset
+
+) of the Jacobian matrix 
+\begin_inset Formula $J_{ij}=\frac{\partial g_{i}}{\partial z_{j}}$
+\end_inset
+
+.
+ Note that, for 
+\begin_inset Formula $f(A)=Ax$
+\end_inset
+
+, the inputs live in an 
+\begin_inset Formula $mn$
+\end_inset
+
+-dimensional vector space so 
+\begin_inset Formula $J$
+\end_inset
+
+ will be 
+\begin_inset Formula $m\times(mn)$
+\end_inset
+
+ and you will have to think carefully about what 
+\begin_inset Formula $z$
+\end_inset
+
+ and 
+\begin_inset Formula $Jz$
+\end_inset
+
+ should mean.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Problem 3: QR updating (20 points).
+\end_layout
+
+\begin_layout Standard
+Suppose you are given the QR factorization 
+\begin_inset Formula $A=QR$
+\end_inset
+
+ of an 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ (rank 
+\begin_inset Formula $n<m$
+\end_inset
+
+).
+ Describe an efficient 
+\begin_inset Formula $O(m^{2}+n^{2})=O(m^{2})$
+\end_inset
+
+ algorithm to compute the QR factorization of a rank-1 update to 
+\begin_inset Formula $A$
+\end_inset
+
+, that is to factorize 
+\begin_inset Formula $A+uv^{*}=Q'R'$
+\end_inset
+
+ for some vectors 
+\begin_inset Formula $u\in\mathbb{C}^{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $v\in\mathbb{C}^{n}$
+\end_inset
+
+, following these steps:
+\end_layout
+
+\begin_layout Enumerate
+Show that 
+\begin_inset Formula $Q'R'=Q(R+zv^{*})$
+\end_inset
+
+ for some 
+\begin_inset Formula $z$
+\end_inset
+
+ that can be computed in 
+\begin_inset Formula $O(m^{2})$
+\end_inset
+
+ operations.
+ Therefore, we just need to find a unitary matrix that (acting on the left)
+ re-triangularizes 
+\begin_inset Formula $R+zv^{*}$
+\end_inset
+
+ to get 
+\begin_inset Formula $R'$
+\end_inset
+
+ (and 
+\begin_inset Formula $Q'$
+\end_inset
+
+, which may be stored implicitly in terms of a sequence of rotations).
+\end_layout
+
+\begin_layout Enumerate
+Every column of 
+\begin_inset Formula $zv^{*}$
+\end_inset
+
+ is proportional to the same vector 
+\begin_inset Formula $z$
+\end_inset
+
+.
+ Using this fact, explain how we can apply Givens rotations (from the bottom
+ row to the top) which rotate 
+\begin_inset Formula $z$
+\end_inset
+
+ into a multiple of 
+\begin_inset Formula $e_{1}$
+\end_inset
+
+, in order to convert 
+\begin_inset Formula $R+zv^{*}$
+\end_inset
+
+ into 
+\series bold
+upper-Hessenberg
+\series default
+ form using 
+\begin_inset Formula $O(m+n^{2})$
+\end_inset
+
+ operations.
+ Recall from homework that a Givens rotation is a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ unitary matrix that rotates 
+\begin_inset Formula $\left(\begin{array}{c}
+a\\
+b
+\end{array}\right)\to\left(\begin{array}{c}
+\#\\
+0
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+From the upper-Hessenberg form in the previous part, explain how we can
+ unitarily convert back to upper-triangular form in 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+ operations.
+\end_layout
+
+\end_body
+\end_document
