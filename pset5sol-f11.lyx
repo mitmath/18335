@@ -1,0 +1,870 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 5 Solutions
+\end_layout
+
+\begin_layout Subsection*
+Problem 0 (5+5+5+5+5 pts): 
+\end_layout
+
+\begin_layout Standard
+The underlying point in this problem is that Arnoldi will only stop partway
+ if the starting vector 
+\begin_inset Formula $\vec{b}$
+\end_inset
+
+ is in the span of a subset of only 
+\begin_inset Formula $n$
+\end_inset
+
+ of the eigenvectors.
+ This is why multiplying by 
+\begin_inset Formula $A$
+\end_inset
+
+ more than 
+\begin_inset Formula $n$
+\end_inset
+
+ times does not give any new vectors, why the Ritz vectors are exact eigenvector
+s (spanned by 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+), and why 
+\begin_inset Formula $A\vec{x}=\vec{b}$
+\end_inset
+
+ has a solution 
+\begin_inset Formula $\vec{x}\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ These results are shown explicitly by algebraic manipulation below.
+\end_layout
+
+\begin_layout Enumerate
+In this case, the 
+\begin_inset Formula $q_{n+1}$
+\end_inset
+
+ vector is multiplied by a zero row in 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+, and we can simplify 33.13 to 
+\begin_inset Formula $AQ_{n}=Q_{n}H_{n}$
+\end_inset
+
+.
+ If we consider the full Hessenberg reduction, 
+\begin_inset Formula $H=Q^{*}AQ$
+\end_inset
+
+, it must have a 
+\begin_inset Quotes eld
+\end_inset
+
+block Schur
+\begin_inset Quotes erd
+\end_inset
+
+ form: 
+\begin_inset Formula \[
+H=\left(\begin{array}{cc}
+H_{n} & B\\
+0 & H'\end{array}\right),\]
+
+\end_inset
+
+where 
+\begin_inset Formula $H'$
+\end_inset
+
+ is an 
+\begin_inset Formula $(m-n)\times(m-n)$
+\end_inset
+
+ upper-Hessenberg matrix and 
+\begin_inset Formula $B\in\mathbb{C}^{n\times(m-n)}$
+\end_inset
+
+.
+ (It is 
+\emph on
+not
+\emph default
+ necessarily the case that 
+\begin_inset Formula $B=0$
+\end_inset
+
+; this is only true if 
+\begin_inset Formula $A$
+\end_inset
+
+ is Hermitian.)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ is a basis for 
+\begin_inset Formula $\mathcal{K}_{n}$
+\end_inset
+
+, so any vector 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $x=Q_{n}y$
+\end_inset
+
+ for some 
+\begin_inset Formula $y\in\mathbb{C}^{n}$
+\end_inset
+
+.
+ Hence, from above, 
+\begin_inset Formula $Ax=AQ_{n}y=Q_{n}H_{n}y=Q_{n}(H_{n}y)\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Enumerate
+The 
+\begin_inset Formula $(n+1)$
+\end_inset
+
+ basis vector, 
+\begin_inset Formula $A^{n}b$
+\end_inset
+
+, is equal to 
+\begin_inset Formula $A(A^{n-1}b)$
+\end_inset
+
+ where 
+\begin_inset Formula $A^{n-1}b\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Hence, from above, 
+\begin_inset Formula $A^{n}b\in\mathcal{K}_{n}$
+\end_inset
+
+ and thus 
+\begin_inset Formula $\mathcal{K}_{n+1}=\mathcal{K}_{n}$
+\end_inset
+
+.
+ By induction, 
+\begin_inset Formula $\mathcal{K}_{\ell}=\mathcal{K}_{n}$
+\end_inset
+
+ for 
+\begin_inset Formula $\ell\geq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $H_{n}y=\lambda y$
+\end_inset
+
+, then 
+\begin_inset Formula $AQ_{n}y=Q_{n}H_{n}y=\lambda Q_{n}y$
+\end_inset
+
+, and hence 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is an eigenvalue of 
+\begin_inset Formula $A$
+\end_inset
+
+ with eigenvector 
+\begin_inset Formula $Q_{n}y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ is nonsingular, then 
+\begin_inset Formula $H_{n}$
+\end_inset
+
+ is nonsingular (if it had a zero eigenvalue, 
+\begin_inset Formula $A$
+\end_inset
+
+ would too from above).
+ Hence, noting that 
+\begin_inset Formula $b$
+\end_inset
+
+ is proportional to the first column of 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+, we have: 
+\begin_inset Formula $x=A^{-1}b=A^{-1}Q_{n}e_{1}\Vert b\Vert=A^{-1}Q_{n}H_{n}H_{n}^{-1}e_{1}\Vert b\Vert=A^{-1}AQ_{n}H_{n}^{-1}e_{1}\Vert b\Vert=Q_{n}H_{n}^{-1}e_{1}\Vert b\Vert\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1 (10+10+10 pts): 
+\end_layout
+
+\begin_layout Standard
+The results for parts (a) and (b) are shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:prob2"
+
+\end_inset
+
+.
+ Both Lanczos and restarted Lanczos converge to more than six significant
+ digits to the minimal 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ in under 50 iterations, but the restarted version has much more erratic
+ convergence.
+\end_layout
+
+\begin_layout Standard
+My Matlab code (very inefficient, but does the job) is given below.
+ Note that, in order to restart, we must keep track of the 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ matrix (save the 
+\begin_inset Formula $q$
+\end_inset
+
+ vectors) in order to compute the Ritz vector 
+\begin_inset Formula $Q_{n}y$
+\end_inset
+
+ from an eigenvector 
+\begin_inset Formula $y$
+\end_inset
+
+ of 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prob2.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:prob2"
+
+\end_inset
+
+Fractional error in minimum eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as a function of iterations (matrix-vector multiples) for Lanczos and for
+ restarted Lanczos (restarting with the best Ritz vector every 10 iterations).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "lanczos-sol.m"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In part (c), I asked you to repeat the same process, except selecting the
+ min-
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+ eigenvalue at each step.
+ For this particular 
+\begin_inset Formula $A$
+\end_inset
+
+, the smalles two eigenvalues are 
+\begin_inset Formula $-0.3010$
+\end_inset
+
+ and 
+\begin_inset Formula $+0.3828$
+\end_inset
+
+, so the minimum-
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+ eigenvalue is the same as the minimum-
+\begin_inset Formula $\lambda$
+\end_inset
+
+ eigenvalue, so at first glance you might expect the same results as before.
+ However, the algorithm doesn't 
+\begin_inset Quotes eld
+\end_inset
+
+know
+\begin_inset Quotes erd
+\end_inset
+
+ this fact, and Lanczos is much better at getting extremal (min/max) eigenvalues
+ correct than eigenvalues in the interior of the spectrum.
+ The results are shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:prob2c"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prob2c.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:prob2c"
+
+\end_inset
+
+Fractional error in minimum-
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+ eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as a function of iterations (matrix-vector multiples) for Lanczos and for
+ restarted Lanczos (restarting with the best Ritz vector every 10 iterations).
+ The convergence is irregular because Lanczos has trouble getting the interior
+ of the spectrum accurately.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ The nonrestarted case appears to converge the same as before at first,
+ but periodically a spurious/ghost eigenvalue appears near 
+\begin_inset Formula $0$
+\end_inset
+
+ that messes up convergence until it goes away.
+ The restarted case is even worse.
+ (The situation would be even worse if we tried to get an eigenvalue even
+ further in the interior of the spectrum, e.g.
+ the eigenvalue closest to 2.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 2 (25 pts): 
+\end_layout
+
+\begin_layout Standard
+The residual curves are plotted in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:prob3"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prob3.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:prob3"
+
+\end_inset
+
+Convergence of the residual for problem 38.6, using conjugate-gradient (CG)
+ or steepest-descent (SD), and also the actual CG residual 
+\begin_inset Formula $\Vert Ax-b\Vert$
+\end_inset
+
+ as well as the estimated upper bound on the residual from theorem 38.5.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Several things are apparent.
+ First, as expected, CG (conjugate gradient) converges much faster than
+ SD (steepest descent).
+ Since the condition number 
+\begin_inset Formula $\kappa(A)\approx397$
+\end_inset
+
+ for this 
+\begin_inset Formula $A$
+\end_inset
+
+, we expect 
+\begin_inset Formula $SD$
+\end_inset
+
+ to take several hundred iterations to converge, while 
+\begin_inset Formula $CG$
+\end_inset
+
+ should take only several dozen.
+ Second the computed residual for CG matches the actual residual until we
+ hit machine precision (
+\begin_inset Formula $\approx10^{-16}$
+\end_inset
+
+), at which point rounding errors prevent the actual residual from decreasing
+ further (while the computed residual keeps going down).
+ Third, the estimate 
+\begin_inset Formula $2(\sqrt{\kappa}-1)^{n}(\sqrt{\kappa}+1)^{n}$
+\end_inset
+
+ from theorem 38.5 is grossly pessimistic.
+\end_layout
+
+\begin_layout Standard
+What is happening, as discussed in class, is that the CG process is effectively
+ shrinking the size of the vector space as it goes along, because once it
+ searches a direction it never needs to search that direction again, and
+ the condition number of 
+\begin_inset Formula $A$
+\end_inset
+
+ restricted to the remaining subspace gets better and better---we get 
+\emph on
+superlinear convergence
+\emph default
+, observed in the fact that the residual on decreases faster than exponentially
+ (which would be a straight line on a semilog scale).
+\end_layout
+
+\begin_layout Standard
+We can quantify this in various ways.
+ For example, since on each step the residual is 
+\begin_inset Quotes eld
+\end_inset
+
+supposed
+\begin_inset Quotes erd
+\end_inset
+
+ to decrease by a factor 
+\begin_inset Formula $f=(\sqrt{\kappa}-1)/(\sqrt{\kappa}+1)$
+\end_inset
+
+, we can define an 
+\begin_inset Quotes eld
+\end_inset
+
+effective
+\begin_inset Quotes erd
+\end_inset
+
+ condition number 
+\begin_inset Formula $\tilde{\kappa}_{n}$
+\end_inset
+
+ from the actual rate of decrease 
+\begin_inset Formula $f_{n}=(\sqrt{\tilde{\kappa}_{n}}-1)/(\sqrt{\tilde{\kappa}_{n}}+1)=\Vert r_{n+1}\Vert/\Vert r_{n}\Vert$
+\end_inset
+
+.
+ Thus, 
+\begin_inset Formula $\sqrt{\tilde{\kappa}_{n}}=(1+f_{n})/(1-f_{n})$
+\end_inset
+
+.
+ By the time 30 iterations have passed, 
+\begin_inset Formula $\tilde{\kappa}_{30}$
+\end_inset
+
+ is only 38; by 40 iterations, 
+\begin_inset Formula $\tilde{\kappa}_{40}\approx21$
+\end_inset
+
+; by 
+\begin_inset Formula $60$
+\end_inset
+
+ iterations, 
+\begin_inset Formula $\tilde{\kappa}_{60}\approx8.8$
+\end_inset
+
+.
+ If we look at the set of eigenvalues, we see that eliminating just the
+ two smallest 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ would give a condition number of 34, and eliminating the 11 smallest eigenvalue
+s would give a condition number of 8.4.
+ (Eliminating the largest eigenvalues does not reduce the condition number
+ nearly as quickly.) So, what seems to be happening is that CG is effectively
+ eliminating the smallest eigenvalues from the spectrum as the algorithm
+ progresses, improving the condition number of 
+\begin_inset Formula $A$
+\end_inset
+
+ and hence the convergence rate is better than the pessimistic bound of
+ theorem 38.5.
+\end_layout
+
+\begin_layout Standard
+The code for SD was posted on the web site; my code for CG in this problem
+ is listed below (modified to add an additional stopping criteria for problem
+ 3).
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "CG.m"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Problem 3 (15 points)
+\end_layout
+
+\begin_layout Standard
+The results for this problem are shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:prob3new"
+
+\end_inset
+
+.
+ They are a bit odd, in that the conjugate-gradient method indeed converges
+ to a null-space vector, but when the residual 
+\begin_inset Formula $\Vert Ax\Vert$
+\end_inset
+
+ gets very small (
+\begin_inset Formula $\approx10^{-10}$
+\end_inset
+
+), the iteration goes crazy and the residual norm shoots up again.
+ This seems to be due to some sort of roundoff disaster.
+ In practice, one could simply stop the iterations once the residual became
+ sufficiently small.
+ There may also be ways of mitigating the roundoff problems; for example,
+ in blue are shown the results if CG is simply restarted once the residual
+ becomes small, in which case the residual continues to decrease for another
+ couple orders of magnitude before errors resurface, and there are probably
+ more clever corrections as well.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prob3new.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:prob3new"
+
+\end_inset
+
+Convergence of conjugate gradient to a null-space vector of a positive 
+\emph on
+semi
+\emph default
+-definite matrix 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ The convergence breaks down once the residual 
+\begin_inset Formula $\Vert Ax\Vert$
+\end_inset
+
+ becomes very small, probably because roundoff errors effectively give 
+\begin_inset Formula $A$
+\end_inset
+
+ a small negative eigenvalue.
+ Simply stopping CG when the residual becomes small and restarting from
+ there (blue line) improves matters somewhat, allowing the residual to be
+ decreased by another couple of orders of magnitude before a breakdown resurface
+s.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What is the source of the roundoff disaster? Notice
+\end_layout
+
+\begin_layout Standard
+I haven't tried to diagnose it in detail, but a simple check of the eigenvalues
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+ reveals a clue.
+ Although 
+\begin_inset Formula $A$
+\end_inset
+
+ should, in principle, be positive semidefinite, in practice because of
+ roundoff errors I find that it could have at least one slightly negative
+ eigenvalue.
+ Once roundoff errors have made the problem indefinite, the well-known possibili
+ty of breakdown of the conjugate-gradient algorithm resurfaces.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See, e.g., Paige, Parlett, and Van der Vorst, 
+\begin_inset Quotes eld
+\end_inset
+
+Approximate solutions and eigenvalue bounds from Krylov subspaces,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Numer.
+ Lin.
+ Alg.
+ Appls.
+
+\emph default
+ 
+\series bold
+2
+\series default
+(2), 115--133 (1995), or Fischer, Hanke, and Hochbruck, 
+\begin_inset Quotes eld
+\end_inset
+
+A note on conjugate-gradient type methods for indefinite and/or inconsistent
+ linear systems,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Num.
+ Algorithms
+\emph default
+ 
+\series bold
+11
+\series default
+, 181--187 (1996).
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

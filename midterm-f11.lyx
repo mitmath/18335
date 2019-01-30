@@ -1,0 +1,516 @@
+#LyX 1.6.9 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\sign}{\operatorname{sign}}
+
+\renewcommand{\span}[1]{\operatorname{span}\langle #1 \rangle}
+\newcommand{\fl}{\operatorname{fl}}
+\end_preamble
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Midterm, Fall 2011
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (10+15 points)
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is a diagonalizable matrix with eigenvectors 
+\begin_inset Formula $\vec{v}_{k}$
+\end_inset
+
+ and eigenvalues 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+, in decreasing order 
+\begin_inset Formula $|\lambda_{1}|\geq|\lambda_{2}|\geq\cdots$
+\end_inset
+
+.
+ Recall that the power method starts with a random 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and repeatedly computes 
+\begin_inset Formula $\vec{x}\gets A\vec{x}/\Vert A\vec{x}\Vert_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $|\lambda_{1}|=|\lambda_{2}|>|\lambda_{3}|$
+\end_inset
+
+, but 
+\begin_inset Formula $\lambda_{1}\neq\lambda_{2}$
+\end_inset
+
+.
+ Explain why the power method will not in general converge.
+\end_layout
+
+\begin_layout Enumerate
+Give a 
+\emph on
+simple
+\emph default
+ fix to obtain 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{2}$
+\end_inset
+
+ from the power method or some small modification thereof.
+ (No fair going to some much more complicated/expensive algorithm like inverse
+ iteration, Arnoldi, QR, or simultaneous iteration!)
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (25 points)
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Review:
+\emph default
+ We described GMRES as minimizing the norm 
+\begin_inset Formula $\Vert\vec{r}\Vert_{2}$
+\end_inset
+
+ of the residual 
+\begin_inset Formula $\vec{r}=\vec{b}-A\vec{x}$
+\end_inset
+
+ over all 
+\begin_inset Formula $\vec{x}\in\mathcal{K}_{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathcal{K}_{n}=\span{\vec{b},A\vec{b},\ldots,A^{n-1}\vec{b}}.$
+\end_inset
+
+ This was done using Arnoldi (starting with 
+\begin_inset Formula $\vec{q}_{1}=\vec{b}/\Vert\vec{b}\Vert_{2}$
+\end_inset
+
+) to build up an orthonormal basis 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+, where 
+\begin_inset Formula $AQ_{n}=Q_{n+1}\tilde{H}_{n}$
+\end_inset
+
+ (
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ being an 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ upper-Hessenberg matrix), in terms of which we wrote 
+\begin_inset Formula $\vec{x}=Q_{n}\vec{y}$
+\end_inset
+
+ and solved the least-square problem 
+\begin_inset Formula $\min_{\vec{y}}\Vert\tilde{H}_{n}\vec{y}-b\vec{e}_{1}\Vert_{2}$
+\end_inset
+
+ where 
+\begin_inset Formula $b=\Vert b\Vert_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{e}_{1}=(1,0,0,\ldots)^{T}$
+\end_inset
+
+ (since 
+\begin_inset Formula $\vec{b}=Q_{n+1}b\vec{e}_{1}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Suppose, after 
+\begin_inset Formula $n$
+\end_inset
+
+ steps, we want to 
+\emph on
+restart
+\emph default
+ GMRES.
+ That is, we want to restart our Arnoldi process with 
+\emph on
+one
+\emph default
+ vector 
+\begin_inset Formula $\tilde{\vec{q}}_{1}$
+\end_inset
+
+ based (somehow) on the solution 
+\begin_inset Formula $\vec{x}_{0}=Q_{n}\vec{y}$
+\end_inset
+
+ from the 
+\begin_inset Formula $n$
+\end_inset
+
+-th step, and build up a 
+\emph on
+new
+\emph default
+ Krylov space.
+ What should 
+\begin_inset Formula $\tilde{\vec{q}}_{1}$
+\end_inset
+
+ be, and what minimal-residual problem should we solve on each step of the
+ new GMRES iterations, to obtain 
+\emph on
+improved
+\emph default
+ solutions 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ in 
+\emph on
+some
+\emph default
+ Krylov space?
+\end_layout
+
+\begin_layout Standard
+(
+\emph on
+Note:
+\emph default
+ if you're remembering implicitly restarted Lanczos now and panicking, 
+\emph on
+relax
+\emph default
+: all the complexity there was to restart with a subspace of dimension 
+\begin_inset Formula $>1$
+\end_inset
+
+, which doesn't apply when we are restarting with only one vector.
+ Think simpler.)
+\end_layout
+
+\begin_layout Standard
+(
+\emph on
+Note:
+\emph default
+ be sure to obtain a 
+\emph on
+small
+\emph default
+ least-squared problem on each step.
+ No 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ problems! This may screw up the first thing you try.
+ Hint: think about residuals.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (15+10 points)
+\end_layout
+
+\begin_layout Enumerate
+The following two sub-parts can be solved independently (you can answer
+ the second part even if you fail to prove the first part):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ matrix with rank 
+\begin_inset Formula $n$
+\end_inset
+
+ (i.e., independent columns).
+ Let 
+\begin_inset Formula $B=A_{:,1:p}$
+\end_inset
+
+ be the first 
+\begin_inset Formula $p$
+\end_inset
+
+ (
+\begin_inset Formula $1\leq p\leq n$
+\end_inset
+
+) columns of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ Show that 
+\begin_inset Formula $\kappa(A)\geq\kappa(B)$
+\end_inset
+
+.
+ (Hint: recall that our first way of defining 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+ was by 
+\begin_inset Formula $\kappa(A)=\left[\max_{\vec{x}\neq0}\frac{\Vert A\vec{x}\Vert}{\Vert\vec{x}\Vert}\right]\cdot\left[\max_{\vec{x}\neq0}\frac{\Vert\vec{x}\Vert}{\Vert A\vec{x}\Vert}\right]$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Enumerate
+Suppose that we are doing least-square fitting of a bunch of data points
+ (containing some experimental errors) to a polynomial.
+ Does the 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\kappa(A)\geq\kappa(B)$
+\end_inset
+
+ result from the previous part tell you about what happens about the sensitivity
+ to errors as you increase the number of data points 
+\emph on
+or
+\emph default
+ as you increase the degree of the polynomial, and what does it tell you?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Prove that if 
+\begin_inset Formula $\kappa(A)=1$
+\end_inset
+
+ then 
+\begin_inset Formula $A=cQ$
+\end_inset
+
+ where 
+\begin_inset Formula $Q^{*}Q=I$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ is some scalar.
+ (The SVD definition of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ might be easiest here: 
+\begin_inset Formula $\kappa(A)=\frac{\sigma_{\max}}{\sigma_{\min}}$
+\end_inset
+
+ when 
+\begin_inset Formula $A$
+\end_inset
+
+ has full column rank.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: (8+8+9 points)
+\end_layout
+
+\begin_layout Standard
+Recall that an IEEE double-precision binary floating-point number is of
+ the form 
+\begin_inset Formula $\pm s\cdot2^{e}$
+\end_inset
+
+ where the significand 
+\begin_inset Formula $s=1.xxxx\ldots$
+\end_inset
+
+ has 53 binary digits (about 16 decimal digits, 
+\begin_inset Formula $\epsilon_{\mbox{machine}}\approx10^{-16}$
+\end_inset
+
+) and the exponent 
+\begin_inset Formula $e$
+\end_inset
+
+ has 11 binary digits (
+\begin_inset Formula $e\in[-1022,1023]\implies10^{-308}\lesssim2^{e}\lesssim10^{308}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Computing 
+\begin_inset Formula $\sqrt{x^{2}+y^{2}}$
+\end_inset
+
+ by the obvious method, 
+\begin_inset Formula $\sqrt{(x\otimes x)\oplus(y\otimes y)}$
+\end_inset
+
+ sometimes yields 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\infty$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ (Inf) even when 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ are well within the representable range.
+ Propose a solution.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Explain why solving 
+\begin_inset Formula $x^{2}+2bx+1=0$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+ by the usual quadratic formula 
+\begin_inset Formula $x=-b\pm\sqrt{b^{2}-1}$
+\end_inset
+
+ might be very inaccurate for some 
+\begin_inset Formula $b$
+\end_inset
+
+, and propose a solution.
+\end_layout
+
+\begin_layout Enumerate
+How might you compute 
+\begin_inset Formula $1-\cos x$
+\end_inset
+
+ accurately for small 
+\begin_inset Formula $|x|$
+\end_inset
+
+? Assume you have floating-point 
+\begin_inset Formula $\widetilde{\sin}$
+\end_inset
+
+ and 
+\begin_inset Formula $\widetilde{\cos}$
+\end_inset
+
+ functions that compute exactly rounded results, i.e.
+ 
+\begin_inset Formula $\widetilde{\sin}x=\fl(\sin x)$
+\end_inset
+
+ and 
+\begin_inset Formula $\widetilde{\cos}x=\fl(\cos x)$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
