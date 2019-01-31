@@ -1,6 +1,6 @@
 #  18.335J/6.337J: Introduction to Numerical Methods
 
-This is the repository of course materials for the 18.335J/6.337J course at MIT, taught by Dr. Wonseok Shin in Spring 2017.
+This is the repository of course materials for the 18.335J/6.337J course at MIT, taught by Dr. Wonseok Shin in Spring 2018.
 
 ## Problem Sets
 
