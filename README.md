@@ -38,7 +38,7 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 4)
 
-**Handouts:** a printout of this webpage (i.e., the syllabus). [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb)
+**Handouts:** a printout of this webpage (i.e., the syllabus). [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Newton-Square-Roots.ipynb)
 
 Brief overview of the huge field of numerical methods, and outline of the small portion that this course will cover. Key new concerns in numerical analysis, which don't appear in more abstract mathematics, are (i) performance (traditionally, arithmetic counts, but now memory access often dominates) and (ii) accuracy (both floating-point roundoff errors and also convergence of intrinsic approximations in the algorithms).
 
@@ -48,7 +48,7 @@ As a starting example, considered the convergence of Newton's method (as applied
 
 ### Lecture 2 (Feb 6)
 
-**Handouts:** [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; [slides](notes/lec8.pdf)); Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb), some [floating-point myths](notes/fp-myths.pdf); [pset 1](psets/pset1-s15.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1-template-s15.ipynb) (due Feb 17 — TUESDAY = MIT Monday)
+**Handouts:** [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; [slides](notes/lec8.pdf)); Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Floating-Point-Intro.ipynb), some [floating-point myths](notes/fp-myths.pdf); [pset 1](psets/pset1-s15.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/psets/pset1-template-s15.ipynb) (due Feb 17 — TUESDAY = MIT Monday)
 
 New topic: **Floating-point arithmetic**
 
@@ -78,9 +78,9 @@ Often, it is sufficient to prove "backwards stability" = right answer for almost
 
 ### Julia tutorial (Feb 11: 4:30pm in 1-190) — optional
 
-**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf)
+**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/spring15/Julia-cheatsheet.pdf)
 
-On Monday, 9 Wednesday 11 February (I hope), at 4:30pm in 1-190, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md).
+On Monday, 9 Wednesday 11 February (I hope), at 4:30pm in 1-190, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/spring15/README.md).
 
 Please **bring your laptops**, and try to install Julia and the IJulia interface first via the abovementioned tutorial notes. Several people will be at the tutorial session to help answer installation questions. Alternatively, you can use Julia online at [JuliaBox](https://juliabox.com/) without installing anything (although running things on your own machine is usually faster).
 
@@ -106,7 +106,7 @@ Relate backwards error to forwards error, and backwards stability to forwards er
 
 ### Lecture 6 (Feb 18)
 
-**Handout:** [pset 1 solutions](psets/pset1sol-s15.pdf) and [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1sol-s15.ipynb); [pset 2](psets/pset2-s15.pdf) (due Fri 2/27).
+**Handout:** [pset 1 solutions](psets/pset1sol-s15.pdf) and [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/psets/pset1sol-s15.ipynb); [pset 2](psets/pset2-s15.pdf) (due Fri 2/27).
 
 Calculated condition number for square root, summation, and matrix-vector multiplication, as well as solving Ax=b, similar to the book. Defined the condition number of a matrix.
 
@@ -128,7 +128,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 8 (Feb 23)
 
-**Handouts:** [least-squares IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Least-squares.ipynb)
+**Handouts:** [least-squares IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Least-squares.ipynb)
 
 Introduced least-squares problems, gave example of polynomial fitting, gave normal equations, and derived them from the condition that the L2 error be minimized.
 
@@ -140,7 +140,7 @@ Introduced the alternative of QR factorization (finding an orthonormal basis for
 
 ### Lecture 9 (Feb 25)
 
-**Handouts:** [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
+**Handouts:** [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Gram-Schmidt.ipynb)
 
 Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.
 
@@ -164,7 +164,7 @@ Operation count for Gram-Schmidt (2mn2) and Householder (2mn2 - 2n3/3), using th
 
 ### Lecture 11 (Mar 2)
 
-**Handouts:** performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions); [ideal-cache terminology](notes/ideal-cache.pdf); [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Matrix-multiplication-experiments.ipynb)
+**Handouts:** performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions); [ideal-cache terminology](notes/ideal-cache.pdf); [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Matrix-multiplication-experiments.ipynb)
 
 Counting arithmetic operation counts is no longer enough. Illustrate this with some performance experiments on a much simpler problem, matrix multiplication (see handouts). This leads us to analyze memory-access efficiency and caches and points the way to restructuring many algorithms.
 
@@ -178,7 +178,7 @@ Discussed some practical difficulties of the blocked matrix multiplication: algo
 
 ### Lecture 12 (Mar 4)
 
-**Handouts:** experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf)); see also notebook from previous lecture; [pset 3](psets/pset3-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset3-s15.ipynb) (due Friday Mar 13).
+**Handouts:** experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf)); see also notebook from previous lecture; [pset 3](psets/pset3-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/psets/pset3-s15.ipynb) (due Friday Mar 13).
 
 Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout and Frigo et. al paper above).
 
@@ -208,7 +208,7 @@ As a result, all eigenproblem methods must be _iterative_: they must consist of 
 
 However, finding roots of the characteristic polynomial is generally a terrible way to find eigenvalues. Actually computing the characteristic polynomial coefficients and then finding the roots somehow (Newton's method?) is a disaster, incredibly ill-conditioned: gave the example of [Wilkinson's polynomial](http://en.wikipedia.org/wiki/Wilkinson%27s_polynomial). If we can compute the characteristic polynomial values implicitly somehow, directly from the determinant, then it is not too bad (if you are looking only for eigenvalues in some known interval, for example), but we haven't learned an efficient way to do that yet. The way LAPACK and Matlab actually compute eigenvalues, the QR method and its descendants, wasn't discovered until 1960.
 
-**Further reading:** Trefethen, lecture 24, 25. See [this Wilkinson polynomial Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Wilkinson-Polynomial.ipynb) for some experiments with polynomial roots in Julia.
+**Further reading:** Trefethen, lecture 24, 25. See [this Wilkinson polynomial Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Wilkinson-Polynomial.ipynb) for some experiments with polynomial roots in Julia.
 
 ### Lecture 15 (Mar 11)
 
@@ -228,7 +228,7 @@ Discussed how to use the power method to get multiple eigenvalues/vectors of Her
 
 ### Lecture 16 (Mar 13)
 
-**Handouts:** [pset 3 solutions](psets/pset3sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset3sol-s15.ipynb)
+**Handouts:** [pset 3 solutions](psets/pset3sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/psets/pset3sol-s15.ipynb)
 
 Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent to QR factorizing _An_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
 
@@ -264,7 +264,7 @@ Also showed that the max/min Ritz values are the maximum/minimum of the Rayleigh
 
 ### Lecture 18 (Mar 18)
 
-**Handouts**: [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb), [pset 4](psets/pset4-s15.pdf) (due Monday March 30).
+**Handouts**: [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Arnoldi.ipynb), [pset 4](psets/pset4-s15.pdf) (due Monday March 30).
 
 Showed that the Ritz (Galerkin) matrix of the Arnoldi process is actually an upper-Hessenberg matrix H whose entries are generated during the Arnoldi algorithm itself.
 
@@ -350,7 +350,7 @@ Concluded with some rules of thumb (see handout) about which type of solvers to 
 
 ### Lecture 25 (Apr 13)
 
-**Handouts:** [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006; [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Nested-Dissection.ipynb)
+**Handouts:** [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006; [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Nested-Dissection.ipynb)
 
 **Sparse-direct solvers:** For many problems, there is an intermediate between the dense Θ(m3) solvers of LAPACK and iterative algorithms: for a sparse matrix A, we can sometimes perform an LU or Cholesky factorization while maintaining sparsity, storing and computing only nonzero entries for vast savings in storage and work. In particular, did a Matlab demo, a few experiments with a simple test case: the "discrete Laplacian" center-difference matrix on uniform grids that we've played with previously in 18.335. In 1d, this matrix is tridiagonal and LU/Cholesky factorization produces a bidiagonal matrix: Θ(m) storage and work! For a 2d grid, there are 4 off-diagonal elements, and showed how elimination introduces Θ(√m) nonzero entries in each column, or Θ(m3/2) nonzero entries in total. This is still not too bad, but we can do better. First, showed that this "fill-in" of the sparsity depends strongly on the ordering of the degrees of freedom: as an experiment, tried a _random_ reordering, and found that we obtain Θ(m2) nonzero entries (~10% nonzero). Alternatively, one can find re-orderings that greatly reduce the fill-in. One key observation is that the fill-in only depends on the pattern of the matrix, which can be interpreted as a [graph](http://en.wikipedia.org/wiki/Graph_%28mathematics%29): m vertices, and edges for the nonzero entries of A (an [adjacency matrix](http://en.wikipedia.org/wiki/Adjacency_matrix) of the graph), and sparse-direct algorithms are closely related to graph-theory problems. For our simple 2d Laplacian, the graph is just the picture of the grid connecting the points. One simple algorithm is the [nested dissection algorithm](http://en.wikipedia.org/wiki/Nested_dissection): recursively find a separator of the graph, then re-order the vertices to put the separator last. This reorders the matrix into a mostly block-diagonal form, with large blocks of zeros that are preserved by elimination, and if we do this recursively we greatly reduce the fill-in. Did a crude analysis of the the fill-in structure, resulting in the time/space complexity on the last page of the handoutw, for our 2d grid where separators are obvious; for more general matrices finding separators is a hard and important problem in graph theory.
 
@@ -366,7 +366,7 @@ Broad overview of optimization problems (see handout). The most general formulat
 
 ### Lecture 27 (Apr 17)
 
-**Handouts:** [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients; [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf); [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/adjoint/Adjoint-method.ipynb)
+**Handouts:** [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients; [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf); [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/adjoint/Adjoint-method.ipynb)
 
 Introduction to **adjoint** methods and the remarkable fact that one can compute the gradient of a complicated function with about the same number of additional operations as computing the function _once_.
 
@@ -466,7 +466,7 @@ Using Chebyshev approximation, explained how lots of problems can be solved by f
 
 ### Lecture 36 (May 11)
 
-**Handout:** [notes on FFTs](notes/fft-iap3.pdf), [pset 5 solutions](pset5sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/pset5sol-s15.ipynb)
+**Handout:** [notes on FFTs](notes/fft-iap3.pdf), [pset 5 solutions](pset5sol-s15.pdf) and [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/pset5sol-s15.ipynb)
 
 Overview of fast Fourier transform (FFT) algorithms, and in particular derived the Cooley-Tukey algorithm and analyzed its complexity. Briefly commented on the existence of O(N log N) FFT algorithms for prime sizes and gave the example of [Rader's algorithm](https://en.wikipedia.org/wiki/Rader%27s_FFT_algorithm).
 
