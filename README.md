@@ -17,7 +17,9 @@ Syllabus
 
 **Grading**: 33% problem sets (about six, ~biweekly). 33% **take-home mid-term exam** (posted Monday **Apr. 8** and due Tuesday **Apr. 9**), 34% **final project** (one-page proposal due Friday March 22, project due Wednesday **May 15**).
 
-**TA:** TBA. Psets will be submitted by email to the TA.
+* Psets will be [submitted electronically via Stellar](https://learning-modules.mit.edu/gradebook/index.html?uuid=/course/18/sp19/18.335).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
+
+**TA:** TBA.
 
 **Collaboration policy**: Talk to anyone you want to and read anything you want to, with three exceptions: First, you **may not refer to homework solutions from the previous terms** in which I taught 18.335. Second, make a solid effort to solve a problem on your own before discussing it with classmates or googling. Third, no matter whom you talk to or what you read, write up the solution on your own, without having their answer in front of you.
 
