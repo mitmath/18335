@@ -1,0 +1,561 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 1
+\end_layout
+
+\begin_layout Standard
+Due Friday, 15 February 2019.
+ You should submit your problem set 
+\series bold
+electronically
+\series default
+ on the 18.335 Stellar page.
+ Submit 
+\series bold
+both
+\series default
+ a 
+\emph on
+scan
+\emph default
+ of any handwritten solutions (I recommend an app like TinyScanner or similar
+ to create a good-quality black-and-white 
+\begin_inset Quotes eld
+\end_inset
+
+thresholded
+\begin_inset Quotes erd
+\end_inset
+
+ scan) and 
+\series bold
+also
+\series default
+ a 
+\emph on
+PDF printout 
+\emph default
+of the Julia notebook of your computer solutions.
+ A 
+\series bold
+template Julia notebook is posted
+\series default
+ in the 18.335 web site to help you get started.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Floating point
+\end_layout
+
+\begin_layout Standard
+Trefethen, probem 13.2.
+ (For part 
+\emph on
+c
+\emph default
+, you can use Julia, which employs IEEE double precision by default.
+ However, unlike Matlab, Julia distinguishes between integer and floating-point
+ scalars.
+ For example, 
+\family typewriter
+2^50
+\family default
+ in Julia will produce a 64-bit integer result; to get a 64-bit/double floating-
+point result, do e.g.
+ 
+\family typewriter
+2.0^50
+\family default
+ instead.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Funny functions
+\end_layout
+
+\begin_layout Enumerate
+Write a function 
+\family typewriter
+L4(x,y)
+\family default
+ in Julia to compute the 
+\begin_inset Formula $L_{4}$
+\end_inset
+
+ norm 
+\begin_inset Formula $(|x|^{4}+|y|^{4})^{1/4}$
+\end_inset
+
+ of two scalars 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Does your code give an accurate answer for 
+\family typewriter
+L4(1e-100,0.0)
+\family default
+? What about 
+\family typewriter
+L4(1e+100,0.0)
+\family default
+? Without using arbitrary-precision (
+\family typewriter
+BigFloat
+\family default
+) calculations, 
+\series bold
+fix your code
+\series default
+ so that it gives an answer whose relative error 
+\begin_inset Formula $\frac{|\text{computed}-\text{correct}|}{|\text{correct}|}$
+\end_inset
+
+ is within a small multiple of 
+\family typewriter
+eps()
+\family default
+ = 
+\begin_inset Formula $\epsilon_{\text{machine}}$
+\end_inset
+
+ (a few 
+\begin_inset Quotes eld
+\end_inset
+
+ulps
+\begin_inset Quotes erd
+\end_inset
+
+, or 
+\begin_inset Quotes eld
+\end_inset
+
+units in the last place
+\begin_inset Quotes erd
+\end_inset
+
+) of the exactly rounded answer for all double-precision 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ (You can test your code by comparing to 
+\family typewriter
+L4(big(x),big(y))
+\family default
+, i.e.
+ arbitrary-precision calculation.)
+\end_layout
+
+\begin_layout Enumerate
+Write a function 
+\family typewriter
+cotdiff(x,y)
+\family default
+ that computes 
+\begin_inset Formula $\cot(x)-\cot(x+y)$
+\end_inset
+
+.
+ Does your code give an accurate answer for 
+\family typewriter
+cotdiff(1.0, 1e-20)
+\family default
+? Without using arbitrary-precision (
+\family typewriter
+BigFloat
+\family default
+) calculations, 
+\series bold
+fix your code
+\series default
+ so that it gives an accurate 
+\family typewriter
+Float64
+\family default
+ answer (within a few ulps) even when 
+\begin_inset Formula $|y|\ll|x|$
+\end_inset
+
+ (without hurting the accuracy when 
+\begin_inset Formula $y$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ are comparable!).
+ (Hint: one option would be to switch over to Taylor expansion when 
+\begin_inset Formula $|y|/|x|$
+\end_inset
+
+ is sufficiently small, but a simpler solution is possible by applying some
+ trigonometric identities.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Newtonish methods
+\end_layout
+
+\begin_layout Standard
+Newton's method for a root of 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+ is to iterate 
+\begin_inset Formula $x_{n+1}=x_{n}-f(x_{n})/f'(x_{n})$
+\end_inset
+
+ starting from some initial guess 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ (which must be sufficiently close to the root to guarantee convergence
+ in general).
+ Suppose that you are also given 
+\begin_inset Formula $f''(x)$
+\end_inset
+
+, the second derivative.
+ In this problem, you will propose an iteration scheme that takes advantage
+ of this second-derivative information.
+\end_layout
+
+\begin_layout Enumerate
+Propose a Newton-like iteration that takes advantage of 
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $f'$
+\end_inset
+
+, and 
+\begin_inset Formula $f''$
+\end_inset
+
+ (assuming 
+\begin_inset Formula $f$
+\end_inset
+
+ is analytic in the neighborhood of the root).
+ (Hint: use a second-order Taylor approximation of 
+\begin_inset Formula $f$
+\end_inset
+
+.) If you solve a quadratic equation 
+\begin_inset Formula $ax^{2}+bx+c=0$
+\end_inset
+
+, you might want to compute the two roots as 
+\begin_inset Formula $\frac{-b-\sqrt{b^{2}-4ac}}{2a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{2c}{-b-\sqrt{b^{2}-4ac}}$
+\end_inset
+
+, assuming 
+\begin_inset Formula $b>0$
+\end_inset
+
+, to avoid disastrous cancellation errors for 
+\begin_inset Formula $|ac|\ll b^{2}$
+\end_inset
+
+.
+ (Google 
+\begin_inset Quotes eld
+\end_inset
+
+quadratic formula cancellation error.
+\begin_inset Quotes erd
+\end_inset
+
+ In the event of a disaster, your method can fall back to an ordinary Newton
+ step.)
+\end_layout
+
+\begin_layout Enumerate
+Analyze its asymptotic convergence rate: if 
+\begin_inset Formula $x$
+\end_inset
+
+ is an exact root, write 
+\begin_inset Formula $x_{n}=x(1+\delta_{n})$
+\end_inset
+
+ as in class, and solve for 
+\begin_inset Formula $\delta_{n+1}$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\delta_{n}$
+\end_inset
+
+ assuming you are close to the root (
+\begin_inset Formula $\delta_{n}\ll1$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Modify the Julia Newton's-method notebook from class to implement your method
+ to compute a root of 
+\begin_inset Formula $f(x)=x^{3}-1$
+\end_inset
+
+.
+ In particular start with 
+\begin_inset Formula $x_{1}=2$
+\end_inset
+
+, so that your scheme should(!) converge to 
+\begin_inset Formula $x=1$
+\end_inset
+
+, and look at the error 
+\begin_inset Formula $x_{n}-1$
+\end_inset
+
+.
+ Demonstrate that it agrees with your predicted convergence rate from the
+ previous part.
+ [You should use arbitrary precision as in the notebook from class, so that
+ you can watch the convergence rate for many digits.
+ An approximate number of accurate digits is given by 
+\begin_inset Formula $-\log_{10}(x_{n}-1)$
+\end_inset
+
+.]
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Addition, another way
+\end_layout
+
+\begin_layout Standard
+Here you will analyze 
+\begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
+\end_inset
+
+, but you will compute 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ in a different way from the naive sum considered in class.
+ In particular, compute 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ by a recursive divide-and-conquer approach, recursively dividing the set
+ of values to be summed in two halves and then summing the halves: 
+\begin_inset Formula 
+\[
+\tilde{f}(x)=\begin{cases}
+0 & \mbox{if }n=0\\
+x_{1} & \mbox{if }n=1\\
+\tilde{f}(x_{1:\left\lfloor n/2\right\rfloor })\oplus\tilde{f}(x_{\left\lfloor n/2\right\rfloor +1:n}) & \mbox{if }n>1
+\end{cases},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\left\lfloor y\right\rfloor $
+\end_inset
+
+ denotes the greatest integer 
+\begin_inset Formula $\leq y$
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ rounded down).
+ In exact arithmetic, this computes 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ exactly, but in floating-point arithmetic this will have very different
+ error characteristics than the simple loop-based summation in class.
+\end_layout
+
+\begin_layout Enumerate
+For simplicity, assume 
+\begin_inset Formula $n$
+\end_inset
+
+ is a power of 2 (so that the set of numbers to add divides evenly in two
+ at each stage of the recursion).
+ Prove that 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq\epsilon_{\mbox{machine}}\log_{2}(n)\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+.
+ That is, show that the worst-case error bound grows 
+\emph on
+logarithmically
+\emph default
+ rather than 
+\emph on
+linearly
+\emph default
+ with 
+\begin_inset Formula $n$
+\end_inset
+
+!
+\end_layout
+
+\begin_layout Enumerate
+Pete R.
+ Stunt, a Microsoft employee, complains, 
+\begin_inset Quotes eld
+\end_inset
+
+While doing this kind of recursion may have nice error characteristics in
+ theory, it is ridiculous in the real world because it will be insanely
+ slow—I'm proud of my efficient software and can't afford to have a function-cal
+l overhead for every number I want to add!
+\begin_inset Quotes erd
+\end_inset
+
+ Explain to Pete how to implement a slight variation of this algorithm with
+ the same logarithmic error bounds (possibly with a worse constant factor)
+ but roughly the same performance as a simple loop.
+\end_layout
+
+\begin_layout Enumerate
+In the pset 1 Julia notebook, there is a function 
+\begin_inset Quotes eld
+\end_inset
+
+div2sum
+\begin_inset Quotes erd
+\end_inset
+
+ that computes 
+\begin_inset Formula $\tilde{f}(x)=$
+\end_inset
+
+
+\family typewriter
+div2sum(x)
+\family default
+ in single precision by the above algorithm.
+ Modify it to not be horrendously slow via your suggestion in (c), and then
+ plot its errors for random inputs as a function of 
+\begin_inset Formula $n$
+\end_inset
+
+ with the help of the example code in the Julia notebook (but with a larger
+ range of lengths 
+\begin_inset Formula $n$
+\end_inset
+
+).
+ Are your results consistent with your error bounds above?
+\end_layout
+
+\end_body
+\end_document
