@@ -1,0 +1,597 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 0.7in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Notes on the accuracy of naive summation
+\end_layout
+
+\begin_layout Author
+S.
+ G.
+ Johnson, MIT Course 18.335
+\end_layout
+
+\begin_layout Section
+Naive summation
+\end_layout
+
+\begin_layout Standard
+In these notes, we analyze the floating-point error involved in summing
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ numbers, i.e.
+ in computing the function 
+\begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $x\in\mathbb{F}^{n}$
+\end_inset
+
+ (
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ being the set of floating-point numbers), where the sum is done in the
+ most obvious way, in sequence.
+ In pseudocode:
+\end_layout
+
+\begin_layout LyX-Code
+sum = 
+\begin_inset Formula $0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+for 
+\begin_inset Formula $i$
+\end_inset
+
+ = 
+\begin_inset Formula $1$
+\end_inset
+
+ to 
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+   sum = sum + 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Formula $f(x)$
+\end_inset
+
+ = sum
+\end_layout
+
+\begin_layout Standard
+A much more complete analysis of summation can be found in Higham (1993)
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Higham93"
+literal "false"
+
+\end_inset
+
+.
+ Perhaps confusingly, this naive algorithm is called 
+\begin_inset Quotes eld
+\end_inset
+
+recursive
+\begin_inset Quotes erd
+\end_inset
+
+ summation, in reference to the inductive version of the definition below,
+ although most computer programs would implement this with a loop (with
+ the exception of Lisp programmers using tail recursion).
+\end_layout
+
+\begin_layout Standard
+For analysis, it is a bit more convenient to define the process inductively:
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+s_{0} & = & 0\\
+s_{k} & = & s_{k-1}+x_{k}\;\mbox{for }0<k\leq n,
+\end{eqnarray*}
+
+\end_inset
+
+with 
+\begin_inset Formula $f(x)=s_{n}$
+\end_inset
+
+.
+ (The intermediate values 
+\begin_inset Formula $s_{k}$
+\end_inset
+
+ are known as 
+\begin_inset Quotes eld
+\end_inset
+
+partial
+\begin_inset Quotes erd
+\end_inset
+
+ sums.) When we implement this in floating-point arithmetic, we get the function
+ 
+\begin_inset Formula $\tilde{f}(x)=\tilde{s}_{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{s}_{k}=\tilde{s}_{k-1}\oplus x_{k}$
+\end_inset
+
+, with 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ denoting (correctly rounded) floating-point addition.
+\end_layout
+
+\begin_layout Section
+An upper bound on the error
+\end_layout
+
+\begin_layout Standard
+We can easily prove an upper bound on the errors accumulated by the floating-poi
+nt implementation of this algorithm: 
+\begin_inset Formula 
+\[
+|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})=n\epsilon_{\text{machine}}|f(x)|\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
+\]
+
+\end_inset
+
+ This means that the 
+\emph on
+relative error 
+\emph default
+in the sum is bounded above by
+\begin_inset Formula 
+\[
+\frac{|\tilde{f}(x)-f(x)|}{|f(x)|}\le n\epsilon_{\text{machine}}\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
+\]
+
+\end_inset
+
+The 
+\begin_inset Formula $[\cdots]$
+\end_inset
+
+ factor is what we will eventually call the 
+\series bold
+condition number
+\series default
+ of the summation problem, a term that we we will define precisely later
+ in 18.335.
+ In the special case of summing 
+\emph on
+nonnegative
+\emph default
+ values 
+\begin_inset Formula $x_{i}\geq0$
+\end_inset
+
+, the 
+\begin_inset Formula $[\cdots]$
+\end_inset
+
+ term is 
+\begin_inset Formula $=1$
+\end_inset
+
+, and we find that the relative error grows 
+\series bold
+at worse linearly
+\series default
+ with the problem size 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To prove this, we first prove the lemma:
+\begin_inset Formula 
+\[
+\tilde{f}(x)=\sum_{i=1}^{n}x_{i}\prod_{k=i}^{n}(1+\epsilon_{k}),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\epsilon_{1}=0$
+\end_inset
+
+ and the other 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ satisfy 
+\begin_inset Formula $|\epsilon_{k}|\leq\epsilon_{\mbox{machine}}$
+\end_inset
+
+, by induction on 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $n=1$
+\end_inset
+
+, it is trivial with 
+\begin_inset Formula $\epsilon_{1}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Now for the inductive step.
+ Suppose 
+\begin_inset Formula $\tilde{s}_{n-1}=\sum_{i=1}^{n-1}x_{i}\prod_{k=i}^{n-1}(1+\epsilon_{k})$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\tilde{s}_{n}=\tilde{s}_{n-1}\oplus x_{n}=(\tilde{s}_{n-1}+x_{n})(1+\epsilon_{n})$
+\end_inset
+
+ where 
+\begin_inset Formula $|\epsilon_{n}|<\epsilon_{\mbox{machine}}$
+\end_inset
+
+ is guaranteed by floating-point addition.
+ The result follows by inspection: the previous terms are all multiplied
+ by 
+\begin_inset Formula $(1+\epsilon_{n})$
+\end_inset
+
+, and we add a new term 
+\begin_inset Formula $x_{n}(1+\epsilon_{n})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Now, let us multiply out the terms: 
+\begin_inset Formula 
+\[
+(1+\epsilon_{i})\cdots(1+\epsilon_{n})=1+\sum_{k=i}^{n}\epsilon_{k}+(\mbox{products of }\epsilon)=1+\delta_{i},
+\]
+
+\end_inset
+
+where the products of 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ terms are 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}}^{2})$
+\end_inset
+
+, and hence 
+\begin_inset Formula 
+\[
+|\delta_{i}|\leq\sum_{k=i}^{n}|\epsilon_{k}|+O(\epsilon_{\mbox{machine}}^{2})\le n\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2}).
+\]
+
+\end_inset
+
+Now we have: 
+\begin_inset Formula $\tilde{f}(x)=f(x)+(x_{1}+x_{2})\delta_{2}+\sum_{i=3}^{n}x_{i}\delta_{i}$
+\end_inset
+
+, and hence (by the triangle inequality): 
+\begin_inset Formula 
+\[
+|\tilde{f}(x)-f(x)|\leq|x_{1}|\,|\delta_{2}|+\sum_{i=2}^{n}|x_{i}|\,|\delta_{i}|.
+\]
+
+\end_inset
+
+Hence 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|$
+\end_inset
+
+ from the 
+\begin_inset Formula $|\delta_{i}|$
+\end_inset
+
+ bound above.
+\end_layout
+
+\begin_layout Standard
+Note: This does 
+\emph on
+not
+\emph default
+ correspond to a proof of forwards stability (defined soon in 18.335), since
+ we have only shown that 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+, which is different from 
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=|f(x)|O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ 
+\emph on
+unless
+\emph default
+ all the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ are 
+\begin_inset Formula $\ge0$
+\end_inset
+
+! Note that our 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ is uniformly convergent in 
+\begin_inset Formula $x$
+\end_inset
+
+, however (that is, the coefficient of 
+\begin_inset Formula $\epsilon_{\text{machine}}$
+\end_inset
+
+ is independent of 
+\begin_inset Formula $x$
+\end_inset
+
+, although it depends on 
+\begin_inset Formula $n$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Average errors
+\end_layout
+
+\begin_layout Standard
+In fact, the analysis above is typically too pessimistic, because the individual
+ errors 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+ are typically of 
+\emph on
+different signs
+\emph default
+, and in particular can usually be though of as random numbers, because
+ the last few digits of typical inputs 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ are usually random noise.
+ For uniform random 
+\begin_inset Formula $\epsilon_{k}$
+\end_inset
+
+, since 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+ is the sum of 
+\begin_inset Formula $(n-i+1)$
+\end_inset
+
+ random variables with variance 
+\begin_inset Formula $\sim\epsilon_{\mbox{machine}}$
+\end_inset
+
+, it follows from the usual properties of 
+\series bold
+random walks
+\series default
+ that the mean 
+\begin_inset Formula $|\delta_{i}|$
+\end_inset
+
+ has magnitude 
+\begin_inset Formula $\sim\sqrt{n-i+1}O(\epsilon_{\mbox{machine}})\leq\sqrt{n}O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+ Hence we typically expect 
+\begin_inset Formula 
+\[
+\text{root mean square }|\tilde{f}(x)-f(x)|=O\left(\sqrt{n}\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|\right),
+\]
+
+\end_inset
+
+i.e.
+ rms errors that grow 
+\begin_inset Formula $\sim\sqrt{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This sounds good, but in fact there are summation algorithms that do 
+\series bold
+much better
+\series default
+.
+ The algorithm for Julia's built-in 
+\family typewriter
+sum
+\family default
+ function, for example, is 
+\series bold
+pairwise summation
+\series default
+, which has 
+\begin_inset Formula $O(\log n$
+\end_inset
+
+) worst-case and 
+\begin_inset Formula $O(\sqrt{\log n})$
+\end_inset
+
+ average-case errors
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Higham93"
+literal "false"
+
+\end_inset
+
+, while having about the same performance as naive summation.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Higham93"
+literal "false"
+
+\end_inset
+
+Nicholas J.
+ Higham, 
+\begin_inset Quotes eld
+\end_inset
+
+The accuracy of floating point summation,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+SIAM Journal on Scientific Computing
+\emph default
+ 
+\series bold
+14
+\series default
+, pp.
+ 783–799 (1993).
+\end_layout
+
+\end_body
+\end_document

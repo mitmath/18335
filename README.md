@@ -62,6 +62,7 @@ Please **bring your laptops**, and try to install Julia and the IJulia interface
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
 * Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
+* notes on the accuracy of [floating-point summation](notes/naivesum.pdf)
 
 New topic: **Floating-point arithmetic**
 
