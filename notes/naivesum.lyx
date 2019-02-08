@@ -242,7 +242,7 @@ We can easily prove an upper bound on the errors accumulated by the floating-poi
 nt implementation of this algorithm: 
 \begin_inset Formula 
 \[
-|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2})=n\epsilon_{\text{machine}}|f(x)|\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
+|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2}).
 \]
 
 \end_inset
@@ -254,7 +254,7 @@ relative error
 in the sum is bounded above by
 \begin_inset Formula 
 \[
-\frac{|\tilde{f}(x)-f(x)|}{|f(x)|}\le n\epsilon_{\text{machine}}\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
+\frac{|\tilde{f}(x)-f(x)|}{|f(x)|}\le nO(\epsilon_{\mbox{machine}})\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
 \]
 
 \end_inset
