@@ -62,7 +62,6 @@ Please **bring your laptops**, and try to install Julia and the IJulia interface
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
 * Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
-* notes on the accuracy of [floating-point summation](notes/naivesum.pdf)
 
 New topic: **Floating-point arithmetic**
 
@@ -75,3 +74,21 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 Overview of **floating-point** representations, focusing on the IEEE 754 standard (see also handout from previous lecture). The key point is that the nearest floating-point number to _x_, denoted fl(_x_), has the property of _uniform relative precision_ (for |_x_| and 1/|_x_| < than some _range_, ≈10308 for double precision) that |fl(_x_)−_x_| ≤ εmachine|_x_|, where εmachine is the relative "machine precision" (about 10−16 for double precision). There are also a few special values: ±Inf (e.g. for [overflow](https://en.wikipedia.org/wiki/Arithmetic_overflow)), [NaN](https://en.wikipedia.org/wiki/NaN), and ±0 (e.g. for [underflow](https://en.wikipedia.org/wiki/Arithmetic_underflow)).
 
 **Further reading:** [What Every Computer Scientist Should Know About Floating Point Arithmetic](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.22.6768) (David Goldberg, ACM 1991). William Kahan, [How Java's floating-point hurts everyone everywhere](http://www.cs.berkeley.edu/~wkahan/JAVAhurt.pdf) (2004): contains a nice discussion of floating-point myths and misconceptions. Trefethen, lecture 13. Homer Reid's [notes on machine arithmetic](http://homerreid.com/teaching/18.330/Notes/MachineArithmetic.pdf) for [18.330](http://homerreid.com/teaching/18.330/) are another nice introduction to this material.
+
+### Lecture 3 (Feb 11)
+
+
+* notes on the accuracy of [floating-point summation](notes/naivesum.pdf)
+* [notes on backwards stability of summation](notes/summation-stability.pdf) — in class, I instead showed the same thing using the previous accuracy notes as a starting point, but similarly using the L₁ norm.
+
+Analyzed the accumulated floating-point roundoff errors (see notes), explaining the results that we observed experimentally in the Julia notebook of the previous lecture.  In those experiments, all of the inputs were non-negative, so that the "condition number" factor in the derivation equalled 1.   In general, though, if you have *cancellations* between summands of opposite signs, the same analysis shows that the relative error of the output can be arbitrarily large.
+
+**Stability:** Gave the obvious definition of **accuracy**, what we might call "forwards stability" = almost the right answer for the right input. Showed that this is often too strong; e.g. adding a sequence of numbers is not forwards stable. (Basically because the denominator in the relative forwards error, which is the exact sum, can be made arbitrarily small via cancellations.)
+
+Define asymptotic notation O(ε): f(ε) is O(g(ε)) if there exist some constants C, ε₀ > 0 such that |f(ε)| < C|g(ε)| for all |ε|<ε₀. That is, g(ε) is an asymptotic _upper bound_ for f(ε) as ε goes to zero, ignoring constant factors C. (A similar notation is used in computational complexity theory, but in the limit of _large_ arguments n.) In the definitions of stability, we technically require [uniform convergence](https://en.wikipedia.org/wiki/Uniform_convergence): we must have O(ε) errors with the same constants C and ε₀ independent of the inputs x.  (The constants *can* depend on the dimension of x, however.)
+
+More generally, we apply a weaker condition: "stability" = almost the right answer for almost the right input. (Gave the technical version of this, from the book.)
+
+Often, it is sufficient to prove "backwards stability" = right answer for almost the right input. Showed that, in our example of adding a sequence of numbers, backwards stability seems to work where forwards stability failed. Then more rigorously proved that floating-point summation of _n_ numbers is backwards stable.
+
+**Further reading**: See the further reading from the previous lecture. Trefethen, lectures 14, 15, and 3. See also the Wikipedia article on [asymptotic ("big O") notation](https://en.wikipedia.org/wiki/Big_O_notation); note that for expressions like O(ε) we are looking in the limit of _small_ arguments rather than of large arguments (as in complexity theory), but otherwise the ideas are the same.
