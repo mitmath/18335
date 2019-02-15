@@ -112,6 +112,9 @@ Equivalence of norms. Described fact that any two norms are equivalent up to a c
 
 ### Lecture 5 (Feb 15)
 
+* pset 1 solutions — to be posted soon.
+* [pset 2](psets/pset2.pdf), due at 3pm on Friday March 1.
+
 Relate backwards error to forwards error, and backwards stability to forwards error (or "accuracy" as the book calls it). Show that, in the limit of high precision, the forwards error can be bounded by the backwards error multiplied by a quantity κ, the **relative condition number**. The nice thing about κ is that it involves only exact linear algebra and calculus, and is completely separate from considerations of floating-point roundoff. Showed that, for differentiable functions, κ can be written in terms of the induced norm of the Jacobian matrix.
 
 Calculated condition number for square root, summation, and matrix-vector multiplication, as well as solving Ax=b, similar to the book. Defined the condition number of a matrix.
