@@ -543,7 +543,7 @@ div2sum
 div2sum(x)
 \family default
  in single precision by the above algorithm.
- Modify it to not be horrendously slow via your suggestion in (c), and then
+ Modify it to not be horrendously slow via your suggestion in (b), and then
  plot its errors for random inputs as a function of 
 \begin_inset Formula $n$
 \end_inset
