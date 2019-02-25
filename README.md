@@ -139,6 +139,24 @@ Guest lecture by MIT Instructor Dr. [Chris Rackauckas](http://chrisrackauckas.co
 
 Guest lecture by Prof. Alan Edelman: the SVD, relationship to L₂ norms and condition numbers, applications (e.g. principal components analysis).
 
+**Further reading:** Trefethen, lectures 4, 5, 11.
+
 ### Lecture 8 (Feb 22)
 
-Guest lecture by Prof. Alan Edelman: Least-square problems, why the "normal" equations square the condition number, and the alternatives of SVD or QR.
+* [Many viewpoints on linear regression notebook](https://github.com/alanedelman/18.337_2017/blob/master/lectures/Lecture04_0918%20RegressionManyWays/RegressionManyWays.ipynb).
+
+Guest lecture by Prof. Alan Edelman: Generalized SVD (GSVD).  Least-square problems (via QR or SVD) and different viewpoints on linear regression: linear algebra, optimization, statistics, machine learning.
+
+**Further reading:** [The GSVD: Where are the ellipses?](https://arxiv.org/abs/1901.00485).
+
+### Lecture 9 (Feb 25)
+
+Discussed solution of normal equations. Discussed condition number of solving normal equations directly, and noted that it squares the condition number—not a good idea if we can avoid it.
+
+Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
+
+Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.  Analyzed its O(mn²) complexity (specifically, 2mn² flops), and commented that the "same" projection qqᵀa requires O(m²) operations if you perform it as (qqᵀ)a but O(m) operations if you perform it as q(qᵀa) — matrix operations are associative (but not commutative), but where you put the parentheses can make a big difference in performance!
+
+Discussed loss of orthogonality in classical Gram-Schmidt, using a simple example, especially in the case where the matrix has nearly dependent columns to begin with.
+
+**Further reading:** Trefethen, lectures 7, 8, 18, 19. Per Persson's [2006 18.335 Gram-Schmidt notes](notes/lec5.pdf) are also helpful, as is the [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
