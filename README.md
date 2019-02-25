@@ -139,7 +139,7 @@ Guest lecture by MIT Instructor Dr. [Chris Rackauckas](http://chrisrackauckas.co
 
 Guest lecture by Prof. Alan Edelman: the SVD, relationship to L₂ norms and condition numbers, applications (e.g. principal components analysis).
 
-**Further reading:** Trefethen, lectures 4, 5, 11.
+**Further reading:** Trefethen, lectures 4, 5.
 
 ### Lecture 8 (Feb 22)
 
@@ -147,7 +147,7 @@ Guest lecture by Prof. Alan Edelman: the SVD, relationship to L₂ norms and con
 
 Guest lecture by Prof. Alan Edelman: Generalized SVD (GSVD).  Least-square problems (via QR or SVD) and different viewpoints on linear regression: linear algebra, optimization, statistics, machine learning.
 
-**Further reading:** [The GSVD: Where are the ellipses?](https://arxiv.org/abs/1901.00485).
+**Further reading:** Trefethen, lectures 7, 11.  [The GSVD: Where are the ellipses?](https://arxiv.org/abs/1901.00485).
 
 ### Lecture 9 (Feb 25)
 
