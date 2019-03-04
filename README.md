@@ -180,7 +180,7 @@ Instead of multiplying A on the right by R's to get Q, however, we can instead m
 
 * performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions)
 * [ideal-cache terminology](notes/ideal-cache.pdf)
-* pset 2 solutions: coming soon
+* [pset 2 solutions](psets/pset2sol.pdf)
 * [pset 3](psets/pset3.pdf), due Friday March 15.
 
 Finished Householder QR derivation, including the detail that one has a choice of Householder reflectors...we choose the sign to avoid taking differences of nearly-equal vectors. Gave flop count, showed that we don't need to explicitly compute Q if we store the Householder reflector vectors.
