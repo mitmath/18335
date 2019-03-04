@@ -129,6 +129,8 @@ Understanding norms and condition numbers of matrices therefore reduces to under
 
 ### Lecture 6 (Feb 19 — Tuesday is an "MIT Monday")
 
+* [slides](notes/differential_equations.pdf)
+
 Guest lecture by MIT Instructor Dr. [Chris Rackauckas](http://chrisrackauckas.com/): **Modern Differential Equations Solver Software: Where We Are and Where We're Headed**:
 
 > In this talk we will discuss the current state of software in differential equations and see how the continued advances in computer science and numerical methods are likely to impact our software in the near future. Issues such as efficiency improvements for stiff and non-stiff differential equations will be addressed from a numerical analysis standpoint but backed with recent benchmarking results. Newer mathematical topics like random ordinary differential equations, jump diffusion equations, and adaptivity for stochastic differential equations will be introduced and the successes and limitations in current automatic software solutions will be discussed. We will close with a discussion on how recent computational advancements have been influencing the software implementations, specifically showing the effects of generic typing over abstract algorithms and implicit parallelism.
@@ -179,7 +181,7 @@ Instead of multiplying A on the right by R's to get Q, however, we can instead m
 * performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions)
 * [ideal-cache terminology](notes/ideal-cache.pdf)
 * pset 2 solutions: coming soon
-* pset 3: coming soon
+* [pset 3](psets/pset3.pdf), due Friday March 15.
 
 Finished Householder QR derivation, including the detail that one has a choice of Householder reflectors...we choose the sign to avoid taking differences of nearly-equal vectors. Gave flop count, showed that we don't need to explicitly compute Q if we store the Householder reflector vectors.
 
