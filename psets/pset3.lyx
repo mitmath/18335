@@ -152,8 +152,8 @@ B = QR.R * QR.Q
 ...repeat this process until the matrix converges (maybe writing a loop and/or
  a function).
  From what it converges to, suggest a procedure to compute the eigenvalues
- and eigenvectors of a matrix (no need to prove that it converges in general—we
- will discuss this in class).
+ and eigenvectors of a real-symmetric matrix (no need to prove that it converges
+ in general—we will discuss this in class).
 \end_layout
 
 \begin_layout Enumerate
