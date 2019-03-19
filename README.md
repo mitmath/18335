@@ -258,7 +258,7 @@ Briefly discussed Golub–Kahn bidiagonalization method for SVD, just to get the
 
 ### Lecture 17 (Mar 15)
 
-* pset 3 solutions: coming soon
+* [pset 3 solutions](psets/pset3sol.pdf)
 * pset 4: coming next week
 
 Brief discussion of shifted QR method,
