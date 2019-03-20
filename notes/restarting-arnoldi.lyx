@@ -1,0 +1,681 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Why restarting Arnoldi/Lanczos is not trivial
+\end_layout
+
+\begin_layout Author
+Steven G.
+ Johnson, MIT Applied Mathematics, course 18.335
+\end_layout
+
+\begin_layout Section*
+Overview
+\end_layout
+
+\begin_layout Standard
+The Arnoldi (and Lanczos) algorithms iteratively construct an 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ orthonormal basis 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ for the Krylov space 
+\begin_inset Formula $\mathcal{K}_{n}=\operatorname{span}\left\{ b,Ab,\ldots,A^{n-1}b\right\} $
+\end_inset
+
+ for a starting vector 
+\begin_inset Formula $b$
+\end_inset
+
+ and an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ For very large 
+\begin_inset Formula $m$
+\end_inset
+
+ (e.g.
+ huge sparse 
+\begin_inset Formula $A$
+\end_inset
+
+), however, practical application of this algorithm eventually hits a maximum
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ where one runs out of memory for 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ [and the computational cost also grows as 
+\begin_inset Formula $\Theta(mn^{2})$
+\end_inset
+
+].
+ Even Lanczos runs into this problem, because roundoff errors lead to 
+\begin_inset Quotes eld
+\end_inset
+
+ghost eigenvalues
+\begin_inset Quotes erd
+\end_inset
+
+ if one does not explicitly store 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ and periodically re-orthogonalize.
+ The solution is periodic 
+\series bold
+restarting
+\series default
+: shrink down to a 
+\begin_inset Formula $k$
+\end_inset
+
+-dimensional subspace containing your 
+\begin_inset Quotes eld
+\end_inset
+
+best guesses
+\begin_inset Quotes erd
+\end_inset
+
+ for the solution vectors, and continue Arnoldi from there.
+ It turns out that the algorithms to perform restarting properly—called
+ 
+\series bold
+implicitly restarted
+\series default
+ Arnoldi or Lanczos—are surprisingly complicated and subtle.
+ The purpose of these notes is not to explain how implicit restarting works.
+ Rather, it is to briefly explain why naive restarting methods 
+\emph on
+don't
+\emph default
+ work.
+ That is, why is restarting so hard?
+\end_layout
+
+\begin_layout Section*
+Restarting in general
+\end_layout
+
+\begin_layout Standard
+In general, restarting means finding a smaller orthonormal basis 
+\begin_inset Formula 
+\[
+\underbrace{\hat{Q}_{k}}_{m\times k}=\underbrace{Q_{n}}_{m\times n}\underbrace{\hat{Q}}_{n\times k}
+\]
+
+\end_inset
+
+ for a subspace 
+\begin_inset Formula $\hat{\mathcal{K}}_{k}\subset\mathcal{K}_{n}$
+\end_inset
+
+ (
+\begin_inset Formula $k<n$
+\end_inset
+
+), where 
+\begin_inset Formula $\hat{Q}^{*}\hat{Q}=I\implies\hat{Q}_{k}^{*}\hat{Q}_{k}=I$
+\end_inset
+
+, and then treating this as the 
+\begin_inset Formula $k$
+\end_inset
+
+-th step of an Arnoldi process and continuing from there normally (until
+ you restart again).
+ However, for this to work, 
+\begin_inset Formula $\hat{Q}_{k}$
+\end_inset
+
+ needs to preserve a 
+\series bold
+key property
+\series default
+ of the Arnoldi process:
+\begin_inset Formula 
+\[
+AQ_{n}=Q_{n}H_{n}+r_{n}e_{n}^{*},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $H_{n}=Q_{n}^{*}AQ_{n}$
+\end_inset
+
+ is upper-Hessenberg 
+\begin_inset Formula $n\times n$
+\end_inset
+
+, 
+\begin_inset Formula $r_{n}=h_{n+1,n}q_{n+1}\perp\mathcal{K}_{n}$
+\end_inset
+
+, and 
+\begin_inset Formula $e_{n}^{*}=\left[\begin{array}{ccccc}
+0 & 0 & \cdots & 0 & 1\end{array}\right]$
+\end_inset
+
+.
+ This is the property that allows subsequent steps to continue the upper-Hessenb
+erg property (which for Lanczos is tridiagonal and crucial to its three-term
+ recurrence structure).
+ Hence, we would like to obtain the 
+\emph on
+same
+\emph default
+ structure for 
+\begin_inset Formula $A\hat{Q}_{k}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+To compute 
+\begin_inset Formula $A\hat{Q}_{k}$
+\end_inset
+
+ , it is convenient to define the 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ unitary matrix 
+\begin_inset Formula $Q=\left[\begin{array}{cc}
+\hat{Q} & \hat{Q}_{\perp}\end{array}\right]$
+\end_inset
+
+ where the 
+\begin_inset Formula $n\times(n-k)$
+\end_inset
+
+ matrix 
+\begin_inset Formula $\hat{Q}_{\perp}$
+\end_inset
+
+ is any orthonormal basis for the orthogonal complement of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+'s column space.
+ Then we can write 
+\begin_inset Formula 
+\begin{align*}
+A\hat{Q}_{k} & =AQ_{n}\hat{Q}=Q_{n}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}\\
+ & =Q_{n}QQ^{*}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}\\
+ & =\left[\begin{array}{cc}
+\hat{Q}_{k} & A\hat{Q}_{\perp}\end{array}\right]\left[\begin{array}{c}
+\hat{Q}^{*}H_{n}\hat{Q}\\
+\hat{Q}_{\perp}^{*}H_{n}\hat{Q}
+\end{array}\right]+r_{n}e_{n}^{*}\hat{Q}\\
+ & =\boxed{\hat{Q}_{k}\underbrace{\left(\hat{Q}^{*}H_{n}\hat{Q}\right)}_{\hat{H}_{k}}+A\hat{Q}_{\perp}\hat{Q}_{\perp}^{*}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}}.
+\end{align*}
+
+\end_inset
+
+This looks messy, but we can simplfy it quite a bit if we make a good choice
+ for 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+.
+ With the 
+\emph on
+right
+\emph default
+ choice of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+, in fact it 
+\emph on
+is
+\emph default
+ possible to have the 
+\begin_inset Formula $\hat{Q}_{k}\hat{H}_{k}+\hat{r}_{k}e_{k}^{*}$
+\end_inset
+
+ structure, allowing us to restart Arnoldi and Lanczos, but finding such
+ a 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ is surprisingly subtle.
+\end_layout
+
+\begin_layout Section*
+Naive restarting
+\end_layout
+
+\begin_layout Standard
+The most obvious way to restart is to use Ritz vectors.
+ Recall the Rayleigh–Ritz procedure: search for 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\nu\in\mathbb{C}$
+\end_inset
+
+ such that 
+\begin_inset Formula $Ax-\nu x\perp\mathcal{K}_{n}$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $x=Q_{n}z$
+\end_inset
+
+ where 
+\begin_inset Formula $H_{n}z=\nu z$
+\end_inset
+
+.
+ This is how we estimate the eigenvectors and eigenvalues at the 
+\begin_inset Formula $n$
+\end_inset
+
+-th step of Arnoldi.
+ It seems natural that we should want our 
+\begin_inset Quotes eld
+\end_inset
+
+restarted
+\begin_inset Quotes erd
+\end_inset
+
+ basis 
+\begin_inset Formula $\hat{Q}_{k}$
+\end_inset
+
+ to contain the Ritz vectors 
+\begin_inset Formula $x=Q_{n}z$
+\end_inset
+
+ that are our best estimates so far for the desired eigenvectors.
+ For example, suppose we are looking for the 
+\begin_inset Formula $k$
+\end_inset
+
+ biggest-
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+ eigenvalues, then a natural choice of restarting basis would be the Ritz
+ vectors 
+\begin_inset Formula $Q_{n}Z$
+\end_inset
+
+ corresponding to the biggest 
+\begin_inset Formula $|\nu|$
+\end_inset
+
+.
+ If we orthogonalize these via QR as 
+\begin_inset Formula $Z_{k}=\hat{Q}_{k}R_{k}$
+\end_inset
+
+, we get 
+\begin_inset Formula 
+\[
+\hat{Q}=ZR^{-1}
+\]
+
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+H_{n}\hat{Q}=H_{n}ZR^{-1}=Z\left[\begin{array}{cccc}
+\nu_{1}\\
+ & \nu_{2}\\
+ &  & \ddots\\
+ &  &  & \nu_{k}
+\end{array}\right]R^{-1}=Z\Lambda R^{-1}=\hat{Q}R\Lambda R^{-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Two nice things happen! We get 
+\begin_inset Formula 
+\[
+\hat{Q}^{*}H_{n}\hat{Q}=\hat{Q}^{*}\hat{Q}R\Lambda R^{-1}=R\Lambda R^{-1},
+\]
+
+\end_inset
+
+which is a product of upper-triangular matrices, and hence is upper triangular.
+ Thus, the first boxed term above is 
+\begin_inset Formula 
+\[
+\hat{H}_{k}=\hat{Q}_{k}\left(R\Lambda R^{-1}\right)=\hat{Q}_{k}\left(\text{upper triangular}\right),
+\]
+
+\end_inset
+
+which is even stronger than requiring upper Hessenberg! Also
+\begin_inset Formula 
+\[
+\hat{Q}_{\perp}^{*}H_{n}\hat{Q}=\hat{Q}_{\perp}^{*}\hat{Q}R\Lambda R^{-1}=0
+\]
+
+\end_inset
+
+ since 
+\begin_inset Formula $\hat{Q}_{\perp}^{*}\hat{Q}=0$
+\end_inset
+
+ by construction.
+ So, the second boxed term above disappears! Unfortunately, the third boxed
+ term is 
+\begin_inset Formula 
+\[
+r_{n}e_{n}^{*}\hat{Q}=r_{n}\left(\text{last row of }\text{\ensuremath{\hat{Q}}}\right).
+\]
+
+\end_inset
+
+While 
+\begin_inset Formula $r_{n}\perp\mathcal{K}_{n}\implies r_{n}\perp\hat{\mathcal{K}}_{n}$
+\end_inset
+
+ (that is, 
+\begin_inset Formula $\hat{Q}_{k}^{*}r_{n}$
+\end_inset
+
+) as desired, in general the last row of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ will 
+\series bold
+not
+\series default
+ be a multiple of 
+\begin_inset Formula $e_{k}^{*}$
+\end_inset
+
+.
+ So, this doesn't work.
+\end_layout
+
+\begin_layout Standard
+The same problem arises for naive restarting of the Lanczos case 
+\begin_inset Formula $A=A^{*}$
+\end_inset
+
+.
+ In this case, the upper-Hessenberg matrix 
+\begin_inset Formula $H_{n}$
+\end_inset
+
+ is Hermitian.
+ Hence the upper-triangular matrix 
+\begin_inset Formula $\hat{H}_{k}=\Lambda$
+\end_inset
+
+ is diagonal (
+\begin_inset Formula $R=I$
+\end_inset
+
+ since the eigenvectors 
+\begin_inset Formula $Z$
+\end_inset
+
+ are orthonormal).
+ But there is still no reason why the last row of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ should be a multiple of 
+\begin_inset Formula $\left[\begin{array}{ccccc}
+0 & 0 & \cdots & 0 & 1\end{array}\right]$
+\end_inset
+
+, so it doesn't work.
+\end_layout
+
+\begin_layout Section*
+Implicit restarting
+\end_layout
+
+\begin_layout Standard
+In fact, it is possible to choose a 
+\begin_inset Formula $\hat{Q}_{k}$
+\end_inset
+
+ such that it 
+\emph on
+mostly
+\emph default
+ contains the Ritz vectors that we want and 
+\emph on
+does
+\emph default
+ preserve the Arnoldi/Lanczos property.
+ One hint of this is that our naive choice above was actually 
+\emph on
+too good
+\emph default
+ in two ways: 
+\begin_inset Formula $\hat{H}_{k}$
+\end_inset
+
+ was upper-triangular instead of just upper-Hessenberg, and 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ was orthogonal to 
+\begin_inset Formula $\mathcal{K}_{n}$
+\end_inset
+
+ and not just 
+\begin_inset Formula $\hat{\mathcal{K}}_{k}$
+\end_inset
+
+.
+ This gives us 
+\begin_inset Quotes eld
+\end_inset
+
+wiggle room:
+\begin_inset Quotes erd
+\end_inset
+
+ if we do a little
+\emph on
+ 
+\emph default
+
+\begin_inset Quotes eld
+\end_inset
+
+worse
+\begin_inset Quotes erd
+\end_inset
+
+ in making 
+\begin_inset Formula $\hat{H}_{k}$
+\end_inset
+
+ only upper-Hessenberg and 
+\begin_inset Formula $\hat{r}_{k}$
+\end_inset
+
+ only 
+\begin_inset Formula $\perp\hat{\mathcal{K}}_{k}$
+\end_inset
+
+, we then have enough freedom to make the last row of 
+\begin_inset Formula $\text{last row of }\text{\ensuremath{\hat{Q}}}$
+\end_inset
+
+ a multiple of 
+\begin_inset Formula $e_{k}^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In particular, instead of taking the Ritz eigenvectors 
+\begin_inset Formula $Z$
+\end_inset
+
+ of 
+\begin_inset Formula $H_{n}$
+\end_inset
+
+, the solution is to do exactly 
+\begin_inset Formula $n-k$
+\end_inset
+
+ steps of shifted QR iteration on 
+\begin_inset Formula $H_{n}$
+\end_inset
+
+ and let 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ be the resulting eigenvector/Schur-vector estimate.
+ This is a good estimate for the Ritz eigenvectors that we want, and it
+ turns out to be 
+\emph on
+just right
+\emph default
+ to preserve the Arnoldi property.
+ Proving that this is true requires care and tedious calculation, but is
+ straightforward using our existing 18.335 tools.
+ However, I won't go through it in detail.
+ If you google 
+\begin_inset Quotes eld
+\end_inset
+
+implicitly restarted Arnoldi
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+implicitly restarted Lanczos
+\begin_inset Quotes erd
+\end_inset
+
+ you can find a number of reviews that go through the algebra, but in practice
+ you are unlikely to ever need to know the details, since most people use
+ 
+\begin_inset Quotes eld
+\end_inset
+
+canned
+\begin_inset Quotes erd
+\end_inset
+
+ implementations of Arnoldi and Lanczos such as ARPACK.
+ What is important is to 
+\series bold
+resist the temptation to do naive restarting
+\series default
+!
+\end_layout
+
+\end_body
+\end_document
