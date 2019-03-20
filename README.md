@@ -290,7 +290,7 @@ Noted that n steps of Arnoldi requires Θ(mn²) operations and Θ(mn) storage. I
 ### Lecture 19 (Mar 20)
 
 * [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
-* [notes on restarting Arnoldi](notes/restarting-arnoldi)
+* [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
 
 Showed some computational examples (notebook above) of Arnoldi convergence. Discussed how rounding problems cause a loss of orthogonality in Lanczos, leading to "ghost" eigenvalues where extremal eigenvalues re-appear. In Arnoldi, we explicitly store and orthogonalize against all qj vectors, but then another problem arises: this becomes more and more expensive as n increases.
 
