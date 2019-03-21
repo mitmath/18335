@@ -403,7 +403,7 @@ restarted
 
 .
  If we orthogonalize these via QR as 
-\begin_inset Formula $Z_{k}=\hat{Q}_{k}R_{k}$
+\begin_inset Formula $Z=\hat{Q}R$
 \end_inset
 
 , we get 
