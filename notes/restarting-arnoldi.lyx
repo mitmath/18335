@@ -394,7 +394,7 @@ restarted
 
  eigenvalues, then a natural choice of restarting basis would be the Ritz
  vectors 
-\begin_inset Formula $Q_{n}Z$
+\begin_inset Formula $Q_{n}\hat{Z}$
 \end_inset
 
  corresponding to the biggest 
@@ -403,13 +403,13 @@ restarted
 
 .
  If we orthogonalize these via QR as 
-\begin_inset Formula $Z=\hat{Q}R$
+\begin_inset Formula $\hat{Z}=\hat{Q}\hat{R}$
 \end_inset
 
 , we get 
 \begin_inset Formula 
 \[
-\hat{Q}=ZR^{-1}
+\hat{Q}=\hat{Z}\hat{R}^{-1}
 \]
 
 \end_inset
@@ -417,12 +417,12 @@ restarted
  and 
 \begin_inset Formula 
 \[
-H_{n}\hat{Q}=H_{n}ZR^{-1}=Z\left[\begin{array}{cccc}
+H_{n}\hat{Q}=H_{n}\hat{Z}\hat{R}^{-1}=\hat{Z}\underbrace{\left[\begin{array}{cccc}
 \nu_{1}\\
  & \nu_{2}\\
  &  & \ddots\\
  &  &  & \nu_{k}
-\end{array}\right]R^{-1}=Z\Lambda R^{-1}=\hat{Q}R\Lambda R^{-1}.
+\end{array}\right]}_{\hat{\Lambda}}\hat{R}^{-1}=\hat{Z}\hat{\Lambda}\hat{R}^{-1}=\hat{Q}\hat{R}\hat{\Lambda}\hat{R}^{-1}.
 \]
 
 \end_inset
@@ -431,27 +431,27 @@ H_{n}\hat{Q}=H_{n}ZR^{-1}=Z\left[\begin{array}{cccc}
 \end_layout
 
 \begin_layout Standard
-Two nice things happen! We get 
+Two nice things happen! In the boxed term 
+\begin_inset Formula $\hat{Q}_{k}\hat{H}_{k}$
+\end_inset
+
+ above, we get 
 \begin_inset Formula 
 \[
-\hat{Q}^{*}H_{n}\hat{Q}=\hat{Q}^{*}\hat{Q}R\Lambda R^{-1}=R\Lambda R^{-1},
+\hat{H}_{k}=\hat{Q}^{*}H_{n}\hat{Q}=\hat{Q}^{*}\hat{Q}\hat{R}\hat{\Lambda}\hat{R}^{-1}=\hat{R}\hat{\Lambda}\hat{R}^{-1},
 \]
 
 \end_inset
 
-which is a product of upper-triangular matrices, and hence is upper triangular.
- Thus, the first boxed term above is 
-\begin_inset Formula 
-\[
-\hat{H}_{k}=\hat{Q}_{k}\left(R\Lambda R^{-1}\right)=\hat{Q}_{k}\left(\text{upper triangular}\right),
-\]
-
+which is a product of upper-triangular matrices, and hence is upper-triangular—t
+his certainly satisfies the requirement that 
+\begin_inset Formula $\hat{H}_{k}$
 \end_inset
 
-which is even stronger than requiring upper Hessenberg! Also
+ should be upper-Hessenberg! Also, from the second boxed term:
 \begin_inset Formula 
 \[
-\hat{Q}_{\perp}^{*}H_{n}\hat{Q}=\hat{Q}_{\perp}^{*}\hat{Q}R\Lambda R^{-1}=0
+\hat{Q}_{\perp}^{*}H_{n}\hat{Q}=\hat{Q}_{\perp}^{*}\hat{Q}\hat{R}\hat{\Lambda}\hat{R}^{-1}=0,
 \]
 
 \end_inset
@@ -475,7 +475,7 @@ While
 \end_inset
 
  (that is, 
-\begin_inset Formula $\hat{Q}_{k}^{*}r_{n}$
+\begin_inset Formula $\hat{Q}_{k}^{*}r_{n}=0$
 \end_inset
 
 ) as desired, in general the last row of 
@@ -506,15 +506,15 @@ The same problem arises for naive restarting of the Lanczos case
 
  is Hermitian.
  Hence the upper-triangular matrix 
-\begin_inset Formula $\hat{H}_{k}=\Lambda$
+\begin_inset Formula $\hat{H}_{k}=\hat{\Lambda}$
 \end_inset
 
  is diagonal (
-\begin_inset Formula $R=I$
+\begin_inset Formula $\hat{R}=I$
 \end_inset
 
  since the eigenvectors 
-\begin_inset Formula $Z$
+\begin_inset Formula $\hat{Z}$
 \end_inset
 
  are orthonormal).
@@ -598,11 +598,11 @@ worse
 \end_inset
 
  only 
-\begin_inset Formula $\perp\hat{\mathcal{K}}_{k}$
+\begin_inset Formula ${}\perp\hat{\mathcal{K}}_{k}$
 \end_inset
 
 , we then have enough freedom to make the last row of 
-\begin_inset Formula $\text{last row of }\text{\ensuremath{\hat{Q}}}$
+\begin_inset Formula $\text{\ensuremath{\hat{Q}}}$
 \end_inset
 
  a multiple of 
@@ -613,15 +613,15 @@ worse
 \end_layout
 
 \begin_layout Standard
-In particular, instead of taking the Ritz eigenvectors 
-\begin_inset Formula $Z$
+In particular, instead of taking eigenvectors 
+\begin_inset Formula $\hat{Z}$
 \end_inset
 
  of 
 \begin_inset Formula $H_{n}$
 \end_inset
 
-, the solution is to do exactly 
+, a better solution is to do exactly 
 \begin_inset Formula $n-k$
 \end_inset
 
@@ -641,9 +641,8 @@ just right
 \emph default
  to preserve the Arnoldi property.
  Proving that this is true requires care and tedious calculation, but is
- straightforward using our existing 18.335 tools.
- However, I won't go through it in detail.
- If you google 
+ relatively straightforward.
+ I won't go through it in detail, but if you google 
 \begin_inset Quotes eld
 \end_inset
 
@@ -659,9 +658,9 @@ implicitly restarted Lanczos
 \begin_inset Quotes erd
 \end_inset
 
- you can find a number of reviews that go through the algebra, but in practice
- you are unlikely to ever need to know the details, since most people use
- 
+ you can find a number of reviews that go through the algebra.
+ In practice, you are unlikely to ever need to know the details: most people
+ use 
 \begin_inset Quotes eld
 \end_inset
 
@@ -670,7 +669,7 @@ canned
 \end_inset
 
  implementations of Arnoldi and Lanczos such as ARPACK.
- What is important is to 
+ But please 
 \series bold
 resist the temptation to do naive restarting
 \series default
