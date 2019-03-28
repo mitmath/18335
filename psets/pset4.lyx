@@ -1,0 +1,261 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 4
+\end_layout
+
+\begin_layout Standard
+Due Friday, April 5, 2019.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Almost GMRES
+\end_layout
+
+\begin_layout Standard
+We use the Arnoldi method to build up an orthogonal basis 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ for 
+\begin_inset Formula $\mathcal{K}_{n}$
+\end_inset
+
+, with 
+\begin_inset Formula $AQ_{n}=Q_{n}H_{n}+h_{n+1,n}q_{n+1}e_{n}^{*}=Q_{n+1}\tilde{H}_{n}$
+\end_inset
+
+.
+ GMRES then finds an approximate solution to 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+ by minimizing 
+\begin_inset Formula $\Vert Ax-b\Vert_{2}$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+, giving an 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ least-square problem involving the matrix 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Suppose that we 
+\series bold
+instead
+\series default
+ find an approximate solution to 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+ by finding an 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $b-Ax$
+\end_inset
+
+ is 
+\begin_inset Formula $\perp\mathcal{K}_{n}$
+\end_inset
+
+.
+ Derive a small (
+\begin_inset Formula $n\times n$
+\end_inset
+
+ or similar) system of equations that you can solve to find the approximate
+ solution 
+\begin_inset Formula $x$
+\end_inset
+
+ of this method.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Power method
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is a diagonalizable matrix with eigenvectors 
+\begin_inset Formula $\vec{v}_{k}$
+\end_inset
+
+ and eigenvalues 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+, in decreasing order 
+\begin_inset Formula $|\lambda_{1}|\geq|\lambda_{2}|\geq\cdots$
+\end_inset
+
+.
+ Recall that the power method starts with a random 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and repeatedly computes 
+\begin_inset Formula $\vec{x}\gets A\vec{x}/\Vert A\vec{x}\Vert_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose 
+\begin_inset Formula $|\lambda_{1}|=|\lambda_{2}|>|\lambda_{3}|$
+\end_inset
+
+, but 
+\begin_inset Formula $\lambda_{1}\neq\lambda_{2}$
+\end_inset
+
+.
+ Explain why the power method will not in general converge.
+\end_layout
+
+\begin_layout Enumerate
+Give a way obtain 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{2}$
+\end_inset
+
+ from the power method by simply keeping track of the 
+\emph on
+previous
+\emph default
+ iteration's vector in addition to the current iteration.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Shifted-inverse iteration
+\end_layout
+
+\begin_layout Standard
+Trefethen, problem 27.5.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Arnoldi
+\end_layout
+
+\begin_layout Standard
+Trefethen, problem 33.2.
+\end_layout
+
+\end_body
+\end_document

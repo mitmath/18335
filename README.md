@@ -246,7 +246,7 @@ Discussed how to use the power method to get multiple eigenvalues/vectors of Her
 
 Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent to QR factorizing _An_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
 
-To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 4 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.
+To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.
 
 Discussed inverse iteration and shifted-inverse iteration. Discussed Rayleigh-quotient iteration (shifted-inverse iteration with the Rayleigh-quotient eigenvalue estimate as the shift) and its convergence rate in the Hermitian case.  How, for Hermitian matrix the eigenvalue estimate has a much smaller error than the eigenvector (the error is squared) due to the fact that the eigenvalue is an extremum.
 
@@ -259,7 +259,6 @@ Briefly discussed Golub–Kahn bidiagonalization method for SVD, just to get the
 ### Lecture 17 (Mar 15)
 
 * [pset 3 solutions](psets/pset3sol.pdf)
-* pset 4: coming next week
 
 Brief discussion of shifted QR method,
 
@@ -301,6 +300,8 @@ Explained why restarting properly is nontrivial for k>1: we need to restart in s
 **Further reading:** See the section on [implicitly restarted Lanczos](http://www.cs.utk.edu/~dongarra/etemplates/node117.html) in [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html).
 
 ### Lecture 20 (Mar 22)
+
+* [pset 4](psets/pset4.pdf), due Friday April 5.
 
 Introduced the **GMRES** algorithm: compute the basis Qₙ for 𝒦ₙ as in Arnoldi, but then minimize the residual ‖Ax-b‖₂ for x∈𝒦ₙ using this basis.  This yields a small (n+1)×n least-squares problem involving Hₙ.
 
