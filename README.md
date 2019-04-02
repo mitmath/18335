@@ -333,7 +333,7 @@ Derived the conjugate-gradient method, by explicitly requiring that the n-th ste
 
 ### Take-home Mid-term Exam (April 8)
 
-To be posted on Monday April 8, due 24 hours later on Tuesday April 9 (submitted electronically).   The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used (**closed Internet**).
+To be posted on Monday April 8 by 5pm, due 5pm Tuesday April 9 (submitted electronically).   The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used (**closed Internet**).
 
 It will cover everything in 18.335 up to and including **lecture 20** and **pset 4**.
 
