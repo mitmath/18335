@@ -331,6 +331,12 @@ Derived the conjugate-gradient method, by explicitly requiring that the n-th ste
 
 **Further reading:**  [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html), chapter on [preconditioners](http://www.netlib.org/linalg/html_templates/node51.html), and e.g. _[Matrix Preconditioning Techniques and Applications](http://books.google.com?id=d9UdanCqJ1QC)_ by Ke Chen (Cambridge Univ. Press, 2005).   On MINRES and SYMMLQ: [Differences in the effects of rounding errors in Krylov solvers for symmetric indefinite linear systems](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.31.3064) by Sleijpen (2000); see also van der Vorst notes from Lecture 22 and the _Templates_ book. Trefethen, lecture 38 on CG. See also the useful notes, [An introduction to the conjugate gradient method without the agonizing pain](http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf) by J. R. Shewchuk.
 
+### Lecture 22 (Apr 3)
+
+Finished derivation of conjugate gradient, by showing that it reduces to a three-term recurrence.
+
+Discussed convergence of conjugate gradient: useless results like "exact" convergence in m steps (not including roundoff), pessimistic bounds saying that the number of steps goes like the square root of the condition number, and the possibility of superlinear convergence for clustered eigenvalues.
+
 ### Take-home Mid-term Exam (April 8)
 
 To be posted on Monday April 8 by 5pm, due 5pm Tuesday April 9 (submitted electronically).   The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used (**closed Internet**).
