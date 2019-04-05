@@ -1,0 +1,958 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+
+
+\newcommand{\diag}{\operatorname{diag}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 4 Solutions
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (10 points)
+\end_layout
+
+\begin_layout Standard
+This is a Galerkin method, very similar to the Rayleigh–Ritz method, and
+ is known as the 
+\begin_inset Quotes eld
+\end_inset
+
+FOM
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm (
+\begin_inset Quotes eld
+\end_inset
+
+full orthogonalization method
+\begin_inset Quotes erd
+\end_inset
+
+).
+ There are some FOM references on the 18.335 lecture-summary page: in practice,
+ it converges similarly to GMRES, but with some inconvenient quirks, so
+ it is rarely used in practice.
+\end_layout
+
+\begin_layout Standard
+We want to find 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $b-Ax$
+\end_inset
+
+ is 
+\begin_inset Formula $\perp\mathcal{K}_{n}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ implies that 
+\begin_inset Formula $x=Q_{n}z$
+\end_inset
+
+ for some 
+\begin_inset Formula $z\in\mathbb{C}^{n}$
+\end_inset
+
+, and 
+\begin_inset Formula $b-Ax\perp\mathcal{K}_{n}$
+\end_inset
+
+ means 
+\begin_inset Formula $Q_{n}^{*}(b-Ax)=0=Q_{n}^{*}b-Q_{n}^{*}AQ_{n}z$
+\end_inset
+
+.
+ From class (and the book), 
+\begin_inset Formula $Q_{n}^{*}AQ_{n}=H_{n}.$
+\end_inset
+
+ So, we have the 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ system of equations
+\begin_inset Formula 
+\[
+H_{n}z=Q_{n}^{*}b
+\]
+
+\end_inset
+
+ whose solution gives 
+\begin_inset Formula $x=Q_{n}z$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the common case where our iterative method starts with the initial guess
+ 
+\begin_inset Formula $x_{1}=0$
+\end_inset
+
+, then the first vector in the Arnoldi iteration is 
+\begin_inset Formula $q_{1}=b/\Vert b\Vert_{2}$
+\end_inset
+
+, and the above equation simplies further: 
+\begin_inset Formula $Q_{n}^{*}b=e_{1}\Vert b\Vert_{2}$
+\end_inset
+
+ where 
+\begin_inset Formula $e_{1}$
+\end_inset
+
+ is the coordinate vector 
+\begin_inset Formula $(1,0,0,\ldots)^{T}$
+\end_inset
+
+ as usual, but this simplification isn't that vital.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (5+10 points)
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is a diagonalizable matrix with eigenvectors 
+\begin_inset Formula $\vec{v}_{k}$
+\end_inset
+
+ and eigenvalues 
+\begin_inset Formula $\lambda_{k}$
+\end_inset
+
+, in decreasing order 
+\begin_inset Formula $|\lambda_{1}|\geq|\lambda_{2}|\geq\cdots$
+\end_inset
+
+.
+ Recall that the power method starts with a random 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and repeatedly computes 
+\begin_inset Formula $\vec{x}\gets A\vec{x}/\Vert A\vec{x}\Vert_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+After many iterations of the power method, the 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ terms will dominate: 
+\begin_inset Formula 
+\[
+\vec{x}\approx c_{1}\vec{v}_{1}+c_{2}\vec{v}_{2}
+\]
+
+\end_inset
+
+for some 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+.
+ However, this is not an eigenvector.
+ Multiplying this by 
+\begin_inset Formula $A$
+\end_inset
+
+ gives 
+\begin_inset Formula $\lambda_{1}c_{1}\vec{v}_{1}+\lambda_{2}c_{2}\vec{v}_{2}=\lambda_{1}\left(c_{1}\vec{v}_{1}+\frac{\lambda_{2}}{\lambda_{1}}c_{2}\vec{v_{2}}\right),$
+\end_inset
+
+ which is not a multiple of 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and hence will be a different vector after normalizing, meaning that it
+ does not converge to any fixed vector.
+\end_layout
+
+\begin_layout Enumerate
+The key point is that if we look at the vectors 
+\begin_inset Formula $\vec{x}\approx c_{1}\vec{v}_{1}+c_{2}\vec{v}_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{y}\approx\lambda_{1}c_{1}\vec{v}_{1}+\lambda_{2}c_{2}\vec{v}_{2}$
+\end_inset
+
+ from 
+\series bold
+two subsequent
+\series default
+ iterations, then after 
+\series bold
+many iterations
+\series default
+ these are 
+\emph on
+linearly independent
+\emph default
+ vectors that 
+\emph on
+span the two desired eigenvectors
+\emph default
+.
+ We can then employ e.g.
+ a Rayleigh–Ritz procedure to find 
+\begin_inset Formula $\vec{v}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{2}$
+\end_inset
+
+: use Gram–Schmidt to find an orthonormal basis 
+\begin_inset Formula $\vec{q}_{1}=\vec{x}/\Vert\vec{x}\Vert_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{q}_{2}=\left(\vec{y}-\vec{q}_{1}\vec{q}_{1}^{*}\vec{y}\right)/\Vert\cdots\Vert_{2}$
+\end_inset
+
+, form the matrix 
+\begin_inset Formula $Q=\left(\vec{q}_{1},\vec{q}_{2}\right)$
+\end_inset
+
+ and find the 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A_{2}=Q^{*}AQ$
+\end_inset
+
+.
+ The eigenvalues of 
+\begin_inset Formula $A_{2}$
+\end_inset
+
+ (the Ritz values) will then converge to the eigenvalues 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ and we obtain 
+\begin_inset Formula $\vec{v}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{v}_{2}$
+\end_inset
+
+ (or some multiple thereof) from the corresponding Ritz vectors.
+ The key point is that 
+\begin_inset Formula $AQ$
+\end_inset
+
+ is in the span of 
+\begin_inset Formula $\vec{q}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\vec{q}_{2}$
+\end_inset
+
+ (in the limit of many iterations so that other eigenvectors disappear),
+ so the Ritz vectors are eigenvectors.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Of course, since we don't know 
+\begin_inset Formula $\lambda_{3}$
+\end_inset
+
+ then we don't know how many iterations to run, but we can do the obvious
+ convergence tests: every few iterations, find the Ritz values from the
+ last two iterations, and stop when these Ritz values stop changing to our
+ desired accuracy.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Alternatively, if we form the matrix 
+\begin_inset Formula $X=(\vec{x},\vec{y})$
+\end_inset
+
+ from the vectors of two subsequent iterations, then we know that (after
+ many iterations) the columns of 
+\begin_inset Formula $AX$
+\end_inset
+
+ are in 
+\begin_inset Formula $C(X)=\vec{x},\vec{y}$
+\end_inset
+
+.
+ Therefore, the problem 
+\begin_inset Formula $AX=XS$
+\end_inset
+
+, where 
+\begin_inset Formula $S$
+\end_inset
+
+ is a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ matrix, has an exact solution 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ If we then diagonalize 
+\begin_inset Formula $S=Z\Lambda Z^{-1}$
+\end_inset
+
+ and multiply both sizes by 
+\begin_inset Formula $Z$
+\end_inset
+
+, we obtain 
+\begin_inset Formula $AXZ=XZ\Lambda$
+\end_inset
+
+, and hence the columns of 
+\begin_inset Formula $XZ$
+\end_inset
+
+ are eigenvectors of 
+\begin_inset Formula $A$
+\end_inset
+
+ and the eigenvalues 
+\begin_inset Formula $\diag\Lambda$
+\end_inset
+
+ of 
+\begin_inset Formula $S$
+\end_inset
+
+ are the eigenvalues 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ However, this is computationally equivalent to the Rayleigh–Ritz procedure
+ above, since to solve 
+\begin_inset Formula $AX=XS$
+\end_inset
+
+ for 
+\begin_inset Formula $S$
+\end_inset
+
+ we would first do a QR factorization 
+\begin_inset Formula $X=QR$
+\end_inset
+
+, and then solve the normal equations 
+\begin_inset Formula $X^{*}XS=X^{*}AX$
+\end_inset
+
+ via 
+\begin_inset Formula $RS=Q^{*}AQR=A_{2}R$
+\end_inset
+
+.
+ Thus, 
+\begin_inset Formula $S=R^{-1}A_{2}R$
+\end_inset
+
+: the 
+\begin_inset Formula $S$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{2}$
+\end_inset
+
+ eigenproblems are similar; in exact arithmetic, the two approaches will
+ give exactly the same eigenvalues and exactly the same Ritz vectors.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+[As yet another equivalent alternative, we could write 
+\begin_inset Formula $AXZ=XZ\Lambda$
+\end_inset
+
+ as above, and then turn it into 
+\begin_inset Formula $(X^{*}AX)Z=(X^{*}X)Z\Lambda$
+\end_inset
+
+, which is a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ 
+\emph on
+generalized
+\emph default
+ eigenvalue problem, or 
+\begin_inset Formula $(X^{*}X)^{-1}(X^{*}AX)Z=Z\Lambda$
+\end_inset
+
+, which is an ordinary 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ eigenproblem.]
+\end_layout
+
+\begin_layout Subsection*
+Problem 3 (15 points)
+\end_layout
+
+\begin_layout Standard
+Trefethen, problem 27.5.
+ The basic answer here is that their 
+\emph on
+is
+\emph default
+ a big roundoff error, but it is in the direction of the eigenvector we
+ want, so we don't care (since overall scale factors are irrelevant to eigenvect
+or computations).
+\end_layout
+
+\begin_layout Standard
+In finite precision, instead of 
+\begin_inset Formula $w=A^{-1}v$
+\end_inset
+
+, we will get 
+\begin_inset Formula $\tilde{w}=w+\delta w$
+\end_inset
+
+ where 
+\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\,w$
+\end_inset
+
+ (from the formula on page 95), where 
+\begin_inset Formula $\delta A=O(\epsilon_{\mbox{machine}})\Vert A\Vert$
+\end_inset
+
+ is the backwards error.
+ [Note that we cannot use 
+\begin_inset Formula $\delta w\approx-A^{-1}\delta A\,w$
+\end_inset
+
+, which neglects the 
+\begin_inset Formula $\delta A\delta w$
+\end_inset
+
+ terms, because in this case 
+\begin_inset Formula $\delta w$
+\end_inset
+
+ is not small.] The key point, however, is to show that 
+\begin_inset Formula $\delta w$
+\end_inset
+
+ is mostly parallel to 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+, the eigenvector corresponding to the smallest-magnitude eigenvalue 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ (it is given that all other eigenvalues have magnitude 
+\begin_inset Formula $\geq|\lambda_{2}|\gg|\lambda_{1}|$
+\end_inset
+
+).
+ Since 
+\begin_inset Formula $w$
+\end_inset
+
+ is also mostly parallel to 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+, this will mean that 
+\begin_inset Formula $\tilde{w}/\Vert\tilde{w}\Vert_{2}\approx q_{1}\approx w/\Vert w\Vert_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+First, exactly as in our analysis of the power method, note that 
+\begin_inset Formula $w=A^{-1}v=\alpha_{1}q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
+\end_inset
+
+, since 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+ amplifies the 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ component of 
+\begin_inset Formula $v$
+\end_inset
+
+ by 
+\begin_inset Formula $1/|\lambda_{1}|$
+\end_inset
+
+ which is much bigger than the inverse of all the other eigenvalues.
+ Thus, 
+\begin_inset Formula $w/\Vert w\Vert_{2}=q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Second, if we Taylor-expand 
+\begin_inset Formula $(A+\delta A)^{-1}$
+\end_inset
+
+ in powers of 
+\begin_inset Formula $\delta A$
+\end_inset
+
+, i.e.
+ in powers of 
+\begin_inset Formula $\epsilon_{\mbox{machine}}$
+\end_inset
+
+, we obtain:
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Write 
+\begin_inset Formula $(A+\delta A)^{-1}=[A(I+A^{-1}\delta A)]^{-1}=(I+A^{-1}\delta A)^{-1}A^{-1}\approx(I-A^{-1}\delta A)A^{-1}=A^{-1}-A^{-1}\delta A\,A^{-1}$
+\end_inset
+
+.
+ Another approach is to let 
+\begin_inset Formula $B=(A+\delta A)^{-1}=B_{0}+B_{1}+\cdots$
+\end_inset
+
+ where 
+\begin_inset Formula $B_{k}$
+\end_inset
+
+ is the 
+\begin_inset Formula $k$
+\end_inset
+
+-th order term in 
+\begin_inset Formula $\delta A$
+\end_inset
+
+, collect terms order-by-order in 
+\begin_inset Formula $I=(B_{0}+B_{1}+\cdots)(A+\delta A)=B_{0}A+(B_{0}\delta A+B_{1}A)+\cdots$
+\end_inset
+
+, and you immediately find that 
+\begin_inset Formula $B_{0}=A^{-1}$
+\end_inset
+
+, 
+\begin_inset Formula $B_{1}=-B_{0}\delta A\,A^{-1}=-A^{-1}\delta A\,A^{-1}$
+\end_inset
+
+, and so on.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $(A+\delta A)^{-1}=A^{-1}-A^{-1}\delta A\,A^{-1}+O(\epsilon_{\mbox{machine }}^{2})$
+\end_inset
+
+.
+ Since all of the terms in this expansion are multiplied on the 
+\emph on
+left
+\emph default
+ by 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+, when multiplied by 
+\emph on
+any
+\emph default
+ vector they will again amplify the 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ component much more than any other component.
+ In particular, the vector 
+\begin_inset Formula $\delta A\,w$
+\end_inset
+
+ is a vector in a random direction (since 
+\begin_inset Formula $\delta A$
+\end_inset
+
+ comes from roundoff and is essentially random) and hence will have some
+ nonzero 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ component.
+ Thus, 
+\begin_inset Formula $\delta w=-(A+\delta A)^{-1}\delta A\,w=\beta_{1}q_{1}[1+O(\lambda_{1}/\lambda_{2})]$
+\end_inset
+
+ for some constant 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Putting these things together, we see that 
+\begin_inset Formula $\tilde{w}=(\alpha_{1}+\beta_{1})q_{1}[1+O(\lambda_{1}/\lambda_{2})],$
+\end_inset
+
+ and hence 
+\begin_inset Formula $\tilde{w}/\Vert\tilde{w}\Vert_{2}=q_{1}[1+O(\lambda_{1}/\lambda_{2})]=\frac{w}{\Vert w\Vert_{2}}[1+O(\lambda_{1}/\lambda_{2})]$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Subsection*
+Problem 4 (5+5+5+5+5 pts): 
+\end_layout
+
+\begin_layout Standard
+Trefethen, problem 33.2:
+\end_layout
+
+\begin_layout Enumerate
+In this case, the 
+\begin_inset Formula $q_{n+1}$
+\end_inset
+
+ vector is multiplied by a zero row in 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+, and we can simplify 33.13 to 
+\begin_inset Formula $AQ_{n}=Q_{n}H_{n}$
+\end_inset
+
+.
+ If we consider the full Hessenberg reduction, 
+\begin_inset Formula $H=Q^{*}AQ$
+\end_inset
+
+, it must have a 
+\begin_inset Quotes eld
+\end_inset
+
+block Schur
+\begin_inset Quotes erd
+\end_inset
+
+ form: 
+\begin_inset Formula 
+\[
+H=\left(\begin{array}{cc}
+H_{n} & B\\
+0 & H'
+\end{array}\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $H'$
+\end_inset
+
+ is an 
+\begin_inset Formula $(m-n)\times(m-n)$
+\end_inset
+
+ upper-Hessenberg matrix and 
+\begin_inset Formula $B\in\mathbb{C}^{n\times(m-n)}$
+\end_inset
+
+.
+ (It is 
+\emph on
+not
+\emph default
+ necessarily the case that 
+\begin_inset Formula $B=0$
+\end_inset
+
+; this is only true if 
+\begin_inset Formula $A$
+\end_inset
+
+ is Hermitian.)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ is a basis for 
+\begin_inset Formula $\mathcal{K}_{n}$
+\end_inset
+
+, so any vector 
+\begin_inset Formula $x\in\mathcal{K}_{n}$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $x=Q_{n}y$
+\end_inset
+
+ for some 
+\begin_inset Formula $y\in\mathbb{C}^{n}$
+\end_inset
+
+.
+ Hence, from above, 
+\begin_inset Formula $Ax=AQ_{n}y=Q_{n}H_{n}y=Q_{n}(H_{n}y)\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\begin_layout Enumerate
+The 
+\begin_inset Formula $(n+1)$
+\end_inset
+
+ basis vector, 
+\begin_inset Formula $A^{n}b$
+\end_inset
+
+, is equal to 
+\begin_inset Formula $A(A^{n-1}b)$
+\end_inset
+
+ where 
+\begin_inset Formula $A^{n-1}b\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Hence, from above, 
+\begin_inset Formula $A^{n}b\in\mathcal{K}_{n}$
+\end_inset
+
+ and thus 
+\begin_inset Formula $\mathcal{K}_{n+1}=\mathcal{K}_{n}$
+\end_inset
+
+.
+ By induction, 
+\begin_inset Formula $\mathcal{K}_{\ell}=\mathcal{K}_{n}$
+\end_inset
+
+ for 
+\begin_inset Formula $\ell\geq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $H_{n}y=\lambda y$
+\end_inset
+
+, then 
+\begin_inset Formula $AQ_{n}y=Q_{n}H_{n}y=\lambda Q_{n}y$
+\end_inset
+
+, and hence 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is an eigenvalue of 
+\begin_inset Formula $A$
+\end_inset
+
+ with eigenvector 
+\begin_inset Formula $Q_{n}y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ is nonsingular, then 
+\begin_inset Formula $H_{n}$
+\end_inset
+
+ is nonsingular (if it had a zero eigenvalue, 
+\begin_inset Formula $A$
+\end_inset
+
+ would too from above).
+ Hence, noting that 
+\begin_inset Formula $b$
+\end_inset
+
+ is proportional to the first column of 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+, we have: 
+\begin_inset Formula $x=A^{-1}b=A^{-1}Q_{n}e_{1}\Vert b\Vert=A^{-1}Q_{n}H_{n}H_{n}^{-1}e_{1}\Vert b\Vert=A^{-1}AQ_{n}H_{n}^{-1}e_{1}\Vert b\Vert=Q_{n}H_{n}^{-1}e_{1}\Vert b\Vert\in\mathcal{K}_{n}$
+\end_inset
+
+.
+ Q.E.D.
+\end_layout
+
+\end_body
+\end_document
