@@ -368,3 +368,11 @@ It will cover everything in 18.335 up to and including **lecture 20** and **pset
 
 * [midterm exam](psets/midterm.pdf)
 * solutions — to be posted.
+
+### Lecture 26 (Apr 10)
+
+* [overview of optimization](notes/optimization.pdf)
+
+Several of the iterative algorithms so far have worked, conceptually at least, by turning the original linear-algebra problem into a minimization problem. It is natural to ask, then, whether we can use similar ideas to solve more general **optimization problems**, which will be the next major topic in 18.335.
+
+Broad overview of optimization problems (see handout). The most general formulation is actually quite difficult to solve, so most algorithms (especially the most efficient algorithms) solve various special cases, and it is important to know what the key factors are that distinguish a particular problem. There is also something of an art to the problem formulation itself, e.g. a nondifferentiable minimax problem can be reformulated as a nicer differentiable problem with differentiable constraints.
