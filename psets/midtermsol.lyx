@@ -1,0 +1,791 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Midterm Exam Solutions: Spring 2019
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (10 points) 
+\end_layout
+
+\begin_layout Standard
+The general formula for 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+, from the book, is the supremum of the condition number 
+\begin_inset Formula $\Vert A\Vert\cdot\Vert x\Vert/\Vert Ax\Vert$
+\end_inset
+
+ for all 
+\begin_inset Formula $x$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula 
+\[
+\kappa(A)=\Vert A\Vert\left(\sup_{x\ne0}\frac{\Vert x\Vert}{\Vert Ax\Vert}\right)=\left(\sup_{x\ne0}\frac{\Vert Ax\Vert}{\Vert x\Vert}\right)\left(\sup_{x\ne0}\frac{\Vert x\Vert}{\Vert Ax\Vert}\right).
+\]
+
+\end_inset
+
+ Since 
+\begin_inset Formula $A$
+\end_inset
+
+ (
+\begin_inset Formula $n$
+\end_inset
+
+ columns) is a subset of the columns of 
+\begin_inset Formula $B$
+\end_inset
+
+(
+\begin_inset Formula $n'\ge n$
+\end_inset
+
+ columns), then for every 
+\begin_inset Formula $x\in\mathbb{C}^{n}$
+\end_inset
+
+ there is an 
+\begin_inset Formula $x'\in\mathbb{C}^{n'}$
+\end_inset
+
+ such that 
+\begin_inset Formula $Ax=Bx'$
+\end_inset
+
+ — that is, 
+\begin_inset Formula $x'$
+\end_inset
+
+ is simply 
+\begin_inset Formula $x$
+\end_inset
+
+ padded with zeros for the extra columns of 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ Furthermore, in any of our 
+\begin_inset Formula $L_{p}$
+\end_inset
+
+ norms we have 
+\begin_inset Formula $\Vert x\Vert=\Vert x'\Vert$
+\end_inset
+
+.
+ So, if 
+\begin_inset Formula $x_{*}$
+\end_inset
+
+ is a vector where 
+\begin_inset Formula $\frac{\Vert Ax\Vert}{\Vert x\Vert}$
+\end_inset
+
+ achieves its supremum, there is an 
+\begin_inset Formula $x'$
+\end_inset
+
+ such that 
+\begin_inset Formula $\frac{\Vert Ax_{*}\Vert}{\Vert x_{*}\Vert}=\frac{\Vert Bx'\Vert}{\Vert x'\Vert}$
+\end_inset
+
+, and hence
+\begin_inset Formula 
+\[
+\sup_{x\ne0}\frac{\Vert Ax\Vert}{\Vert x\Vert}\le\sup_{x'\ne0}\frac{\Vert Bx'\Vert}{\Vert x'\Vert}.
+\]
+
+\end_inset
+
+ Similarly for 
+\begin_inset Formula $\frac{\Vert x\Vert}{\Vert Ax\Vert}$
+\end_inset
+
+.
+ Hence 
+\begin_inset Formula $\kappa(A)\leq\kappa(B)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (5+5 points)
+\end_layout
+
+\begin_layout Standard
+For a diagonalizable 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A=X\Lambda X^{-1}$
+\end_inset
+
+, the matrix square root is 
+\begin_inset Formula 
+\[
+A^{\frac{1}{2}}=X\Lambda^{\frac{1}{2}}X^{-1}=X\left(\begin{array}{cccc}
+\sqrt{\lambda_{1}}\\
+ & \sqrt{\lambda_{2}}\\
+ &  & \ddots\\
+ &  &  & \sqrt{\lambda_{m}}
+\end{array}\right)X^{-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $A$
+\end_inset
+
+ may be nearly defective, in which case 
+\begin_inset Formula $X$
+\end_inset
+
+ is badly conditioned and multiplying by 
+\begin_inset Formula $X$
+\end_inset
+
+ or 
+\begin_inset Formula $X^{-1}$
+\end_inset
+
+ will be inaccurate.
+ (Being exactly defective is exceedingly rare — a set of measure zero among
+ all matrices, so you might ignore this case, but you can't ignore the possibili
+ty of being nearly defective.)
+\end_layout
+
+\begin_layout Enumerate
+One possible answer is that all her matrices are Hermitian (or anti-Hermitian/sk
+ew-Hermitian).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For the 
+\begin_inset Formula $X\Lambda^{\frac{1}{2}}X^{-1}$
+\end_inset
+
+ formula to be accurate, you need 
+\begin_inset Formula $X$
+\end_inset
+
+ to be well-conditioned, and the best case for this is if 
+\begin_inset Formula $A$
+\end_inset
+
+ is normal (
+\begin_inset Formula $AA^{*}=A^{*}A)$
+\end_inset
+
+, in which case 
+\begin_inset Formula $X$
+\end_inset
+
+ can be chosen unitary (condition number 1).
+ The only cases where you can typically see that 
+\begin_inset Formula $A$
+\end_inset
+
+ is normal by inspection are the Hermitian or anti-Hermitian cases.
+ (Another possibility would be diagonal matrices 
+\begin_inset Formula $A$
+\end_inset
+
+, but you were told that the matrices were non-sparse.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (10 points)
+\end_layout
+
+\begin_layout Standard
+If one of the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ values is sufficiently large and positive (
+\begin_inset Formula $\gtrsim710$
+\end_inset
+
+ in double precision), then 
+\begin_inset Formula $e^{x_{i}}$
+\end_inset
+
+ will overflow and you will get +Inf.
+ Alternatively, if 
+\emph on
+all
+\emph default
+ of the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ values are sufficiently large in magnitude and negative (
+\begin_inset Formula $\lesssim-745$
+\end_inset
+
+ in double precision), then 
+\begin_inset Formula $e^{x_{i}}$
+\end_inset
+
+ will underflow to 
+\begin_inset Formula $+0.0$
+\end_inset
+
+ and the 
+\begin_inset Formula $\log$
+\end_inset
+
+ will give you 
+\begin_inset Formula $-\text{Inf}$
+\end_inset
+
+.
+ To start with, we want to avoid both of these cases.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+8/10 points: 
+\series default
+A simple solution is to compute 
+\begin_inset Formula $X=\max_{i}x_{i}$
+\end_inset
+
+, and then use the identity 
+\begin_inset Formula 
+\[
+f(x)=\log\left(\sum_{i=1}^{n}e^{x_{i}}\right)=\log\left(e^{X}\sum_{i=1}^{n}e^{x_{i}-X}\right)=X+\log\left(\sum_{i=1}^{n}e^{x_{i}-X}\right).
+\]
+
+\end_inset
+
+ This solves the overflow problem, because 
+\begin_inset Formula $x_{i}-X\le0$
+\end_inset
+
+ and hence 
+\begin_inset Formula $e^{x_{i}-X}$
+\end_inset
+
+ can only be small, not large.
+ What about underflow? Without loss of generality, let's suppose that 
+\begin_inset Formula $X=x_{1}$
+\end_inset
+
+.
+ Then we have 
+\begin_inset Formula 
+\[
+f(x)=X+\log\left(1+\sum_{i=2}^{n}e^{x_{i}-X}\right).
+\]
+
+\end_inset
+
+Notice that 
+\begin_inset Formula $e^{x_{i}-X}$
+\end_inset
+
+ in the sum may underflow to zero, but we will never get zero as the argument
+ of the 
+\begin_inset Formula $\log$
+\end_inset
+
+ because we have 
+\begin_inset Formula $1+\cdots\geq1$
+\end_inset
+
+ .
+ So we won't get 
+\begin_inset Formula $-\text{Inf}$
+\end_inset
+
+ even if the 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ are large negative numbers.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+10/10 points: 
+\series default
+However, there is still a subtle problem: if 
+\begin_inset Formula $\sum_{i=2}^{n}e^{x_{i}-X}\ll1$
+\end_inset
+
+, then in floating-point arithmetic we may get 
+\begin_inset Formula 
+\[
+X+\log\left(1\oplus\sum_{i=2}^{n}e^{x_{i}-X}\right)=X+\log(1)=X,
+\]
+
+\end_inset
+
+so the contribution of the 
+\begin_inset Formula $\sum_{i=2}^{n}e^{x_{i}-X}$
+\end_inset
+
+ is lost.
+ Recall the Taylor expansion 
+\begin_inset Formula 
+\[
+\log(1+y)=y-\frac{y^{2}}{2}+\frac{y^{3}}{3}-\cdots,
+\]
+
+\end_inset
+
+so even if 
+\begin_inset Formula $0<y\ll1$
+\end_inset
+
+, we are not supposed to get zero from the log.
+ This can lead to an inaccurate result.
+ For example, consider the case of 
+\begin_inset Formula $n=2$
+\end_inset
+
+ with 
+\begin_inset Formula $x_{1}=10^{-20}>x_{2}=\log10^{-20}\approx-46.0517$
+\end_inset
+
+.
+ Then the correct answer is 
+\begin_inset Formula 
+\[
+x_{1}+\log(1+e^{x_{2}})=10^{-20}+\log(1+10^{-20})\approx2\times10^{-20}.
+\]
+
+\end_inset
+
+but in floating-point arithmetic we will get 
+\begin_inset Formula $x_{1}\oplus\log(1\oplus e^{x_{2}})=x_{1}\oplus\log(1)=x_{1}\approx10^{-20}$
+\end_inset
+
+, which is off by a factor of 2! The solution is that we need to compute
+ 
+\begin_inset Formula $\operatorname{log1p}(y)=\log(1+y)$
+\end_inset
+
+ accurately even for very small 
+\begin_inset Formula $y$
+\end_inset
+
+, and fortunately most math libraries (including Julia's) provide a built-in
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\family typewriter
+log1p
+\family default
+
+\begin_inset Quotes erd
+\end_inset
+
+ function that does just that.
+ So, in summary, if we want an accurate result we really need to use a floating-
+point version of the expression: 
+\begin_inset Formula 
+\[
+f(x)=X+\operatorname{log1p}(\sum\nolimits'e^{x_{i}-X}),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sum'$
+\end_inset
+
+ denotes the sum omitting a single term with 
+\begin_inset Formula $x_{i}=X=\max_{j}x_{j}$
+\end_inset
+
+.
+ If we want, we could implement this sum with pairwise summation or similar,
+ for even more accuracy.
+ If we didn't have a 
+\begin_inset Quotes eld
+\end_inset
+
+
+\family typewriter
+log1p
+\family default
+
+\begin_inset Quotes erd
+\end_inset
+
+ function available, to accurately compute 
+\begin_inset Formula $\operatorname{log1p}(y)=\log(1+y)$
+\end_inset
+
+ , we could implement it ourselves using the Taylor series when 
+\begin_inset Formula $|y|$
+\end_inset
+
+ is sufficiently small (although it turns out that there are more clever
+ ways to do it).
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: (10 points)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+8/10
+\series default
+: We can use the Hessenberg factorization 
+\begin_inset Formula $A=QHQ^{*}$
+\end_inset
+
+, which can be computed in 
+\begin_inset Formula $\Theta(m^{3})$
+\end_inset
+
+ operations from class, and for which 
+\begin_inset Formula $H$
+\end_inset
+
+ is tridiagonal if 
+\begin_inset Formula $A$
+\end_inset
+
+ is Hermitian.
+ Then 
+\begin_inset Formula 
+\[
+f(z)=\det(A-zI)=\det(QHQ^{*}-zI)=\det\left[Q(H-zI)Q^{*}\right]=\det(Q)\det(H-zI)\det(Q^{*})=\det(H-zI)
+\]
+
+\end_inset
+
+by elementary properties of determinants.
+ Since 
+\begin_inset Formula $H-zI$
+\end_inset
+
+ is tridiagonal, as mentioned in class we can find its LU factorization
+ in 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ operations, from which the determinant is simply the product of the diagonal
+ entries of 
+\begin_inset Formula $U$
+\end_inset
+
+.
+ A little care is needed for the case where 
+\begin_inset Formula $H-zI$
+\end_inset
+
+ is nearly singular, though.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+10/
+\series default
+10
+\series bold
+: 
+\series default
+Since in neither the book nor in class did we explicitly study the LU decomposit
+ion of tridiagonal matrices — I only stated in passing that it was 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ — and some care is needed in the singular case, to get full marks on this
+ problem you need to do a bit more work to convince me of how you would
+ compute 
+\begin_inset Formula $\det H$
+\end_inset
+
+.
+ In particular, there are lots of ways to derive nice explicit formulas
+ here.
+ (Outside of an exam you would just google 
+\begin_inset Quotes eld
+\end_inset
+
+determinant tridiagonal matrix,
+\begin_inset Quotes erd
+\end_inset
+
+ of course.) For example, if we write:
+\begin_inset Formula 
+\[
+H=\left(\begin{array}{ccccc}
+a_{1} & \overline{b_{1}}\\
+b_{1} & a_{2} & \overline{b_{2}}\\
+ & b_{2} & a_{3} & \ddots\\
+ &  & \ddots & \ddots & \overline{b_{m-1}}\\
+ &  &  & b_{m-1} & a_{m}
+\end{array}\right),
+\]
+
+\end_inset
+
+then each step of Gaussian elimination transforms the 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ diagonal block 
+\begin_inset Formula 
+\[
+\left(\begin{array}{cc}
+d_{k} & \overline{b_{k}}\\
+b_{k} & a_{k+1}
+\end{array}\right)\longrightarrow\left(\begin{array}{cc}
+d_{k} & \overline{b_{k}}\\
+0 & a_{k+1}-\frac{b_{k}\overline{b_{k}}}{d_{k}}
+\end{array}\right),
+\]
+
+\end_inset
+
+so that the diagonal entries satisfy the recurrence relation
+\begin_inset Formula 
+\begin{alignat*}{1}
+d_{1} & =a_{1}\\
+d_{k+1} & =a_{k+1}-\frac{|b_{k}|^{2}}{d_{k}}.
+\end{alignat*}
+
+\end_inset
+
+and once it is reduced to upper-triangular form then the determinant is
+ simply the product of the pivots 
+\begin_inset Formula $\prod d_{k}$
+\end_inset
+
+.
+ This recurrence may look slightly dangerous at first — what if 
+\begin_inset Formula $d_{k}=0$
+\end_inset
+
+? However, this division by zero goes away when you multiply the entries
+ together — consider the term 
+\begin_inset Formula $d_{k}d_{k+1}$
+\end_inset
+
+ — and after a little thought you can see that the the product 
+\begin_inset Formula 
+\[
+p_{k}=\prod_{i=1}^{k}d_{k}
+\]
+
+\end_inset
+
+ satisfies a simpler recurrence (called the 
+\begin_inset Quotes eld
+\end_inset
+
+continuant
+\begin_inset Quotes erd
+\end_inset
+
+ in linear algebra): 
+\begin_inset Formula 
+\begin{alignat*}{1}
+p_{0} & =1\\
+p_{1} & =a_{1}\\
+p_{k+1} & =d_{k+1}p_{k}=p_{k}a_{k+1}-p_{k-1}|b_{k}|^{2},
+\end{alignat*}
+
+\end_inset
+
+which has no possibility of division by zero, giving 
+\begin_inset Formula $\det H=p_{m}$
+\end_inset
+
+ in 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ operations.
+ Finally, get 
+\begin_inset Formula $\det(H-zI)$
+\end_inset
+
+, we simply modify this recurrence to subtract 
+\begin_inset Formula $z$
+\end_inset
+
+ from the diagonals:
+\begin_inset Formula 
+\begin{alignat*}{1}
+p_{0} & =1\\
+p_{1} & =a_{1}-z\\
+p_{k+1} & =p_{k}(a_{k+1}-z)-p_{k-1}|b_{k}|^{2}.
+\end{alignat*}
+
+\end_inset
+
+ This recurrence can also be derived in other ways, e.g.
+ by cofactor formulas.
+ For the case of real 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+ (real-symmetric 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $H$
+\end_inset
+
+), the same recurrence is given in equation (30.9) of the Trefethen
+\begin_inset space ~
+\end_inset
+
+& Bau textbook.
+\end_layout
+
+\begin_layout Standard
+Another possible 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ determinant algorithm is to do the QR factorization of 
+\begin_inset Formula $H-zI$
+\end_inset
+
+, which can be accomplished in 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ operations by Givens rotations as you showed in pset
+\begin_inset space ~
+\end_inset
+
+3.
+ Then the determinant is simply 
+\begin_inset Formula $\det R$
+\end_inset
+
+ (since 
+\begin_inset Formula $\det Q=1$
+\end_inset
+
+ for Givens rotations), which is the product of the diagonal entries of
+ 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
