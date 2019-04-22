@@ -12,16 +12,21 @@ As described on the web page, you have broad flexibility in choosing a project. 
 
 A few examples of project topics from past terms are:
 
-* Nonlinear eigenproblems
+* Nonlinear eigenproblems (e.g. contour-integration methods like [FEAST](http://www.ecs.umass.edu/~polizzi/feast/) or other methods like in [NEP-PACK](https://nep-pack.github.io/NonlinearEigenproblems.jl/)).
 * Multidimensional cubature with sparse grids (e.g. Smolyak algorithms)
+* Fast algorithms for Gaussian quadrature (e.g. [these references](https://github.com/JuliaApproximation/FastGaussQuadrature.jl#references)).  Gauss–Patterson rules and other quadrature rules (e.g. quadrature methods for singular integrands or highly oscillatory integrands).
 * Monte-Carlo integration with adaptive importance sampling
 * Iterative linear-algebra algorithms not covered in class, e.g. BiCGSTAB(ℓ), DQGMRES, or the Jacobi-Davidson eigenproblem algorithm.
-* Discrete cosine transform algorithms (e.g. for audio compression)
-* Nonlinear optimization algorithsms, e.g. ORBIT, VNS, multistart algorithms, globally convergent Nelder-Mead, …
+* Matrix exponentials: computing the matrix eᴬ, or maybe just y=eᴬx iteratively where A is sparse (e.g. Krylov methods).
+* Discrete cosine transform algorithms (e.g. for audio compression), and other fast transforms (e.g. nonuniform FFTs, spherical-harmonic transforms, etc.)
+* Nonlinear optimization algorithms, e.g. ORBIT, VNS, multistart algorithms like MLSL, globally convergent Nelder-Mead, …
+* Optimization algorithms specifically for least-square fitting or regularized fitting problems.
 * Linear Programming (LP) algorithms (e.g. interior-point or simplex)
 * Quasi-Newton methods for nonlinear systems of equations (e.g. Broyden updates)
 * Rational approximation (e.g. the Remez algorithm)
 * The Fast Multipole Method for the n-body problem
+* Uncertainy quantification (UQ) algorithms
+* [Numerical continuation](https://en.wikipedia.org/wiki/Numerical_continuation) algorithms (e.g. [pseudo arc-length continuation](https://github.com/rveltz/PseudoArcLengthContinuation.jl))
 
 (Try leafing through a book on numerical algorithms, e.g. Numerical Recipes, for ideas.)
 
