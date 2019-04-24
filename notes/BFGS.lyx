@@ -1,0 +1,1171 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Quasi-Newton optimization: Origin of the BFGS update
+\end_layout
+
+\begin_layout Author
+Steven G.
+ Johnson, notes for 18.335 at MIT
+\end_layout
+
+\begin_layout Section
+Newton steps and backtracking
+\end_layout
+
+\begin_layout Standard
+Suppose that we are trying to solve 
+\begin_inset Formula 
+\[
+\min_{x\in\mathbb{R}^{n}}f(x)
+\]
+
+\end_inset
+
+and we are supplied a method to efficiently compute both 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $\nabla f$
+\end_inset
+
+ (e.g.
+ by an adjoint method).
+\end_layout
+
+\begin_layout Standard
+On step 
+\begin_inset Formula $n$
+\end_inset
+
+ of optimization, let 
+\begin_inset Formula $x^{n}$
+\end_inset
+
+ be our current iterate, and let 
+\begin_inset Formula $g^{n}=\left.\nabla f\right|_{x^{n}}$
+\end_inset
+
+.
+ If we had the 
+\series bold
+second derivative 
+\begin_inset Quotes eld
+\end_inset
+
+Hessian
+\begin_inset Quotes erd
+\end_inset
+
+ matrix
+\series default
+ 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ as well (
+\begin_inset Formula $H_{ij}^{n}=\left.\frac{\partial f}{\partial x_{i}\partial x_{j}}\right|_{x^{n}}$
+\end_inset
+
+), then we could try to make progress via second-order (quadratic) Taylor
+ expansion 
+\begin_inset Formula 
+\[
+f(x^{n}+\delta)\approx f(x^{n})+\delta^{T}g^{n}+\frac{1}{2}\delta^{T}H^{n}\delta=q(\delta).
+\]
+
+\end_inset
+
+Near a local minimum, 
+\begin_inset Formula $H$
+\end_inset
+
+ is positive-definite, and the exact minimum is 
+\begin_inset Formula 
+\[
+\delta^{n}=-(H^{n})^{-1}g^{n}.
+\]
+
+\end_inset
+
+In fact, this is exactly a 
+\series bold
+Newton step
+\series default
+ in finding a root of 
+\begin_inset Formula $\nabla f=0$
+\end_inset
+
+, where we approximate the gradient near 
+\begin_inset Formula $x$
+\end_inset
+
+ by a 
+\emph on
+first-order
+\emph default
+ Taylor expansion 
+\begin_inset Formula 
+\[
+\left.\nabla f\right|_{x+\delta}\approx g^{n}+H^{n}\delta.
+\]
+
+\end_inset
+
+However, we might run into a problem: the Newton step 
+\begin_inset Formula $\delta$
+\end_inset
+
+ might be so large that our Taylor expansion is not accurate, and 
+\begin_inset Formula $f(x^{n}+\delta)$
+\end_inset
+
+ might actually get 
+\emph on
+worse
+\emph default
+.
+ There are a couple of common approaches to fix this:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Trust region
+\series default
+: minimize a 
+\begin_inset Formula $q(\delta)$
+\end_inset
+
+ only for 
+\begin_inset Formula $\delta$
+\end_inset
+
+ sufficiently small, i.e.
+ in a 
+\begin_inset Quotes eld
+\end_inset
+
+trust region.
+\begin_inset Quotes erd
+\end_inset
+
+ For example, a common choice is a spherical trust region 
+\begin_inset Formula $\Vert\delta\Vert_{2}<r^{n}$
+\end_inset
+
+ for some radius 
+\begin_inset Formula $r^{n}$
+\end_inset
+
+, in which case there is a nice result: strong duality holds, and we can
+ optimize a convex dual problem.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This is called the 
+\begin_inset Quotes eld
+\end_inset
+
+trust region problem,
+\begin_inset Quotes erd
+\end_inset
+
+ and is discussed in e.g.
+ Boyd & Vandenberghe section 5.2.
+\end_layout
+
+\end_inset
+
+ If the resulting step is not 
+\begin_inset Quotes eld
+\end_inset
+
+acceptable
+\begin_inset Quotes erd
+\end_inset
+
+ (see below), we can change the trust-region radius and try again.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Line search
+\series default
+: We can minimize 
+\begin_inset Formula $f(x^{n}+\alpha\delta^{n})$
+\end_inset
+
+ over 
+\begin_inset Formula $\alpha\in\mathbb{R}$
+\end_inset
+
+, i.e.
+ along the direction of the Newton step
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\delta^{n}$
+\end_inset
+
+.
+ Usually minimizing this 
+\emph on
+exactly
+\emph default
+ is more trouble than it is worth just to take a single optimization step,
+ so it is common to do an 
+\series bold
+inexact line search
+\series default
+: try different 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ until the result is 
+\begin_inset Quotes eld
+\end_inset
+
+acceptable
+\begin_inset Quotes erd
+\end_inset
+
+ (see below).
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Backtracking
+\series default
+: Instead of exact line search, we try 
+\begin_inset Formula $f(x^{n}+\alpha\delta^{n})$
+\end_inset
+
+ for 
+\begin_inset Formula $\alpha=1,\tau,\tau^{2},\tau^{3},\ldots$
+\end_inset
+
+ where 
+\begin_inset Formula $0<\tau<1$
+\end_inset
+
+ is some parameter (e.g.
+ 
+\begin_inset Formula $\tau=0.5$
+\end_inset
+
+), until the result is 
+\begin_inset Quotes eld
+\end_inset
+
+acceptable
+\begin_inset Quotes erd
+\end_inset
+
+ (see below).
+\end_layout
+
+\begin_layout Standard
+For both a trust region and backtracking line search we have to decide whether
+ a given step 
+\begin_inset Formula $\delta$
+\end_inset
+
+ is acceptable.
+ Naively, we can simply check whether 
+\begin_inset Formula $f(x^{n}+\delta)<f(x^{n})$
+\end_inset
+
+, but in practice it turns out that we want to impose stronger conditions
+ — we only want to take steps 
+\begin_inset Formula $\delta$
+\end_inset
+
+ where our quadratic approximation 
+\begin_inset Formula $q(\delta)$
+\end_inset
+
+ is reasonably accurate.
+ In practice, we typically impose the 
+\series bold
+Wolfe conditions
+\series default
+ on the step 
+\begin_inset Formula $\delta$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f(x^{n}+\delta)\leq f(x^{n})+c_{1}\delta^{T}g^{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $0<c_{1}<1$
+\end_inset
+
+, typically 
+\begin_inset Formula $c_{1}=10^{-4}$
+\end_inset
+
+ : 
+\begin_inset Formula $f$
+\end_inset
+
+ must decrease at least proportional to the prediction of the gradient 
+\begin_inset Formula $g^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $|\delta^{T}g^{n+1}|\leq c_{2}|\delta^{T}g^{n}|$
+\end_inset
+
+, where 
+\begin_inset Formula $g^{n+1}=\left.\nabla f\right|_{x^{n}+\delta}$
+\end_inset
+
+ and 
+\begin_inset Formula $0<c_{2}<1$
+\end_inset
+
+, e.g.
+ 
+\begin_inset Formula $c_{2}=0.9$
+\end_inset
+
+: the derivative 
+\begin_inset Formula $\delta^{T}\nabla f$
+\end_inset
+
+ along the search direction must decrease sufficiently.
+ (Note that for an exact line search we will have 
+\begin_inset Formula $g^{n+1}=0$
+\end_inset
+
+.) This condition helps prevent trust-region or inexact line-search methods
+ from taking steps 
+\begin_inset Formula $\delta$
+\end_inset
+
+ that are too small, and it also leads to a nice property of BFGS updates
+ below.
+\end_layout
+
+\begin_layout Section
+Quasi-Newton methods
+\end_layout
+
+\begin_layout Standard
+The problem with Newton steps is that the exact Hessian is hard to come
+ by when 
+\begin_inset Formula $n$
+\end_inset
+
+ is large.
+ Even with adjoint methods, evaluating 
+\begin_inset Formula $H$
+\end_inset
+
+ exactly typically costs at least 
+\begin_inset Formula $n$
+\end_inset
+
+ times the cost of evaluating 
+\begin_inset Formula $f$
+\end_inset
+
+ once (it correspond to taking the gradient 
+\begin_inset Formula $n$
+\end_inset
+
+ times: one more gradient for each component of 
+\begin_inset Formula $\nabla f$
+\end_inset
+
+).
+ When 
+\begin_inset Formula $n$
+\end_inset
+
+ is really large, just 
+\emph on
+storing
+\emph default
+ the 
+\begin_inset Formula $H$
+\end_inset
+
+ matrix (
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ numbers) might be impractical.
+ Instead, 
+\begin_inset Quotes eld
+\end_inset
+
+quasi
+\begin_inset Quotes erd
+\end_inset
+
+ Newton methods apply the same Newton steps above but use an 
+\series bold
+approximate Hessian
+\series default
+ 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+, often a low-rank approximation (which can be stored and applied efficiently).
+ In fact, since what is needed for the Newton step is 
+\begin_inset Formula $(H^{n})^{-1}$
+\end_inset
+
+, usually one stores a low-rank 
+\series bold
+approximate inverse Hessian
+\series default
+.
+ To obtain this, we want to 
+\series bold
+iteratively
+\series default
+ construct our approximate 
+\begin_inset Formula $H^{n+1}$
+\end_inset
+
+ (or 
+\begin_inset Formula $(H^{n+1})^{-1}$
+\end_inset
+
+) 
+\series bold
+given only the gradient
+\series default
+ (
+\emph on
+first
+\emph default
+ derivative) of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Some desired properties of 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ are:
+\end_layout
+
+\begin_layout Enumerate
+For a convex quadratic 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ should approach the exact Hessian as 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ (i.e., as we apply our iterative update for many points and many gradient
+ evaluations, approaching the minimum).
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Secant condition
+\series default
+: 
+\begin_inset Formula 
+\[
+\underbrace{g^{n+1}-g^{n}}_{\gamma}=H^{n+1}\underbrace{(x^{n+1}-x^{n})}_{\delta}
+\]
+
+\end_inset
+
+.
+ This condition arises because it would be true of the 
+\emph on
+exact
+\emph default
+ Hessian for a quadratic 
+\begin_inset Formula $f$
+\end_inset
+
+ (see the 
+\begin_inset Formula $\left.\nabla f\right|_{x+\delta}$
+\end_inset
+
+ Taylor expansion above).
+ Equivalently, 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ must at least predict the change in the gradient on the 
+\begin_inset Formula $n$
+\end_inset
+
+-th step.
+\end_layout
+
+\begin_layout Enumerate
+Real-symmetric positive-definite.
+ This makes our 
+\begin_inset Formula $q(n)$
+\end_inset
+
+ function convex and 
+\begin_inset Formula $\delta^{n}=-(H^{n})^{-1}g^{n}$
+\end_inset
+
+ is in the 
+\begin_inset Quotes eld
+\end_inset
+
+downhill
+\begin_inset Quotes erd
+\end_inset
+
+ direction from 
+\begin_inset Formula $x^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ should 
+\begin_inset Quotes eld
+\end_inset
+
+remember
+\begin_inset Quotes erd
+\end_inset
+
+ as much information from previous steps (i.e.
+ the previous gradient evaluations) as possible.
+ (We 
+\emph on
+don't
+\emph default
+ want to impose the secant conditions on all steps simultaneously, however,
+ because this could quickly become impossible: 
+\begin_inset Formula $f$
+\end_inset
+
+ may not be exactly quadratic.)
+\end_layout
+
+\begin_layout Standard
+The last criterion is rather vague and could lead to many possible quasi-Newton
+ algorithms.
+ However, it turns out that an extremely easy and powerful approach to 
+\begin_inset Quotes eld
+\end_inset
+
+remembing
+\begin_inset Quotes erd
+\end_inset
+
+ information is to simply 
+\series bold
+minimize the change in 
+\series default
+
+\begin_inset Formula $H^{n}$
+\end_inset
+
+: we minimize 
+\begin_inset Formula $\Vert H^{n+1}-H^{n}\Vert$
+\end_inset
+
+ in some norm, or alternatively minimize 
+\begin_inset Formula $\Vert(H^{n+1})^{-1}-(H^{n})^{-1}\Vert$
+\end_inset
+
+.
+ In the appropriate choice of norm, the latter leads to the famous 
+\begin_inset Quotes eld
+\end_inset
+
+BFGS
+\begin_inset Quotes erd
+\end_inset
+
+ update, which has lots of nice properties.
+\end_layout
+
+\begin_layout Section
+BFGS updates
+\end_layout
+
+\begin_layout Standard
+This update, named for 
+\series bold
+B
+\series default
+royden, 
+\series bold
+F
+\series default
+letcher, 
+\series bold
+G
+\series default
+oldfarb, and 
+\series bold
+S
+\series default
+hannon, who wrote four 
+\emph on
+separate
+\emph default
+ papers on the same idea in 1970, is obtained by solving 
+\begin_inset Formula 
+\[
+\min_{H\in\mathbb{R}^{n\times n}}\Vert H^{-1}-(H^{n})^{-1}\Vert_{W}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{subject to }H^{-1}\gamma=\delta\text{ and }H^{T}=H
+\]
+
+\end_inset
+
+That is, we minimize the change in 
+\begin_inset Formula $H^{-1}$
+\end_inset
+
+ subject to the second condition and require that it be real-symmetric (it
+ will turn out that we get positive-definiteness 
+\begin_inset Quotes eld
+\end_inset
+
+for free
+\begin_inset Quotes erd
+\end_inset
+
+ below).
+ Here, 
+\begin_inset Formula $\Vert\cdots\Vert_{W}$
+\end_inset
+
+ is a weighted Frobenius norm 
+\begin_inset Formula 
+\[
+\Vert A\Vert_{W}^{2}=\frac{1}{2}\tr\left[WAWA^{T}\right]=\frac{1}{2}\Vert MAM^{T}\Vert_{F}^{2}=\frac{1}{2}\tr\left[MAM^{T}MA^{T}M^{T}\right]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $W=M^{T}M$
+\end_inset
+
+ is a positive-definite 
+\begin_inset Quotes eld
+\end_inset
+
+weight
+\begin_inset Quotes erd
+\end_inset
+
+ matrix to be chosen later (recall the identity 
+\begin_inset Formula $\tr AB=\tr BA$
+\end_inset
+
+).
+ If we let 
+\begin_inset Formula $E=H^{-1}-(H^{n})^{-1}$
+\end_inset
+
+, require that the previous iterate 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+ be symmetric, then this optimization problem equivalently becomes 
+\begin_inset Formula 
+\[
+\min_{E\in\mathbb{R}^{n\times n}}\Vert E\Vert_{W}^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{subject to }Ey=r\text{ and }E^{T}=E
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $y=\gamma$
+\end_inset
+
+ and 
+\begin_inset Formula $r=\delta-(H^{n})^{-1}\gamma$
+\end_inset
+
+.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+If alternatively we were minimizing 
+\begin_inset Formula $\Vert H-H^{n}\Vert_{W}$
+\end_inset
+
+, we would get exactly the same form of minimization problem with 
+\begin_inset Formula $E=H-H^{n}$
+\end_inset
+
+, 
+\begin_inset Formula $y=\delta$
+\end_inset
+
+, and 
+\begin_inset Formula $r=\gamma-H^{n}\delta$
+\end_inset
+
+.
+ This leads to an alternative BFGS-like method that seems not to perform
+ as well in practice.
+ Intuitively, since 
+\begin_inset Formula $H^{-1}$
+\end_inset
+
+ is the quantity that appears in the Newton step, it is not too surprising
+ that it is better to minimize the change in 
+\begin_inset Formula $H^{-1}$
+\end_inset
+
+ rather than the change in 
+\begin_inset Formula $H$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ This optimization problem is, in fact, a 
+\series bold
+QP
+\series default
+: we are minimizing a convex quadratic objective subject to affine constraints.
+ In consequence, strong duality holds and we can instead solve the Lagrange
+ dual problem.
+ Equivalently, we can solve the KKT conditions.
+ It turns out that this leads to a very nice formula for the update 
+\begin_inset Formula $E$
+\end_inset
+
+ if we make the right choice of weight matrix 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Let's work out the Lagrange dual problem, following Greenstadt and Goldfarb
+ (1970).
+ We define Lagrange multipliers 
+\begin_inset Formula $\lambda\in\mathbb{R}^{n}$
+\end_inset
+
+ for the 
+\begin_inset Formula $Ey-r=0$
+\end_inset
+
+ constraint and 
+\begin_inset Formula $\Gamma^{T}\in\mathbb{R}^{n\times n}$
+\end_inset
+
+ for the 
+\begin_inset Formula $E-E^{T}=0$
+\end_inset
+
+ constraint, and obtain the Lagrangian
+\begin_inset Formula 
+\[
+L(E,\lambda,\Gamma)=\tr\left[\frac{1}{2}WEWE^{T}+(Ey-r)\lambda^{T}+\Gamma(E-E^{T})\right].
+\]
+
+\end_inset
+
+Here, note that 
+\begin_inset Formula $\tr\left[(Ey-r)\lambda^{T}\right]=\tr\left[\lambda^{T}(Ey-r)\right]=\lambda^{T}(Ey-r)$
+\end_inset
+
+ is just the ordinary sum of 
+\begin_inset Formula $n$
+\end_inset
+
+ Lagrange multipliers 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ times 
+\begin_inset Formula $n$
+\end_inset
+
+ constraints, but by re-ordering it into a rank-1 matrix we were able to
+ combine it with the 
+\begin_inset Formula $\Vert E\Vert_{W}^{2}$
+\end_inset
+
+ trace.
+ And 
+\begin_inset Formula $\tr\left[\Gamma(E-E^{T})\right]=\sum_{i,j}\Gamma_{ji}(E-E^{T})_{ji}=\sum_{i,j}(\Gamma^{T})_{ij}(E-E^{T})_{ij}$
+\end_inset
+
+ is a 
+\begin_inset Quotes eld
+\end_inset
+
+Frobenius inner product
+\begin_inset Quotes erd
+\end_inset
+
+ of the 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ Lagrange multipliers 
+\begin_inset Formula $(\Gamma^{T})_{ij}$
+\end_inset
+
+ with the 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ constraints from 
+\begin_inset Formula $E^{T}=E$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula 
+\[
+\nabla_{B}\tr(BC)=\nabla_{B}\sum_{ij}B_{ij}C_{ji}=C^{T},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\nabla_{B}$
+\end_inset
+
+ denotes the matrix of partial derivatives 
+\begin_inset Formula $\frac{\partial\tr(BC)}{\partial B_{ij}}=C_{ji}$
+\end_inset
+
+, and similarly 
+\begin_inset Formula $\nabla_{B}\tr(B^{T}C)=C$
+\end_inset
+
+.
+ We can now solve the KKT conditions
+\begin_inset Formula 
+\begin{align*}
+\nabla_{E}L & =0=WEW+\lambda y^{T}+\Gamma^{T}-\Gamma\\
+Ey-r & =0\\
+E^{T}-E & =0.
+\end{align*}
+
+\end_inset
+
+subject to the constraints 
+\begin_inset Formula $Ey=r$
+\end_inset
+
+ and 
+\begin_inset Formula $E^{T}=E$
+\end_inset
+
+.
+ The first equation gives 
+\begin_inset Formula 
+\[
+E=-W^{-1}\left(\lambda y^{T}+\Gamma^{T}-\Gamma\right)W^{-1}.
+\]
+
+\end_inset
+
+The requirement that 
+\begin_inset Formula $E=E^{T}$
+\end_inset
+
+ then means that 
+\begin_inset Formula $\left(\lambda y^{T}+\Gamma^{T}-\Gamma\right)=\left(\lambda y^{T}+\Gamma^{T}-\Gamma\right)^{T}$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula 
+\[
+\Gamma^{T}-\Gamma=\frac{1}{2}\left(y\lambda^{T}-\lambda y^{T}\right)
+\]
+
+\end_inset
+
+and hence 
+\begin_inset Formula 
+\[
+E=-\frac{1}{2}W^{-1}\left(y\lambda^{T}+\lambda y^{T}\right)W^{-1}.
+\]
+
+\end_inset
+
+Finally, the condition 
+\begin_inset Formula $Ey=r$
+\end_inset
+
+ now implies 
+\begin_inset Formula 
+\[
+y\lambda^{T}W^{-1}y+\lambda\left(y^{T}W^{-1}y\right)=-2Wr.
+\]
+
+\end_inset
+
+Since the 
+\begin_inset Formula $(\cdots)$
+\end_inset
+
+ term is a scalar, we can solve for 
+\begin_inset Formula 
+\[
+\lambda=-\frac{2Wr+y\lambda^{T}W^{-1}y}{y^{T}W^{-1}y}.
+\]
+
+\end_inset
+
+At first glance, this doesn't seem immediately helpful since there is a
+ 
+\begin_inset Formula $\lambda^{T}$
+\end_inset
+
+ on the right hand side.
+ But if we multiply both sides by 
+\begin_inset Formula $y^{T}W^{-1}$
+\end_inset
+
+ and transpose, we can solve for the unknown scalar 
+\begin_inset Formula $\lambda^{T}W^{-1}y$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\lambda^{T}W^{-1}y=-\frac{2r^{T}y+y^{T}W^{-1}y\left(\lambda^{T}W^{-1}y\right)}{y^{T}W^{-1}y}\implies\lambda^{T}W^{-1}y=-\frac{r^{T}y}{y^{T}W^{-1}y}.
+\]
+
+\end_inset
+
+Plugging this back into 
+\begin_inset Formula $\lambda=\cdots,$
+\end_inset
+
+ we get 
+\begin_inset Formula 
+\[
+\lambda=-\frac{2Wr+-\frac{yr^{T}y}{y^{T}W^{-1}y}}{y^{T}W^{-1}y}=\frac{yy^{T}r}{\left(y^{T}W^{-1}y\right)^{2}}-\frac{2Wr}{y^{T}W^{-1}y}.
+\]
+
+\end_inset
+
+Finally, we can substitute this into our 
+\begin_inset Formula $E$
+\end_inset
+
+ equation to obtain
+\begin_inset Formula 
+\[
+E=\frac{1}{y^{T}W^{-1}y}\left[ry^{T}W^{-1}+W^{-1}yr^{T}-\frac{y^{T}r}{y^{T}W^{-1}y}W^{-1}yy^{T}W^{-1}\right].
+\]
+
+\end_inset
+
+This looks messy! But we have one trick left up our sleeve: we haven't chosen
+ our weight 
+\begin_inset Formula $W$
+\end_inset
+
+ yet! What we will do is to choose some 
+\begin_inset Formula $W$
+\end_inset
+
+ so that 
+\begin_inset Formula $W^{-1}y=\delta$
+\end_inset
+
+, and in particular we choose 
+\begin_inset Formula $W^{-1}=(H^{n+1})^{-1}=E+(H^{n})^{-1}$
+\end_inset
+
+.
+ We then obtain, after a bit more algebra, the famous 
+\series bold
+BFGS update
+\series default
+: 
+\begin_inset Formula 
+\[
+\boxed{(H^{n+1})^{-1}=(H^{n})^{-1}-\frac{(H^{n})^{-1}\gamma\delta^{T}+\delta\gamma^{T}(H^{n})^{-1}}{\gamma^{T}\delta}+\left(1+\frac{\gamma^{T}(H^{n})^{-1}\gamma}{\gamma^{T}\delta}\right)\delta\delta^{T}}.
+\]
+
+\end_inset
+
+This may look a little messy, but it is actually quite nice: a 
+\series bold
+sum of rank-1 updates
+\series default
+ to the inverse Hessian.
+ Equivalently, via the Sherman–Morrison formula,
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The Sherman–Morrison formula 
+\begin_inset Formula $(A+uv^{T})^{-1}=A^{-1}-\frac{A^{-1}uv^{T}A^{-1}}{1+v^{T}A^{-1}u}$
+\end_inset
+
+ shows that a rank-1 update of 
+\begin_inset Formula $A$
+\end_inset
+
+ corresponds to a rank-1 update of 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+  and vice-versa.
+\end_layout
+
+\end_inset
+
+ we can derive (after considerably more algebra) the corresponding update
+ of 
+\begin_inset Formula $H^{n}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\boxed{H^{n+1}=H^{n}+\frac{\gamma\gamma^{T}}{\gamma^{T}\delta}-\frac{H^{n}\delta\delta^{T}H^{n}}{\delta^{T}H^{n}\delta}},
+\]
+
+\end_inset
+
+which is easier to analyze, even though in practice it is 
+\begin_inset Formula $H^{-1}$
+\end_inset
+
+ that we compute and store.
+\end_layout
+
+\end_body
+\end_document
