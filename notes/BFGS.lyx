@@ -81,12 +81,71 @@
 \begin_body
 
 \begin_layout Title
-Quasi-Newton optimization: Origin of the BFGS update
+Quasi-Newton optimization:
+\begin_inset Newline newline
+\end_inset
+
+Origin of the BFGS update
 \end_layout
 
 \begin_layout Author
 Steven G.
  Johnson, notes for 18.335 at MIT
+\end_layout
+
+\begin_layout Abstract
+In a typical optimization setting we are provided with an objective function
+ 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and its gradient 
+\begin_inset Formula $\nabla f$
+\end_inset
+
+ only.
+ However, as these are evaluated for many different points 
+\begin_inset Formula $x$
+\end_inset
+
+ we can infer something about the second derivative (
+\begin_inset Quotes eld
+\end_inset
+
+Hessian
+\begin_inset Quotes erd
+\end_inset
+
+) by watching how 
+\begin_inset Formula $\nabla f$
+\end_inset
+
+ changes, and by incorporating that information into our optimization algorithm
+ we can accelerate convergence.
+ This approach leads to 
+\begin_inset Quotes eld
+\end_inset
+
+quasi-Newton
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+variable-metric
+\begin_inset Quotes erd
+\end_inset
+
+ methods, so-called because they approximate an exact Newton step for 
+\begin_inset Formula $\nabla f=0$
+\end_inset
+
+.
+ The most widely used method to approximate the Hessian is a BFGS update,
+ and in these notes we survey the basic ideas underlying this important
+ algorithm.
 \end_layout
 
 \begin_layout Section
@@ -116,15 +175,15 @@ and we are supplied a method to efficiently compute both
 
 \begin_layout Standard
 On step 
-\begin_inset Formula $n$
+\begin_inset Formula $k$
 \end_inset
 
  of optimization, let 
-\begin_inset Formula $x^{n}$
+\begin_inset Formula $x^{k}$
 \end_inset
 
  be our current iterate, and let 
-\begin_inset Formula $g^{n}=\left.\nabla f\right|_{x^{n}}$
+\begin_inset Formula $g^{k}=\left.\nabla f\right|_{x^{k}}$
 \end_inset
 
 .
@@ -141,18 +200,18 @@ Hessian
  matrix
 \series default
  
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  as well (
-\begin_inset Formula $H_{ij}^{n}=\left.\frac{\partial f}{\partial x_{i}\partial x_{j}}\right|_{x^{n}}$
+\begin_inset Formula $H_{ij}^{k}=\left.\frac{\partial f}{\partial x_{i}\partial x_{j}}\right|_{x^{k}}$
 \end_inset
 
 ), then we could try to make progress via second-order (quadratic) Taylor
  expansion 
 \begin_inset Formula 
 \[
-f(x^{n}+\delta)\approx f(x^{n})+\delta^{T}g^{n}+\frac{1}{2}\delta^{T}H^{n}\delta=q(\delta).
+f(x^{k}+\delta)\approx f(x^{k})+\delta^{T}g^{k}+\frac{1}{2}\delta^{T}H^{k}\delta=q(\delta).
 \]
 
 \end_inset
@@ -164,7 +223,7 @@ Near a local minimum,
  is positive-definite, and the exact minimum is 
 \begin_inset Formula 
 \[
-\delta^{n}=-(H^{n})^{-1}g^{n}.
+\delta^{k}=-(H^{k})^{-1}g^{k}.
 \]
 
 \end_inset
@@ -188,7 +247,7 @@ first-order
  Taylor expansion 
 \begin_inset Formula 
 \[
-\left.\nabla f\right|_{x+\delta}\approx g^{n}+H^{n}\delta.
+\left.\nabla f\right|_{x+\delta}\approx g^{k}+H^{k}\delta.
 \]
 
 \end_inset
@@ -198,7 +257,7 @@ However, we might run into a problem: the Newton step
 \end_inset
 
  might be so large that our Taylor expansion is not accurate, and 
-\begin_inset Formula $f(x^{n}+\delta)$
+\begin_inset Formula $f(x^{k}+\delta)$
 \end_inset
 
  might actually get 
@@ -232,11 +291,11 @@ trust region.
 \end_inset
 
  For example, a common choice is a spherical trust region 
-\begin_inset Formula $\Vert\delta\Vert_{2}<r^{n}$
+\begin_inset Formula $\Vert\delta\Vert_{2}<r^{k}$
 \end_inset
 
  for some radius 
-\begin_inset Formula $r^{n}$
+\begin_inset Formula $r^{k}$
 \end_inset
 
 , in which case there is a nice result: strong duality holds, and we can
@@ -276,7 +335,7 @@ acceptable
 Line search
 \series default
 : We can minimize 
-\begin_inset Formula $f(x^{n}+\alpha\delta^{n})$
+\begin_inset Formula $f(x^{k}+\alpha\delta^{k})$
 \end_inset
 
  over 
@@ -289,7 +348,7 @@ Line search
 \end_inset
 
 
-\begin_inset Formula $\delta^{n}$
+\begin_inset Formula $\delta^{k}$
 \end_inset
 
 .
@@ -324,7 +383,7 @@ acceptable
 Backtracking
 \series default
 : Instead of exact line search, we try 
-\begin_inset Formula $f(x^{n}+\alpha\delta^{n})$
+\begin_inset Formula $f(x^{k}+\alpha\delta^{k})$
 \end_inset
 
  for 
@@ -359,7 +418,7 @@ For both a trust region and backtracking line search we have to decide whether
 
  is acceptable.
  Naively, we can simply check whether 
-\begin_inset Formula $f(x^{n}+\delta)<f(x^{n})$
+\begin_inset Formula $f(x^{k}+\delta)<f(x^{k})$
 \end_inset
 
 , but in practice it turns out that we want to impose stronger conditions
@@ -372,7 +431,7 @@ For both a trust region and backtracking line search we have to decide whether
 \end_inset
 
  is reasonably accurate.
- In practice, we typically impose the 
+ In practice, we typically impose one or both of the 
 \series bold
 Wolfe conditions
 \series default
@@ -384,7 +443,7 @@ Wolfe conditions
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $f(x^{n}+\delta)\leq f(x^{n})+c_{1}\delta^{T}g^{n}$
+\begin_inset Formula $f(x^{k}+\delta)\leq f(x^{k})+c_{1}\delta^{T}g^{k}$
 \end_inset
 
  where 
@@ -400,18 +459,18 @@ Wolfe conditions
 \end_inset
 
  must decrease at least proportional to the prediction of the gradient 
-\begin_inset Formula $g^{n}$
+\begin_inset Formula $g^{k}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $|\delta^{T}g^{n+1}|\leq c_{2}|\delta^{T}g^{n}|$
+\begin_inset Formula $|\delta^{T}g^{k+1}|\leq c_{2}|\delta^{T}g^{k}|$
 \end_inset
 
 , where 
-\begin_inset Formula $g^{n+1}=\left.\nabla f\right|_{x^{n}+\delta}$
+\begin_inset Formula $g^{k+1}=\left.\nabla f\right|_{x^{k}+\delta}$
 \end_inset
 
  and 
@@ -429,7 +488,7 @@ Wolfe conditions
 
  along the search direction must decrease sufficiently.
  (Note that for an exact line search we will have 
-\begin_inset Formula $g^{n+1}=0$
+\begin_inset Formula $g^{k+1}=0$
 \end_inset
 
 .) This condition helps prevent trust-region or inexact line-search methods
@@ -442,7 +501,7 @@ Wolfe conditions
 \end_layout
 
 \begin_layout Section
-Quasi-Newton methods
+Quasi-Newton/Variable-metric methods
 \end_layout
 
 \begin_layout Standard
@@ -498,17 +557,25 @@ quasi
 \begin_inset Quotes erd
 \end_inset
 
- Newton methods apply the same Newton steps above but use an 
+ Newton methods (also called 
+\begin_inset Quotes eld
+\end_inset
+
+variable-metric
+\begin_inset Quotes erd
+\end_inset
+
+ methods) apply the same Newton steps above but use an 
 \series bold
 approximate Hessian
 \series default
  
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
 , often a low-rank approximation (which can be stored and applied efficiently).
  In fact, since what is needed for the Newton step is 
-\begin_inset Formula $(H^{n})^{-1}$
+\begin_inset Formula $(H^{k})^{-1}$
 \end_inset
 
 , usually one stores a low-rank 
@@ -521,11 +588,11 @@ approximate inverse Hessian
 iteratively
 \series default
  construct our approximate 
-\begin_inset Formula $H^{n+1}$
+\begin_inset Formula $H^{k+1}$
 \end_inset
 
  (or 
-\begin_inset Formula $(H^{n+1})^{-1}$
+\begin_inset Formula $(H^{k+1})^{-1}$
 \end_inset
 
 ) 
@@ -542,7 +609,7 @@ first
 
 .
  Some desired properties of 
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  are:
@@ -554,15 +621,37 @@ For a convex quadratic
 \end_inset
 
 , 
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  should approach the exact Hessian as 
-\begin_inset Formula $n\to\infty$
+\begin_inset Formula $k\to\infty$
 \end_inset
 
  (i.e., as we apply our iterative update for many points and many gradient
  evaluations, approaching the minimum).
+ In practice, what can typically be proved
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Broyden67,FletcherPowell63,Goldfarb70"
+literal "false"
+
+\end_inset
+
+ is that for a convex quadratic 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, the quasi-Newton method gives the exact minimum and the exact Hessian
+ in 
+\begin_inset Formula $n$
+\end_inset
+
+ steps (in exact arithmetic).
 \end_layout
 
 \begin_layout Enumerate
@@ -573,13 +662,12 @@ Secant condition
 : 
 \begin_inset Formula 
 \[
-\underbrace{g^{n+1}-g^{n}}_{\gamma}=H^{n+1}\underbrace{(x^{n+1}-x^{n})}_{\delta}
+\underbrace{g^{k+1}-g^{k}}_{\gamma}=H^{k+1}\underbrace{(x^{k+1}-x^{k})}_{\delta}.
 \]
 
 \end_inset
 
-.
- This condition arises because it would be true of the 
+This condition arises because it would be true of the 
 \emph on
 exact
 \emph default
@@ -593,11 +681,11 @@ exact
 
  Taylor expansion above).
  Equivalently, 
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  must at least predict the change in the gradient on the 
-\begin_inset Formula $n$
+\begin_inset Formula $k$
 \end_inset
 
 -th step.
@@ -610,7 +698,7 @@ Real-symmetric positive-definite.
 \end_inset
 
  function convex and 
-\begin_inset Formula $\delta^{n}=-(H^{n})^{-1}g^{n}$
+\begin_inset Formula $\delta^{k}=-(H^{k})^{-1}g^{k}$
 \end_inset
 
  is in the 
@@ -622,14 +710,14 @@ downhill
 \end_inset
 
  direction from 
-\begin_inset Formula $x^{n}$
+\begin_inset Formula $x^{k}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  should 
@@ -670,15 +758,15 @@ remembing
 minimize the change in 
 \series default
 
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
 : we minimize 
-\begin_inset Formula $\Vert H^{n+1}-H^{n}\Vert$
+\begin_inset Formula $\Vert H^{k+1}-H^{k}\Vert$
 \end_inset
 
  in some norm, or alternatively minimize 
-\begin_inset Formula $\Vert(H^{n+1})^{-1}-(H^{n})^{-1}\Vert$
+\begin_inset Formula $\Vert(H^{k+1})^{-1}-(H^{k})^{-1}\Vert$
 \end_inset
 
 .
@@ -702,26 +790,74 @@ This update, named for
 \series bold
 B
 \series default
-royden, 
+royden
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Broyden70"
+literal "false"
+
+\end_inset
+
+, 
 \series bold
 F
 \series default
-letcher, 
+letcher
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fletcher70"
+literal "false"
+
+\end_inset
+
+, 
 \series bold
 G
 \series default
-oldfarb, and 
+oldfarb
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goldfarb70"
+literal "false"
+
+\end_inset
+
+, and 
 \series bold
 S
 \series default
-hannon, who wrote four 
+hanno
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Shanno70"
+literal "false"
+
+\end_inset
+
+, who wrote four 
 \emph on
 separate
 \emph default
- papers on the same idea in 1970, is obtained by solving 
+ papers that developed the approach in 1970, is obtained by solving 
 \begin_inset Formula 
 \[
-\min_{H\in\mathbb{R}^{n\times n}}\Vert H^{-1}-(H^{n})^{-1}\Vert_{W}
+\min_{H\in\mathbb{R}^{n\times n}}\Vert H^{-1}-(H^{k})^{-1}\Vert_{W}
 \]
 
 \end_inset
@@ -778,11 +914,11 @@ weight
 
 ).
  If we let 
-\begin_inset Formula $E=H^{-1}-(H^{n})^{-1}$
+\begin_inset Formula $E=H^{-1}-(H^{k})^{-1}$
 \end_inset
 
 , require that the previous iterate 
-\begin_inset Formula $H^{n}$
+\begin_inset Formula $H^{k}$
 \end_inset
 
  be symmetric, then this optimization problem equivalently becomes 
@@ -806,7 +942,7 @@ weight
 \end_inset
 
  and 
-\begin_inset Formula $r=\delta-(H^{n})^{-1}\gamma$
+\begin_inset Formula $r=\delta-(H^{k})^{-1}\gamma$
 \end_inset
 
 .
@@ -815,11 +951,11 @@ status collapsed
 
 \begin_layout Plain Layout
 If alternatively we were minimizing 
-\begin_inset Formula $\Vert H-H^{n}\Vert_{W}$
+\begin_inset Formula $\Vert H-H^{k}\Vert_{W}$
 \end_inset
 
 , we would get exactly the same form of minimization problem with 
-\begin_inset Formula $E=H-H^{n}$
+\begin_inset Formula $E=H-H^{k}$
 \end_inset
 
 , 
@@ -827,12 +963,12 @@ If alternatively we were minimizing
 \end_inset
 
 , and 
-\begin_inset Formula $r=\gamma-H^{n}\delta$
+\begin_inset Formula $r=\gamma-H^{k}\delta$
 \end_inset
 
 .
- This leads to an alternative BFGS-like method that seems not to perform
- as well in practice.
+ This leads to an alternative quasi-Newton method, called the Davidon–Fletcher–P
+owell (DFP) method, that seems not to perform quite as well in practice.
  Intuitively, since 
 \begin_inset Formula $H^{-1}$
 \end_inset
@@ -871,8 +1007,31 @@ QP
 \end_layout
 
 \begin_layout Standard
-Let's work out the Lagrange dual problem, following Greenstadt and Goldfarb
- (1970).
+Let's work out the Lagrange dual problem, following Greenstadt
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Greenstadt70"
+literal "false"
+
+\end_inset
+
+ and Goldfarb
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goldfarb70"
+literal "false"
+
+\end_inset
+
+.
  We define Lagrange multipliers 
 \begin_inset Formula $\lambda\in\mathbb{R}^{n}$
 \end_inset
@@ -1090,12 +1249,52 @@ E=\frac{1}{y^{T}W^{-1}y}\left[ry^{T}W^{-1}+W^{-1}yr^{T}-\frac{y^{T}r}{y^{T}W^{-1
 
 \end_inset
 
-This looks messy! But we have one trick left up our sleeve: we haven't chosen
- our weight 
+This looks messy, but it is actually quite nice: a 
+\series bold
+sum of rank-1 updates
+\series default
+ to the inverse Hessian! But we have one trick left up our sleeve: we haven't
+ chosen our weight 
 \begin_inset Formula $W$
 \end_inset
 
- yet! What we will do is to choose some 
+ yet! Different choices of 
+\begin_inset Formula $W$
+\end_inset
+
+ lead to different quasi-Newton methods, but it is useful to note that 
+\begin_inset Formula $E$
+\end_inset
+
+ only involves 
+\begin_inset Formula $W$
+\end_inset
+
+ via the combination 
+\begin_inset Formula $W^{-1}y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To get an 
+\begin_inset Formula $E$
+\end_inset
+
+ that turns out to have the especially nice property of 
+\emph on
+preserving positive-definiteness 
+\emph default
+(if 
+\begin_inset Formula $H^{k}$
+\end_inset
+
+ is definite then 
+\begin_inset Formula $H^{k+1}$
+\end_inset
+
+ is also, as we discuss below), is to choose some 
 \begin_inset Formula $W$
 \end_inset
 
@@ -1103,11 +1302,50 @@ This looks messy! But we have one trick left up our sleeve: we haven't chosen
 \begin_inset Formula $W^{-1}y=\delta$
 \end_inset
 
-, and in particular we choose 
-\begin_inset Formula $W^{-1}=(H^{n+1})^{-1}=E+(H^{n})^{-1}$
+.
+ For example, we can choose 
+\begin_inset Formula $W^{-1}=(H^{k+1})^{-1}=E+(H^{k})^{-1}$
 \end_inset
 
 .
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+This may seem a bit circular: we choose 
+\begin_inset Formula $W$
+\end_inset
+
+ based on the 
+\emph on
+result
+\emph default
+ of the optimization.
+ One way to think of it is that if you choose 
+\begin_inset Formula $W$
+\end_inset
+
+ based on the 
+\begin_inset Formula $E=\cdots$
+\end_inset
+
+ formula, then hold 
+\begin_inset Formula $W$
+\end_inset
+
+ fix and minimize 
+\begin_inset Formula $\Vert E\Vert_{W}$
+\end_inset
+
+ in our QP, you recover the same 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
  We then obtain, after a bit more algebra, the famous 
 \series bold
 BFGS update
@@ -1115,16 +1353,12 @@ BFGS update
 : 
 \begin_inset Formula 
 \[
-\boxed{(H^{n+1})^{-1}=(H^{n})^{-1}-\frac{(H^{n})^{-1}\gamma\delta^{T}+\delta\gamma^{T}(H^{n})^{-1}}{\gamma^{T}\delta}+\left(1+\frac{\gamma^{T}(H^{n})^{-1}\gamma}{\gamma^{T}\delta}\right)\delta\delta^{T}}.
+\boxed{(H^{k+1})^{-1}=(H^{k})^{-1}-\frac{1}{\gamma^{T}\delta}\left[(H^{k})^{-1}\gamma\delta^{T}+\delta\gamma^{T}(H^{k})^{-1}-\left(1+\frac{\gamma^{T}(H^{k})^{-1}\gamma}{\gamma^{T}\delta}\right)\delta\delta^{T}\right]}.
 \]
 
 \end_inset
 
-This may look a little messy, but it is actually quite nice: a 
-\series bold
-sum of rank-1 updates
-\series default
- to the inverse Hessian.
+This may look a little messy.
  Equivalently, via the Sherman–Morrison formula,
 \begin_inset Foot
 status open
@@ -1147,15 +1381,15 @@ The Sherman–Morrison formula
 
 \end_inset
 
- we can derive (after considerably more algebra) the corresponding update
- of 
-\begin_inset Formula $H^{n}$
+ we can derive (after a bunch more algebra) the corresponding update of
+ 
+\begin_inset Formula $H^{k}$
 \end_inset
 
 :
 \begin_inset Formula 
 \[
-\boxed{H^{n+1}=H^{n}+\frac{\gamma\gamma^{T}}{\gamma^{T}\delta}-\frac{H^{n}\delta\delta^{T}H^{n}}{\delta^{T}H^{n}\delta}},
+\boxed{H^{k+1}=H^{k}+\frac{\gamma\gamma^{T}}{\gamma^{T}\delta}-\frac{H^{k}\delta\delta^{T}H^{k}}{\delta^{T}H^{k}\delta}},
 \]
 
 \end_inset
@@ -1165,6 +1399,679 @@ which is easier to analyze, even though in practice it is
 \end_inset
 
  that we compute and store.
+\end_layout
+
+\begin_layout Subsection
+Positive-definiteness
+\end_layout
+
+\begin_layout Standard
+A key property of the choice of weight 
+\begin_inset Formula $W$
+\end_inset
+
+ in the BFGS update is that it allows us to ensure positive-definiteness
+ of 
+\begin_inset Formula $H^{k+1}$
+\end_inset
+
+ assuming 
+\begin_inset Formula $H^{k}$
+\end_inset
+
+ is definite.
+ (Typically the algorithm starts with 
+\begin_inset Formula $H^{0}=I$
+\end_inset
+
+ or a similar diagonal positive-definite matrix.) We simply need to check
+ that 
+\begin_inset Formula $x^{T}H^{k+1}x>0$
+\end_inset
+
+ for any 
+\begin_inset Formula $x\ne0$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+x^{T}H^{k+1}x & =x^{T}H^{k}x-\frac{(\delta^{T}H^{k}x)^{2}}{\delta^{T}H^{k}\delta}+\frac{(x^{T}\gamma)^{2}}{\gamma^{T}\delta}\\
+ & =\underbrace{\frac{(x^{T}H^{k}x)(\delta^{T}H^{k}\delta)-(\delta^{T}H^{k}x)^{2}}{\delta^{T}H^{k}\delta}}_{\ge0\text{ by Cauchy–Schwarz}}+\underbrace{\frac{(x^{T}\gamma)^{2}}{\gamma^{T}\delta}}_{>0\text{ if }\gamma^{T}\delta>0}.
+\end{align*}
+
+\end_inset
+
+The first term is 
+\begin_inset Formula $\ge0$
+\end_inset
+
+ by the Cauchy-Schwarz inequality: for any inner product 
+\begin_inset Formula $\langle x,y\rangle$
+\end_inset
+
+, it is always true that 
+\begin_inset Formula $\langle x,x\rangle\langle\delta,\delta\rangle\ge|\langle x,y\rangle|^{2}$
+\end_inset
+
+, and in this case because 
+\begin_inset Formula $H^{k}$
+\end_inset
+
+ is positive-definite we have an inner product 
+\begin_inset Formula $\langle x,y\rangle=x^{T}H^{k}y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The second term is clearly 
+\begin_inset Formula $>0$
+\end_inset
+
+ whenever 
+\begin_inset Formula $\gamma^{T}\delta=\delta^{T}\gamma=\delta^{T}g^{k+1}-\delta^{T}g^{k}>0$
+\end_inset
+
+, but why should this be? If we did an 
+\emph on
+exact
+\emph default
+ line search, then 
+\begin_inset Formula $\delta^{T}g^{k+1}=0$
+\end_inset
+
+, and 
+\begin_inset Formula $-\delta^{T}g^{k}=(x^{k+1}-x^{k})^{T}(-g^{k})>0$
+\end_inset
+
+ because 
+\begin_inset Formula $-g^{k}$
+\end_inset
+
+ is the 
+\begin_inset Quotes eld
+\end_inset
+
+downhill
+\begin_inset Quotes erd
+\end_inset
+
+ direction and 
+\begin_inset Formula $x^{k+1}$
+\end_inset
+
+ must be 
+\begin_inset Quotes eld
+\end_inset
+
+downhill
+\begin_inset Quotes erd
+\end_inset
+
+ from 
+\begin_inset Formula $x^{k}$
+\end_inset
+
+.
+ If we did an 
+\emph on
+inexact
+\emph default
+ line search, but we imposed the second Wolfe condition 
+\begin_inset Formula $|\delta^{T}g^{k+1}|<|\delta^{T}g^{k}|$
+\end_inset
+
+, then we still have 
+\begin_inset Formula $\delta^{T}g^{k+1}-\delta^{T}g^{k}>0$
+\end_inset
+
+ (the second term is positive and the first term can't be a larger negative
+ magnitude).
+ If we didn't impose the second Wolfe condition and happened to do a step
+ where 
+\begin_inset Formula $\delta^{T}\gamma\lesssim0$
+\end_inset
+
+, then we can just skip the update: let 
+\begin_inset Formula $H^{k+1}=H^{k}$
+\end_inset
+
+: violating the second Wolfe condition generally means that we took too
+ small a step, and we want to keep going in the same direction.
+\end_layout
+
+\begin_layout Section
+Low-storage quasi-Newton (L-BFGS)
+\end_layout
+
+\begin_layout Standard
+Applying the BFGS update directly requires 
+\begin_inset Formula $\Theta(n^{2})$
+\end_inset
+
+ storage for 
+\begin_inset Formula $(H^{k})^{-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Theta(n^{2})$
+\end_inset
+
+ work on each step to update 
+\begin_inset Formula $H^{k+1}$
+\end_inset
+
+.
+ This is fine for 
+\begin_inset Formula $n$
+\end_inset
+
+ up to a few thousand, but for truly large-scale optimization problems it
+ is prohibitive.
+ Fortunately, the fact that BFGS is made of rank-1 updates (adding rank-1
+ matrices 
+\begin_inset Formula $uv^{T}$
+\end_inset
+
+ to 
+\begin_inset Formula $H^{k}$
+\end_inset
+
+ or its inverse), there is a solution: store a set of rank-1 updates, not
+ the matrix.
+ That is, represent 
+\begin_inset Formula 
+\[
+(H^{k})^{-1}\approx H^{0}+\sum_{j=1}^{m}u^{j}(v^{j})^{T}
+\]
+
+\end_inset
+
+ where we keep the 
+\begin_inset Formula $m$
+\end_inset
+
+ most recent rank-1 updates for some 
+\begin_inset Formula $m$
+\end_inset
+
+ (typically 
+\begin_inset Formula $10\lesssim m\le100$
+\end_inset
+
+).
+ This is known as an 
+\series bold
+L-BFGS
+\series default
+ method, where 
+\begin_inset Quotes eld
+\end_inset
+
+L
+\begin_inset Quotes erd
+\end_inset
+
+ stands for 
+\begin_inset Quotes eld
+\end_inset
+
+low-storage
+\begin_inset Quotes erd
+\end_inset
+
+, and was introduced by Nocedal in
+\begin_inset space ~
+\end_inset
+
+1980
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Byrd94"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+With this representation of 
+\begin_inset Formula $(H^{k})^{-1}$
+\end_inset
+
+, assuming 
+\begin_inset Formula $H^{0}$
+\end_inset
+
+ is sparse (typically diagonal, e.g.
+ 
+\begin_inset Formula $I$
+\end_inset
+
+), the storage cost is 
+\begin_inset Formula $\Theta(mn)$
+\end_inset
+
+ for the 
+\begin_inset Formula $\{u^{j},v^{j}\}$
+\end_inset
+
+ vectors, the cost to multiply 
+\begin_inset Formula $(H^{k})^{-1}g^{k}$
+\end_inset
+
+ for the quasi-Newton step is also 
+\begin_inset Formula $\Theta(mn)$
+\end_inset
+
+, where as usual we compute 
+\begin_inset Formula $uv^{T}g$
+\end_inset
+
+ by 
+\begin_inset Formula $u(v^{T}g)$
+\end_inset
+
+ in 
+\begin_inset Formula $\Theta(n)$
+\end_inset
+
+ operations, and the cost of updating to 
+\begin_inset Formula $H^{k+1}$
+\end_inset
+
+ is 
+\begin_inset Formula $\Theta(mn)$
+\end_inset
+
+ for the 
+\begin_inset Formula $(H^{k})^{-1}\gamma$
+\end_inset
+
+ product plus 
+\begin_inset Formula $\Theta(n)$
+\end_inset
+
+ other operations.
+\end_layout
+
+\begin_layout Standard
+Although for 
+\begin_inset Formula $m\ll n$
+\end_inset
+
+ this procedure can no longer converge to the exact Hessian, in practice
+ L-BFGS can greatly accelerate optimization (compared to steepest-descent
+ and other first-order methods with 
+\begin_inset Quotes eld
+\end_inset
+
+no memory
+\begin_inset Quotes erd
+\end_inset
+
+) in many cases, especially optimization to high accuracy, in much the same
+ way as an approximate Krylov method like restarted GMRES or nonlinear conjugate
+-gradient.
+\end_layout
+
+\begin_layout Section
+BFGS and constrained optimization
+\end_layout
+
+\begin_layout Standard
+For nonlinearly constrained optimization (
+\begin_inset Formula $\min f_{0}(x)$
+\end_inset
+
+ subject to 
+\begin_inset Formula $f_{i}(x)\le0$
+\end_inset
+
+), the most common utilization of BFGS has been for sequential quadratic
+ programming (SQP): approximate the optimization problem by a sequence of
+ convex QP (convex quadratic objective + affine constraints), typically
+ solved in a trust region to give each optimization step.
+ BFGS is then used to obtain the quadratic term in the QP, but there are
+ a variety of ways to do this.
+ The simplest is to apply BFGS to 
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ , but in that case only linear approximations are used for the constraints
+ 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+.
+ Alternatively, BFGS can be applied to some form of Lagrangian or 
+\begin_inset Quotes eld
+\end_inset
+
+augmented
+\begin_inset Quotes erd
+\end_inset
+
+ Lagrangian (=
+\begin_inset space ~
+\end_inset
+
+Lagrangian +
+\begin_inset space ~
+\end_inset
+
+penalties for violated constraints)
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Byrd92"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Broyden70"
+literal "false"
+
+\end_inset
+
+C.
+ Broyden, 
+\begin_inset Quotes eld
+\end_inset
+
+The convergence of a class of double-rank minimization algorithms,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+J.
+ Inst.
+ Math.
+ Appl.
+
+\series bold
+\emph default
+ 6
+\series default
+, pp.
+ 76–90 (1970).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Fletcher70"
+literal "false"
+
+\end_inset
+
+R.
+ Fletcher, 
+\begin_inset Quotes eld
+\end_inset
+
+A new approach to variable-metric algorithms,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Computer J.
+
+\emph default
+ 
+\series bold
+13
+\series default
+, pp.
+ 317–322 (1970).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Goldfarb70"
+literal "false"
+
+\end_inset
+
+D.
+ Goldfarb, 
+\begin_inset Quotes eld
+\end_inset
+
+A family of variable-metric methods derived by variational means,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Math.
+ Comp.
+
+\emph default
+ 
+\series bold
+24
+\series default
+, pp.
+ 23–26 (1970).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Shanno70"
+literal "false"
+
+\end_inset
+
+D.
+ Shanno, 
+\begin_inset Quotes eld
+\end_inset
+
+Conditioning of quasi-Newton methods for function minimization,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Math.
+ Comp.
+
+\emph default
+ 
+\series bold
+24
+\series default
+, pp.
+ 647–656 (1970).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "FletcherPowell63"
+literal "false"
+
+\end_inset
+
+R.
+ Fletcher and M.
+ J.
+ D.
+ Powell, 
+\begin_inset Quotes eld
+\end_inset
+
+A rapidly convergent descent method for minimization,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Comput.
+ J.
+
+\emph default
+ 
+\series bold
+6
+\series default
+, pp.
+ 163–168 (1963).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Broyden67"
+literal "false"
+
+\end_inset
+
+C.
+ G.
+ Broyden, 
+\begin_inset Quotes eld
+\end_inset
+
+Quasi-Newton methods and their application to function minimisation,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Math.
+ Comp.
+
+\emph default
+ 
+\series bold
+21
+\series default
+, pp.
+ 368–381 (1967).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Greenstadt70"
+literal "false"
+
+\end_inset
+
+J.
+ Greenstadt, 
+\begin_inset Quotes eld
+\end_inset
+
+Variations on variable metric methods,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Math.
+ Comp.
+
+\emph default
+ 
+\series bold
+24
+\series default
+, pp.
+ 1–22 (1970).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Byrd94"
+literal "false"
+
+\end_inset
+
+R.
+ H.
+ Byrd, J.
+ Nocedal, R.
+ B.
+ Schnabel, 
+\begin_inset Quotes eld
+\end_inset
+
+Representations of quasi-Newton matrices and their use in limited memory
+ methods,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Math.
+ Prog.
+
+\emph default
+ 
+\series bold
+63
+\series default
+, pp.
+ 129–156 (1994).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Byrd92"
+literal "false"
+
+\end_inset
+
+R.
+ H.
+ Byrd, R.
+ A.
+ Tapia, Y.
+ Zhang, 
+\begin_inset Quotes eld
+\end_inset
+
+An SQP augmented Lagrangian BFGS algorithm for constrained optimization,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+SIAM J.
+ Optim.
+
+\emph default
+ 
+\series bold
+2
+\series default
+, pp.
+ 210–241 (1992).
 \end_layout
 
 \end_body
