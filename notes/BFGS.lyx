@@ -220,7 +220,11 @@ Near a local minimum,
 \begin_inset Formula $H$
 \end_inset
 
- is positive-definite, and the exact minimum is 
+ is positive-definite, and the minimum of 
+\begin_inset Formula $q(\delta)$
+\end_inset
+
+ is 
 \begin_inset Formula 
 \[
 \delta^{k}=-(H^{k})^{-1}g^{k}.
@@ -1007,7 +1011,7 @@ QP
 \end_layout
 
 \begin_layout Standard
-Let's work out the Lagrange dual problem, following Greenstadt
+Let's apply duality, following Greenstadt
 \begin_inset space ~
 \end_inset
 
@@ -1131,8 +1135,8 @@ where
  We can now solve the KKT conditions
 \begin_inset Formula 
 \begin{align*}
-\nabla_{E}L & =0=WEW+\lambda y^{T}+\Gamma^{T}-\Gamma\\
-Ey-r & =0\\
+\nabla_{E}L & =0=WEW+\lambda y^{T}+\Gamma^{T}-\Gamma,\\
+Ey-r & =0,\\
 E^{T}-E & =0.
 \end{align*}
 
@@ -1584,12 +1588,12 @@ Applying the BFGS update directly requires
  That is, represent 
 \begin_inset Formula 
 \[
-(H^{k})^{-1}\approx H^{0}+\sum_{j=1}^{m}u^{j}(v^{j})^{T}
+(H^{k})^{-1}\approx H^{0}+\sum_{j=1}^{m}u^{j}(v^{j})^{T},
 \]
 
 \end_inset
 
- where we keep the 
+where we keep the 
 \begin_inset Formula $m$
 \end_inset
 
