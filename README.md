@@ -483,3 +483,21 @@ One approach to this is weighted Clenshaw–Curtis quadrature: expand f(x) in Ch
 An alternative approach (for real w ≥ 0, and > 0 almost everywhere) is [Gaussian quadrature](https://en.wikipedia.org/wiki/Gaussian_quadrature): fit f(x) to a polynomial of degree n–1 by evaluating at n points consisting of the roots of an orthogonal polynomial qₙ₊₁ of degree n, where the polynomials {q₁,q₂,…} are formed via Gram–Schmidt orthogonalization of the basis {1,x,x²,…} with the inner product (p,q)=∫w(x)p(x)q(x)dx.   There is a beautiful proof that this integrates polynomials exactly up to degree 2n–1, it takes w(x) into account analytically, and by a more complicated analysis it converges exponentially for analytic f.  Moreover, it turns out that finding {q₁,q₂,…} is equivalent to performing the Lanczos iteration with the real-symmetric linear operator x, leading to a three-term recurrence.  We already saw one such three-term recurrence for the Chebyshev polynomials Tₙ(x), corresponding to the weight w(x)=1/√(1-x²), and other weight functions give rise to other orthogonal polynomials with their own 3-term recurrences: w=1 gives [Legendre polynomials](https://en.wikipedia.org/wiki/Legendre_polynomials), but there are also [Gegenbauer polynomials](https://en.wikipedia.org/wiki/Gegenbauer_polynomials), [Laguerre polynomials](https://en.wikipedia.org/wiki/Laguerre_polynomials) for w=e⁻ˣ on 0…∞,  [Hermite polynomials](https://en.wikipedia.org/wiki/Hermite_polynomials) for w=exp(-x²) on -∞…+∞, and others.   Moreover, the Lanczos tridiagonal eigenvalues turn out to be precisely the roots of qₙ₊₁ that we want, while the eigenvectors turn out to give the weights, and for a long time this surprising(!) O(n²) "Golub–Welsch" method was the method of choice for finding Gaussian quadrature nodes and weights.
 
 **Further reading**: [Evans & Webster (1999)](https://doi.org/10.1016/S0377-0427(99)00213-7) describe the weighted Clenshaw–Curtis approach to oscillatory integrals; this and other methods are reviewed in Sheehan [Olver's thesis (2008)](http://www.maths.usyd.edu.au/u/olver/papers/OlverThesis.pdf).  Trefethen & Bau, lecture 37, discusses Gaussian quadrature and its connection to the Lanczos method.   More recently, O(n) methods have been discovered to find the Gaussian quadrature points and weights; see the references in the Julia [FastGaussQuadrature](https://github.com/JuliaApproximation/FastGaussQuadrature.jl) package.  An influential recent comparison of Clenshaw–Curtis and Gaussian quadrature is: Lloyd N. Trefethen, "[Is Gauss quadrature better than Clenshaw-Curtis?](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.157.4174)," _SIAM Review_ **50** (1), 67-87 (2008).
+
+### Lecture 37 (May 10)
+
+Discussed the importance of nested quadrature rules for _a posteriori_ error estimation (Clenshaw–Curtis, Gauss–Kronrod, Gauss–Patterson) and adaptive quadrature. Discussed p-adaptive vs. h-adaptive adaptive schemes.  Multidimensional integration and the curse of dimensionality.
+
+### Lecture 38 (May 13)
+
+**Handout:** [notes on FFTs](notes/fft-iap3.pdf)
+
+Introduced the [discrete Fourier transform (DFT)](https://en.wikipedia.org/wiki/Discrete_Fourier_transform).   Talked about its history (Gauss!), properties (unitarity, convolution theorem), aliasing, special case of the [type-1 discrete cosine transform (DCT)](https://en.wikipedia.org/wiki/Discrete_cosine_transform), and applications (Chebyshev and other spectral methods for integration, PDEs, etcetera; signal processing, [multiplying large numbers](https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm)), etc.
+
+A [fast Fourier transform (FFT)](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is an O(N log N) algorithm to compute the DFT.  There are many such algorithms, the most famous of which is the Cooley–Tukey algorithm (1967, though there were many precursors dating back to Gauss himself).
+
+nal integration and the curse of dimensionality.
+
+### Lecture 39 (May 15)
+
+**Handout:** [slides on FFTs and FFTW](notes/FFTW-Alan-2008.pdf)
