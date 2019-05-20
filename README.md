@@ -27,7 +27,7 @@ Syllabus
 
 A good final project will include:
 
-* An extensive introduction and bibliography putting the algorithm in context.  Where did it come from, and what motivated?  Where is it commonly used (if anywhere)?  What are the main competing algorithms?  Were any variants of the algorithm proposed later?  What do other authors say about it?
+* An extensive introduction and bibliography putting the algorithm in context.  Where did it come from, and what motivated its development?  Where is it commonly used (if anywhere)?  What are the main competing algorithms?  Were any variants of the algorithm proposed later?  What do other authors say about it?
 
 * A clear description of the algorithm, with a summary of its derivation and key properties.   Don't copy long mathematical derivations or proofs from other sources, but do *summarize* the key ideas and results in the literature.
 
