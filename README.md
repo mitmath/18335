@@ -504,8 +504,6 @@ Introduced the [discrete Fourier transform (DFT)](https://en.wikipedia.org/wiki/
 
 A [fast Fourier transform (FFT)](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is an O(N log N) algorithm to compute the DFT.  There are many such algorithms, the most famous of which is the Cooley–Tukey algorithm (1965, though there were many precursors dating back to Gauss himself).
 
-nal integration and the curse of dimensionality.
-
 ### Lecture 39 (May 15)
 
 **Handout:** [slides on FFTs and FFTW](notes/FFTW.pdf)
