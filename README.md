@@ -48,8 +48,8 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 6)
 
-* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1.ipynb), due Friday Feb. 15.
-* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb).
+* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/psets/pset1.ipynb), due Friday Feb. 15.
+* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Newton-Square-Roots.ipynb).
 
 Brief overview of the huge field of numerical methods, and outline of the small portion that this course will cover. Key new concerns in numerical analysis, which don't appear in more abstract mathematics, are (i) performance (traditionally, arithmetic counts, but now memory access often dominates) and (ii) accuracy (both floating-point roundoff errors and also convergence of intrinsic approximations in the algorithms).
 
@@ -59,16 +59,16 @@ As a starting example, considered the convergence of Newton's method (as applied
 
 ### Julia tutorial (Feb 8: 5pm in 32-141) — optional
 
-**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf), [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
+**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/spring19/Julia-cheatsheet.pdf), [Julia intro slides](https://github.com/mitmath/julia-mit/blob/spring19/Julia-intro.pdf)
 
-On Friday, 8 February, at 5pm in 32-141, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md).
+On Friday, 8 February, at 5pm in 32-141, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/spring19/README.md).
 
 Please **bring your laptops**, and try to install Julia and the IJulia interface first via the abovementioned tutorial notes. Several people will be at the tutorial session to help answer installation questions. Alternatively, you can use Julia online at [JuliaBox](https://juliabox.com/) without installing anything (although running things on your own machine is usually faster).
 
 ### Lecture 2 (Feb 8)
 
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
-* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
+* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
 
 New topic: **Floating-point arithmetic**
@@ -120,7 +120,7 @@ Equivalence of norms. Described fact that any two norms are equivalent up to a c
 
 ### Lecture 5 (Feb 15)
 
-* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1sol.ipynb)
+* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/psets/pset1sol.ipynb)
 * [pset 2](psets/pset2.pdf), due at 3pm on Friday March 1.
 
 Relate backwards error to forwards error, and backwards stability to forwards error (or "accuracy" as the book calls it). Show that, in the limit of high precision, the forwards error can be bounded by the backwards error multiplied by a quantity κ, the **relative condition number**. The nice thing about κ is that it involves only exact linear algebra and calculus, and is completely separate from considerations of floating-point roundoff. Showed that, for differentiable functions, κ can be written in terms of the induced norm of the Jacobian matrix.
@@ -153,7 +153,7 @@ Guest lecture by Prof. Alan Edelman: the SVD, relationship to L₂ norms and con
 
 ### Lecture 8 (Feb 22)
 
-* [Many viewpoints on linear regression notebook](https://github.com/alanedelman/18.337_2017/blob/master/lectures/Lecture04_0918%20RegressionManyWays/RegressionManyWays.ipynb).
+* [Many viewpoints on linear regression notebook](https://github.com/alanedelman/18.337_2017/blob/spring19/lectures/Lecture04_0918%20RegressionManyWays/RegressionManyWays.ipynb).
 
 Guest lecture by Prof. Alan Edelman: Generalized SVD (GSVD).  Least-square problems (via QR or SVD) and different viewpoints on linear regression: linear algebra, optimization, statistics, machine learning.
 
@@ -173,7 +173,7 @@ Discussed loss of orthogonality in classical Gram-Schmidt, using a simple exampl
 
 ### Lecture 10 (Feb 27)
 
-* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
+* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Gram-Schmidt.ipynb)
 * Per Persson's [2006 18.335 Householder notes](notes/lec6.pdf) ([handout](notes/lec6handout6pp.pdf))
 
 Discussed loss of orthogonality in classical Gram-Schmidt, using a simple example, especially in the case where the matrix has nearly dependent columns to begin with. Showed modified Gram-Schmidt and argued how it (mostly) fixes the problem. Numerical examples (see notebook).
@@ -206,7 +206,7 @@ Discussed some practical difficulties of the blocked matrix multiplication: algo
 ### Lecture 12 (Mar 4)
 
 * experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf))
-* [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Memory-and-Matrices.ipynb)
+* [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Memory-and-Matrices.ipynb)
 
 Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout and Frigo et. al paper above).
 
@@ -296,7 +296,7 @@ Noted that n steps of Arnoldi requires Θ(mn²) operations and Θ(mn) storage. I
 
 ### Lecture 19 (Mar 20)
 
-* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
+* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Arnoldi.ipynb)
 * [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
 
 Showed some computational examples (notebook above) of Arnoldi convergence. Discussed how rounding problems cause a loss of orthogonality in Lanczos, leading to "ghost" eigenvalues where extremal eigenvalues re-appear. In Arnoldi, we explicitly store and orthogonalize against all qj vectors, but then another problem arises: this becomes more and more expensive as n increases.
@@ -327,7 +327,7 @@ In many practical cases, unfortunately, the eigenvalues of A are _not_ mostly cl
 
 ### Lecture 21 (Apr 1)
 
-* [Sparse and dense linear solvers notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Dense-and-Sparse.ipynb) with some numerical examples.
+* [Sparse and dense linear solvers notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Dense-and-Sparse.ipynb) with some numerical examples.
 
 Continued to discuss preconditioning: finding an M such that MA (left preconditioning) or AM (right preconditioning) has clustered eigenvalues (solving MAx=Mb or AMy=b with x=My, respectively). Essentially, one can think of M as a crude approximation for A–1, or rather the inverse of a crude approximation of A that is easy to invert. Brief summary of some preconditioning ideas: multigrid, incomplete LU/Cholesky, Jacobi/block-Jacobi. (Since Jacobi preconditioners only have short-range interactions, they tend not to work well for matrices that come from finite-difference/finite-element discretizations on grids, but they can work well for diagonally dominant matrices that arise in spectral and integral-equation methods.)
 
@@ -360,7 +360,7 @@ Concluded with some rules of thumb about which type of solvers to use: LAPACK fo
 ### Lecture 25 (Apr 8)
 
 * [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006
-* [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Nested-Dissection.ipynb)
+* [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Nested-Dissection.ipynb)
 
 **Sparse-direct solvers:** For many problems, there is an intermediate between the dense Θ(m3) solvers of LAPACK and iterative algorithms: for a sparse matrix A, we can sometimes perform an LU or Cholesky factorization while maintaining sparsity, storing and computing only nonzero entries for vast savings in storage and work. In particular, did a Matlab demo, a few experiments with a simple test case: the "discrete Laplacian" center-difference matrix on uniform grids that we've played with previously in 18.335. In 1d, this matrix is tridiagonal and LU/Cholesky factorization produces a bidiagonal matrix: Θ(m) storage and work! For a 2d grid, there are 4 off-diagonal elements, and showed how elimination introduces Θ(√m) nonzero entries in each column, or Θ(m3/2) nonzero entries in total. This is still not too bad, but we can do better. First, showed that this "fill-in" of the sparsity depends strongly on the ordering of the degrees of freedom: as an experiment, tried a _random_ reordering, and found that we obtain Θ(m2) nonzero entries (~10% nonzero). Alternatively, one can find re-orderings that greatly reduce the fill-in. One key observation is that the fill-in only depends on the pattern of the matrix, which can be interpreted as a [graph](http://en.wikipedia.org/wiki/Graph_%28mathematics%29): m vertices, and edges for the nonzero entries of A (an [adjacency matrix](http://en.wikipedia.org/wiki/Adjacency_matrix) of the graph), and sparse-direct algorithms are closely related to graph-theory problems. For our simple 2d Laplacian, the graph is just the picture of the grid connecting the points. One simple algorithm is the [nested dissection algorithm](http://en.wikipedia.org/wiki/Nested_dissection): recursively find a separator of the graph, then re-order the vertices to put the separator last. This reorders the matrix into a mostly block-diagonal form, with large blocks of zeros that are preserved by elimination, and if we do this recursively we greatly reduce the fill-in. Did a crude analysis of the the fill-in structure, resulting in the time/space complexity on the last page of the handoutw, for our 2d grid where separators are obvious; for more general matrices finding separators is a hard and important problem in graph theory.
 
@@ -395,7 +395,7 @@ Outlined application of nonlinear CG to Hermitian eigenproblems by minimizing th
 
 * [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients
 * [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
-* [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/adjoint/Adjoint-method.ipynb)
+* [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
 
 Introduction to **adjoint** methods and the remarkable fact that one can compute the gradient of a complicated function with about the same number of additional operations as computing the function _once_.
 
