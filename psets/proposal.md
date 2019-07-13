@@ -27,6 +27,7 @@ A few examples of project topics from past terms are:
 * The Fast Multipole Method for the n-body problem
 * Uncertainy quantification (UQ) algorithms
 * [Numerical continuation](https://en.wikipedia.org/wiki/Numerical_continuation) algorithms (e.g. [pseudo arc-length continuation](https://github.com/rveltz/PseudoArcLengthContinuation.jl))
+* Exactly rounded summation via adaptive-precision arithmetic, e.g. via the algorithms by [Neal](https://arxiv.org/abs/1505.05571) ([callable from Julia](https://github.com/stevengj/Xsum.jl)) or [Shewchuk](https://people.eecs.berkeley.edu/~jrs/papers/robustr.pdf).
 
 (Try leafing through a book on numerical algorithms, e.g. Numerical Recipes, for ideas.)
 
