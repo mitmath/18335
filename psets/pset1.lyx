@@ -90,7 +90,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 15 February 2019.
+Due Friday, 14 February 2020.
  You should submit your problem set 
 \series bold
 electronically
@@ -318,6 +318,53 @@ Newton's method for a root of
 \end_layout
 
 \begin_layout Enumerate
+For the ordinary Newton iteration 
+\begin_inset Formula $x_{n+1}=x_{n}-f(x_{n})/f'(x_{n})$
+\end_inset
+
+, with a root 
+\begin_inset Formula $f(x_{*})=0$
+\end_inset
+
+ and a guess 
+\begin_inset Formula $x_{n}=x_{*}+\delta_{n}$
+\end_inset
+
+, show that 
+\begin_inset Formula $\delta_{n+1}$
+\end_inset
+
+ is proportional to 
+\begin_inset Formula $\delta_{n}^{2}$
+\end_inset
+
+ plus terms of 
+\begin_inset Formula $O(\delta_{n}^{3})$
+\end_inset
+
+—that is, that it roughly squares the error (doubling the number of correct
+ digits) at each step once 
+\begin_inset Formula $\delta_{n}$
+\end_inset
+
+ is sufficiently small.
+ We showed this in class for square roots, but here you should prove it
+ for any smooth 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, assuming 
+\begin_inset Formula $f$
+\end_inset
+
+ has a Taylor series around 
+\begin_inset Formula $x_{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
 Propose a Newton-like iteration that takes advantage of 
 \begin_inset Formula $f$
 \end_inset
@@ -373,30 +420,6 @@ quadratic formula cancellation error.
 \end_layout
 
 \begin_layout Enumerate
-Analyze its asymptotic convergence rate: if 
-\begin_inset Formula $x$
-\end_inset
-
- is an exact root, write 
-\begin_inset Formula $x_{n}=x(1+\delta_{n})$
-\end_inset
-
- as in class, and solve for 
-\begin_inset Formula $\delta_{n+1}$
-\end_inset
-
- in terms of 
-\begin_inset Formula $\delta_{n}$
-\end_inset
-
- assuming you are close to the root (
-\begin_inset Formula $\delta_{n}\ll1$
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Enumerate
 Modify the Julia Newton's-method notebook from class to implement your method
  to compute a root of 
 \begin_inset Formula $f(x)=x^{3}-1$
@@ -416,8 +439,12 @@ Modify the Julia Newton's-method notebook from class to implement your method
 \end_inset
 
 .
- Demonstrate that it agrees with your predicted convergence rate from the
- previous part.
+ You should find that it approximately 
+\emph on
+cubes
+\emph default
+ the error (roughly tripling the number of correct digits) at each step
+ (you don't need to prove this, but the proof is similar to problem 3a).
  [You should use arbitrary precision as in the notebook from class, so that
  you can watch the convergence rate for many digits.
  An approximate number of accurate digits is given by 
