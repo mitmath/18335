@@ -1,7 +1,9 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass article
 \begin_preamble
 \newcommand{\fl}{\operatorname{fl}}
@@ -12,16 +14,18 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -32,16 +36,26 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 2
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -51,7 +65,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -238,7 +255,7 @@ Integer arithmetic is much faster than floating-point arithmetic.
 False
 \series default
  on any modern general-purpose CPU.
- (True in 1985, or on small embedded systems.)
+ (Maybe true in 1980s, or on small embedded systems.)
 \end_layout
 
 \begin_layout Itemize
@@ -279,15 +296,8 @@ False
 \end_layout
 
 \begin_layout Itemize
-Floating-point arithmetic performs 
-\begin_inset Quotes eld
-\end_inset
-
-random
-\begin_inset Quotes erd
-\end_inset
-
- rounding of decimal fractions, e.g.
+Floating-point arithmetic incurs rounding errors in representing typical
+ decimal fractions, e.g.
  0.1 or 3.1415.
  
 \series bold
@@ -305,7 +315,7 @@ False
 \emph on
 decimal
 \emph default
- floating-point (available in many software libraries).
+ floating-point (available in many software libraries and some hardware).
 \end_layout
 
 \begin_layout Itemize
@@ -320,22 +330,13 @@ In floating–point arithmetic nothing is ever exactly 0 ; but if it is, no
  (Kahan) 
 \series bold
 False.
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Quotes eld
-\end_inset
-
-Progress is inevitable: When better formulas are found, they supplant the
- worse.
-\begin_inset Quotes erd
-\end_inset
-
- (Kahan) Sadly, 
-\series bold
-False
+ 
 \series default
-.
+(Signed zeros are useful for tracking 
+\emph on
+underflow
+\emph default
+, indicating branch cuts, and other situations.)
 \end_layout
 
 \end_body
