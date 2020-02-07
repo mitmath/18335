@@ -78,8 +78,7 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 
 ### Lecture 3 (Feb 7)
 
-* notes on the accuracy of [floating-point summation](notes/naivesum.pdf)
-* [notes on backwards stability of summation](notes/summation-stability.pdf) — in class, I instead showed the same thing using the previous accuracy notes as a starting point, but similarly using the L₁ norm.
+* notes on the accuracy and stability of [floating-point summation](notes/naivesum.pdf)
 
 Summation, accuracy, and stability.
 

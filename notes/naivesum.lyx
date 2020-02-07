@@ -11,6 +11,10 @@
 
 \renewcommand{\labelenumi}{(\alph{enumi})}
 \renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\fl}{\operatorname{fl}}
+
+\date{Created Fall 2019; updated \today}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -40,7 +44,7 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_package amsmath 1
+\use_package amsmath 2
 \use_package amssymb 1
 \use_package cancel 1
 \use_package esint 0
@@ -86,7 +90,7 @@
 \begin_body
 
 \begin_layout Title
-Notes on the accuracy of naive summation
+Notes on the accuracy and stability of naive summation
 \end_layout
 
 \begin_layout Author
@@ -96,31 +100,125 @@ S.
 \end_layout
 
 \begin_layout Section
-Naive summation
+Summation: Order matters
 \end_layout
 
 \begin_layout Standard
-In these notes, we analyze the floating-point error involved in summing
- 
-\begin_inset Formula $n$
-\end_inset
-
- numbers, i.e.
- in computing the function 
+Consider the summation function 
 \begin_inset Formula $f(x)=\sum_{i=1}^{n}x_{i}$
 \end_inset
 
- for 
+ for vectors 
+\begin_inset Formula $x\in\mathbb{R}^{n}$
+\end_inset
+
+ or 
 \begin_inset Formula $x\in\mathbb{F}^{n}$
 \end_inset
 
  (
-\begin_inset Formula $\mathbb{F}$
+\begin_inset Formula $n$
 \end_inset
 
- being the set of floating-point numbers), where the sum is done in the
- most obvious way, in sequence.
- In pseudocode:
+ real numbers).
+ When we implement an approximate version 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ of this sum on a computer, using 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ (floating-point addition) rather than 
+\begin_inset Formula $+$
+\end_inset
+
+ (exact addition), there are many possible algorithms, and different algorithms
+ will have different roundoff errors.
+\end_layout
+
+\begin_layout Standard
+A key fact to remember is that 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ is commutative but 
+\emph on
+not associative.
+
+\emph default
+ In particular, consider 
+\begin_inset Formula $\frac{1}{\epsilon_{\text{machine}}^{2}}+\frac{-1}{\epsilon_{\text{machine}}^{2}}+1=1$
+\end_inset
+
+.
+ In floating-point arithmetic, we can parenthesize (associate) this sum
+ in two different ways to obtain two different results :
+\begin_inset Formula 
+\[
+\underbrace{\left(\frac{1}{\epsilon_{\text{machine}}^{2}}\oplus\frac{-1}{\epsilon_{\text{machine}}^{2}}\right)}_{=0}\oplus1=1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{1}{\epsilon_{\text{machine}}^{2}}\oplus\underbrace{\left(\frac{-1}{\epsilon_{\text{machine}}^{2}}\oplus1\right)}_{=-1/\epsilon_{\text{machine}}^{2}}=0.
+\]
+
+\end_inset
+
+In these notes, we will analyze the most obvious possible algorithm for
+ 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+: 
+\begin_inset Quotes eld
+\end_inset
+
+naive
+\begin_inset Quotes erd
+\end_inset
+
+ left-to-right summation.
+ Later, we will see that there are often better ways to compute 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ A much more complete analysis of many summation algorithms can be found
+ in Higham (1993)
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Higham93"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Naive summation
+\end_layout
+
+\begin_layout Standard
+In pseudocode, the most obvious algorithm for summation of 
+\begin_inset Formula $n$
+\end_inset
+
+ floating-point inputs 
+\begin_inset Formula $x\in\mathbb{F}^{n}$
+\end_inset
+
+ is to simply sum the terms in order from left to right:
 \end_layout
 
 \begin_layout LyX-Code
@@ -160,33 +258,6 @@ for
 \end_inset
 
  = sum
-\end_layout
-
-\begin_layout Standard
-A much more complete analysis of summation can be found in Higham (1993)
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Higham93"
-literal "false"
-
-\end_inset
-
-.
- Perhaps confusingly, this naive algorithm is called 
-\begin_inset Quotes eld
-\end_inset
-
-recursive
-\begin_inset Quotes erd
-\end_inset
-
- summation, in reference to the inductive version of the definition below,
- although most computer programs would implement this with a loop (with
- the exception of Lisp programmers using tail recursion).
 \end_layout
 
 \begin_layout Standard
@@ -238,12 +309,12 @@ An upper bound on the error
 \end_layout
 
 \begin_layout Standard
-We can easily prove an upper bound on the errors accumulated by the floating-poi
-nt implementation of this algorithm: 
+We can easily prove the following upper bound on the errors accumulated
+ by the naive floating-poing sum: 
 \begin_inset Formula 
-\[
-|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2}).
-\]
+\begin{equation}
+|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|+O(\epsilon_{\mbox{machine}}^{2}).\label{eq:bound}
+\end{equation}
 
 \end_inset
 
@@ -287,7 +358,7 @@ nonnegative
 
 , and we find that the relative error grows 
 \series bold
-at worse linearly
+at worst linearly
 \series default
  with the problem size 
 \begin_inset Formula $n$
@@ -299,9 +370,9 @@ at worse linearly
 \begin_layout Standard
 To prove this, we first prove the lemma:
 \begin_inset Formula 
-\[
-\tilde{f}(x)=\sum_{i=1}^{n}x_{i}\prod_{k=i}^{n}(1+\epsilon_{k}),
-\]
+\begin{equation}
+\tilde{f}(x)=\sum_{i=1}^{n}x_{i}\prod_{k=i}^{n}(1+\epsilon_{k}),\label{eq:lemma}
+\end{equation}
 
 \end_inset
 
@@ -366,11 +437,25 @@ Now for the inductive step.
 \end_layout
 
 \begin_layout Standard
-Now, let us multiply out the terms: 
+Given lemma.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lemma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), let us multiply out the terms: 
 \begin_inset Formula 
-\[
-(1+\epsilon_{i})\cdots(1+\epsilon_{n})=1+\sum_{k=i}^{n}\epsilon_{k}+(\mbox{products of }\epsilon)=1+\delta_{i},
-\]
+\begin{equation}
+(1+\epsilon_{i})\cdots(1+\epsilon_{n})=1+\sum_{k=i}^{n}\epsilon_{k}+(\mbox{products of }\epsilon)=1+\delta_{i},\label{eq:delta}
+\end{equation}
 
 \end_inset
 
@@ -384,9 +469,9 @@ where the products of
 
 , and hence 
 \begin_inset Formula 
-\[
-|\delta_{i}|\leq\sum_{k=i}^{n}|\epsilon_{k}|+O(\epsilon_{\mbox{machine}}^{2})\le n\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2}).
-\]
+\begin{equation}
+|\delta_{i}|\leq\sum_{k=i}^{n}|\epsilon_{k}|+O(\epsilon_{\mbox{machine}}^{2})\le n\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2}).\label{eq:delta-bound}
+\end{equation}
 
 \end_inset
 
@@ -402,11 +487,21 @@ Now we have:
 
 \end_inset
 
-Hence 
-\begin_inset Formula $|\tilde{f}(x)-f(x)|\leq n\epsilon_{\mbox{machine}}\sum_{i=1}^{n}|x_{i}|$
+Hence we obtain eq.
+\begin_inset space ~
 \end_inset
 
- from the 
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bound"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) from the 
 \begin_inset Formula $|\delta_{i}|$
 \end_inset
 
@@ -443,7 +538,21 @@ unless
 \begin_inset Formula $O(\epsilon_{\mbox{machine}})$
 \end_inset
 
- is uniformly convergent in 
+ in eq.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bound"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) is uniformly convergent in 
 \begin_inset Formula $x$
 \end_inset
 
@@ -481,8 +590,8 @@ different signs
 \begin_inset Formula $x_{i}$
 \end_inset
 
- are usually random noise.
- For uniform random 
+ are often random noise and IEEE arithmetic rounds-to-nearest by default.
+ For independent random 
 \begin_inset Formula $\epsilon_{k}$
 \end_inset
 
@@ -498,7 +607,7 @@ different signs
 \begin_inset Formula $\sim\epsilon_{\mbox{machine}}$
 \end_inset
 
-, it follows from the usual properties of 
+ and zero mean, it follows from the usual properties of 
 \series bold
 random walks
 \series default
@@ -562,6 +671,383 @@ literal "false"
 \end_inset
 
 , while having about the same performance as naive summation.
+\end_layout
+
+\begin_layout Section
+Backwards stability
+\end_layout
+
+\begin_layout Standard
+We can easily adapt the error analysis above into a proof of 
+\series bold
+backwards stability
+\series default
+ of naive summation.
+ To be backwards stable, we must find a vector 
+\begin_inset Formula $\tilde{x}\in\mathbb{R}^{n}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\tilde{f}(x)=f(\tilde{x})$
+\end_inset
+
+, and also 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+close
+\begin_inset Quotes erd
+\end_inset
+
+ to 
+\begin_inset Formula $x$
+\end_inset
+
+ in the sense that 
+\begin_inset Formula $\Vert\tilde{x}-x\Vert=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ in some norm 
+\begin_inset Formula $\Vert\cdot\Vert$
+\end_inset
+
+.
+ We do this in two steps.
+ First, we construct 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\tilde{f}(x)=f(\tilde{x})$
+\end_inset
+
+, and then we show that it is close to 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A possible 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ follows immediately from lemma.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lemma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and eq.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+\tilde{x}_{i}=x_{i}\prod_{k=i}^{n}(1+\epsilon_{k})=x_{i}(1+\delta_{i}).
+\]
+
+\end_inset
+
+Eq.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lemma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) tells us that 
+\begin_inset Formula $\sum_{i}\tilde{x}_{i}=f(\tilde{x})$
+\end_inset
+
+ is equal to our naive floating-point sum 
+\begin_inset Formula $\tilde{f}(x)$
+\end_inset
+
+ as desired.
+\end_layout
+
+\begin_layout Standard
+Then, we can use eq.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta-bound"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) to show that 
+\begin_inset Formula $\Vert\tilde{x}-x\Vert$
+\end_inset
+
+ is small.
+ As we shall shortly see in 18.335 (Trefethen ch.
+\begin_inset space ~
+\end_inset
+
+14), it turns out that we can choose any norm that we wish for proving stability
+ (stability in one norm implies stability in 
+\emph on
+every
+\emph default
+ norm), and in this problem it is convenient to choose the 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+ norm 
+\begin_inset Formula $\Vert x\Vert_{1}=\sum_{i=1}^{n}|x_{i}|$
+\end_inset
+
+.
+ In this norm, we immediately find 
+\begin_inset Formula 
+\[
+\Vert\tilde{x}-x\Vert_{1}=\sum_{i=1}^{n}\left|x_{i}\delta_{i}\right|\le\Vert x\Vert_{1}n\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2})=\Vert x\Vert_{1}O(\epsilon_{\mbox{machine}}).
+\]
+
+\end_inset
+
+Note that the 
+\begin_inset Quotes eld
+\end_inset
+
+constant
+\begin_inset Quotes erd
+\end_inset
+
+ factor 
+\begin_inset Formula $n$
+\end_inset
+
+ in the 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ is independent of 
+\begin_inset Formula $x$
+\end_inset
+
+ (as is required for backwards stability), though it depends on 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Regarding 
+\begin_inset Formula $\Vert x\Vert$
+\end_inset
+
+ versus 
+\begin_inset Formula $\Vert\tilde{x}\Vert$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+It doesn't matter whether we use 
+\begin_inset Formula $\Vert x\Vert$
+\end_inset
+
+ or 
+\begin_inset Formula $\Vert\tilde{x}\Vert$
+\end_inset
+
+ on the right-hand/denominator for the definition of backwards stability
+ (or stability), since by the triangle inequality 
+\begin_inset Formula $\Vert x\Vert=\Vert\tilde{x}+(x-\tilde{x})\Vert\leq\Vert\tilde{x}\Vert+\Vert\tilde{x}-x\Vert=\Vert\tilde{x}\Vert+\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+.
+ In particular, it follows that: 
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\[
+\Vert\tilde{x}-x\Vert=\Vert x\Vert O(\epsilon_{\mbox{machine}})\Longleftrightarrow\Vert\tilde{x}-x\Vert=\Vert\tilde{x}\Vert O(\epsilon_{\mbox{machine}})
+\]
+
+\end_inset
+
+in any norm.
+\end_layout
+
+\begin_layout Subsection
+Regarding inputs in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ versus 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the beginning, we assumed that 
+\begin_inset Formula $x$
+\end_inset
+
+ was in 
+\begin_inset Formula $\mathbb{F}^{n}$
+\end_inset
+
+, i.e.
+ that the inputs are already floating point numbers.
+ Almost the same proof applies if 
+\begin_inset Formula $x$
+\end_inset
+
+ is in 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ and we first compute 
+\begin_inset Formula $\fl(x)$
+\end_inset
+
+ (rounding 
+\begin_inset Formula $x$
+\end_inset
+
+ to the nearest floating-point values) before summing.
+ In particular, lemma
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lemma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) is replaced with
+\begin_inset Formula 
+\[
+\tilde{f}(x)=\sum_{i=1}^{n}\fl(x_{i})\prod_{k=i}^{n}(1+\epsilon_{k})=\sum_{i=1}^{n}x_{i}(1+\epsilon)\prod_{k=i}^{n}(1+\epsilon_{k}),
+\]
+
+\end_inset
+
+so that there is merely an extra 
+\begin_inset Formula $(1+\epsilon)$
+\end_inset
+
+ term.
+ This 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is added to the relative error 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+ in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+), and eq.
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:delta-bound"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) is replaced by 
+\begin_inset Formula $|\delta_{i}|\leq(n+1)\epsilon_{\mbox{machine}}+O(\epsilon_{\mbox{machine}}^{2}).$
+\end_inset
+
+ Changing 
+\begin_inset Formula $n$
+\end_inset
+
+ to 
+\begin_inset Formula $n+1$
+\end_inset
+
+ in this coefficient makes no difference to our conclusions above.
 \end_layout
 
 \begin_layout Bibliography
