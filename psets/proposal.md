@@ -21,7 +21,7 @@ A few examples of project topics from past terms are:
 * Discrete cosine transform algorithms (e.g. for audio compression), and other fast transforms (e.g. nonuniform FFTs, spherical-harmonic transforms, etc.)
 * Nonlinear optimization algorithms, e.g. ORBIT, VNS, multistart algorithms like MLSL, globally convergent Nelder-Mead, …
 * Optimization algorithms specifically for least-square fitting or regularized fitting problems.
-* Linear Programming (LP) algorithms (e.g. interior-point or simplex)
+* Linear Programming (LP) algorithms (e.g. interior-point or simplex). (My inclination is to *discourage* LP projects, partly because I've seen to many, partly because interior-point methods are very tricky to implement, and mainly because the "fair comparison" part of the project is very difficult.)
 * Quasi-Newton methods for nonlinear systems of equations (e.g. Broyden updates)
 * Rational approximation (e.g. the Remez algorithm)
 * The Fast Multipole Method for the n-body problem
