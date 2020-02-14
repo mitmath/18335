@@ -100,6 +100,15 @@ Problem 1: Stability
 
 \begin_layout Enumerate
 Trefethen, exercise 15.1.
+ You will need to review the definition of 
+\begin_inset Quotes eld
+\end_inset
+
+stability,
+\begin_inset Quotes erd
+\end_inset
+
+ of which backwards stability is a (common) special case, in that chapter.
  [In parts (e) and (f), assume that 
 \begin_inset Formula $\frac{1}{k!}$
 \end_inset
@@ -255,46 +264,7 @@ opnorm(A)
 \end_layout
 
 \begin_layout Subsection*
-Problem 3: Conditioning
-\end_layout
-
-\begin_layout Standard
-In class, we found the condition number of 
-\begin_inset Formula $f(x)=Ax$
-\end_inset
-
-, in the 
-\begin_inset Formula $L_{2}$
-\end_inset
-
- norm, to be 
-\begin_inset Formula $\Vert A\Vert_{2}\Vert x\Vert_{2}/\Vert Ax\Vert_{2}$
-\end_inset
-
- for some 
-\begin_inset Formula $A\in\mathbb{C}^{m\times n}$
-\end_inset
-
- and 
-\begin_inset Formula $x\in\mathbb{C}^{n}$
-\end_inset
-
- .
- Instead, compute the condition number of 
-\begin_inset Formula $g(A)=Ax$
-\end_inset
-
-, using any convenient choice of norm (e.g.
- the Frobenius norm for the input matrices 
-\begin_inset Formula $A$
-\end_inset
-
-).
- 
-\end_layout
-
-\begin_layout Subsection*
-Problem 4: SVD and low-rank approximations
+Problem 3: SVD and low-rank approximations
 \end_layout
 
 \begin_layout Enumerate
@@ -309,8 +279,25 @@ Trefethen, problem 5.2.
 Trefethen, problem 5.4.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsection*
+Problem 4: Least squares
+\end_layout
 
+\begin_layout Standard
+Trefethen, problem 11.2.
+ Note that the 
+\begin_inset Formula $\Gamma(x)$
+\end_inset
+
+ function is provided as 
+\family typewriter
+gamma(x)
+\family default
+ by the SpecialFunctions package in Julia (execute 
+\family typewriter
+] add SpecialFunctions
+\family default
+ to install this package).
 \end_layout
 
 \end_body
