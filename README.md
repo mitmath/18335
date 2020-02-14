@@ -133,9 +133,9 @@ Proved that, for a Hermitian matrix B, the **Rayleigh quotient** R(x)=x\*Bx/x\*x
 
 Understanding norms and condition numbers of matrices therefore reduces to understanding the eigenvalues of A\*A (or AA\*). However, looking at it this way is unsatisfactory for several reasons. First, we would like to solve one eigenproblem, not two. Second, working with things like A\*A explicitly is often bad numerically, because it squares the condition number \[showed that κ(A\*A)=κ(A)²\] and hence exacerbates roundoff errors. Third, we would really like to get some better understanding of A itself. All of these concerns are addressed by the **singular value decomposition** or **SVD**.
 
-Explicitly constructed SVD in terms of eigenvectors/eigenvalues of A\*A and _AA_\*. Recall from last time that we related the singular values to induced L2 norm and condition number.
+Explicitly constructed SVD (both "thin" and thick/unitary) in terms of eigenvectors/eigenvalues of A\*A and _AA_\*. Recall from last time that we related the singular values to induced L₂ norm and condition number.
 
-Talked a little about the SVD and low-rank approximations (more on this in homework) or [principal component analysis](http://en.wikipedia.org/wiki/Principal_component_analysis) (PCA).
+Talked a little about the SVD and low-rank approximations (more on this in homework), e.g. graphically illustrated via [image compression](http://timbaumann.info/svd-image-compression-demo/), or [principal component analysis](http://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), e.g. illustrated with this [nice demo of human locomotion analysis](https://www.biomotionlab.ca/html5-bml-walker/).
 
 **Further reading:** Trefethen, lectures 4, 5, 11.
 
