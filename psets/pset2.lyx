@@ -1,0 +1,317 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 2
+\end_layout
+
+\begin_layout Standard
+Due Wed.
+ Feb 26, 2020, at 3pm via Stellar.
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Stability
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 15.1.
+ [In parts (e) and (f), assume that 
+\begin_inset Formula $\frac{1}{k!}$
+\end_inset
+
+ can be computed to 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ and concentrate on the accumulation of errors in the summations.]
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 16.1.
+\end_layout
+
+\begin_layout Enumerate
+Consider the function 
+\begin_inset Formula $f(x,y)=x^{*}y=\sum_{i=1}^{n}\overline{x_{i}}y_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $x,y\in\mathbb{C}^{n}$
+\end_inset
+
+, computed by naive (left-to-right) summation of the floating-point products
+ 
+\begin_inset Formula $\overline{x_{i}}\otimes y_{i}$
+\end_inset
+
+.
+ Show that this algorithm is backwards stable (very similar to the proof
+ of backwards stability of summation from class).
+ Here, the inputs 
+\begin_inset Formula $(x,y)$
+\end_inset
+
+ live in the 
+\emph on
+Cartesian
+\emph default
+ 
+\emph on
+product
+\emph default
+ space 
+\begin_inset Formula $\mathbb{C}^{n}\times\mathbb{C}^{n}$
+\end_inset
+
+, which is a vector space using the obvious operations 
+\begin_inset Formula $(x,y)+(z,w)=(x+z,y+w)$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha(x,y)=(\alpha x,\alpha y)$
+\end_inset
+
+.
+ You will need to choose a convenient norm of 
+\begin_inset Formula $\mathbb{C}^{n}\times\mathbb{C}^{n}$
+\end_inset
+
+ to apply the backwards-stability definition.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(Food for thought: Your solution could easily be adapted to establish backwards
+ stability of matrix products 
+\begin_inset Formula $f(A,B)=AB$
+\end_inset
+
+ computed by the familiar 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\text{row}\cdot\text{column}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm.
+ Not required here, though.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Norms
+\end_layout
+
+\begin_layout Enumerate
+Derive Trefethen eq.
+ (3.10) (for which Trefethen only writes 
+\begin_inset Quotes eld
+\end_inset
+
+by much the same argument
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Find the code that computes the induced 
+\begin_inset Formula $\Vert A\Vert_{\infty}$
+\end_inset
+
+ norm in Julia, the 
+\family typewriter
+opnorm(A, Inf)
+\family default
+ function, on 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+github.com/JuliaLang/julia
+\end_layout
+
+\end_inset
+
+ in stdlib/LinearAlgebra/src/generic.jl and satisfy yourself that it is equivalen
+t to (3.10).
+ 
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 3.4.
+ Check your result for a random 
+\begin_inset Formula $10\times7$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ in Julia, constructed by 
+\family typewriter
+A=randn(10,7)
+\family default
+ with the induced 
+\begin_inset Formula $p=2$
+\end_inset
+
+ norm as computed by 
+\family typewriter
+opnorm(A)
+\family default
+ in Julia.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Conditioning
+\end_layout
+
+\begin_layout Standard
+In class, we found the condition number of 
+\begin_inset Formula $f(x)=Ax$
+\end_inset
+
+, in the 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ norm, to be 
+\begin_inset Formula $\Vert A\Vert_{2}\Vert x\Vert_{2}/\Vert Ax\Vert_{2}$
+\end_inset
+
+ for some 
+\begin_inset Formula $A\in\mathbb{C}^{m\times n}$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathbb{C}^{n}$
+\end_inset
+
+ .
+ Instead, compute the condition number of 
+\begin_inset Formula $g(A)=Ax$
+\end_inset
+
+, using any convenient choice of norm (e.g.
+ the Frobenius norm for the input matrices 
+\begin_inset Formula $A$
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: SVD and low-rank approximations
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, probem 4.5.
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 5.2.
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 5.4.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
