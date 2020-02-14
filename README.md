@@ -126,7 +126,7 @@ Understanding norms and condition numbers of matrices therefore reduces to under
 
 ### Lecture 6 (Feb 14)
 
-* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1sol.ipynb)
+* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [Julia notebook](psets/pset1sol.ipynb)
 * [pset 2](psets/pset2.pdf), due Wed. Feb 26, 2020, at 3pm via Stellar.
 
 Proved that, for a Hermitian matrix B, the **Rayleigh quotient** R(x)=x\*Bx/x\*x is bounded above and below by the largest and smallest eigenvalues of B (the "min–max theorem"). Hence showed that the L2 induced norm of A is the square root of the largest eigenvalue of B\=A\*A. Similarly, showed that the L₂ induced norm of A⁻¹, or more generally the supremum of ‖x‖/‖Ax‖, is equal to the square root of the inverse of the smallest eigenvalue of A\*A
