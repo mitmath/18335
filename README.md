@@ -141,7 +141,15 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 7 (Feb 18: Tuesday `==` MIT Monday)
 
-Least-squares problems.
+**Handouts:** [least-squares IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Least-squares.ipynb)
+
+Introduced least-squares problems, gave example of polynomial fitting, gave normal equations, and derived them from the condition that the L2 error be minimized.
+
+Discussed solution of normal equations. Discussed condition number of solving normal equations directly, and noted that it squares the condition number—not a good idea if we can avoid it.
+
+Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
+
+**Further reading:** Trefethen, lectures 7, 8, 18, 19
 
 ### Lecture 8 (Feb 19)
 
