@@ -165,4 +165,18 @@ Re-interpret Gram-Schmidt in matrix form as Q = AR1R2..., i.e. as multiplying A 
 **Further reading:** Trefethen, lectures 7, 8, 18, 19. The [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) is also nice. It turns out that modified GS is backwards stable in the sense that the product QR is close to A, i.e. the function f(A) = Q\*R is backwards stable in MGS; this is why solving systems with Q,R (appropriately used as discussed in Trefethen lecture 19) is an accurate approximation to solving them with A. For a review of the literature on backwards-stability proofs of MGS, see e.g. [this 2006 paper by Paige et al.](https://epubs.siam.org/doi/abs/10.1137/050630416) \[_SIAM J. Matrix Anal. Appl._ **28**, pp. 264-284\].
 ### Lecture 9 (Feb 21)
 
-Guest lecture: Prof. [Alan Edelman](http://math.mit.edu/~edelman/).
+Guest lecture by Prof. [Alan Edelman](http://math.mit.edu/~edelman/): the Generalized SVD (GSVD).  Least-square problems (via QR or SVD) and different viewpoints on linear regression: linear algebra, optimization, statistics, machine learning.
+
+**Further reading:** Trefethen, lectures 7, 11.  Edelman and Wang (2019), [The GSVD: Where are the ellipses?](https://arxiv.org/abs/1901.00485).
+
+### Lecture 10 (Feb 24)
+
+* [Householder QR notes](notes/lec6handout6pp.pdf) from Per Persson.
+
+Introduced Householder QR, emphasized the inherent stability properties of multiplying by a sequence of unitary matrices (as shown in pset 2). Show how we can convert a matrix to upper-triangular form (superficially similar to Gaussian elimination) via unitary Householder reflectors.
+
+Finished Householder QR derivation, including the detail that one has a choice of Householder reflectors...we choose the sign to avoid taking differences of nearly-equal vectors. Gave flop count, showed that we don't need to explicitly compute Q if we store the Householder reflector vectors.
+
+Operation count for Gram-Schmidt (2mn2) and Householder (2mn2 - 2n3/3), using the simple "graphical" estimation method from Trefethen. Evidently, Householder is at least as accurate as modified GS while being slightly faster. But does fewer operations really mean it is faster?
+
+**Further reading:** Trefethen, lectures 7, 8, 10, 16.
