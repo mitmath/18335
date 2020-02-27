@@ -141,7 +141,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 7 (Feb 18: Tuesday `==` MIT Monday)
 
-**Handouts:** [least-squares IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Least-squares.ipynb)
+**Handouts:** [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/master/notes/Least-squares.ipynb)
 
 Introduced least-squares problems, gave example of polynomial fitting, gave normal equations, and derived them from the condition that the L2 error be minimized.
 
