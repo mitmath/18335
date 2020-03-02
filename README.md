@@ -204,7 +204,7 @@ Discussed some practical difficulties of the blocked matrix multiplication: algo
 
 * experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf))
 * [IJulia matrix-multiplication notebook](notes/Memory-and-Matrices.ipynb)
-* pset 2 solutions: coming soon
+* [pset 2 solutions](psets/pset2sol.pdf) and [IJulia notebook](psets/pset2sol.ipynb)
 * [pset 3](psets/pset3.pdf) (due Fri 13 March)
 
 Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout and Frigo et. al paper above).

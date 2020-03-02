@@ -171,32 +171,6 @@ product
 \end_inset
 
  to apply the backwards-stability definition.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-(Food for thought: Your solution could easily be adapted to establish backwards
- stability of matrix products 
-\begin_inset Formula $f(A,B)=AB$
-\end_inset
-
- computed by the familiar 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\text{row}\cdot\text{column}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- algorithm.
- Not required here, though.)
 \end_layout
 
 \begin_layout Subsection*
