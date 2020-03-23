@@ -258,11 +258,15 @@ Discussed how to use the power method to get multiple eigenvalues/vectors of Her
 
 Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent (in exact arithmetic) to QR factorizing _Aⁿ_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
 
-To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.
+To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.  Brief discussion of shifted QR and the Wilkinson shift.
 
 **Further reading:** See Trefethen, lectures 27–30, and Per Persson's [2006 notes](notes/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration and on QR ([part 1](notes/lec15handout6pp.pdf) and [part 2](notes/lec16handout6pp.pdf)).
 
-### Lecture 18 (March 13)
+### Lecture 18 (March 30)
+
+* **Note**: This and all future lectures will be via Zoom videoconference (all registered students should have received an email with the details).  Lectures will continue to be recorded and posted, and whiteboard notes from the lectures will also be posted.
+
+* [pset 3 solutions](psets/pset3sol.pdf)
 
 New topic: **iterative algorithms**, usually for sparse matrices, and in general for matrices where you have a fast way to compute _Ax_ matrix-vector products but cannot (practically) mess around with the specific entries of _A_.
 
