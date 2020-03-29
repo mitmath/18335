@@ -15,7 +15,7 @@ Syllabus
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
-**Grading**: 33% problem sets (about six, ~biweekly). 33% **take-home mid-term exam** (posted Monday **Apr. 6** and due Tuesday **Apr. 7**), 34% **final project** ([one-page proposal](psets/proposal.md) due Friday March 20, project due Tuesday **May 12**).
+**Grading**: 33% problem sets (about six, ~biweekly). 33% **take-home mid-term exam** (posted Friday **Apr. 10** and due Saturday **Apr. 11**), 34% **final project** ([one-page proposal](psets/proposal.md) due Friday March 20, project due Tuesday **May 12**).
 
 * Psets will be [submitted electronically via Stellar](https://learning-modules.mit.edu/gradebook/index.html?uuid=/course/18/sp20/18.335).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
@@ -267,7 +267,16 @@ To make the QR method faster, we first reduce to Hessenberg form; you will show 
 * **Note**: This and all future lectures will be via Zoom videoconference (all registered students should have received an email with the details).  Lectures will continue to be recorded and posted, and whiteboard notes from the lectures will also be posted.
 
 * [pset 3 solutions](psets/pset3sol.pdf)
+* [pset 4](psets/pset4.pdf) (due Monday April 6)
 
 New topic: **iterative algorithms**, usually for sparse matrices, and in general for matrices where you have a fast way to compute _Ax_ matrix-vector products but cannot (practically) mess around with the specific entries of _A_.
 
 **Further reading:** Trefethen, lecture 31, 32, 33, 34. The online books, [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html), are useful surveys of iterative methods.
+
+### Take-home midterm (April 10)
+
+The 18.335 midterm exam will be posted at 4:30pm (EDT) on Friday April 10 and will be due at 4:30pm (EDT) on Saturday April 11.  The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used (**closed Internet**).  The exam will be designed to take **roughly 2 hours,** but you can take *as much time as you want* within the 24-hour time slot.
+
+It will cover everything in 18.335 up to and including **lecture 20** and **pset 4** and **lecture 19**.
+
+* my previous midterms: [fall 2008](https://github.com/mitmath/18335/blob/fall08/midterm.pdf) and [solutions](https://github.com/mitmath/18335/blob/fall08/midterm-sol.pdf), [fall 2009](https://github.com/mitmath/18335/blob/fall09/midterm-f09.pdf) (no solutions), [fall 2010](https://github.com/mitmath/18335/blob/fall10/midterm-f10.pdf) and [solutions](https://github.com/mitmath/18335/blob/fall10/midterm-sol-f10.pdf), [fall 2011](https://github.com/mitmath/18335/blob/fall11/midterm-f11.pdf) and [solutions](https://github.com/mitmath/18335/blob/fall11/midtermsol-f11.pdf), [fall 2012](https://github.com/mitmath/18335/blob/fall12/midterm-f12.pdf) and [solutions](https://github.com/mitmath/18335/blob/fall12/midtermsol-f12.pdf), [fall 2013](https://github.com/mitmath/18335/blob/fall13/midterm-f13.pdf) and [solutions](https://github.com/mitmath/18335/blob/fall13/midtermsol-f13.pdf), [spring 2015](https://github.com/mitmath/18335/blob/spring15/exams/midterm-s15.pdf) and [solutions](https://github.com/mitmath/18335/blob/spring15/exams/midtermsol-s15.pdf), [spring 2019](https://github.com/mitmath/18335/blob/spring19/psets/midterm.pdf) and [solutions](https://github.com/mitmath/18335/blob/spring19/psets/midtermsol.pdf).
