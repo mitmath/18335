@@ -5,7 +5,7 @@ This is the repository of course materials for the 18.335J/6.337J course at MIT,
 Syllabus
 --------
 
-**Lectures**: Monday/Wednesday/Friday 3–4pm (formerly 2-190, now via [Zoom videoconference](https://mit.zoom.us/j/283159937)).  [Lecture videos](https://video.odl.mit.edu/collections/5e0691b4c35e4672b7c4613522814c35/) are posted online.  **Office Hours:** Thursday 4–5pm (formerly 2-345, now via [Zoom videoconference](https://mit.zoom.us/j/420290549)).  Videoconference access requires [MIT Touchstone authentication](https://ist.mit.edu/news/zoom-release).
+**Lectures**: Monday/Wednesday/Friday 3–4pm (formerly 2-190, now via [Zoom videoconference](https://mit.zoom.us/j/283159937)).  [Lecture videos](https://video.odl.mit.edu/collections/5e0691b4c35e4672b7c4613522814c35/) and [handwritten notes](https://www.dropbox.com/s/l8ot1wc19r29lx6/18.335%20spring%202020.pdf?dl=0) are posted online.  **Office Hours:** Thursday 4–5pm (formerly 2-345, now via [Zoom videoconference](https://mit.zoom.us/j/420290549)).  Videoconference access requires [MIT Touchstone authentication](https://ist.mit.edu/news/zoom-release).
 
 **Topics**: Advanced introduction to numerical linear algebra and related numerical methods. Topics include direct and iterative methods for linear systems, eigenvalue decompositions and QR/SVD factorizations, stability and accuracy of numerical algorithms, the IEEE floating-point standard, sparse and structured matrices, and linear algebra software. Other topics may include memory hierarchies and the impact of caches on algorithms, nonlinear optimization, numerical integration, FFTs, and sensitivity analysis. Problem sets will involve use of [Julia](http://julialang.org/), a Matlab-like environment (little or no prior experience required; you will learn as you go).
 
@@ -266,7 +266,7 @@ To make the QR method faster, we first reduce to Hessenberg form; you will show 
 
 * **Note**: This and all future lectures will be via [Zoom videoconference](https://mit.zoom.us/j/283159937) (all registered students should have received an email with the details).  Lectures will continue to be [recorded and posted](https://video.odl.mit.edu/collections/5e0691b4c35e4672b7c4613522814c35/), and "whiteboard" notes from the lectures will also be posted.
 
-* [lecture notes](notes/notes18.pdf)
+* [lecture notes](https://www.dropbox.com/s/l8ot1wc19r29lx6/18.335%20spring%202020.pdf?dl=0) — all subsequent lecture notes will be here also
 * [pset 3 solutions](psets/pset3sol.pdf)
 * [pset 4](psets/pset4.pdf) (due Monday April 6)
 
