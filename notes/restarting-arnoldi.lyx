@@ -296,11 +296,11 @@ To compute
 A\hat{Q}_{k} & =AQ_{n}\hat{Q}=Q_{n}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}\\
  & =Q_{n}QQ^{*}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}\\
  & =\left[\begin{array}{cc}
-\hat{Q}_{k} & A\hat{Q}_{\perp}\end{array}\right]\left[\begin{array}{c}
+\hat{Q}_{k} & Q_{n}\hat{Q}_{\perp}\end{array}\right]\left[\begin{array}{c}
 \hat{Q}^{*}H_{n}\hat{Q}\\
 \hat{Q}_{\perp}^{*}H_{n}\hat{Q}
 \end{array}\right]+r_{n}e_{n}^{*}\hat{Q}\\
- & =\boxed{\hat{Q}_{k}\underbrace{\left(\hat{Q}^{*}H_{n}\hat{Q}\right)}_{\hat{H}_{k}}+A\hat{Q}_{\perp}\hat{Q}_{\perp}^{*}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}}.
+ & =\boxed{\hat{Q}_{k}\underbrace{\left(\hat{Q}^{*}H_{n}\hat{Q}\right)}_{\hat{H}_{k}}+Q_{n}\hat{Q}_{\perp}\hat{Q}_{\perp}^{*}H_{n}\hat{Q}+r_{n}e_{n}^{*}\hat{Q}}.
 \end{align*}
 
 \end_inset
