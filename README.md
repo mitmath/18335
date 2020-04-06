@@ -305,12 +305,11 @@ Explained why restarting properly is nontrivial for k>1: we need to restart in s
 
 Introduced the **GMRES** algorithm: compute the basis Qₙ for 𝒦ₙ as in Arnoldi, but then minimize the residual ‖Ax-b‖₂ for x∈𝒦ₙ using this basis.  This yields a small (n+1)×n least-squares problem involving Hₙ.
 
-Began discussing the convergence rate of GMRES and Arnoldi in terms of **polynomial** approximations (following Trefethen).
-
 **Further reading:** Trefethen, lectures 34–36. See the section on [implicitly restarted Lanczos](http://www.cs.utk.edu/~dongarra/etemplates/node117.html) in [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html).
 
 ### Lecture 21 (April 6)
 
+* [pset 4 solutions](psets/pset4sol.pdf)
 * [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
 
 Discussed the convergence rate of GMRES and Arnoldi in terms of **polynomial** approximations. Following the book closely, showed that the relative errors (the residual norm ‖Ax-νx‖ or ‖Ax-b‖) can be bounded by minimizing the value p(λ) of a polynomial p(z) evaluated at the eigenvalues, where p has degree _n_ after the _n_\-th iteration. In Arnoldi, the λⁿ coefficient of p(λ) is 1, whereas in GMRES the constant coefficient p(0)=1. (There is also a factor of the condition number of the eigenvector matrix in GMRES, so it is favorable for the eigenvectors to be near-orthogonal, i.e for the matrix to be near-[normal](http://en.wikipedia.org/wiki/Normal_matrix).)
