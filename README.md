@@ -346,7 +346,7 @@ Continued derivation of conjugate gradient, starting with the steepest-descent m
 
 ### Take-home midterm (April 10)
 
-* [midterm](psets/midterm.pdf)
+* [midterm](psets/midterm.pdf) and [solutions](psets/midtermsol.pdf)
 
 The 18.335 midterm exam will be posted at 4:30pm (EDT) on Friday April 10 and will be due at 4:30pm (EDT) on Saturday April 11.  The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used (**closed Internet**).  The exam will be designed to take **roughly 2 hours,** but you can take *as much time as you want* within the 24-hour time slot.
 

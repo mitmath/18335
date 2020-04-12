@@ -1,0 +1,1054 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Take-Home Midterm Solutions: Spring 2020
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (20+5 points)
+\end_layout
+
+\begin_layout Enumerate
+We can rewrite this as: 
+\begin_inset Formula 
+\[
+\Vert b-Ax\Vert_{2}^{2}+\alpha\Vert x\Vert_{2}^{2}=\left\Vert \left(\begin{array}{c}
+b-Ax\\
+\alpha x
+\end{array}\right)\right\Vert _{2}^{2}=\left\Vert \left(\begin{array}{c}
+b\\
+0
+\end{array}\right)-\left(\begin{array}{c}
+A\\
+\alpha I
+\end{array}\right)x\right\Vert _{2}^{2}
+\]
+
+\end_inset
+
+ where we have appended 
+\begin_inset Formula $n$
+\end_inset
+
+ rows of zeros to 
+\begin_inset Formula $b$
+\end_inset
+
+ and an 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ matrix 
+\begin_inset Formula $\alpha I$
+\end_inset
+
+ to 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ Therefore, we can use exactly the same analysis as class but with the condition
+ number of 
+\begin_inset Formula $\left(\begin{array}{c}
+A\\
+\alpha I
+\end{array}\right)$
+\end_inset
+
+.
+ The singular values of this augmented matrix are the square roots of the
+ eigenvalues of 
+\begin_inset Formula 
+\[
+\left(\begin{array}{c}
+A\\
+\alpha I
+\end{array}\right)^{*}\left(\begin{array}{c}
+A\\
+\alpha I
+\end{array}\right)=A^{*}A+\alpha^{2}I
+\]
+
+\end_inset
+
+which simply 
+\begin_inset Formula $\sigma_{k}^{2}+\alpha^{2}$
+\end_inset
+
+ where 
+\begin_inset Formula $\sigma_{k}^{2}$
+\end_inset
+
+ are the eigenvalues of 
+\begin_inset Formula $A^{*}A$
+\end_inset
+
+ (
+\begin_inset Formula $\sigma_{k}$
+\end_inset
+
+ are the singular values of 
+\begin_inset Formula $A$
+\end_inset
+
+).
+ Hence the condition number of this matrix, which is an upper bound on the
+ condition numbrer of the regularized least-squares problem, is 
+\begin_inset Formula 
+\[
+\boxed{\sqrt{\frac{\sigma_{1}^{2}+\alpha^{2}}{\sigma_{n}^{2}+\alpha^{2}},}}
+\]
+
+\end_inset
+
+which goes 
+\begin_inset Formula $\to1$
+\end_inset
+
+ as 
+\begin_inset Formula $\alpha\to\infty$
+\end_inset
+
+.]
+\end_layout
+
+\begin_layout Enumerate
+A larger 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ improves the condition number of the problem, it reduce sensitivity to
+ errors (e.g.
+ floating-point errors or measurement errors in 
+\begin_inset Formula $b$
+\end_inset
+
+ etc.
+ On the other hand a larger 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ means that our minimization problem starts to favor minimizing 
+\begin_inset Formula $\Vert x\Vert$
+\end_inset
+
+ over minimizing 
+\begin_inset Formula $\Vert b-Ax\Vert$
+\end_inset
+
+, that is it will increase errors in the residual 
+\begin_inset Formula $\Vert b-Ax\Vert$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hence , a larger 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ therefore trades off 
+\series bold
+sensitivity to computation/measurement errors 
+\series default
+for 
+\series bold
+larger residuals 
+\series default
+in trying to find a 
+\begin_inset Quotes eld
+\end_inset
+
+best-fit
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $\hat{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (15+5+5 points)
+\end_layout
+
+\begin_layout Enumerate
+For small 
+\begin_inset Formula $|x|$
+\end_inset
+
+, naively computing this function as 
+\begin_inset Formula $\tilde{f}(x)=\sqrt{1\oplus x\otimes x}\ominus1$
+\end_inset
+
+ will incur 
+\series bold
+cancellation errors
+\series default
+ where the significant digits are lost, because we are 
+\series bold
+subtracting two nearly equal quantities
+\series default
+.
+ Once 
+\begin_inset Formula $|x|<|\varepsilon_{\text{machine}}|$
+\end_inset
+
+, in fact, we will get 
+\begin_inset Formula $1\oplus x\otimes x=1$
+\end_inset
+
+ and the result will be 
+\series bold
+zero 
+\series default
+(
+\series bold
+all significant digits will be lost
+\series default
+).
+ From Taylor expansion, one can easily see that the correct answer for small
+ 
+\begin_inset Formula $|x|$
+\end_inset
+
+, in contrast, is 
+\begin_inset Formula $f(x)\approx\frac{1}{2}x^{2}+O(x^{4})$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are various ways to compute this more accurately.
+ A 
+\begin_inset Quotes eld
+\end_inset
+
+brute force
+\begin_inset Quotes erd
+\end_inset
+
+ method would be to switch to a Taylor expansion for sufficiently small
+ 
+\begin_inset Formula $|x|$
+\end_inset
+
+, cancelling the 
+\begin_inset Formula $-1$
+\end_inset
+
+ factor analytically, but this is awkward to implement (the cutoff to switch
+ to a Taylor series and the required number of terms depend on the precision).
+ Instead, a simple trick is to use the following algebraic transformation
+ 
+\begin_inset Formula 
+\[
+f(x)=\left(\sqrt{1+x^{2}}-1\right)\frac{\sqrt{1+x^{2}}+1}{\sqrt{1+x^{2}}+1}=\frac{(1+x^{2})-1}{\sqrt{1+x^{2}}+1}=\boxed{\frac{x^{2}}{\sqrt{1+x^{2}}+1}}.
+\]
+
+\end_inset
+
+The final expression eliminates the subtraction and cancellation error,
+ and is accurate in floating-point arithmetic for arbitrarily small 
+\begin_inset Formula $|x|$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(A very similar transformation was used in the lecture
+\begin_inset space ~
+\end_inset
+
+2 notes, posted on the web site, for finding the roots of a quadratic equation
+ accurately.)
+\end_layout
+
+\begin_layout Enumerate
+The condition number of 
+\begin_inset Formula $f$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\frac{|f'(x)|}{|f(x)/x|}=\frac{x^{2}}{\sqrt{1+x^{2}}|f(x)|}=\frac{x^{2}}{1+x^{2}-\sqrt{1+x^{2}}}=2+O(x^{2})
+\]
+
+\end_inset
+
+where in the last expression we have Taylor-expanded around 
+\begin_inset Formula $x=0$
+\end_inset
+
+.
+ Hence, for small 
+\begin_inset Formula $|x|$
+\end_inset
+
+, the condition number 
+\begin_inset Formula $\to2$
+\end_inset
+
+, which is not badly conditioned.
+\end_layout
+
+\begin_layout Enumerate
+The fact that it is well conditioned suggests that we 
+\emph on
+can
+\emph default
+ compute it with a small forward error, 
+\emph on
+not
+\emph default
+ that 
+\emph on
+all
+\emph default
+ 
+\emph on
+algorithms 
+\emph default
+are accurate.
+ In particular, a small forward error is achieved for a well-conditioned
+ problem 
+\series bold
+only if the algorithm is backwards stable
+\series default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can easily see that the naive algorithm 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ is 
+\series bold
+\emph on
+not
+\emph default
+ backward stable
+\series default
+.
+ It yields 
+\begin_inset Formula $\tilde{f}(x)=0$
+\end_inset
+
+ for any sufficiently small 
+\begin_inset Formula $x$
+\end_inset
+
+, hence 
+\begin_inset Formula $f(\tilde{x})=\tilde{f}(x)\implies\tilde{x}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert x-\tilde{x}\Vert/\Vert x\Vert=1$
+\end_inset
+
+, not 
+\begin_inset Formula $O(\varepsilon_{\text{machine}})$
+\end_inset
+
+ independent of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (10+10+5 points)
+\end_layout
+
+\begin_layout Enumerate
+The nonzero pattern (the elements of 
+\begin_inset Formula $A^{(k)}$
+\end_inset
+
+ that are 
+\emph on
+not 
+\emph default
+converging to zero) will be: 
+\begin_inset Formula 
+\[
+A^{(k)}=\underline{Q^{(k)}}^{*}A\underline{Q^{(k)}}\approx\left(\begin{array}{cccccc}
+\times & \times\\
+\times & \times\\
+ &  & \times & \times\\
+ &  & \times & \times\\
+ &  &  &  & \times & \times\\
+ &  &  &  & \times & \times
+\end{array}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\underline{Q^{(k)}}=Q^{(1)}Q^{(2)}\cdots Q^{(k)}$
+\end_inset
+
+ as in class.
+ As we saw in class, the QR iteration is equivalent to a simultaneous power
+ method.
+ For distinct 
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+, this makes 
+\begin_inset Formula $A^{(k)}$
+\end_inset
+
+ converge to a diagonal matrix with the eigenvalues in descending order,
+ because the columns of 
+\begin_inset Formula $\underline{Q^{(k)}}$
+\end_inset
+
+ (equivalent to QR factorization of 
+\begin_inset Formula $A^{k}$
+\end_inset
+
+) are the eigenvectors in descending order of 
+\begin_inset Formula $|\lambda|$
+\end_inset
+
+.
+ However, for 
+\emph on
+this
+\emph default
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+, the eigenvalues are in 
+\begin_inset Formula $\pm$
+\end_inset
+
+ pairs of 
+\emph on
+equal
+\emph default
+ magnitude, so the power method will 
+\emph on
+not converge
+\emph default
+.
+ In particular, the first two columns of 
+\begin_inset Formula $\underline{Q^{(k)}}$
+\end_inset
+
+ will be approximately a linear combination of the eigenvectors for 
+\begin_inset Formula $\pm3$
+\end_inset
+
+, the next two columns will be in the span of the eigenvectors for 
+\begin_inset Formula $\pm2$
+\end_inset
+
+, and the last two columns will be in the span of the eigenvectors for 
+\begin_inset Formula $\pm1$
+\end_inset
+
+.
+ That means that 
+\begin_inset Formula $A^{(k)}$
+\end_inset
+
+ will (approximately) block-diagonalize into 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ blocks as shown.
+\end_layout
+
+\begin_layout Enumerate
+Recall from class: For any 
+\begin_inset Formula $d$
+\end_inset
+
+-dimensional subspace with an orthonormal basis 
+\begin_inset Formula $Q$
+\end_inset
+
+ (
+\begin_inset Formula $m\times d$
+\end_inset
+
+), the Rayleigh–Ritz procedure finds approximate eigenvectors 
+\begin_inset Formula $x=Qz$
+\end_inset
+
+ (Ritz vectors) in this subspace by requiring 
+\begin_inset Formula $Q^{*}(Ax-\nu x)=0$
+\end_inset
+
+, and hence 
+\begin_inset Formula $(Q^{*}AQ)z=\nu z$
+\end_inset
+
+.
+ That is, the Ritz values 
+\begin_inset Formula $\nu$
+\end_inset
+
+ are eigenvalues of 
+\begin_inset Formula $Q^{*}AQ$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Now, the QR iterate is 
+\begin_inset Formula $A^{(k)}=\underline{Q^{(k)}}^{*}A\underline{Q^{(k)}}$
+\end_inset
+
+, and hence any 
+\begin_inset Formula $d\times d$
+\end_inset
+
+ diagonal block of the row/col indices 
+\begin_inset Formula $i+1:i+d$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+D=A_{i+1:i+d,\,i+1:i+d}^{(k)}=\underline{Q^{(k)}}_{:,i+1:i+d}^{*}A\underline{Q^{(k)}}_{:,i+1:i+d},
+\]
+
+\end_inset
+
+which is exactly 
+\begin_inset Formula $Q^{*}AQ$
+\end_inset
+
+ where 
+\begin_inset Formula $Q=\underline{Q^{(k)}}_{:,i+1:i+d}$
+\end_inset
+
+, i.e.
+ columns 
+\begin_inset Formula $i+1$
+\end_inset
+
+ to 
+\begin_inset Formula $i+d$
+\end_inset
+
+ of 
+\begin_inset Formula $\underline{Q^{(k)}}$
+\end_inset
+
+.
+ Hence the eigenvalues of 
+\begin_inset Formula $D$
+\end_inset
+
+ are Ritz values of this subspace.
+\end_layout
+
+\begin_layout Enumerate
+From part (a), the columns of 
+\begin_inset Formula $\underline{Q^{(k)}}$
+\end_inset
+
+ come in pairs, each of which (for large 
+\begin_inset Formula $k$
+\end_inset
+
+) is approximately in the span of the eigenvectors of 
+\begin_inset Formula $\pm3$
+\end_inset
+
+, 
+\begin_inset Formula $\pm2$
+\end_inset
+
+, and 
+\begin_inset Formula $\pm1$
+\end_inset
+
+, respectively.
+ That means that 
+\series bold
+if we compute the eigenvalues of the 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ diagonal blocks of 
+\begin_inset Formula $A^{(k)}$
+\end_inset
+
+, 
+\series default
+they are Ritz values for a subspace approximately spanned by pairs of eigenvecto
+rs, and hence they must converge to eigenvalues of 
+\begin_inset Formula $A$
+\end_inset
+
+ as 
+\begin_inset Formula $k\to\infty$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+From elementary undergraduate linear algebra, the eigenvalues of a 
+\begin_inset Formula $2\times2$
+\end_inset
+
+ block 
+\begin_inset Formula $D$
+\end_inset
+
+ may be found by solving the quadratic equation 
+\begin_inset Formula $\det(D-\nu I)$
+\end_inset
+
+ using the quadratic formula, which incurs a finite number of 
+\begin_inset Formula $\{\sqrt{},\pm,\times,\div\}$
+\end_inset
+
+ operations.
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: (10+15 points)
+\end_layout
+
+\begin_layout Standard
+Suppose that we compute the transpose of a square matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ in-place using obvious algorithm
+\end_layout
+
+\begin_layout LyX-Code
+function my_transpose!(A::Matrix)
+\end_layout
+
+\begin_layout LyX-Code
+    m, n = size(A)
+\end_layout
+
+\begin_layout LyX-Code
+    m == n || error(
+\begin_inset Quotes eld
+\end_inset
+
+my_transpose! requires a square matrix
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout LyX-Code
+    for i = 1:m
+\end_layout
+
+\begin_layout LyX-Code
+        for j = i+1:m
+\end_layout
+
+\begin_layout LyX-Code
+            A[i,j], A[j,i] = A[j,i], A[i,j] # swap ij and ji entries
+\end_layout
+
+\begin_layout LyX-Code
+        end
+\end_layout
+
+\begin_layout LyX-Code
+    end
+\end_layout
+
+\begin_layout LyX-Code
+end
+\end_layout
+
+\begin_layout Enumerate
+Because we are reading/writing both 
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{ji}$
+\end_inset
+
+ on each loop iteration, we are accessing at least one of these discontiguously
+ in memory.
+ In particular, since 
+\begin_inset Formula $A$
+\end_inset
+
+ is column-major in Julia and 
+\begin_inset Formula $j$
+\end_inset
+
+ is the inner loop, 
+\begin_inset Formula $A_{ji}$
+\end_inset
+
+ is accessed consecutively (
+\begin_inset Formula $A_{ji}$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{j+1,i}$
+\end_inset
+
+ are consecutive in memory for column-major 
+\begin_inset Formula $A$
+\end_inset
+
+), but 
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+ is non-consecutive (
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{i,j+1}$
+\end_inset
+
+ are stored 
+\begin_inset Formula $m$
+\end_inset
+
+ elements apart in memory for column-major 
+\begin_inset Formula $A$
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For the cache complexity, we must consider the asymptotic case of large
+ 
+\begin_inset Formula $m\gg Z>L$
+\end_inset
+
+ and focus on the non-consecutive 
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+ reads.
+ At the start of each row 
+\begin_inset Formula $i$
+\end_inset
+
+, at most 
+\begin_inset Formula $Z$
+\end_inset
+
+ elements of 
+\begin_inset Formula $A$
+\end_inset
+
+ are in-cache, and hence we must read in most of the row.
+ Unfortunately, because the elements of the row are separated by 
+\begin_inset Formula $m>L$
+\end_inset
+
+ elements, reading each element of the row is a separate cache miss.
+ Reading the 
+\emph on
+column
+\emph default
+ elements 
+\begin_inset Formula $A_{ji}$
+\end_inset
+
+ incurs only 
+\begin_inset Formula $\Theta(m/L)$
+\end_inset
+
+ misses because the column elements are consecutive, but for large 
+\begin_inset Formula $m$
+\end_inset
+
+ these cache lines are almost entirely disjoint from the row elements 
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+.
+ Therefore, reading the row incurs 
+\begin_inset Formula $\Theta(m)$
+\end_inset
+
+ misses, and hence there are 
+\begin_inset Formula $\boxed{\Theta(m^{2})}$
+\end_inset
+
+ misses overall—in an asymptotic big-O sense, we get no benefit from the
+ cache in 
+\family typewriter
+my_transpose!
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+The simplest approach is the 
+\begin_inset Quotes eld
+\end_inset
+
+cache-aware
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm where we divide the matrix into pairs of 
+\begin_inset Formula $L\times L$
+\end_inset
+
+ blocks, one above the diagonal and one below the diagonal, and swap them;
+ also, there are 
+\begin_inset Formula $m/L$
+\end_inset
+
+ blocks of size 
+\begin_inset Formula $L\times L$
+\end_inset
+
+ along the diagonal that we transpose in-place.
+ (If 
+\begin_inset Formula $m$
+\end_inset
+
+ does not divide 
+\begin_inset Formula $L$
+\end_inset
+
+, we will have some partial blocks along the edges of 
+\begin_inset Formula $A$
+\end_inset
+
+.) Because the columns of each 
+\begin_inset Formula $L\times L$
+\end_inset
+
+ block are contiguous and fit into a cache line, reading the block into
+ cache will only incur 
+\begin_inset Formula $L$
+\end_inset
+
+ misses, after which the swapping/transposition can occur in-cache.
+ There are 
+\begin_inset Formula $\Theta(m^{2}/L^{2})$
+\end_inset
+
+ such blocks.
+ Hence there are 
+\begin_inset Formula $\Theta(m^{2}/L^{2})\times L=\boxed{\Theta(m^{2}/L)}$
+\end_inset
+
+ misses.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are other possible algorithms.
+ e.g.
+ a cache-oblivious algorithm that divides 
+\begin_inset Formula $A$
+\end_inset
+
+ recursively into 4 submatrix blocks and transposes/swaps them also achieves
+ 
+\begin_inset Formula $\Theta(m^{2}/L)$
+\end_inset
+
+ cache complexity.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Technically, in order for this algorithm to work, we require 
+\begin_inset Formula $Z>L^{2}$
+\end_inset
+
+, which is called the 
+\begin_inset Quotes eld
+\end_inset
+
+tall-cache
+\begin_inset Quotes erd
+\end_inset
+
+ assumption.
+ As I mentioned in class, in practice this always true: cache lines are
+ on the order of 100 bytes, whereas caches are on the order of tens of kilobytes
+ or megabytes.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice that 
+\begin_inset Formula $Z$
+\end_inset
+
+ does not appear in the cache complexity, only 
+\begin_inset Formula $L$
+\end_inset
+
+.
+ That is because transposition is an algorithm that 
+\begin_inset Quotes eld
+\end_inset
+
+touches
+\begin_inset Quotes erd
+\end_inset
+
+ each element of 
+\begin_inset Formula $A$
+\end_inset
+
+ only once, and hence cannot benefit from temporal locality, only spatial
+ locality (consecutive access = cache-line utilization).
+\end_layout
+
+\end_body
+\end_document
