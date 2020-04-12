@@ -101,13 +101,13 @@ We can rewrite this as:
 \[
 \Vert b-Ax\Vert_{2}^{2}+\alpha\Vert x\Vert_{2}^{2}=\left\Vert \left(\begin{array}{c}
 b-Ax\\
-\alpha x
+\sqrt{\alpha}x
 \end{array}\right)\right\Vert _{2}^{2}=\left\Vert \left(\begin{array}{c}
 b\\
 0
 \end{array}\right)-\left(\begin{array}{c}
 A\\
-\alpha I
+\sqrt{\alpha}I
 \end{array}\right)x\right\Vert _{2}^{2}
 \]
 
@@ -138,7 +138,7 @@ A\\
  number of 
 \begin_inset Formula $\left(\begin{array}{c}
 A\\
-\alpha I
+\sqrt{\alpha}I
 \end{array}\right)$
 \end_inset
 
@@ -149,17 +149,17 @@ A\\
 \[
 \left(\begin{array}{c}
 A\\
-\alpha I
+\sqrt{\alpha}I
 \end{array}\right)^{*}\left(\begin{array}{c}
 A\\
-\alpha I
-\end{array}\right)=A^{*}A+\alpha^{2}I
+\sqrt{\alpha}I
+\end{array}\right)=A^{*}A+\alpha I
 \]
 
 \end_inset
 
 which simply 
-\begin_inset Formula $\sigma_{k}^{2}+\alpha^{2}$
+\begin_inset Formula $\sigma_{k}^{2}+\alpha$
 \end_inset
 
  where 
@@ -180,10 +180,10 @@ which simply
 
 ).
  Hence the condition number of this matrix, which is an upper bound on the
- condition numbrer of the regularized least-squares problem, is 
+ condition number of the regularized least-squares problem, is 
 \begin_inset Formula 
 \[
-\boxed{\sqrt{\frac{\sigma_{1}^{2}+\alpha^{2}}{\sigma_{n}^{2}+\alpha^{2}},}}
+\boxed{\sqrt{\frac{\sigma_{1}^{2}+\alpha}{\sigma_{n}^{2}+\alpha},}}
 \]
 
 \end_inset
