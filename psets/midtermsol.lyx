@@ -1003,10 +1003,14 @@ There are other possible algorithms.
 \end_inset
 
 Technically, in order for this algorithm to work, we require 
-\begin_inset Formula $Z>L^{2}$
+\begin_inset Formula $Z>2L^{2}$
 \end_inset
 
-, which is called the 
+; more generally, 
+\begin_inset Formula $Z=\Omega(L^{2})$
+\end_inset
+
+ is called the 
 \begin_inset Quotes eld
 \end_inset
 
