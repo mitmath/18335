@@ -197,6 +197,39 @@ which goes
 \end_inset
 
 .]
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+It is tempting to write out the normal equations 
+\begin_inset Formula $(A^{*}A+\alpha I)\hat{x}=A^{*}b\implies\hat{x}=(A^{*}A+\alpha I)^{-1}A^{*}b$
+\end_inset
+
+ and analyze 
+\begin_inset Formula $\kappa[(A^{*}A+\alpha I)^{-1}A^{*}]$
+\end_inset
+
+, but simply plugging in the SVD 
+\begin_inset Formula $A=U\Sigma V^{*}$
+\end_inset
+
+ here  invites an overly pessimistic estimate of the condition number of
+ the problem via 
+\begin_inset Formula $(A^{*}A+\alpha I)^{-1}A^{*}=U(\Sigma^{*}\Sigma+\alpha I)^{-1}\Sigma^{*}U^{*}=\hat{U}(\hat{\Sigma}^{2}+\alpha I)^{-1}\hat{\Sigma}\hat{U}^{*}$
+\end_inset
+
+, since 
+\begin_inset Formula $\kappa[(\hat{\Sigma}^{2}+\alpha I)^{-1}\hat{\Sigma}]\to\kappa(\hat{\Sigma})=\kappa(A)$
+\end_inset
+
+ as 
+\begin_inset Formula $\alpha\to\infty$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -360,6 +393,26 @@ The final expression eliminates the subtraction and cancellation error,
 \begin_inset Newline newline
 \end_inset
 
+Note that underflow is not actually a problem here: if 
+\begin_inset Formula $|x|$
+\end_inset
+
+ is so small that 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+ underflows, then 0.0 is the correctly rounded answer 
+\begin_inset Formula $\operatorname{fl}(f(x))$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 (A very similar transformation was used in the lecture
 \begin_inset space ~
 \end_inset
@@ -502,7 +555,15 @@ where
 
  as in class.
  As we saw in class, the QR iteration is equivalent to a simultaneous power
- method.
+ method: 
+\begin_inset Formula $A^{k}$
+\end_inset
+
+ followed by Gram–Schmidt orthogonalization 
+\begin_inset Formula $A^{k}=\underline{Q^{(k)}}\,\underline{R^{(k)}}$
+\end_inset
+
+ (in exact arithmetic.
  For distinct 
 \begin_inset Formula $|\lambda|$
 \end_inset
