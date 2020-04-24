@@ -402,3 +402,7 @@ Outlined application of nonlinear CG to Hermitian eigenproblems by minimizing th
 Introduction to **adjoint** methods and the remarkable fact that one can compute the gradient of a complicated function with about the same number of additional operations as computing the function _once_.
 
 **Further reading:** A variant of adjoint methods is the well-known [backpropagation algorithm](https://en.wikipedia.org/wiki/Backpropagation) for neural networks, which can often be thought of as a recurrence relation (one per network layer).  Computers can sometimes now compute derivatives automatically via [automatic differentiation (AD)](https://en.wikipedia.org/wiki/Automatic_differentiation), and adjoint methods correspond to "reverse mode" AD.  For the largest-scale computational problems, solved by very complicated programs (often combining multiple external libraries), AD is still a challenge, however, and hand implementation of adjoint methods is often still required.
+
+### Lecture 28 (Apr 24)
+
+Adjoint methods for eigenproblems and recurrence relations, following notes from previous lecture.
