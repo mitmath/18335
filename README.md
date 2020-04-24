@@ -406,3 +406,20 @@ Introduction to **adjoint** methods and the remarkable fact that one can compute
 ### Lecture 28 (Apr 24)
 
 Adjoint methods for eigenproblems and recurrence relations, following notes from previous lecture.
+
+### Lecture 29 (Apr 27)
+
+Discussed some general concepts in local optimization. **Global convergence** means convergence to a _local_ optimum from any _feasible_ starting point; explained why finding the feasible region from an _infeasible_ starting point is in general as hard as global optimization. A typical **trust region** approach is to _locally approximate_ the objective and constraint functions by some _simple functions_ that are easy to optimize, optimize them within some localized trust region around a current point **x** to obtain a candidate step **y**, and then either take the step (e.g. if **y** is an improvement) and/or update the approximations and trust region (e.g. if **y** was not an improvement or the approximation and exact functions differed greatly). There are many, many algorithms that follow this general outline, but they differ greatly in what approximations they use (e.g. linear, quadratic, ...), what trust region they use, and what methods they use to update the trust region and to evaluate candidate steps. Often, the approximate functions are _convex_ so that convex-optimization methods can be used to solve the _trust-region subproblems_.
+
+Went over a particular example of a nonlinear optimization scheme, solving the full inequality-constrained nonlinear-programming problem: the CCSA algorithms, as refined by Svanberg (2002). This is a surprisingly simple algorithm (the [NLopt](http://ab-initio.mit.edu/nlopt) implementation is only 300 lines of C code), but is robust and provably convergent, and illustrates a number of important ideas in optimization: optimizing an approximation to update the parameters **x**, guarding the approximation with trust regions and penalty terms, and optimizing via the dual function (Lagrange multipliers). Like many optimization algorithms, the general ideas are very straightforward, but getting the details right can be delicate!
+
+Outlined the inner/outer iteration structure of CCSA, and the interesting property that it produces a sequence of feasible iterates from a feasible starting point, which means that you can stop it early and still have a feasible solution (which is very useful for many applications where 99% of optimal is fine, but feasibility is essential).
+
+The inner optimization problem involving the approximate gᵢ functions turns out to be *much* easier to solve because it is *convex* and *separable* (gᵢ = a sum of 1d convex functions of each coordinate xⱼ).  Convexity allows us to use the technique of **duality** to turn the problem into an equivalent "dual" optimization problem, and separability makes this dual problem trivial to formulate and solve.   Began discussing the ideas of *Lagrangians* and duality using the Boyd textbook; we will continue this in the next lecture.
+
+**Further reading:** Pages 1–10 of [Svanberg (2002) paper on CCSA algorithms](
+http://dx.doi.org/10.1137/S1052623499362822) — I used the "linear and separable quadratic approximation" functions gᵢ in section 5.1; as far as I can tell the other example gᵢ functions have no general advantages.
+
+### Lecture 30 (Apr 29)
+
+* [slides from Boyd, chapter 5](notes/boyd-ch5-slides.pdf)
