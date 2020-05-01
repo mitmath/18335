@@ -7,6 +7,8 @@
 \textclass article
 \begin_preamble
 \newcommand{\tr}{\operatorname{tr}}
+
+\date{created spring 2019; updated \today}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -921,7 +923,7 @@ weight
 \begin_inset Formula $E=H^{-1}-(H^{k})^{-1}$
 \end_inset
 
-, require that the previous iterate 
+ and require that the previous iterate 
 \begin_inset Formula $H^{k}$
 \end_inset
 
@@ -1083,7 +1085,7 @@ Here, note that
 
  trace.
  And 
-\begin_inset Formula $\tr\left[\Gamma(E-E^{T})\right]=\sum_{i,j}\Gamma_{ji}(E-E^{T})_{ji}=\sum_{i,j}(\Gamma^{T})_{ij}(E-E^{T})_{ij}$
+\begin_inset Formula $\tr\left[\Gamma(E-E^{T})\right]=\sum_{i,j}\Gamma_{ji}(E-E^{T})_{ij}=\sum_{i,j}(\Gamma^{T})_{ij}(E-E^{T})_{ij}$
 \end_inset
 
  is a 
@@ -1385,7 +1387,7 @@ The Sherman–Morrison formula
 
 \end_inset
 
- we can derive (after a bunch more algebra) the corresponding update of
+ one can derive (after a bunch more algebra) the corresponding update of
  
 \begin_inset Formula $H^{k}$
 \end_inset
