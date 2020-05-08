@@ -459,3 +459,28 @@ Discussed derivative-free optimization based on quadratic approximation by symme
 New topic: **numerical integration** (numerical quadrature). Began by basic definition of the problem (in 1d) and differences from general ODE problems. Then gave trapezoidal quadrature rule, and simple argument why the error generally decreases with the square of the number of function evaluations.
 
 Showed numerical experiment (see handout) demonstrating that sometimes the trapezoidal rule can do much better than this: it can even have exponential convergence with the number of points! To understand this at a deeper level, I analyze the problem using Fourier cosine series (see handout), and show that the error in the trapezoidal rule is directly related to the convergence rate of the Fourier series. Claimed that this convergence rate is related to the smoothness of the periodic extension of the function, and in fact an analytic periodic function has Fourier coefficients that vanish exponentially fast, and thus the trapezoidal rule converges exponentially in that case. Proved by integration by parts of the Fourier series. In fact, we find that only the _odd_\-order derivatives at the endpoints need to be periodic to get accelerated convergence.
+
+### Lecture 34 (May 8)
+
+Explained the idea of Clenshaw–Curtis quadrature as a change of variables + a cosine series to turn the integral of _any_ function into the integral of periodic functions. This way, functions only need to be analytic on the interior of the integration interval in order to get exponential convergence. (See Wikipedia handout.)
+
+Also explained (as in the handout) how to precompute the weights in terms of a discrete cosine transform, rather than cosine-transforming the function values every time one needs an integral, via a simple transposition trick.
+
+Mentioned the utility of nested quadrature rules for _a posteriori_ error estimation and adaptive quadrature. Discussed p-adaptive vs. h-adaptive adaptive schemes.
+
+Explained connection of Clenshaw-Curtis quadrature and cosine series to Chebyshev polynomials. This leads into the general topic of Chebyshev approximation, and how we can approximate any smooth function on a finite interval by a polynomial with exponential accuracy (in the degree of the polynomial) as long as we interpolate via Chebyshev points.
+
+Using Chebyshev approximation, explained how lots of problems can be solved by first approximating a nasty function via a polynomial, at which point one can just use easy methods for polynomials. Showed examples of root finding, minimization, integration, and solving ODEs via the [ApproxFun](https://github.com/ApproxFun/ApproxFun.jl) package for Julia, which implements a modern version of these ideas (following in the tracks of the pioneering [chebfun](http://www.chebfun.org/) package for Matlab).
+
+Mentioned integration with weight functions: I = ∫w(x)f(x)dx ≈ Iₙ = ∑wᵢf(xᵢ).  Even if the "weight" w(x) is "nasty" (discontinuous, singular, highly oscillatory…), we can do some (possibly expensive) precomputations of wᵢ and xᵢ *once* and re-use them for integrating many "nice" (smooth) functions f(x) with only a few quadrature points.
+
+**Further reading**: Lloyd N. Trefethen, "[Is Gauss quadrature better than Clenshaw-Curtis?](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.157.4174)," _SIAM Review_ **50** (1), 67-87 (2008). Pedro Gonnet, [A review of error estimation in adaptive quadrature](http://dl.acm.org/citation.cfm?id=2333117), _ACM Computing Surveys_ **44**, article 22 (2012).  [Chebyshev polynomials on Wikipedia](http://en.wikipedia.org/wiki/Chebyshev_polynomials), free book online [Chebyshev and Fourier Spectral Methods](http://www-personal.umich.edu/~jpboyd/BOOK_Spectral2000.html) by John P. Boyd, the [chebfun package](http://www2.maths.ox.ac.uk/chebfun/) for Matlab by Trefethen et al., and the lecture notes from [Numerical Complex Analysis by Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/teaching/NCA/).
+
+### Lecture 35 (May 11)
+
+* [notes on FFTs](notes/fft-iap3.pdf)
+* [slides on FFTs and FFTW](notes/FFTW.pdf)
+
+Introduced the [discrete Fourier transform (DFT)](https://en.wikipedia.org/wiki/Discrete_Fourier_transform).   Talked about its history (Gauss!), properties (unitarity, convolution theorem), aliasing, special case of the [type-1 discrete cosine transform (DCT)](https://en.wikipedia.org/wiki/Discrete_cosine_transform), and applications (Chebyshev and other spectral methods for integration, PDEs, etcetera; signal processing, [multiplying large numbers](https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm)), etc.
+
+A [fast Fourier transform (FFT)](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is an O(N log N) algorithm to compute the DFT.  There are many such algorithms, the most famous of which is the Cooley–Tukey algorithm (1965, though there were many precursors dating back to Gauss himself).
