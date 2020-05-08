@@ -1,0 +1,2482 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\date{Created January 2011; updated \today}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 2
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Numerical integration
+\begin_inset Newline newline
+\end_inset
+
+and the redemption of the trapezoidal rule
+\end_layout
+
+\begin_layout Author
+S.
+ G.
+ Johnson, MIT Applied Math, IAP Math Lecture Series 2011
+\end_layout
+
+\begin_layout Section
+Numerical integration (
+\begin_inset Quotes eld
+\end_inset
+
+quadrature
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Freshman calculus revolves around differentiation and integration.
+ Unfortunately, while you can almost always differentiate functions by hand
+ (if the derivative exists at all), most functions cannot be integrated
+ by hand in closed form [e.g.
+ try integrating 
+\begin_inset Formula $\sin(x+\cos(x))$
+\end_inset
+
+].
+ Instead, they must be integrated 
+\emph on
+approximately
+\emph default
+ on a computer, a process known as 
+\emph on
+numerical integration
+\emph default
+ or 
+\emph on
+quadrature
+\emph default
+.
+ (Historically, 
+\begin_inset Quotes eld
+\end_inset
+
+quadrature
+\begin_inset Quotes erd
+\end_inset
+
+ was a synonym for integration in general—literally, converting areas into
+ equivalent squares—but in modern usage 
+\begin_inset Quotes eld
+\end_inset
+
+quadrature
+\begin_inset Quotes erd
+\end_inset
+
+ almost exclusively refers to computational algorithms.)
+\end_layout
+
+\begin_layout Standard
+In particular, suppose we are computing the following definite integral,
+ over an interval 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+ (chosen for convenience below):
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Note that there is no loss of generality in the choice of the 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+ interval: if we are computing some arbitrary integral 
+\begin_inset Formula $\int_{a}^{b}g(y)dy$
+\end_inset
+
+, we can convert it back to the 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+ form by a change of variables: 
+\begin_inset Formula $\int_{a}^{b}g(y)dy=\frac{|b-a|}{\pi}\int_{0}^{\pi}g(\frac{x}{\pi}[b-a]+a)dx=\int_{0}^{\pi}f(x)dx$
+\end_inset
+
+ for 
+\begin_inset Formula $f(x)=\frac{|b-a|}{\pi}g(\frac{x}{\pi}[b-a]+a)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+I=\int_{0}^{\pi}f(x)dx
+\]
+
+\end_inset
+
+for some given function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ that is a 
+\begin_inset Quotes eld
+\end_inset
+
+black box
+\begin_inset Quotes erd
+\end_inset
+
+ (we may only know how to 
+\emph on
+evaluate it
+\emph default
+ given any 
+\begin_inset Formula $x$
+\end_inset
+
+, not how to manipulate it symbolically).
+ In numerical integration, we want to 
+\emph on
+approximate
+\emph default
+ this integral 
+\begin_inset Formula $I$
+\end_inset
+
+ by a 
+\emph on
+sum
+\emph default
+ 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+I\approx\sum_{n=0}^{N}w_{n}f(x_{n})=I_{N}
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $N+1$
+\end_inset
+
+ 
+\emph on
+quadrature points
+\emph default
+ 
+\begin_inset Formula $x_{n}\in[0,\pi]$
+\end_inset
+
+ and corresponding 
+\emph on
+quadrature weights
+\emph default
+ 
+\begin_inset Formula $w_{n}$
+\end_inset
+
+.
+ The central problem in numerical integration is this:
+\end_layout
+
+\begin_layout Itemize
+How can we choose the points 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ and the weights 
+\begin_inset Formula $w_{n}$
+\end_inset
+
+ so that the error 
+\begin_inset Formula $|I_{N}-I|$
+\end_inset
+
+ 
+\series bold
+goes to zero as rapidly as possible
+\series default
+ as we increase 
+\begin_inset Formula $N$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+This problem has a long history, dating back to ancient approximations for
+ 
+\begin_inset Formula $\pi$
+\end_inset
+
+ by approximating the area or circumference of a circle with polygons, and
+ involves beautiful and sometimes surprising mathematics—the exponential
+ blowup of polynomial (
+\begin_inset Quotes eld
+\end_inset
+
+Newton–Cotes
+\begin_inset Quotes erd
+\end_inset
+
+) approximations (Runge phenomena), orthogonal bases of polynomials (Gaussian
+ quadrature, Chebyshev approximation, etc.), and deep forays into Fourier
+ analysis (e.g., Clenshaw–Curtis quadrature).
+ Quadrature is closely related to other important numerical algorithms such
+ as numerical linear algebra (e.g.
+ Lanczos iterations), approximation theory, and fast Fourier transform algorithm
+s (FFTs, which themselves encompose a host of group theory, number theory,
+ polynomial algebras, and other fascinating topics).
+ For higher-dimensional numerical integration (
+\emph on
+cubature
+\emph default
+), the story becomes even more intricate, ranging from statistics (Monte–Carlo
+ integration) and number theory (low-discrepancy sequences and quasi-Monte–Carlo
+ methods) to fractals (sparse grids).
+ 
+\end_layout
+
+\begin_layout Standard
+Here, we will just dip our toes into the problem, beginning by analyzing
+ one of the simplest—deceptively simple!—quadrature methods, the 
+\series bold
+trapezoidal rule
+\series default
+.
+ Not only does a full analysis of the accuracy of this method lead us directly
+ into the far-reaching topic of 
+\emph on
+Fourier series
+\emph default
+, but we also find that a simple transformation turns the lowly trapezoidal
+ rule from one of the crudest quadrature schemes into one of the best, 
+\series bold
+Clenshaw–Curtis quadrature
+\series default
+.
+\end_layout
+
+\begin_layout Section
+The trapezoidal rule
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/stevenj/Documents/Work/Teaching/18.095/trap.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:trap"
+
+\end_inset
+
+Illustration of (a) the trapezoidal rule and (b) the composite trapezoidal
+ rule for integrating 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ on 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+.
+ In each case, we approximate the area under 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ by the area of (a) one or (b) 
+\begin_inset Formula $N$
+\end_inset
+
+ trapezoids.
+ That is, we evaluate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ at 
+\begin_inset Formula $N+1$
+\end_inset
+
+ points 
+\begin_inset Formula $x_{n}=n\pi/N$
+\end_inset
+
+ for 
+\begin_inset Formula $n=0,1,\ldots,N$
+\end_inset
+
+, connect the points by straight lines, and approximate the integral by
+ the integral of this interpolated piecewise-linear function.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The trapezoidal rule, in its most basic form, connects the endpoints 
+\begin_inset Formula $(0,f(0))$
+\end_inset
+
+ and 
+\begin_inset Formula $(\pi,f(\pi))$
+\end_inset
+
+ by a straight line and approximates the area by the area of a trapezoid:
+ 
+\begin_inset Formula 
+\[
+I\approx\pi\frac{f(0)+f(\pi)}{2},
+\]
+
+\end_inset
+
+as shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap"
+
+\end_inset
+
+(a).
+ Of course this approximation is rather crude, so we refine it by increasing
+ the number of trapezoids: by 
+\begin_inset Quotes eld
+\end_inset
+
+trapezoidal rule
+\begin_inset Quotes erd
+\end_inset
+
+ one usually means a 
+\emph on
+composite trapezoidal rule
+\emph default
+: divide 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+ into 
+\begin_inset Formula $N$
+\end_inset
+
+ intervals and apply the trapezoidal rule to each one, as shown in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap"
+
+\end_inset
+
+(b).
+ In the common case of 
+\emph on
+equal intervals
+\emph default
+ of width 
+\begin_inset Formula $\Delta x=\pi/N$
+\end_inset
+
+, summing these trapezoid areas yields the following approximate integral,
+ also called the 
+\emph on
+Euler–Maclaurin
+\emph default
+ formula: 
+\begin_inset Formula 
+\[
+I_{N}=\frac{\pi}{N}\left[\frac{f(0)+f(\pi)}{2}+\sum_{n=1}^{N-1}f(n\pi/N)\right].
+\]
+
+\end_inset
+
+Note that the 
+\begin_inset Formula $1/2$
+\end_inset
+
+ factors cancelled except for the first and last points.
+\end_layout
+
+\begin_layout Standard
+Clearly, as 
+\begin_inset Formula $N\to\infty$
+\end_inset
+
+ we must have 
+\begin_inset Formula $I_{N}\to I$
+\end_inset
+
+ (at least, for any Riemann-integrable function).
+ The question now is, 
+\emph on
+how fast
+\emph default
+ does the error 
+\begin_inset Formula $|I-I_{N}|$
+\end_inset
+
+ decrease with 
+\begin_inset Formula $N$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Subsection
+A simple, pessimistic error estimate
+\end_layout
+
+\begin_layout Standard
+A crude, but perhaps too pessimistic, upper bound on the error is as follows.
+ The trapezoidal rule corresponds to approximating 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ by a straight line on each interval 
+\begin_inset Formula $\Delta x=\pi/N$
+\end_inset
+
+.
+ If we look at the Taylor expansion of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, the lowest-order deviation from a straight line is the quadratic (
+\begin_inset Formula $f''$
+\end_inset
+
+) term, and this term means that 
+\begin_inset Formula $f$
+\end_inset
+
+ deviates from a straight line by at most 
+\begin_inset Formula $\sim\Delta x^{2}$
+\end_inset
+
+ within the interval (multiplied by some coefficient proportional to 
+\begin_inset Formula $f''$
+\end_inset
+
+), as depicted in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap-error"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trap-error.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:trap-error"
+
+\end_inset
+
+Schematic estimate of the local error of the trapezoidal rule.
+ In a small interval 
+\begin_inset Formula $\Delta x=\pi/N$
+\end_inset
+
+, the function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ can be approximated by a Taylor expansion, and the lowest-order correction
+ to the trapezoidal rule's linear approximation is represented by the quadratic
+ term.
+ Correspondingly, the maximum deviation of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ from the trapezoid is 
+\begin_inset Formula $\sim\Delta x^{2}$
+\end_inset
+
+ within the interval (multiplied by 
+\begin_inset Formula $f''$
+\end_inset
+
+ at some point).
+ The resulting error 
+\emph on
+area
+\emph default
+ (red shaded region) is therefore proportional to 
+\begin_inset Formula $\Delta x^{2}\times\Delta x=\Delta x^{3}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ The corresponding error area is then proportional to 
+\begin_inset Formula $\Delta x^{2}\times\Delta x=\Delta x^{3}\sim1/N^{3}$
+\end_inset
+
+.
+ This is the 
+\emph on
+local error
+\emph default
+ from a 
+\emph on
+single
+\emph default
+ interval.
+ As there are 
+\begin_inset Formula $N$
+\end_inset
+
+ such intervals, the 
+\emph on
+total
+\emph default
+ error should be bounded above by 
+\begin_inset Formula $N\times1/N^{3}=1/N^{2}$
+\end_inset
+
+: 
+\series bold
+the error of the trapezoidal rule decreases at worst proportional to 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+
+\series default
+ (for continuous integrands).
+\end_layout
+
+\begin_layout Standard
+This is an upper bound on the error, because we have neglected the possibility
+ that the errors from different intervals will be of opposite signs and
+ mostly cancel if we are very lucky.
+ At first glance, however, it seems unlikely that such cancellations will
+ occur to such an extent that the error will decrease faster than 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+, and indeed this turns out to be the case—for 
+\emph on
+most
+\emph default
+ 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, the trapezoidal-rule error is exactly proportional to 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ for large 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ However, it turns out there are 
+\emph on
+some
+\emph default
+ functions that do much, much better; if we can understand these special
+ cases, and in general understand the error more rigorously, we can try
+ to rearrange the computation so that this improvement occurs almost always.
+\end_layout
+
+\begin_layout Subsection
+A numerical experiment and a Miracle
+\end_layout
+
+\begin_layout Standard
+In figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap-convergence"
+
+\end_inset
+
+(left) is plotted the fractional error 
+\begin_inset Formula $|I_{N}-I|/|I|$
+\end_inset
+
+ in the trapezoidal-rule approximation versus 
+\begin_inset Formula $N$
+\end_inset
+
+ on a log–log scale for an arbitrarily chosen nasty-looking function 
+\begin_inset Formula $e^{\sin[(x+1)^{2}+2\cos(4x+1)]}$
+\end_inset
+
+ shown in the inset.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trap-convergence.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Left:
+\series default
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:trap-convergence"
+
+\end_inset
+
+Fractional error 
+\begin_inset Formula $|I_{N}-I|/|I|$
+\end_inset
+
+ verus 
+\begin_inset Formula $N$
+\end_inset
+
+ for the trapezoidal rule 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ when integrating the function 
+\begin_inset Formula $e^{\sin[(x+1)^{2}+2\cos(4x+1)]}$
+\end_inset
+
+ (inset).
+ For reference, the dashed line shows 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ dependence, demonstrating that the 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ errors indeed decrease asymptotically at this rate.
+ 
+\series bold
+Right
+\series default
+: the same fractional error, but this time for the integrand 
+\begin_inset Formula $e^{\sin[\sin^{2}(x+1)+2\cos(4x+1)]}$
+\end_inset
+
+ (inset).
+ Note that this is a semi-log scale: the 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ errors appear to be decreasing at least 
+\emph on
+exponentially
+\emph default
+ fast with 
+\begin_inset Formula $N$
+\end_inset
+
+—a miracle has occurred in the trapezoidal rule?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ As expected from the crude analysis above, the errors decrease asymptotically
+ at a rate that is almost exactly proportional to 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ (an exact 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ dependence is shown as a dashed line for reference).
+ If we want eight decimal places of accuracy we need around 
+\begin_inset Formula $10^{4}$
+\end_inset
+
+ function evaluations, but this is not too bad on a computer (unless we
+ need to evaluate millions of such integrals, or unless our integrand is
+ a much nastier function like the output of a planetary climate simulation!).
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Quotes eld
+\end_inset
+
+fun,
+\begin_inset Quotes erd
+\end_inset
+
+ we try a slightly different integrand in the right panel of figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap-convergence"
+
+\end_inset
+
+: 
+\begin_inset Formula $e^{\sin[\sin^{2}(x+1)+2\cos(4x+1)]}$
+\end_inset
+
+ (inset).
+ Again plotting error versus 
+\begin_inset Formula $N$
+\end_inset
+
+, it seems again to be roughly a straight line (a little more wiggly than
+ before)—but wait, this is no longer a log–log scale, this is a 
+\emph on
+log–linear
+\emph default
+ scale.
+ A straight line on such a scale indicates an 
+\emph on
+exponential
+\emph default
+ dependence with 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ How has the ordinary trapezoidal rule, piecewise-linear approximations,
+ managed to achieve apparently exponential accuracy (or better
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In fact, the rate of decrease here may in fact be faster than exponential,
+ a consequence of the niceness of this integrand everywhere in the complex
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ plane, but it is hard to tell the difference without plotting over a much
+ larger range of errors (impossible here because of the finite precision
+ of computer arithmetic).
+\end_layout
+
+\end_inset
+
+) with 
+\begin_inset Formula $N$
+\end_inset
+
+? Some miracle of cancellation seems to have occurred, but why? If we could
+ somehow manage to obtain this miracle for more integrands, what a wonderful
+ quadrature method we would have!
+\end_layout
+
+\begin_layout Standard
+A clue to the miracle is that the integrand in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:trap-convergence"
+
+\end_inset
+
+(right) does have one special property that is obvious with a little thought:
+ it is periodic [
+\begin_inset Formula $f(x+\pi)=f(x)$
+\end_inset
+
+].
+ Why should periodicity help so much, though? That is probably not clear
+ yet, but it points us towards an analytical technique where periodicity
+ is central: Fourier analysis.
+\end_layout
+
+\begin_layout Subsection
+Error analysis by the Fourier cosine series
+\end_layout
+
+\begin_layout Standard
+A beautiful, powerful, and far-reaching way to rigorously analyze the approximat
+ion errors in the trapezoidal rule is to use Fourier analysis, which relies
+ on an amazing fact: any 
+\begin_inset Quotes eld
+\end_inset
+
+reasonable
+\begin_inset Quotes erd
+\end_inset
+
+ function can be expressed as an infinite series of sines and/or cosines,
+ and sines/cosines are much easier to analyze than arbitrary functions.
+ In particular, for this problem it turns out to be convenient to use a
+ Fourier cosine series: write 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+f(x)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}a_{k}\cos(kx)
+\]
+
+\end_inset
+
+ for coefficients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ given by:
+\begin_inset Formula 
+\[
+a_{k}=\frac{2}{\pi}\int_{0}^{\pi}f(x)\,\cos(kx)\,dx.
+\]
+
+\end_inset
+
+For any 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ that is continuous and non-singular on 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+, this series converges to 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ at every 
+\begin_inset Formula $x$
+\end_inset
+
+, and 
+\begin_inset Formula $a_{k}\to0$
+\end_inset
+
+ for 
+\begin_inset Formula $k\to\infty$
+\end_inset
+
+.
+ It turns out that how 
+\emph on
+fast
+\emph default
+ the Fourier series converges (how fast 
+\begin_inset Formula $a_{k}\to0$
+\end_inset
+
+) is determined entirely by the 
+\emph on
+smoothness
+\emph default
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and by its 
+\emph on
+endpoint
+\emph default
+ derivatives at 
+\begin_inset Formula $x=0,\pi$
+\end_inset
+
+.
+ Moreover, we will be able to describe the convergence rate of the trapezoidal
+ rule entirely in terms of the convergence rate of the Fourier cosine series!
+\end_layout
+
+\begin_layout Subsubsection
+The exact integral 
+\begin_inset Formula $I$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plugging the cosine series into the exact integral 
+\begin_inset Formula $I$
+\end_inset
+
+, we obtain a simple result: 
+\begin_inset Formula 
+\begin{eqnarray*}
+I & = & \int_{0}^{\pi}f(x)dx=\frac{a_{0}\pi}{2}+\sum_{k=1}^{\infty}a_{k}\cancel{\int_{0}^{\pi}\cos(kx)dx}\\
+ & = & \frac{a_{0}\pi}{2},
+\end{eqnarray*}
+
+\end_inset
+
+because all of the 
+\begin_inset Formula $k>0$
+\end_inset
+
+ terms integrate to zero.
+\end_layout
+
+\begin_layout Subsubsection
+The trapezoidal rule 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plugging the cosine series into the trapezoidal rule 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+, the constant 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ term just gets multiplied by 
+\begin_inset Formula $N$
+\end_inset
+
+ (it appears in 
+\begin_inset Formula $N+1$
+\end_inset
+
+ terms, two of which have coefficient 
+\begin_inset Formula $1/2$
+\end_inset
+
+), while the other terms give a nasty-looking sum:
+\begin_inset Formula 
+\begin{alignat*}{1}
+I_{N} & =\frac{\pi}{N}\left[\frac{a_{0}}{2}N+\sum_{k=1}^{\infty}a_{k}\left(\frac{\cos(0k\pi/N)+\cos(Nk\pi/N)}{2}+\sum_{n=1}^{N-1}\cos(nk\pi/N)\right)\right]\\
+ & =I+\frac{\pi}{N}\sum_{k=1}^{\infty}a_{k}S_{k},
+\end{alignat*}
+
+\end_inset
+
+where the 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ term is just the exact integral 
+\begin_inset Formula $I$
+\end_inset
+
+ and 
+\begin_inset Formula $S_{k}$
+\end_inset
+
+ is the sum: 
+\begin_inset Formula 
+\[
+S_{k}=\frac{\cos\left(0\frac{k\pi}{N}\right)+\cos\left(N\frac{k\pi}{N}\right)}{2}+\sum_{n=1}^{N-1}\cos\left(n\frac{k\pi}{N}\right).
+\]
+
+\end_inset
+
+Amazingly (you will prove this for homework, below), this sum 
+\begin_inset Formula $S_{k}$
+\end_inset
+
+ is almost always zero.
+ The only time it is nonzero is when 
+\begin_inset Formula $k=2mN$
+\end_inset
+
+ where 
+\begin_inset Formula $m$
+\end_inset
+
+ is any integer (i.e., when 
+\begin_inset Formula $k$
+\end_inset
+
+ is an 
+\emph on
+even
+\emph default
+ multiple of 
+\begin_inset Formula $N$
+\end_inset
+
+), in which case:
+\begin_inset Formula 
+\begin{eqnarray*}
+S_{2mN} & = & \frac{\cos\left(0\right)+\cos\left(2mN\pi\right)}{2}+\sum_{n=1}^{N-1}\cos\left(n\frac{2m\cancel{N}\pi}{\cancel{N}}\right)\\
+ & = & \frac{1+1}{2}+\sum_{n=1}^{N-1}1=N,
+\end{eqnarray*}
+
+\end_inset
+
+using the fact that 
+\begin_inset Formula $\cos(2\pi\ell)=1$
+\end_inset
+
+ for any integer 
+\begin_inset Formula $\ell$
+\end_inset
+
+.
+ This 
+\begin_inset Formula $N$
+\end_inset
+
+ factor cancels with 
+\begin_inset Formula $\pi/N$
+\end_inset
+
+ in 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ Therefore, the nasty 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ sum reduces to the remarkably simple expression: 
+\begin_inset Formula 
+\[
+I_{N}=I+\pi\sum_{m=1}^{\infty}a_{2mN}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Convergence rate
+\end_layout
+
+\begin_layout Standard
+The error in the trapezoidal rule is therefore exactly: 
+\begin_inset Formula 
+\[
+I_{N}-I=\pi\sum_{m=1}^{\infty}a_{2mN}.
+\]
+
+\end_inset
+
+As 
+\begin_inset Formula $N$
+\end_inset
+
+ increases, this depends on 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ for larger and larger 
+\begin_inset Formula $k$
+\end_inset
+
+, but 
+\begin_inset Formula $a_{k}\to0$
+\end_inset
+
+ as 
+\begin_inset Formula $k\to\infty$
+\end_inset
+
+, and so the error goes to zero.
+ 
+\series bold
+The convergence rate of the Fourier cosine series determines the convergence
+ rate of the trapezoidal rule!
+\series default
+ The faster 
+\begin_inset Formula $a_{k}\to0$
+\end_inset
+
+ with increasing 
+\begin_inset Formula $k$
+\end_inset
+
+, the faster we will have 
+\begin_inset Formula $I_{N}-I\to0$
+\end_inset
+
+ with 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fortunately, there is a long history of analysis of the convergence rate
+ of the Fourier series which we can now bring to bear on the trapezoidal
+ rule, and very general theorems are known.
+ In the attached handout on cosine series, I go through one of the simplest
+ analysis of convergence rates, which only requires repeated integration
+ by parts on the 
+\begin_inset Formula $a_{\ell}$
+\end_inset
+
+ formula.
+\end_layout
+
+\begin_layout Standard
+In particular, for an arbitrary continuous 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ that has no particularly special behavior at the endpoints 
+\begin_inset Formula $x=0,\pi$
+\end_inset
+
+, the coefficients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ approach an 
+\begin_inset Formula $a_{k}\approx\#/k^{2}$
+\end_inset
+
+ dependence for large 
+\begin_inset Formula $k$
+\end_inset
+
+, with some coefficient 
+\begin_inset Formula $\#$
+\end_inset
+
+.
+ This means that, for large 
+\begin_inset Formula $N$
+\end_inset
+
+, the trapezoidal-rule error approaches: 
+\begin_inset Formula 
+\[
+I_{N}-I\approx\pi\sum_{m=1}^{\infty}\frac{\#}{(2mN)^{2}}=\frac{\pi\#}{4N^{2}}\sum_{m=1}^{\infty}\frac{1}{m^{2}}\sim\frac{1}{N^{2}},
+\]
+
+\end_inset
+
+precisely the 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ dependence we predicted from a crude analysis above.
+ (In fact, the sum of 
+\begin_inset Formula $1/m^{2}$
+\end_inset
+
+, the famous 
+\begin_inset Quotes eld
+\end_inset
+
+Basel problem
+\begin_inset Quotes erd
+\end_inset
+
+ solved by Euler, is exactly 
+\begin_inset Formula $\pi^{2}/6$
+\end_inset
+
+, so the error approaches 
+\begin_inset Formula $\pi^{3}\#/24N^{2}$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Standard
+However, if 
+\begin_inset Formula $f'$
+\end_inset
+
+ vanishes at the endpoints, then 
+\begin_inset Formula $a_{k}\sim1/k^{4}$
+\end_inset
+
+ and hence 
+\begin_inset Formula $I_{N}-I\sim1/N^{4}$
+\end_inset
+
+.
+ And if 
+\begin_inset Formula $f'''$
+\end_inset
+
+ vanishes at the endpoints, then 
+\begin_inset Formula $a_{k}\sim1/k^{6}$
+\end_inset
+
+ and 
+\begin_inset Formula $I_{N}-I\sim1/N^{6}$
+\end_inset
+
+.
+ In fact, we don't actually care what 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ does for odd 
+\begin_inset Formula $k$
+\end_inset
+
+, only for even 
+\begin_inset Formula $k$
+\end_inset
+
+, and for even 
+\begin_inset Formula $k$
+\end_inset
+
+ it turns out to be enough for 
+\begin_inset Formula $f'$
+\end_inset
+
+ etcetera to be periodic, i.e.
+ 
+\begin_inset Formula $f'(0)=f'(\pi)$
+\end_inset
+
+ and so on, to obtain this faster convergence.
+ And if 
+\emph on
+all
+\emph default
+ of the odd derivatives of 
+\begin_inset Formula $f$
+\end_inset
+
+ are periodic at the endpoints, e.g.
+ if 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ itself is 
+\emph on
+periodic
+\emph default
+ (and smooth, i.e.
+ infinitely differentiable) 
+\emph on
+or
+\emph default
+ if 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is 
+\emph on
+even
+\emph default
+ around both boundaries (which makes all the odd derivatives vanish), then
+ 
+\begin_inset Formula $I_{N}-I$
+\end_inset
+
+ 
+\series bold
+vanishes faster than any power of 
+\begin_inset Formula $1/N$
+\end_inset
+
+
+\series default
+ (typically exponentially fast).
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A more detailed analysis of exactly how fast the convergence is for periodic/eve
+n functions requires a fair amount of complex analysis (contour integration
+ and so on).
+ For example, if 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is an 
+\begin_inset Quotes eld
+\end_inset
+
+analytic
+\begin_inset Quotes erd
+\end_inset
+
+ function in a finite-width strip around the real-
+\begin_inset Formula $x$
+\end_inset
+
+ axis, then one can show by contour integration that the error converges
+ at least exponentially fast.
+ See the references at the end.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Clenshaw–Curtis quadrature
+\end_layout
+
+\begin_layout Standard
+Even if 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is a nice, smooth function inside the integration interval, it is often
+ not even or periodic at its endpoints, a fact which is responsible for
+ reducing the error of the trapezoidal rule to the 
+\begin_inset Formula $\sim1/N^{2}$
+\end_inset
+
+ worst case.
+ However, there is a 
+\emph on
+simple change of variables
+\emph default
+ which allows us to obtain the miraculous exponential convergence 
+\emph on
+all the time
+\emph default
+ (at least for smooth functions), and this technique is called 
+\series bold
+Clenshaw–Curtis quadrature
+\series default
+\emph on
+.
+ 
+\end_layout
+
+\begin_layout Standard
+For this section, it is more convenient to start with an integral over 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+ rather than 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+, and then make a change of variables 
+\begin_inset Formula $x=\cos\theta$
+\end_inset
+
+ to transform the former into the latter: 
+\begin_inset Formula 
+\[
+I=\int_{-1}^{1}f(x)dx=\int_{0}^{\pi}f(\cos\theta)\sin\theta\,d\theta.
+\]
+
+\end_inset
+
+By construction, 
+\begin_inset Formula $f(\cos\theta)=f(\cos[-\theta])$
+\end_inset
+
+ and 
+\begin_inset Formula $f(\cos[\pi-\theta])=f(\cos[\pi+\theta])$
+\end_inset
+
+ so 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+ is an 
+\emph on
+even function
+\emph default
+ around both 
+\begin_inset Formula $x=0$
+\end_inset
+
+ and 
+\begin_inset Formula $x=\pi$
+\end_inset
+
+, and hence 
+\emph on
+all of its odd-order derivatives with 
+\begin_inset Formula $\theta$
+\end_inset
+
+ vanish at the endpoints
+\emph default
+.
+ This is precisely one of the conditions under which the Fourier cosine
+ series converges super-fast, and hence the trapezoidal rule converges super-fas
+t for 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+.
+ Unfortunately, this is spoiled in 
+\begin_inset Formula $I$
+\end_inset
+
+ thanks to our multiplication with 
+\begin_inset Formula $\sin\theta$
+\end_inset
+
+, which is odd.
+ We fix this problem by an additional trick: we 
+\emph on
+first
+\emph default
+ expand 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+ in a cosine series, and 
+\emph on
+then
+\emph default
+ do the 
+\begin_inset Formula $I$
+\end_inset
+
+ integrals analytically term-by-term: 
+\begin_inset Formula 
+\[
+f(\cos\theta)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}a_{k}\cos(k\theta),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a_{k}=\frac{2}{\pi}\int_{0}^{\pi}f(\cos\theta)\cos(k\theta)\,d\theta,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I=\int_{0}^{\pi}\left[\frac{a_{0}}{2}+\sum_{k=1}^{\infty}a_{k}\cos(k\theta)\right]\sin\theta\,d\theta=a_{0}+\sum_{k=1}^{\infty}\frac{2a_{2k}}{1-(2k)^{2}}.
+\]
+
+\end_inset
+
+Now, we have performed the 
+\begin_inset Formula $I$
+\end_inset
+
+ integral analytically, but how do we perform the integrals to obtain the
+ Fourier coeffients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+? We do these numerically by the trapezoidal rule! That is: 
+\begin_inset Formula 
+\[
+a_{k}\approx\frac{2}{\pi}\times\frac{\pi}{N}\left[\frac{f(\cos0)+f(\cos\pi)}{2}+\sum_{n=1}^{N-1}f\left(\cos\frac{n\pi}{N}\right)\cos\left(\frac{kn\pi}{N}\right)\right].
+\]
+
+\end_inset
+
+But how is this an improvement? We have just swapped one trapezoidal rule
+ summation for a zillion of them! Three points save us:
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Formula $a_{\ell}$
+\end_inset
+
+ integrand, 
+\begin_inset Formula $f(\cos\theta)\cos(\ell\theta)$
+\end_inset
+
+, is even around its endpoints and so the trapezoidal rule for 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ converges super-fast (usually exponentially fast).
+ So, we only need a small 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+ is even around its endpoints, so the coefficents 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ go to zero super-fast (usually exponentially fast).
+ So, we only need a small number of 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ coeffients.
+ In fact, the convergence rate for 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ is about the same as the convergence rate of the trapezoidal rule, so we
+ usually only compute 
+\begin_inset Formula $N$
+\end_inset
+
+ coefficients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+When computing 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+, we always evaluate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ at the same points 
+\begin_inset Formula $f(\cos\frac{n\pi}{N})$
+\end_inset
+
+ independent of 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ So, we only need to evaluate 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ at 
+\begin_inset Formula $N+1$
+\end_inset
+
+ points 
+\emph on
+once.
+\end_layout
+
+\begin_layout Standard
+There are actually additional nice properties.
+ The trapezoidal rule for 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ turns out to be a very special summation called a 
+\emph on
+discrete cosine transform
+\emph default
+, allowing us to factorize the sum in a way that shares computations for
+ different 
+\begin_inset Formula $k$
+\end_inset
+
+ via a 
+\begin_inset Quotes eld
+\end_inset
+
+fast Fourier transform
+\begin_inset Quotes erd
+\end_inset
+
+ (FFT).
+ All in all, it turns out that one can accurately compute the integral in
+ 
+\begin_inset Formula $\sim N\log N$
+\end_inset
+
+ operations.
+\end_layout
+
+\begin_layout Standard
+Moreover, one can 
+\emph on
+precompute
+\emph default
+ the weights of a quadrature rule for a given 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ If we denote the vector of 
+\begin_inset Formula $(a_{0},a_{2},\ldots,a_{N})$
+\end_inset
+
+ values as 
+\begin_inset Formula $\vec{a}$
+\end_inset
+
+, then 
+\begin_inset Formula $I_{N}=\vec{d}^{T}\vec{a}$
+\end_inset
+
+ where 
+\begin_inset Formula $\vec{d}$
+\end_inset
+
+ is the vector of 
+\begin_inset Formula $1/(1-4k^{2})$
+\end_inset
+
+ coefficients of our truncated 
+\begin_inset Formula $I$
+\end_inset
+
+ sum above.
+ Let 
+\begin_inset Formula $\vec{f}$
+\end_inset
+
+ denote the vector of 
+\begin_inset Formula $f(\cos\frac{n\pi}{N})=f(x_{n})$
+\end_inset
+
+ values, in which case the 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ computation above can be written as a matrix–vector product 
+\begin_inset Formula $\vec{a}=C\vec{f}$
+\end_inset
+
+, where 
+\begin_inset Formula $C$
+\end_inset
+
+ is a discrete-cosine transform matrix with entries 
+\begin_inset Formula $\sim\cos(\frac{kn\pi}{N})$
+\end_inset
+
+.
+ It then follows that 
+\begin_inset Formula $I_{N}=\vec{d}^{T}C\vec{f}=\vec{w}^{T}\vec{f}=\sum w_{n}f(x_{n})$
+\end_inset
+
+, where 
+\begin_inset Formula $\vec{w}=C^{T}\vec{d}$
+\end_inset
+
+ is a precomputed vector of quadrature weights (and, in fact, 
+\begin_inset Formula $C^{T}$
+\end_inset
+
+ is another discrete cosine transform, so again one can use FFT algorithms
+ to compute 
+\begin_inset Formula $\vec{w}$
+\end_inset
+
+ in 
+\begin_inset Formula $O(N\log N)$
+\end_inset
+
+ operations.
+ (Moreover, if we exploit the fact that only 
+\emph on
+even
+\emph default
+-index 
+\begin_inset Formula $a_{2k}$
+\end_inset
+
+ coefficients are needed for 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+, the problem simplifies a bit further: a single weight is used for the
+ symmetric combination 
+\begin_inset Formula $f(\cos\frac{n\pi}{N})+f(\cos\frac{(N-n)\pi}{N})=f(x_{n})+f(-x_{n})$
+\end_inset
+
+, and the size of 
+\begin_inset Formula $C$
+\end_inset
+
+ is halved.)
+\end_layout
+
+\begin_layout Standard
+The key idea was that, by changing variables 
+\begin_inset Formula $x=\cos\theta$
+\end_inset
+
+ and doing a cosine-series expansion of 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+, we can transform 
+\emph on
+any
+\emph default
+ integral into integrals purely of even functions, allowing us to 
+\series bold
+apply the miraculous convergence of the trapezoidal rule for such functions
+ to 
+\emph on
+any integral
+\emph default
+.
+
+\series default
+ (The only thing that will spoil this is if 
+\begin_inset Formula $f$
+\end_inset
+
+ has other discontinuities or singularities within the integration interval.)
+\end_layout
+
+\begin_layout Subsection
+Chebyshev polynomials
+\end_layout
+
+\begin_layout Standard
+I would be remiss not to mention a connection between the above analysis
+ and another beautiful branch of mathematics: 
+\emph on
+Chebyshev approximation
+\emph default
+.
+ Look back at the cosine series for 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+ but write it in terms of the original variable 
+\begin_inset Formula $x=\cos\theta$
+\end_inset
+
+ via 
+\begin_inset Formula $\theta=\cos^{-1}x$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+f(x)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}a_{k}\cos(k\cos^{-1}x)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}a_{k}T_{k}(x),
+\]
+
+\end_inset
+
+which is expanding 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ in the nasty-looking functions 
+\begin_inset Formula $T_{k}(x)=\cos(k\cos^{-1}x)$
+\end_inset
+
+.
+ What a horrible way to disguise a cosine series! But then a miracle occurs:
+ the functions 
+\begin_inset Formula $T_{k}(x)$
+\end_inset
+
+ are not nasty at all, they are actually 
+\series bold
+just polynomials
+\series default
+ called 
+\series bold
+Chebyshev polynomials
+\series default
+: 
+\begin_inset Formula 
+\[
+T_{0}(x)=\cos(0\cos^{-1}x)=1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+T_{1}=\cos(\cos^{-1}x)=x,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+T_{2}=\cos(2\cos^{-1}x)=2\cos^{2}(\cos^{-1}x)-1=2x^{2}-1,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+T_{k+1}(x)=2xT_{k}(x)-T_{k-1}(x),
+\]
+
+\end_inset
+
+where the 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{k+1}$
+\end_inset
+
+ expressions use angle-addition identities.
+\end_layout
+
+\begin_layout Standard
+So, expanding 
+\begin_inset Formula $f(\cos\theta)$
+\end_inset
+
+ in a cosine series is exactly equivalent to expanding 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ in a series of polynomials.
+ But they are special, wonderful, beautiful polynomials that have all the
+ amazing properties of a cosine series.
+ The coefficients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ of these polynomials converge exponentially fast for smooth 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ These polynomials 
+\begin_inset Formula $T_{k}(x)$
+\end_inset
+
+ stay in between 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+ in 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+, and all of their 
+\begin_inset Formula $k$
+\end_inset
+
+ roots are in the interval 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+.
+ We can compute the coefficients 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ quickly by FFT algorithms.
+ And, of course, once we have expanded 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ in polynomials, almost anything that we might want to do (integration,
+ differentiation, finding roots, etcetera) becomes easy.
+\end_layout
+
+\begin_layout Section
+Further reading
+\end_layout
+
+\begin_layout Standard
+Much more information about the convergence rates of Fourier series and
+ related numerical methods can be found e.g.
+ in the book 
+\emph on
+Chebyshev and Fourier Spectral Methods
+\emph default
+ by John P.
+ Boyd (available online at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://tinyurl.com/24mepgc
+\end_layout
+
+\end_inset
+
+).
+ A wonderful practical realization of Clenshaw–Curtis quadrature and a host
+ of related numerical techniques can be found in the 
+\emph on
+chebfun
+\emph default
+ package by Trefethen et al., which available as free software for Matlab
+ along with a series of very readable review-style publications at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www2.maths.ox.ac.uk/chebfun/
+\end_layout
+
+\end_inset
+
+; further developments of these ideas can be found in the Julia 
+\emph on
+ApproxFun
+\emph default
+ package (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/JuliaApproximation/ApproxFun.jl
+\end_layout
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Many numerical-analysis textbooks instead analyze the error of the trapezoidal
+ rule via something called Bernoulli polynomials; this approach can be found
+ (with references) in the Wikipedia article on the Euler–Maclaurin formula
+ or in (e.g.) 
+\emph on
+An Introduction to Numerical Analysis
+\emph default
+ by Süli and Mayers or 
+\emph on
+An Introduction to Numerical Analysis
+\emph default
+ by Stoer and Bulirsch.
+ However, I find it much nicer to relate the problem to Fourier series,
+ which are not only much more widely known and more widely applicable, but
+ also point the way towards more accurate methods such as Clenshaw–Curtis.
+ I've also put some notes and links on Clenshaw–Curtis techniques up on
+ Wikipedia (
+\begin_inset Quotes eld
+\end_inset
+
+Clenshaw–Curtis quadrature,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Wikipedia
+\emph default
+, accurate as of 5 January 2011).
+ 
+\end_layout
+
+\begin_layout Section*
+Homework problems
+\end_layout
+
+\begin_layout Enumerate
+In lecture, I claimed that the sum 
+\begin_inset Formula 
+\[
+S_{k}=\frac{\cos\left(0\frac{k\pi}{N}\right)+\cos\left(N\frac{k\pi}{N}\right)}{2}+\sum_{n=1}^{N-1}\cos\left(n\frac{k\pi}{N}\right)
+\]
+
+\end_inset
+
+is equal to zero unless 
+\begin_inset Formula $k$
+\end_inset
+
+ is an even multiple of 
+\begin_inset Formula $N$
+\end_inset
+
+ (i.e.
+ 
+\begin_inset Formula $k=2mN$
+\end_inset
+
+ for some integer 
+\begin_inset Formula $m$
+\end_inset
+
+).
+ Prove this.
+ 
+\emph on
+Hint:
+\emph default
+ recall the identity 
+\begin_inset Formula $\cos(A)\cos(B)=\frac{\cos(A+B)+\cos(A-B)}{2}$
+\end_inset
+
+ and show that 
+\begin_inset Formula $S_{k}\cos(k\pi/N)=S_{k}$
+\end_inset
+
+.
+ It follows that either 
+\begin_inset Formula $S_{k}=0$
+\end_inset
+
+ or 
+\begin_inset Formula $\cos(k\pi/N)=1$
+\end_inset
+
+, and so...
+\end_layout
+
+\begin_layout Enumerate
+The trapezoidal rule is based on linear interpolation of pairs of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ points.
+ If instead we employ 
+\emph on
+quadratic
+\emph default
+ interpolation of 
+\emph on
+triples
+\emph default
+ of points, we get 
+\emph on
+Simpson's rule
+\emph default
+ for integration.
+ Dividing 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+ again into equal intervals and summing the Simpson rule for each interval,
+ we obtain the 
+\series bold
+composite Simpson rule
+\series default
+ 
+\begin_inset Formula $\tilde{I}_{N}$
+\end_inset
+
+, which for even 
+\begin_inset Formula $N$
+\end_inset
+
+ is:
+\begin_inset Formula 
+\begin{alignat*}{1}
+I\approx\tilde{I}_{N} & =\frac{2\pi}{3N}\left[\frac{f(0)+f(\pi)}{2}+\sum_{\begin{array}{c}
+0<n<N\\
+n\mbox{ even}
+\end{array}}f(n\pi/N)+2\sum_{\begin{array}{c}
+0<n<N\\
+n\mbox{ odd}
+\end{array}}f(n\pi/N)\right]\\
+ & =\frac{2\pi}{3N}\left[\frac{N}{\pi}I_{N}+\sum_{\begin{array}{c}
+0<n<N\\
+n\mbox{ odd}
+\end{array}}f(n\pi/N)\right]
+\end{alignat*}
+
+\end_inset
+
+ where 
+\begin_inset Formula $I_{N}$
+\end_inset
+
+ is the trapezoidal rule from above.
+ (Google will turn up multiple derivations of the composite-Simpson formula
+ if you are curious.)
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In this problem, you will employ the techniques from lecture to analyze
+ the accuracy (convergence rate) of this composite Simpson rule.
+\series default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Plugging in the Fourier cosine series for 
+\begin_inset Formula $f(x)$
+\end_inset
+
+, show that 
+\begin_inset Formula 
+\[
+\tilde{I}_{N}=I+\frac{\pi}{3}\left[-a_{N}+3a_{2N}-a_{3N}+3a_{4N}-\cdots\right].
+\]
+
+\end_inset
+
+Hint: You are given the following formula for 
+\begin_inset Formula $\sum_{n\mbox{ odd}}\cos(nk\pi/N)$
+\end_inset
+
+ (for even 
+\begin_inset Formula $N$
+\end_inset
+
+), similar to the one in the previous problem: 
+\begin_inset Formula 
+\[
+\sum_{\begin{array}{c}
+0<n<N\\
+n\mbox{ odd}
+\end{array}}\cos(nk\pi/N)=\frac{N}{2}\begin{cases}
+(-1)^{m} & k=mN\\
+0 & \mbox{otherwise}
+\end{cases}.
+\]
+
+\end_inset
+
+[You need not prove this summation formula; the proof is very similar to
+ the one from the previous problem except that you multiply by 
+\begin_inset Formula $\cos(2k\pi/N$
+\end_inset
+
+).]
+\end_layout
+
+\begin_layout Enumerate
+You are 
+\emph on
+given
+\emph default
+ the following two series formulas (famously derived by Euler
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See e.g.
+ E.
+ Sandifer, 
+\begin_inset Quotes eld
+\end_inset
+
+Euler's Solution of the Basel Problem—The Longer Story
+\begin_inset Quotes erd
+\end_inset
+
+ in 
+\emph on
+Euler at 300: An Appreciation
+\emph default
+, Bradley et al., eds.
+ (Math Assoc.
+ Am., 2007), available online at tinyurl.com/2gyctkf
+\end_layout
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+\frac{1}{1^{2}}+\frac{1}{2^{2}}+\frac{1}{3^{2}}+\frac{1}{4^{2}}+\cdots=\frac{\pi^{2}}{6},\qquad\frac{1}{1^{2}}+\frac{1}{3^{2}}+\frac{1}{5^{2}}+\frac{1}{7^{2}}+\cdots=\frac{\pi^{2}}{8}.
+\]
+
+\end_inset
+
+For a typical (smooth) 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ where the cosine series coefficients go asymptotically as 
+\begin_inset Formula $a_{k}\sim\#/k^{2}$
+\end_inset
+
+ for some #, plug this decay rate into your series from the previous part,
+ combined with the two formulas here, to show that the 
+\begin_inset Formula $1/N^{2}$
+\end_inset
+
+ term in the error 
+\begin_inset Formula $\tilde{I}_{N}-I$
+\end_inset
+
+ 
+\emph on
+cancels
+\emph default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Therefore, when looking at the convergence rate of the 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ coefficients, we must continue our integration-by-parts analysis from class
+ and the cosine-series handout to look at 
+\emph on
+the next biggest term
+\emph default
+.
+ Hence the error in the composite Simpson rule typically goes as 
+\begin_inset Formula $1/N$
+\end_inset
+
+ 
+\series bold
+to what power
+\series default
+?
+\end_layout
+
+\begin_layout Enumerate
+Try the composite Simpson rule on a computer for 
+\begin_inset Formula $f(x)=e^{x}$
+\end_inset
+
+.
+ For example, you can evaluate the error with 
+\begin_inset Formula $N=100$
+\end_inset
+
+ in Matlab (available on Athena
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+For instructions on running Matlab on Athena, see tinyurl.com/39n8xvl and
+ for a quick reference to Matlab commands see tinyurl.com/3yk5d3z
+\end_layout
+
+\end_inset
+
+) by typing the following two (one-line) commands
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+N=100
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+2*pi/(3*N) * ((exp(0)+exp(pi))/2 + sum(exp([1:N-1]*pi/N)) + sum(exp([1:2:N-1]*pi
+/N))) - (exp(pi)-exp(0))
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Divide the error for 
+\begin_inset Formula $N=100$
+\end_inset
+
+ by the error for 
+\begin_inset Formula $N=200$
+\end_inset
+
+ to verify that the error is decreasing at the rate you expected from the
+ previous part.
+ (If you are more ambitious, you might try plotting the |error| vs.
+ 
+\begin_inset Formula $N$
+\end_inset
+
+ on a log–log scale.)
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

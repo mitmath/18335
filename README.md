@@ -454,7 +454,7 @@ Discussed derivative-free optimization based on quadratic approximation by symme
 
 ### Lecture 33 (May 6)
 
-* [Notes](http://math.mit.edu/~stevenj/trap-iap-2011.pdf) on error analysis of the trapezoidal rule and Clenshaw-Curtis quadrature in terms of Fourier cosine series, and a [quick review of cosine series](http://math.mit.edu/~stevenj/cosines.pdf).
+* [Notes](notes/trap-quad.pdf) on error analysis of the trapezoidal rule and Clenshaw-Curtis quadrature in terms of Fourier cosine series, and a [quick review of cosine series](http://math.mit.edu/~stevenj/cosines.pdf).
 
 New topic: **numerical integration** (numerical quadrature). Began by basic definition of the problem (in 1d) and differences from general ODE problems. Then gave trapezoidal quadrature rule, and simple argument why the error generally decreases with the square of the number of function evaluations.
 
