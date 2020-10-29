@@ -308,7 +308,7 @@ and hence
  are equivalent.
  Q.E.D.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 While transitivity establishes upper/lower bounds for the relationship between
@@ -357,7 +357,7 @@ tight
 \begin_inset space ~
 \end_inset
 
-4 below for thar particular pair of norms.
+4 below for that particular pair of norms.
 \end_layout
 
 \end_inset
