@@ -1,24 +1,31 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass article
+\begin_preamble
+\date{Created Fall 2012; updated \today.}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,27 +36,41 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
 \end_index
 \leftmargin 1.2in
+\topmargin 1.2in
 \rightmargin 1.2in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -286,14 +307,66 @@ and hence
 
  are equivalent.
  Q.E.D.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+While transitivity establishes upper/lower bounds for the relationship between
+ 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\cdot\Vert_{a'}$
+\end_inset
+
+, and hence their equivalence, the constants 
+\begin_inset Formula $\frac{C_{1}'}{C_{2}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{C_{2}'}{C_{1}}$
+\end_inset
+
+ are not in general the tightest possible bounds even if the constants 
+\begin_inset Formula $C_{1,2}$
+\end_inset
+
+ and 
+\begin_inset Formula $C_{1,2}'$
+\end_inset
+
+ relating them to 
+\begin_inset Formula $\Vert\cdot\Vert_{1}$
+\end_inset
+
+ were tight bounds.
+ If you want to determine 
+\emph on
+tight
+\emph default
+ bounds relating 
+\begin_inset Formula $\Vert\cdot\Vert_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Vert\cdot\Vert_{a'}$
+\end_inset
+
+, you need to solve an optimization problem similar to Step
+\begin_inset space ~
+\end_inset
+
+4 below for thar particular pair of norms.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
-Step 2: 
-\begin_inset Formula $ $
-\end_inset
-
-It is sufficient to consider only 
+Step 2: It is sufficient to consider only 
 \begin_inset Formula $x$
 \end_inset
 
