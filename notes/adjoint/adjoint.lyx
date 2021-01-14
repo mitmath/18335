@@ -2121,9 +2121,8 @@ stability
 \begin_inset Formula $B^{T}$
 \end_inset
 
- are the same, and so if one is stable (eigenvalues with absolute values
- 
-\begin_inset Formula $\leq1$
+ are the same, and so if one is stable (eigenvalues with real parts 
+\begin_inset Formula $\leq0$
 \end_inset
 
 ) then the other is!
