@@ -1,7 +1,9 @@
-#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
-\lyxformat 345
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass article
 \begin_preamble
 
@@ -19,41 +21,74 @@
 \date{Created Spring 2006, updated \today.}
 \end_preamble
 \use_default_options false
+\maintain_unincluded_children false
 \language english
+\language_package default
 \inputencoding auto
-\font_roman times
-\font_sans default
-\font_typewriter default
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
+\use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
-
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
 \paperfontsize default
 \spacing single
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 2
-\use_esint 0
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
+\use_indices false
 \paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
 \topmargin 1in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
-\defskip medskip
-\quotes_language english
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 2
 \papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
-\author "" 
-\author "" 
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
 \end_header
 
 \begin_body
@@ -119,7 +154,7 @@ value
 \begin_inset Formula $g$
 \end_inset
 
----we also want to know its 
+—we also want to know its 
 \emph on
 gradient
 \emph default
@@ -149,6 +184,15 @@ independent
 once
 \emph default
 .
+ (In the context of neural networks, adjoint methods are known as 
+\emph on
+backpropagation
+\emph default
+; whereas in automatic differentiation they are known as 
+\emph on
+reverse-mode
+\emph default
+ differentiation.)
 \end_layout
 
 \begin_layout Standard
@@ -190,7 +234,7 @@ optimization
 \begin_inset Formula $P$
 \end_inset
 
- of design parameters can be hundreds, thousands, or more---this is common
+ of design parameters can be hundreds, thousands, or more—this is common
  in 
 \emph on
 shape
@@ -225,6 +269,7 @@ I hadn't found any textbook description of adjoint methods that I particularly
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Errico97"
+literal "true"
 
 \end_inset
 
@@ -232,6 +277,7 @@ key "Errico97"
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Cao03"
+literal "true"
 
 \end_inset
 
@@ -241,6 +287,7 @@ key "Cao03"
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Strang07"
+literal "true"
 
 \end_inset
 
@@ -299,8 +346,10 @@ This involves no loss of generality, since complex linear equations can
 
 .
  To evaluate the gradient directly, we would do 
-\begin_inset Formula \[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}+g_{\vec{x}}\vec{x}_{\vec{p}}\]
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}+g_{\vec{x}}\vec{x}_{\vec{p}}
+\]
 
 \end_inset
 
@@ -372,8 +421,10 @@ This involves no loss of generality, since complex linear equations can
 
 \begin_layout Standard
 More explicitly, the problematic term is: 
-\begin_inset Formula \[
-g_{\vec{x}}\vec{x}_{\vec{p}}=\underbrace{g_{\vec{x}}}_{1\times M}[\underbrace{A^{-1}}_{M\times M}\underbrace{(\vec{b}_{\vec{p}}-A_{\vec{p}}\vec{x})}_{M\times P}]=\underbrace{[g_{\vec{x}}A^{-1}]}_{1\times M}\underbrace{(\vec{b}_{\vec{p}}-A_{\vec{p}}\vec{x})}_{M\times P},\]
+\begin_inset Formula 
+\[
+g_{\vec{x}}\vec{x}_{\vec{p}}=\underbrace{g_{\vec{x}}}_{1\times M}[\underbrace{A^{-1}}_{M\times M}\underbrace{(\vec{b}_{\vec{p}}-A_{\vec{p}}\vec{x})}_{M\times P}]=\underbrace{[g_{\vec{x}}A^{-1}]}_{1\times M}\underbrace{(\vec{b}_{\vec{p}}-A_{\vec{p}}\vec{x})}_{M\times P},
+\]
 
 \end_inset
 
@@ -502,6 +553,7 @@ parenthesizing in a different way
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Strang07"
+literal "true"
 
 \end_inset
 
@@ -549,6 +601,7 @@ Lagrange multiplier
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Cao03"
+literal "true"
 
 \end_inset
 
@@ -601,8 +654,10 @@ For complex-valued
 
 \emph default
  
-\begin_inset Formula \begin{equation}
-A^{T}\lam=g_{\vec{x}}^{T}.\label{eq:adjoint-eq-linear}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+A^{T}\lam=g_{\vec{x}}^{T}.\label{eq:adjoint-eq-linear}
+\end{equation}
 
 \end_inset
 
@@ -624,8 +679,10 @@ single
 
  work.
  Putting it all together, we obtain: 
-\begin_inset Formula \[
-\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}\vec{f}_{\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).\]
+\begin_inset Formula 
+\[
+\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}\vec{f}_{\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).
+\]
 
 \end_inset
 
@@ -670,8 +727,8 @@ single
 \end_inset
 
  are identical) so iterative algorithms will have similar performance (and
- can use similar preconditioners)---in every sense, solving the adjoint
- problem should be no harder than solving the original problem.
+ can use similar preconditioners)—in every sense, solving the adjoint problem
+ should be no harder than solving the original problem.
 \end_layout
 
 \begin_layout Section
@@ -702,8 +759,10 @@ If
 
 .
  Hence, we write 
-\begin_inset Formula \[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}+g_{\vec{x}}\vec{x}_{\vec{p}}=g_{\vec{p}}-\underbrace{g_{\vec{x}}}_{1\times M}[\underbrace{\vec{f}_{\vec{x}}^{-1}}_{M\times M}\underbrace{\vec{f}_{\vec{p}}}_{M\times P}]=g_{\vec{p}}-\underbrace{[g_{\vec{x}}\vec{f}_{\vec{x}}^{-1}]}_{1\times M}\underbrace{\vec{f}_{\vec{p}}}_{M\times P}.\]
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}+g_{\vec{x}}\vec{x}_{\vec{p}}=g_{\vec{p}}-\underbrace{g_{\vec{x}}}_{1\times M}[\underbrace{\vec{f}_{\vec{x}}^{-1}}_{M\times M}\underbrace{\vec{f}_{\vec{p}}}_{M\times P}]=g_{\vec{p}}-\underbrace{[g_{\vec{x}}\vec{f}_{\vec{x}}^{-1}]}_{1\times M}\underbrace{\vec{f}_{\vec{p}}}_{M\times P}.
+\]
 
 \end_inset
 
@@ -716,14 +775,18 @@ If
 \end_inset
 
  from
-\begin_inset Formula \begin{equation}
-\vec{f}_{\vec{x}}^{T}\lam=\vec{g}_{\vec{x}}^{T},\label{eq:adjoint-eq}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+\vec{f}_{\vec{x}}^{T}\lam=\vec{g}_{\vec{x}}^{T},\label{eq:adjoint-eq}
+\end{equation}
 
 \end_inset
 
  and finally obtain 
-\begin_inset Formula \begin{equation}
-\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}\vec{f}_{\vec{p}}.\label{eq:adjoint-dg}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}\vec{f}_{\vec{p}}.\label{eq:adjoint-dg}
+\end{equation}
 
 \end_inset
 
@@ -751,7 +814,11 @@ reference "eq:adjoint-eq"
 \begin_inset Formula $\vec{x}$
 \end_inset
 
-.
+ (being equivalent to the cost of one Newton iteration for 
+\begin_inset Formula $\mathbf{f}=0$
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Section
@@ -813,6 +880,7 @@ on of eigenvalues (e.g.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Seyranian94"
+literal "true"
 
 \end_inset
 
@@ -824,6 +892,7 @@ degenerate perturbation theory
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Tannoudji77:pert"
+literal "true"
 
 \end_inset
 
@@ -837,10 +906,13 @@ key "Tannoudji77:pert"
 \end_inset
 
  unknowns described by the column vector: 
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 \tilde{\vec{x}}=\left(\begin{array}{c}
 \vec{x}\\
-\alpha\end{array}\right).\]
+\alpha
+\end{array}\right).
+\]
 
 \end_inset
 
@@ -898,10 +970,13 @@ key "Tannoudji77:pert"
 \end_inset
 
  where:
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 \tilde{\vec{f}}=\left(\begin{array}{c}
 \vec{f}\\
-\vec{x}^{T}\vec{x}-1\end{array}\right).\]
+\vec{x}^{T}\vec{x}-1
+\end{array}\right).
+\]
 
 \end_inset
 
@@ -914,10 +989,13 @@ key "Tannoudji77:pert"
 \end_inset
 
 : 
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 \tilde{\lam}=\left(\begin{array}{c}
 \lam\\
-\beta\end{array}\right).\]
+\beta
+\end{array}\right).
+\]
 
 \end_inset
 
@@ -929,14 +1007,18 @@ reference "eq:adjoint-eq"
 \end_inset
 
 ) then give: 
-\begin_inset Formula \begin{equation}
-(A-\alpha)\lam=g_{\vec{x}}^{T}-2\beta\vec{x},\label{eq:A-alpha}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+(A-\alpha)\lam=g_{\vec{x}}^{T}-2\beta\vec{x},\label{eq:A-alpha}
+\end{equation}
 
 \end_inset
 
 
-\begin_inset Formula \begin{equation}
--\vec{x}^{T}\lam=g_{\alpha}.\label{eq:lam-galpha}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+-\vec{x}^{T}\lam=g_{\alpha}.\label{eq:lam-galpha}
+\end{equation}
 
 \end_inset
 
@@ -990,8 +1072,10 @@ exist
 \end_inset
 
  satisfies: 
-\begin_inset Formula \begin{equation}
-(A-\alpha)\lam=(1-\vec{x}\vec{x}^{T})g_{\vec{x}}^{T}=Pg_{\vec{x}}^{T}\label{eq:eig-lambda}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+(A-\alpha)\lam=(1-\vec{x}\vec{x}^{T})g_{\vec{x}}^{T}=Pg_{\vec{x}}^{T}\label{eq:eig-lambda}
+\end{equation}
 
 \end_inset
 
@@ -1102,8 +1186,10 @@ reference "eq:adjoint-dg"
 \end_inset
 
 ):
-\begin_inset Formula \begin{equation}
-\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}A_{p}\vec{x}=g_{\vec{p}}-\lam_{0}^{T}A_{p}\vec{x}+g_{\alpha}\vec{x}^{T}A_{p}\vec{x}.\label{eq:adjoint-eig-dg}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+\left.\frac{dg}{d\vec{p}}\right|_{\vec{f}=0}=g_{\vec{p}}-\lam^{T}A_{p}\vec{x}=g_{\vec{p}}-\lam_{0}^{T}A_{p}\vec{x}+g_{\alpha}\vec{x}^{T}A_{p}\vec{x}.\label{eq:adjoint-eig-dg}
+\end{equation}
 
 \end_inset
 
@@ -1130,8 +1216,10 @@ As a more concrete example of an inverse-design problem, let's consider
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula \[
-\left[-\frac{d^{2}}{dx^{2}}+V(x)\right]\psi(x)=E\psi(x),\]
+\begin_inset Formula 
+\[
+\left[-\frac{d^{2}}{dx^{2}}+V(x)\right]\psi(x)=E\psi(x),
+\]
 
 \end_inset
 
@@ -1169,7 +1257,7 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1223,8 +1311,10 @@ Optimized
 \end_inset
 
  that minimizes 
-\begin_inset Formula \[
-g=\int_{-1}^{1}|\psi(x)-\psi_{0}(x)|^{2}dx.\]
+\begin_inset Formula 
+\[
+g=\int_{-1}^{1}|\psi(x)-\psi_{0}(x)|^{2}dx.
+\]
 
 \end_inset
 
@@ -1277,14 +1367,17 @@ g=\int_{-1}^{1}|\psi(x)-\psi_{0}(x)|^{2}dx.\]
 \end_inset
 
  for: 
-\begin_inset Formula \[
+\begin_inset Formula 
+\[
 A=\frac{1}{\Delta x^{2}}\left(\begin{array}{cccccc}
 2 & -1 & 0 & \cdots & 0 & -1\\
 -1 & 2 & -1 & 0 & \cdots\\
 0 & -1 & 2 & -1 & 0 & \cdots\\
 \vdots &  &  & \ddots\\
  &  &  & -1 & 2 & -1\\
--1 & 0 & \cdots & 0 & -1 & 2\end{array}\right)+\operatorname{diag}(\vec{V}).\]
+-1 & 0 & \cdots & 0 & -1 & 2
+\end{array}\right)+\operatorname{diag}(\vec{V}).
+\]
 
 \end_inset
 
@@ -1328,8 +1421,10 @@ We also have an arbitrary choice of sign, which we fix by choosing
 \end_inset
 
  is now 
-\begin_inset Formula \[
-g(\ps,\vec{V})=(\ps-\ps_{0})^{T}(\ps-\ps_{0})\Delta x\]
+\begin_inset Formula 
+\[
+g(\ps,\vec{V})=(\ps-\ps_{0})^{T}(\ps-\ps_{0})\Delta x
+\]
 
 \end_inset
 
@@ -1362,8 +1457,10 @@ reference "eq:eig-lambda"
 \end_inset
 
  via: 
-\begin_inset Formula \begin{equation}
-(A-E)\lam=2P(\ps-\ps_{0})\Delta x,\label{eq:schro-lam}\end{equation}
+\begin_inset Formula 
+\begin{equation}
+(A-E)\lam=2P(\ps-\ps_{0})\Delta x,\label{eq:schro-lam}
+\end{equation}
 
 \end_inset
 
@@ -1413,8 +1510,10 @@ reference "eq:adjoint-eig-dg"
 \end_inset
 
 ): 
-\begin_inset Formula \[
-\frac{dg}{dV_{n}}=-\lambda_{n}\psi_{n}\]
+\begin_inset Formula 
+\[
+\frac{dg}{dV_{n}}=-\lambda_{n}\psi_{n}
+\]
 
 \end_inset
 
@@ -1541,7 +1640,7 @@ local optimization
 100-dimensional space
 \emph default
 , using the adjoint method to get the gradient.
- It is somewhat remarkable that this works---in a few seconds on a PC, it
+ It is somewhat remarkable that this works—in a few seconds on a PC, it
  converges to a very good solution!
 \begin_inset Float figure
 wide false
@@ -1559,7 +1658,7 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1652,7 +1751,7 @@ reference "fig:psi1"
 \begin_inset Formula $V(x)$
 \end_inset
 
- is quite complicated---not something you could easily guess! 
+ is quite complicated—not something you could easily guess! 
 \begin_inset Float figure
 wide false
 sideways false
@@ -1669,7 +1768,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1831,10 +1930,16 @@ hor_pos "c"
 has_inner_box 1
 inner_pos "t"
 use_parbox 0
+use_makebox 0
 width "100col%"
 special "none"
 height "1pt"
 height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
@@ -1884,8 +1989,10 @@ time
 \emph default
 ? The simplest example of this is an initial-value problem for a linear,
  time-independent, homogeneous set of ODEs: 
-\begin_inset Formula \[
-\dot{\vec{x}}=B\vec{x}\]
+\begin_inset Formula 
+\[
+\dot{\vec{x}}=B\vec{x}
+\]
 
 \end_inset
 
@@ -1898,8 +2005,10 @@ time
 \end_inset
 
  is formally: 
-\begin_inset Formula \[
-\vec{x}=\vec{x}(t)=e^{Bt}\vec{b}.\]
+\begin_inset Formula 
+\[
+\vec{x}=\vec{x}(t)=e^{Bt}\vec{b}.
+\]
 
 \end_inset
 
@@ -1937,8 +2046,10 @@ reference "eq:adjoint-eq-linear"
 \end_inset
 
 ): 
-\begin_inset Formula \[
-e^{-B^{T}t}\lam=g_{\vec{x}}^{T}.\]
+\begin_inset Formula 
+\[
+e^{-B^{T}t}\lam=g_{\vec{x}}^{T}.
+\]
 
 \end_inset
 
@@ -1959,8 +2070,10 @@ e^{-B^{T}t}\lam=g_{\vec{x}}^{T}.\]
 own
 \emph default
  adjoint ODE: 
-\begin_inset Formula \[
-\dot{\lam}=B^{T}\lam\]
+\begin_inset Formula 
+\[
+\dot{\lam}=B^{T}\lam
+\]
 
 \end_inset
 
@@ -2008,8 +2121,8 @@ stability
 \begin_inset Formula $B^{T}$
 \end_inset
 
- are complex-conjugates, and so if one is stable (eigenvalues with absolute
- values 
+ are the same, and so if one is stable (eigenvalues with absolute values
+ 
 \begin_inset Formula $\leq1$
 \end_inset
 
@@ -2033,8 +2146,10 @@ reference "eq:adjoint-dg"
 \end_inset
 
 ): 
-\begin_inset Formula \[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).\]
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).
+\]
 
 \end_inset
 
@@ -2064,8 +2179,10 @@ very
 \end_inset
 
 , and so,
-\begin_inset Formula \[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}+\int_{0}^{t}\lam^{T}(t-t')B_{\vec{p}}\vec{x}(t')dt'+\lam^{T}\vec{b}_{\vec{p}}.\]
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}+\int_{0}^{t}\lam^{T}(t-t')B_{\vec{p}}\vec{x}(t')dt'+\lam^{T}\vec{b}_{\vec{p}}.
+\]
 
 \end_inset
 
@@ -2098,6 +2215,7 @@ More generally, of course, one might wish to include time-varying
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Cao03"
+literal "true"
 
 \end_inset
 
@@ -2160,13 +2278,13 @@ backward in time
 \begin_inset Quotes erd
 \end_inset
 
----see my online notes on adjoint methods for recurrences.
+—see my online notes on adjoint methods for recurrences.
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "adjoint,"
+bibfiles "adjoint"
 options "ieeetr"
 
 \end_inset
