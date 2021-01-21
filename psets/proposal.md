@@ -12,6 +12,7 @@ As described on the web page, you have broad flexibility in choosing a project. 
 
 A few examples of project topics from past terms are:
 
+* Simultaneous diagonalization of commuting matrices (e.g. [this method](https://doi.org/10.1137/0614062))
 * Nonlinear eigenproblems (e.g. contour-integration methods like [FEAST](http://www.ecs.umass.edu/~polizzi/feast/) or other methods like in [NEP-PACK](https://nep-pack.github.io/NonlinearEigenproblems.jl/)).
 * Multidimensional cubature with sparse grids (e.g. Smolyak algorithms)
 * Fast algorithms for Gaussian quadrature (e.g. [these references](https://github.com/JuliaApproximation/FastGaussQuadrature.jl#references)).  Gauss–Patterson rules and other quadrature rules (e.g. quadrature methods for singular integrands or highly oscillatory integrands).
