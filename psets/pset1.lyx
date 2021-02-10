@@ -90,12 +90,12 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 14 February 2020.
+Due Friday, 26 February 2021.
  You should submit your problem set 
 \series bold
 electronically
 \series default
- on the 18.335 Stellar page.
+ on the 18.335 Canvas page.
  Submit 
 \series bold
 both
@@ -127,6 +127,27 @@ of the Julia notebook of your computer solutions.
 template Julia notebook is posted
 \series default
  in the 18.335 web site to help you get started.
+\end_layout
+
+\begin_layout Subsection*
+Problem 0: Pset Honor Code
+\end_layout
+
+\begin_layout Standard
+Include the following statement in your solutions:
+\end_layout
+
+\begin_layout Quotation
+
+\emph on
+I will not look at 18.335 pset solutions from previous semesters.
+ I may discuss with my classmates or others, but I will write up my solutions
+ on my own.
+ <your
+\begin_inset space ~
+\end_inset
+
+signature>
 \end_layout
 
 \begin_layout Subsection*
