@@ -24,7 +24,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 * [Piazza discussion board](https://piazza.com/class/kkzx1wp9ldz55x)
 
-**TA/grader:** TBA.
+**TA/grader:** [Mo Chen](https://math.mit.edu/directory/profile.php?pid=2176).
 
 **Collaboration policy**: Talk to anyone you want to and read anything you want to, with three exceptions: First, you **may not refer to homework solutions from the previous terms** in which I taught 18.335. Second, make a solid effort to solve a problem on your own before discussing it with classmates or googling. Third, no matter whom you talk to or what you read, write up the solution on your own, without having their answer in front of you.
 
