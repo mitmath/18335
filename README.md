@@ -37,6 +37,7 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 3)
 
+* [video](https://mit.zoom.us/rec/share/OO-jZpJ8Oqgq1uldUFFRTonp1nTS8nZefxAdthbSYENuZbGyAZr0qLC1i02mhWEc.m158MsEBn6vBvI8t?startTime=1613591715000)
 * [handwritten notes](https://www.dropbox.com/s/wxd3pwsy3ijblnp/18.335%20Spring%202021.pdf?dl=0) for this and subsequent lectures
 * [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1.ipynb), due Monday, March 1.
 * [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb).
