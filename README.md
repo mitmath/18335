@@ -37,7 +37,7 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 3)
 
-* pset 1: to be posted
+* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1.ipynb), due Monday, March 1.
 * [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb).
 * lecture video: to be posted
 
