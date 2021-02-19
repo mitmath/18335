@@ -73,7 +73,8 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 
 * [video](https://mit.zoom.us/rec/share/-d9QInu9gX9K9RjKSDAzCkfOSGwZQeefhaWu_atpkvaW7JBMGlFkHD8WRw8Ch-Q.dLAhy2244T0p9dku)
 * [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md)
-* [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf)* [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
+* [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf)
+* [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
 
 On Friday, 19 February, at 5pm via Zoom, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md).
 
