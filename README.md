@@ -51,7 +51,7 @@ As a starting example, considered the convergence of Newton's method (as applied
 
 ### Lecture 2 (Feb 19)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/etJbMhJPyPl8nuLU-VgUGiA398FrI8cIiCEOHOSh8XwHAgodYzERU8ItEOOt0RgW.8PFctfMBehaV9kXV )
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
 * Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
@@ -71,7 +71,7 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 
 ### Julia tutorial (Feb 19: 5pm) — optional
 
-* [Zoom link](https://mit.zoom.us/j/92840989092?pwd=QTk1WCtKTGc4REtMbktBMmFKaVJHUT09)
+* [video](https://mit.zoom.us/rec/share/-d9QInu9gX9K9RjKSDAzCkfOSGwZQeefhaWu_atpkvaW7JBMGlFkHD8WRw8Ch-Q.dLAhy2244T0p9dku)
 * [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md)
 * [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf)* [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
 
