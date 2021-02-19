@@ -50,8 +50,8 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (Feb 3)
 
-* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1.ipynb), due Friday Feb. 14.
-* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb).
+* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/psets/pset1.ipynb), due Friday Feb. 14.
+* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/notes/Newton-Square-Roots.ipynb).
 
 Brief overview of the huge field of numerical methods, and outline of the small portion that this course will cover. Key new concerns in numerical analysis, which don't appear in more abstract mathematics, are (i) performance (traditionally, arithmetic counts, but now memory access often dominates) and (ii) accuracy (both floating-point roundoff errors and also convergence of intrinsic approximations in the algorithms).
 
@@ -62,7 +62,7 @@ As a starting example, considered the convergence of Newton's method (as applied
 ### Lecture 2 (Feb 5)
 
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
-* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
+* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
 
 
@@ -88,9 +88,9 @@ Summation, accuracy, and stability.
 
 ### Julia tutorial (Feb 7: 5pm in 32-141) — optional
 
-**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf), [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
+**Handout:** [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/spring20/Julia-cheatsheet.pdf), [Julia intro slides](https://github.com/mitmath/julia-mit/blob/spring20/Julia-intro.pdf)
 
-On Friday, 7 February, at 5pm in 32-141, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md).
+On Friday, 7 February, at 5pm in 32-141, I will give an (attendance-optional!) Julia tutorial, introducing the [Julia programming language and environment](http://julialang.org/) that we will use this term. Please see the [tutorial notes online](https://github.com/mitmath/julia-mit/blob/spring20/README.md).
 
 Please **bring your laptops**, and try to install Julia and the IJulia interface first via the abovementioned tutorial notes. Several people will be at the tutorial session to help answer installation questions. Alternatively, you can use Julia online at [JuliaBox](https://juliabox.com/) without installing anything (although running things on your own machine is usually faster).
 
@@ -143,7 +143,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 7 (Feb 18: Tuesday `==` MIT Monday)
 
-**Handouts:** [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/master/notes/Least-squares.ipynb)
+**Handouts:** [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/spring20/notes/Least-squares.ipynb)
 
 Introduced least-squares problems, gave example of polynomial fitting, gave normal equations, and derived them from the condition that the L2 error be minimized.
 
@@ -156,7 +156,7 @@ Introduced the alternative of QR factorization (finding an orthonormal basis for
 ### Lecture 8 (Feb 19)
 
 * Per Persson's [2006 18.335 Gram-Schmidt notes](notes/lec5.pdf)
-* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
+* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/notes/Gram-Schmidt.ipynb)
 
 Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.
 
@@ -286,7 +286,7 @@ For Hermitian matrices A, I showed that the max/min Ritz values are the maximum/
 
 ### Lecture 19 (April 1)
 
-* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
+* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/notes/Arnoldi.ipynb)
 * [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
 
 Showed that in the case where A is Hermitian, Hₙ is Hermitian as well, so Hₙ is tridiagonal and most of the dot products in the Arnoldi process are zero.  Hence Arnoldi reduces to a three-term recurrence, and the Ritz matrix is tridiagonal.  This is called the **Lanczos** algorithm.
@@ -312,7 +312,7 @@ Introduced the **GMRES** algorithm: compute the basis Qₙ for 𝒦ₙ as in Arn
 ### Lecture 21 (April 6)
 
 * [pset 4 solutions](psets/pset4sol.pdf)
-* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
+* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring20/notes/Arnoldi.ipynb)
 
 Discussed the convergence rate of GMRES and Arnoldi in terms of **polynomial** approximations. Following the book closely, showed that the relative errors (the residual norm ‖Ax-νx‖ or ‖Ax-b‖) can be bounded by minimizing the value p(λ) of a polynomial p(z) evaluated at the eigenvalues, where p has degree _n_ after the _n_\-th iteration. In Arnoldi, the λⁿ coefficient of p(λ) is 1, whereas in GMRES the constant coefficient p(0)=1. (There is also a factor of the condition number of the eigenvector matrix in GMRES, so it is favorable for the eigenvectors to be near-orthogonal, i.e for the matrix to be near-[normal](http://en.wikipedia.org/wiki/Normal_matrix).)
 
