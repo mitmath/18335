@@ -51,7 +51,7 @@ As a starting example, considered the convergence of Newton's method (as applied
 
 ### Lecture 2 (Feb 19)
 
-* [video](https://mit.zoom.us/rec/share/etJbMhJPyPl8nuLU-VgUGiA398FrI8cIiCEOHOSh8XwHAgodYzERU8ItEOOt0RgW.8PFctfMBehaV9kXV )
+* [video](https://mit.zoom.us/rec/share/VU1OJIaW5sVyUDONOE9O0EDoGOMJaUxCSKoUZGd8r3kqi0H9L67_785_xSHdhQJK.KvAparctLJ79AwYH?startTime=1613764649000)
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
 * Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
