@@ -324,9 +324,9 @@ relative error
 \emph default
 in the sum is bounded above by
 \begin_inset Formula 
-\[
-\frac{|\tilde{f}(x)-f(x)|}{|f(x)|}\le nO(\epsilon_{\mbox{machine}})\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].
-\]
+\begin{equation}
+\frac{|\tilde{f}(x)-f(x)|}{|f(x)|}\le nO(\epsilon_{\mbox{machine}})\left[\frac{\sum_{i=1}^{n}|x_{i}|}{\left|\sum_{i=1}^{n}x_{i}\right|}\right].\label{eq:relerr}
+\end{equation}
 
 \end_inset
 
@@ -476,13 +476,13 @@ where the products of
 \end_inset
 
 Now we have: 
-\begin_inset Formula $\tilde{f}(x)=f(x)+(x_{1}+x_{2})\delta_{2}+\sum_{i=3}^{n}x_{i}\delta_{i}$
+\begin_inset Formula $\tilde{f}(x)=f(x)+\sum_{i=1}^{n}x_{i}\delta_{i}$
 \end_inset
 
 , and hence (by the triangle inequality): 
 \begin_inset Formula 
 \[
-|\tilde{f}(x)-f(x)|\leq|x_{1}|\,|\delta_{2}|+\sum_{i=2}^{n}|x_{i}|\,|\delta_{i}|.
+|\tilde{f}(x)-f(x)|\leq\sum_{i=1}^{n}|x_{i}|\,|\delta_{i}|.
 \]
 
 \end_inset
@@ -509,13 +509,13 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-Note: This does 
+Note to our future selves: This does 
 \emph on
 not
 \emph default
  correspond to a proof of forwards stability (defined soon in 18.335), since
  we have only shown that 
-\begin_inset Formula $|\tilde{f}(x)-f(x)|=\Vert x\Vert O(\epsilon_{\mbox{machine}})$
+\begin_inset Formula $|\tilde{f}(x)-f(x)|=\Vert x\Vert_{1}O(\epsilon_{\mbox{machine}})$
 \end_inset
 
 , which is different from 
@@ -534,7 +534,7 @@ unless
 \begin_inset Formula $\ge0$
 \end_inset
 
-! Note that our 
+! Our 
 \begin_inset Formula $O(\epsilon_{\mbox{machine}})$
 \end_inset
 
@@ -671,6 +671,64 @@ literal "false"
 \end_inset
 
 , while having about the same performance as naive summation.
+ There is even an algorithm called 
+\series bold
+compensated summation
+\series default
+ that achieves 
+\begin_inset Formula $O(1)$
+\end_inset
+
+ error growth, albeit at increased computational cost.
+ Nevertheless, in all of these algorithms the 
+\emph on
+relative 
+\emph default
+error is still proportional to the condition number as in eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:relerr"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ above, so they can still give large relative errors for 
+\begin_inset Quotes eld
+\end_inset
+
+badly conditioned
+\begin_inset Quotes erd
+\end_inset
+
+ sums where 
+\begin_inset Formula $\left|\sum x_{i}\right|\ll\sum|x_{i}|$
+\end_inset
+
+.
+ In this case, the only way to do better is generally to increase the precision,
+ though there are clever ways to increase the precision 
+\begin_inset Quotes eld
+\end_inset
+
+adaptively
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Neal15"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1059,7 +1117,10 @@ literal "false"
 \end_inset
 
 Nicholas J.
- Higham, 
+\begin_inset space ~
+\end_inset
+
+Higham, 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1077,6 +1138,33 @@ SIAM Journal on Scientific Computing
 \series default
 , pp.
  783–799 (1993).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Neal15"
+literal "false"
+
+\end_inset
+
+Radford M.
+\begin_inset space ~
+\end_inset
+
+Neal, 
+\begin_inset Quotes eld
+\end_inset
+
+Fast exact summation using small and large superaccumulators,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+arXiv:1505.05571
+\emph default
+ (2015); available in Julia via the Xsum.jl package.
 \end_layout
 
 \end_body
