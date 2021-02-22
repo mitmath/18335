@@ -82,6 +82,7 @@ Please try to install Julia and the IJulia interface first via the abovementione
 
 ### Lecture 3 (Feb 22)
 
+* [video](https://mit.zoom.us/rec/share/pKyT3VxYFoKb48JS7IZcppStlgPmaSz9zstFB7WBajs9GiKcIyo_ZAySThsG_O9W.5KpNNRpxQ_OxTskw?startTime=1614023943000)
 * notes on the accuracy and stability of [floating-point summation](notes/naivesum.pdf)
 
 Continued discussion from Julia floating-point notebook of last lecture, starting with catastrophic cancellation and moving on to error accumulation in summing many floating-point numbers.
