@@ -71,7 +71,7 @@ Went through some simple examples in Julia (see notebook above), illustrating ba
 
 ### Julia tutorial (Feb 19: 5pm) — optional
 
-* [video](https://mit.zoom.us/rec/share/-d9QInu9gX9K9RjKSDAzCkfOSGwZQeefhaWu_atpkvaW7JBMGlFkHD8WRw8Ch-Q.dLAhy2244T0p9dku)
+* [video](https://mit.zoom.us/rec/share/Q31OQsQ_BdyRaWkdL7Yfib3Dc_uiUYXzEtqvrpjk_ePslt6QcIyvdPU9dnwBEuI.bCSR-o__1yxMIo5r?startTime=1613772007000)
 * [tutorial notes online](https://github.com/mitmath/julia-mit/blob/master/README.md)
 * [Julia cheat-sheet](https://github.com/mitmath/julia-mit/blob/master/Julia-cheatsheet.pdf)
 * [Julia intro slides](https://github.com/mitmath/julia-mit/blob/master/Julia-intro.pdf)
