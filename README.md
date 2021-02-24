@@ -93,6 +93,7 @@ Began a more rigorous analysis of summation, accuracy, and stability (see notes)
 
 ### Lecture 4 (Feb 24)
 
+* [video](https://mit.zoom.us/rec/share/a9XKBb1ngBL3msQ9itWfoUhEZEHgLYxnJ8_EFMrRW8WD88J6RLojZPQn8J4EHxQI.Jp0Qm-3zyvyH10OH?startTime=1614196763000)
 * [notes on the equivalence of norms](notes/norm-equivalence.pdf)
 
 Continuing notes from last time, noted that the "forwards" error of summation depends on a ratio called the "condition number" that we will generalize later in the course, and in fact the forwards relative error can be *arbitrarily* large for inputs that sum to nearly zero.   This doesn't mean that the algorithm is "bad", however — in fact, *any* fixed-precision summation algorithm will have this problem.
