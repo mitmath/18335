@@ -90,3 +90,23 @@ Continued discussion from Julia floating-point notebook of last lecture, startin
 Began a more rigorous analysis of summation, accuracy, and stability (see notes).
 
 **Further reading**: See the further reading from the previous lecture. Trefethen, lectures 14, 15, and 3. See also the Wikipedia article on [asymptotic ("big O") notation](https://en.wikipedia.org/wiki/Big_O_notation); note that for expressions like O(ε) we are looking in the limit of _small_ arguments rather than of large arguments (as in complexity theory), but otherwise the ideas are the same.  A classic paper on the accuracy of summation is Higham (1993), ["The accuracy of floating point summation"](https://doi.org/10.1137%2F0914050).
+
+### Lecture 4 (Feb 24)
+
+* [notes on the equivalence of norms](notes/norm-equivalence.pdf)
+
+Continuing notes from last time, noted that the "forwards" error of summation depends on a ratio called the "condition number" that we will generalize later in the course, and in fact the forwards relative error can be *arbitrarily* large for inputs that sum to nearly zero.   This doesn't mean that the algorithm is "bad", however — in fact, *any* fixed-precision summation algorithm will have this problem.
+
+A better way to evaluate accuracy of algorithms is given by the notion of **numerical stability**, most commonly by the concept of **backwards stability** which we now define.   We can then straightforwardly prove that the naive summation algorithm is, in fact, backwards stable (see notes).
+
+When quantifying errors, a central concept is a **norm**, and we saw in our proof of backwards stability of summation that it is useful to be able to choose different norms in different circumstances. Defined norms (as in lecture 3 of Trefethen): for a vector space V, a norm takes any v∈V and gives you a real number ‖v‖ satisfying three properties:
+
+* Positive definite: ‖v‖≥0, and =0 if and only if v=0
+* Scaling: ‖αv‖ = |α|⋅‖v‖ for any scalar α.
+* [Triangle inequality](https://en.wikipedia.org/wiki/Triangle_inequality): ‖v+w‖≤‖v‖+‖w‖
+
+There are many norms, for many different vector spaces. Gave examples of norms of column vectors: _Lₚ_ norms (usually _p_ = 1, 2, or ∞) and weighted L₂ norms.  A (complete) normed vector space is called a [Banach space](https://en.wikipedia.org/wiki/Banach_space), and these error concepts generalize to f(x) when f and x are in any Banach spaces (including scalars, column vectors, matrices, …though infinite-dimensional Banach spaces are trickier).
+
+Equivalence of norms. Described fact that any two norms are equivalent up to a constant bound, and showed that this means that **stability in one norm implies stability in all norms.**  See notes handout for a proof.
+
+**Further reading:** Trefethen, lectures 14, 15, and 3. If you don't immediately recognize that A'A has nonnegative real eigenvalues (it is positive semidefinite), now is a good time to review your linear algebra; see also Trefethen lecture 24.
