@@ -114,7 +114,7 @@ Equivalence of norms. Described fact that any two norms are equivalent up to a c
 
 ### Lecture 5 (Feb 26)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/EaFEj2fy2ArzOttpyChRT1beSMK8C2PuKO7Bh58jGd7b1X7z7yglMnju6YJilc7w.x5osjnAtUzVpUoOt?startTime=1614369626000)
 
 Especially important in numerical analysis are functions where the inputs and/or outputs are matrices, and for these cases we need matrix norms. The most important matrix norms are those that are related to matrix operations. Started with the Frobenius norm. Related the Frobenius norm ‖A‖F to the square root of the sum of eigenvalues of A'A, which are called the _singular values_ σ²; we will do much more on singular values later, but for now noted that they equal the squared eigenvalues of A if A'A (Hermitian). Also defined the induced matrix norm, and bounded it below by the maximum eigenvalue magnitude of A (if A is square). For the L₂ induced norm, related it (without proof for now) to the maximum singular value.  A useful property of the induced norm is ‖AB‖≤‖A‖⋅‖B‖.  Multiplication by a unitary matrix Q (Q' = Q⁻¹) preserves both the Frobenius and L₂ induced norms.
 
