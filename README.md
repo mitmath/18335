@@ -123,3 +123,21 @@ Relate backwards error to forwards error, and backwards stability to forwards er
 Calculated condition number for square root, summation, and matrix-vector multiplication, as well as solving Ax=b, similar to the book. Defined the condition number of a matrix: for f(x)=Ax, the condition number is ‖A‖⋅‖x‖/‖Ax‖, which is bounded above by κ(A)=‖A‖⋅‖A⁻¹‖.
 
 **Further reading:** Trefethen, lectures 12, 14, 15, 24.  See any linear-algebra textbook for a review of eigenvalue problems, especially Hermitian/real-symmetric ones.  See also [these notes from 18.06](https://nbviewer.jupyter.org/github/stevengj/1806/blob/fall18/lectures/Conditioning.ipynb) for a basic overview.
+
+### Lecture 6 (Mar 1)
+
+* video: to be posted
+* pset 1 solutions: to be posted
+* pset 2: to be posted
+
+Related matrix L₂ norm to eigenvalues of B=AᵀA (or Āᵀ=A^\* for complex A). B is obviously Hermitian (Bᵀ=B), and with a little more work showed that it is positive semidefinite: xᵀBx≥0 for any x. Reviewed and re-derived properties of eigenvalues and eigenvectors of Hermitian and positive-semidefinite matrices. Hermitian means that the eigenvalues are real, the eigenvectors are orthogonal (or can be chosen orthogonal). Also, a Hermitian matrix must be diagonalizable (I skipped the proof for this; we will prove it later in a more general setting). Positive semidefinite means that the eigenvalues are nonnegative.
+
+Proved that, for a Hermitian matrix B, the **Rayleigh quotient** R(x)=xᵀBx/xᵀx is bounded above and below by the largest and smallest eigenvalues of B (the "min–max theorem"). Hence showed that the L₂ induced norm of A is the square root of the largest eigenvalue of B=AᵀA. Similarly, showed that the L₂ induced norm of A⁻¹, or more generally the supremum of ‖x‖/‖Ax‖, is equal to the square root of the inverse of the smallest eigenvalue of AᵀA
+
+Understanding norms and condition numbers of matrices therefore reduces to understanding the eigenvalues of AᵀA (or AAᵀ). However, looking at it this way is unsatisfactory for several reasons. First, we would like to solve one eigenproblem, not two. Second, working with things like AᵀA explicitly is often bad numerically, because it squares the condition number \[showed that κ(AᵀA)=κ(A)²\] and hence exacerbates roundoff errors. Third, we would really like to get some better understanding of A itself. All of these concerns are addressed by the **singular value decomposition** or **SVD**.
+
+Explicitly constructed SVD (both "thin" and thick/unitary) in terms of eigenvectors/eigenvalues of AᵀA and AAᵀ. Recall from above that we related the singular values to induced L₂ norm and condition number.
+
+Talked a little about the SVD and low-rank approximations (more on this in homework), e.g. graphically illustrated via [image compression](http://timbaumann.info/svd-image-compression-demo/), or [principal component analysis](http://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), e.g. illustrated with this [nice demo of human locomotion analysis](https://www.biomotionlab.ca/html5-bml-walker/).
+
+**Further reading:** Trefethen, lectures 4, 5, 11.
