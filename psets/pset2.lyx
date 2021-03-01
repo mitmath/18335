@@ -91,7 +91,7 @@
 
 \begin_layout Standard
 Due Fri.
- Feb 28, 2020, at 3pm via Stellar.
+ Mar 12, 2021, at 3pm via Stellar.
 \end_layout
 
 \begin_layout Subsection*
@@ -122,55 +122,6 @@ stability,
 
 \begin_layout Enumerate
 Trefethen, exercise 16.1.
-\end_layout
-
-\begin_layout Enumerate
-Consider the function 
-\begin_inset Formula $f(x,y)=x^{*}y=\sum_{i=1}^{n}\overline{x_{i}}y_{i}$
-\end_inset
-
- for 
-\begin_inset Formula $x,y\in\mathbb{C}^{n}$
-\end_inset
-
-, computed by naive (left-to-right) summation of the floating-point products
- 
-\begin_inset Formula $\overline{x_{i}}\otimes y_{i}$
-\end_inset
-
-.
- Show that this algorithm is backwards stable (very similar to the proof
- of backwards stability of summation from class).
- Here, the inputs 
-\begin_inset Formula $(x,y)$
-\end_inset
-
- live in the 
-\emph on
-Cartesian
-\emph default
- 
-\emph on
-product
-\emph default
- space 
-\begin_inset Formula $\mathbb{C}^{n}\times\mathbb{C}^{n}$
-\end_inset
-
-, which is a vector space using the obvious operations 
-\begin_inset Formula $(x,y)+(z,w)=(x+z,y+w)$
-\end_inset
-
- and 
-\begin_inset Formula $\alpha(x,y)=(\alpha x,\alpha y)$
-\end_inset
-
-.
- You will need to choose a convenient norm of 
-\begin_inset Formula $\mathbb{C}^{n}\times\mathbb{C}^{n}$
-\end_inset
-
- to apply the backwards-stability definition.
 \end_layout
 
 \begin_layout Subsection*
