@@ -126,8 +126,8 @@ Calculated condition number for square root, summation, and matrix-vector multip
 
 ### Lecture 6 (Mar 1)
 
-* video: to be posted
-* pset 1 solutions: to be posted
+* [video](https://mit.zoom.us/rec/share/2goGg3hqQ3FKzjWgzDT88I46EW2ufwYgnf4Jq_NqTuiQEjtbjMCeSRz2PiRAA0ud.jahcg47feiT9BafU?startTime=1614628812000)
+* [pset 1 solutions](psets/pset1sol.pdf)
 * [pset 2](psets/pset2.pdf): due Friday March 12 at 3pm.
 
 Related matrix L₂ norm to eigenvalues of B=AᵀA (or Āᵀ=A^\* for complex A). B is obviously Hermitian (Bᵀ=B), and with a little more work showed that it is positive semidefinite: xᵀBx≥0 for any x. Reviewed and re-derived properties of eigenvalues and eigenvectors of Hermitian and positive-semidefinite matrices. Hermitian means that the eigenvalues are real, the eigenvectors are orthogonal (or can be chosen orthogonal). Also, a Hermitian matrix must be diagonalizable (I skipped the proof for this; we will prove it later in a more general setting). Positive semidefinite means that the eigenvalues are nonnegative.
