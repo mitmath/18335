@@ -144,7 +144,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 ### Lecture 7 (Mar 3)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/1JE0NH6CtgV_enNpRYBSuicV0hd_g8Vw2gjONusIHAo8ayJcI8eyXNyogTI-c9LR.J2EQJe_rZS9JIG3H?startTime=1614801542000)
 
 Finished SVD topics from last time.
 
