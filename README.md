@@ -141,3 +141,15 @@ Explicitly constructed SVD (both "thin" and thick/unitary) in terms of eigenvect
 Talked a little about the SVD and low-rank approximations (more on this in homework), e.g. graphically illustrated via [image compression](http://timbaumann.info/svd-image-compression-demo/), or [principal component analysis](http://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), e.g. illustrated with this [nice demo of human locomotion analysis](https://www.biomotionlab.ca/html5-bml-walker/).
 
 **Further reading:** Trefethen, lectures 4, 5, 11.
+
+### Lecture 7 (Mar 3)
+
+* video: to be posted
+
+Finished SVD topics from last time.
+
+* [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/master/notes/Least-squares.ipynb)
+
+Introduced least-squares problems and went through some examples (notebook).
+
+**Further reading:** Trefethen, lectures 7, 8, 18, 19
