@@ -118,10 +118,96 @@ stability,
 \end_inset
 
  and concentrate on the accumulation of errors in the summations.]
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note: in part 15.1(c), the online version of Trefethen has a misprint: it
+ should be 
+\begin_inset Formula $\tilde{f}(x)=x\oslash x$
+\end_inset
+
+ as an algorithm for 
+\begin_inset Formula $f(x)=1$
+\end_inset
+
+, 
+\series bold
+not
+\series default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\tilde{f}(x)=x$
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 Trefethen, exercise 16.1.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hint: for 
+\begin_inset Formula $f(A)=QA$
+\end_inset
+
+ where 
+\begin_inset Formula $Q$
+\end_inset
+
+ is unitary, then it might be convenient to show that backwards stability
+ of 
+\begin_inset Formula $\tilde{f}(A)$
+\end_inset
+
+ 
+\series bold
+in this case only
+\series default
+ is equivalent to proving 
+\begin_inset Formula $\Vert\tilde{f}(A)-f(A)\Vert=\Vert f(A)\Vert O(\epsilon_{\text{machine}})$
+\end_inset
+
+ if you choose 
+\begin_inset Formula $\Vert\cdot\Vert$
+\end_inset
+
+ to be the 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ induced norm or the Frobenius norm.
+ i.e.
+ for multiplying by a 
+\emph on
+unitary
+\emph default
+ matrix, backwards stability is equivalent to the 
+\emph on
+forwards
+\emph default
+ error being small, which might be easier to analyze.
+ (Essentially, this happens because unitary matrices have condition number
+ 
+\begin_inset Formula $\kappa(Q)=1$
+\end_inset
+
+.)
 \end_layout
 
 \begin_layout Subsection*
@@ -160,7 +246,6 @@ github.com/JuliaLang/julia
 
  in stdlib/LinearAlgebra/src/generic.jl and satisfy yourself that it is equivalen
 t to (3.10).
- 
 \end_layout
 
 \begin_layout Enumerate

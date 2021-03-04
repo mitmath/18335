@@ -185,13 +185,5 @@ your signature
 
 \end_layout
 
-\begin_layout Subsection*
-Problem 1:
-\end_layout
-
-\begin_layout Standard
-Naive method to compute exp1: backwards stable? prove
-\end_layout
-
 \end_body
 \end_document
