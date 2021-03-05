@@ -160,7 +160,11 @@ Finished least-squares notebook. Reviewed some basic consequences of SVD: κ(A) 
 
 Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
 
-* Per Persson's [2006 18.335 Gram-Schmidt notes](notes/lec5.pdf)
+* Per Persson's [2006 18.335 Gram-Schmidt slides](notes/lec5.pdf)
 * [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
 
 Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.
+
+Discussed loss of orthogonality in classical Gram-Schmidt, using a simple example (see slides), especially in the case where the matrix has nearly dependent columns to begin with. Showed modified Gram-Schmidt and argued how it (mostly) fixes the problem. (For more numerical examples, see the notebook.)
+
+**Further reading:** Trefethen, lectures 7, 8, 18, 19. The [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) is also nice. It turns out that modified GS is backwards stable in the sense that the product QR is close to A, i.e. the function f(A) = QᵀR is backwards stable in MGS; this is why solving systems with Q,R (appropriately used as discussed in Trefethen lecture 19) is an accurate approximation to solving them with A. For a review of the literature on backwards-stability proofs of MGS, see e.g. [this 2006 paper by Paige et al.](https://epubs.siam.org/doi/abs/10.1137/050630416) \[_SIAM J. Matrix Anal. Appl._ **28**, pp. 264-284\].
