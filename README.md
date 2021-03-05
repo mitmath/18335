@@ -168,3 +168,15 @@ Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to fi
 Discussed loss of orthogonality in classical Gram-Schmidt, using a simple example (see slides), especially in the case where the matrix has nearly dependent columns to begin with. Showed modified Gram-Schmidt and argued how it (mostly) fixes the problem. (For more numerical examples, see the notebook.)
 
 **Further reading:** Trefethen, lectures 7, 8, 18, 19. The [Wikipedia Gram-Schmidt article](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) is also nice. It turns out that modified GS is backwards stable in the sense that the product QR is close to A, i.e. the function f(A) = QᵀR is backwards stable in MGS; this is why solving systems with Q,R (appropriately used as discussed in Trefethen lecture 19) is an accurate approximation to solving them with A. For a review of the literature on backwards-stability proofs of MGS, see e.g. [this 2006 paper by Paige et al.](https://epubs.siam.org/doi/abs/10.1137/050630416) \[_SIAM J. Matrix Anal. Appl._ **28**, pp. 264-284\].
+
+### Lecture 9 (Mar 9: **Tuesday** is an "MIT Monday")
+
+* [Householder QR notes](notes/lec6handout6pp.pdf) from Per Persson.
+
+Floating-point operation (**flop**) count for classical or modified Gram–Schmidt.
+
+Re-interpret Gram-Schmidt in matrix form as Q = AR1R2..., i.e. as multiplying A on the right by a sequence of upper-triangular matrices to get Q. The problem is that these matrices R may be very badly conditioned, leading to an inaccurate Q and loss of orthogonality. Instead of multiplying A on the right by R's to get Q, however, we can instead multiply A on the left by Q's to get R.  In homework (pset 2), you will show that *any* algorithm consisting of multiplying by a sequence of Q's is backwards stable! This leads us to the Householder QR algorithm.
+
+Introduced Householder QR, emphasized the inherent stability properties of multiplying by a sequence of unitary matrices (as shown in pset 2). Show how we can convert a matrix to upper-triangular form (superficially similar to Gaussian elimination) via unitary Householder reflectors.
+
+**Further reading:** Trefethen, lectures 7, 8, 10, 16.
