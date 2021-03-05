@@ -153,3 +153,14 @@ Finished SVD topics from last time.
 Introduced least-squares problems and went through some examples (notebook).
 
 **Further reading:** Trefethen, lectures 7, 8, 18, 19
+
+### Lecture 8 (Mar 5)
+
+Finished least-squares notebook. Reviewed some basic consequences of SVD: κ(A) from σ max/min ratio, κ(Q)=1, κ(AᵀA)=κ(A)².  Key consequence for least-squares: normal equations formulation squares the condition number—not a good idea if we can avoid it.
+
+Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
+
+* Per Persson's [2006 18.335 Gram-Schmidt notes](notes/lec5.pdf)
+* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
+
+Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.

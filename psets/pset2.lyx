@@ -170,8 +170,8 @@ Hint: for
 \begin_inset Formula $Q$
 \end_inset
 
- is unitary, then it might be convenient to show that backwards stability
- of 
+ is unitary, it might be convenient to show that backwards stability of
+ 
 \begin_inset Formula $\tilde{f}(A)$
 \end_inset
 
