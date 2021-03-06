@@ -156,6 +156,8 @@ Introduced least-squares problems and went through some examples (notebook).
 
 ### Lecture 8 (Mar 5)
 
+* [video](https://mit.zoom.us/rec/share/2zzBTWWYNnHPpQd70jO0YfadaqG1JgcEUG3ySICkJWLVKk_apkJLPBNJb6kAGwFb.nc370aR1-D9tXbZ0?startTime=1614974391000)
+
 Finished least-squares notebook. Reviewed some basic consequences of SVD: κ(A) from σ max/min ratio, κ(Q)=1, κ(AᵀA)=κ(A)².  Key consequence for least-squares: normal equations formulation squares the condition number—not a good idea if we can avoid it.
 
 Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
