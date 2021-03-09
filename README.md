@@ -173,6 +173,7 @@ Discussed loss of orthogonality in classical Gram-Schmidt, using a simple exampl
 
 ### Lecture 9 (Mar 9: **Tuesday** is an "MIT Monday")
 
+* [video](https://mit.zoom.us/rec/share/zIk3UezniG7SjYrftyquPG7PVJtmROO_21WgM2Rx6AReijSVs6hCd0uh7BlmnB-Q.LcNG3YNPs5AaGrfm?startTime=1615320002000)
 * [Householder QR notes](notes/lec6handout6pp.pdf) from Per Persson.
 
 Floating-point operation (**flop**) count for classical or modified Gram–Schmidt.
