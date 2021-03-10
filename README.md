@@ -178,8 +178,22 @@ Discussed loss of orthogonality in classical Gram-Schmidt, using a simple exampl
 
 Floating-point operation (**flop**) count for classical or modified Gram–Schmidt.
 
-Re-interpret Gram-Schmidt in matrix form as Q = AR1R2..., i.e. as multiplying A on the right by a sequence of upper-triangular matrices to get Q. The problem is that these matrices R may be very badly conditioned, leading to an inaccurate Q and loss of orthogonality. Instead of multiplying A on the right by R's to get Q, however, we can instead multiply A on the left by Q's to get R.  In homework (pset 2), you will show that *any* algorithm consisting of multiplying by a sequence of Q's is backwards stable! This leads us to the Householder QR algorithm.
+Re-interpret Gram-Schmidt in matrix form as Q = AR₁R₂..., i.e. as multiplying A on the right by a sequence of upper-triangular matrices to get Q. The problem is that these matrices R may be very badly conditioned, leading to an inaccurate Q and loss of orthogonality. Instead of multiplying A on the right by R's to get Q, however, we can instead multiply A on the left by Q's to get R.  In homework (pset 2), you will show that *any* algorithm consisting of multiplying by a sequence of Q's is backwards stable! This leads us to the Householder QR algorithm.
 
 Introduced Householder QR, emphasized the inherent stability properties of multiplying by a sequence of unitary matrices (as shown in pset 2). Show how we can convert a matrix to upper-triangular form (superficially similar to Gaussian elimination) via unitary Householder reflectors.
+
+**Further reading:** Trefethen, lectures 7, 8, 10, 16.
+
+### Lecture 10 (Mar 10)
+
+* video: to be posted
+
+Finished Householder QR derivation from last time, including the detail that one has a choice of Householder reflectors...we choose the sign to avoid taking differences of nearly-equal vectors. Emphasized that we don't need to explicitly compute Q if we instead store the Householder reflector vectors, and can still compute Qx and Qᵀx quickly.
+
+Operation count for Gram-Schmidt (2mn²) vs. Householder (2mn² - 2n³/3).  Noted that associativity matters in matrix products: there is a big difference in computational cost between v(vᵀX) and (vvᵀ)X! Evidently, Householder is at least as accurate as modified GS while being slightly faster. But does fewer operations really mean it is faster?
+
+* performance experiments with matrix multiplication ([one-page](notes/matmuls-handout.pdf) or [full-size](notes/matmuls.pdf) versions)
+
+Counting arithmetic operation counts is no longer enough. Illustrate this with some performance experiments on a much simpler problem, matrix multiplication (see handouts). This leads us to analyze memory-access efficiency and caches and points the way to restructuring many algorithms.
 
 **Further reading:** Trefethen, lectures 7, 8, 10, 16.
