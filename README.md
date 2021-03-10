@@ -186,7 +186,7 @@ Introduced Householder QR, emphasized the inherent stability properties of multi
 
 ### Lecture 10 (Mar 10)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/mGMbqDRsMaUCXae54EBKfiB7pU-q7J3MoldyLIPqSdEne-_Sfpxre8RvTLi6l6kf.dPGZhSCnafJtz8-U)
 
 Finished Householder QR derivation from last time, including the detail that one has a choice of Householder reflectors...we choose the sign to avoid taking differences of nearly-equal vectors. Emphasized that we don't need to explicitly compute Q if we instead store the Householder reflector vectors, and can still compute Qx and Qᵀx quickly.
 
