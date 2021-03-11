@@ -207,7 +207,23 @@ forwards
 \begin_inset Formula $\kappa(Q)=1$
 \end_inset
 
-.)
+.) Once you have proved stability for multiplying by 
+\emph on
+one
+\emph default
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+, you can prove backwards stability for multiplying by 
+\emph on
+many
+\emph default
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+'s using induction, for example.
 \end_layout
 
 \begin_layout Subsection*
@@ -308,6 +324,94 @@ gamma(x)
 ] add SpecialFunctions
 \family default
  to install this package).
+ You might also want to google the 
+\begin_inset Quotes eld
+\end_inset
+
+Laurent series
+\begin_inset Quotes erd
+\end_inset
+
+ for the gamma function.
+\end_layout
+
+\begin_layout Standard
+Note that the 
+\begin_inset Formula $L^{2}$
+\end_inset
+
+ norm 
+\begin_inset Formula $\Vert g(x)\Vert_{2}$
+\end_inset
+
+ of a function 
+\begin_inset Formula $g(x)$
+\end_inset
+
+ defined on 
+\begin_inset Formula $x\in[a,b]$
+\end_inset
+
+ is an 
+\emph on
+integral
+\emph default
+ 
+\begin_inset Formula 
+\[
+\Vert g(x)\Vert_{2}=\sqrt{\int_{a}^{b}|g(x)|^{2}dx}.
+\]
+
+\end_inset
+
+On a computer, you will need to approximate such integrals by a finite 
+\emph on
+sum
+\emph default
+ over 
+\begin_inset Formula $N$
+\end_inset
+
+ points with some weights, which will turn this fitting problem into an
+ ordinary least-squared matrix problem.
+ Such an approximation is called a 
+\begin_inset Quotes eld
+\end_inset
+
+quadrature
+\begin_inset Quotes erd
+\end_inset
+
+ rule, and we will study quadrature in more detail later, but for now you
+ can use whatever simple approximation you like—the simplest is probably
+ a 
+\begin_inset Quotes eld
+\end_inset
+
+rectangle
+\begin_inset Quotes erd
+\end_inset
+
+ rule or 
+\begin_inset Quotes eld
+\end_inset
+
+Riemann sum
+\begin_inset Quotes erd
+\end_inset
+
+ (google it), and you probably saw something like it the first time you
+ learned about integration.
+ As you increase 
+\begin_inset Formula $N$
+\end_inset
+
+ (for any quadrature rule), your sum should get closer and closer to the
+ integral, and you should keep doubling 
+\begin_inset Formula $N$
+\end_inset
+
+ until your final answer(s) converge to at least 2 significant digits.
 \end_layout
 
 \end_body
