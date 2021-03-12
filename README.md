@@ -204,6 +204,7 @@ Counting arithmetic operation counts is no longer enough. Illustrate this with s
 * pset 2 solutions: to be posted
 * pset 3: to be posted
 * [IJulia matrix-multiplication notebook](notes/Memory-and-Matrices.ipynb)
+* [ideal-cache terminology](notes/ideal-cache.pdf)
 
 Outline of the memory hierarchy: CPU, registers, L1/L2 cache, main memory, and presented simple 2-level ideal-cache model that we can analyze to get the basic ideas.
 
