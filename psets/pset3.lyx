@@ -90,7 +90,7 @@
 \end_layout
 
 \begin_layout Standard
-Due Friday, 13 March 2020.
+Due Friday, 26 March 2021.
 \end_layout
 
 \begin_layout Subsection*
@@ -99,61 +99,6 @@ Problem 1: QR and orthogonal bases
 
 \begin_layout Enumerate
 Trefethen, problem 10.4.
-\end_layout
-
-\begin_layout Enumerate
-Prove that 
-\begin_inset Formula $A=QR$
-\end_inset
-
- and 
-\begin_inset Formula $B=RQ$
-\end_inset
-
- have the same eigenvalues, assuming 
-\begin_inset Formula $A$
-\end_inset
-
- is a square matrix.
- Then do a little experiment: Construct a random 
-\begin_inset Formula $5\times5$
-\end_inset
-
- real-symmetric matrix in Julia via 
-\family typewriter
-X=rand(5,5); A = X' + X
-\family default
-.
- Use 
-\family typewriter
-QR = qr(A)
-\family default
- (do 
-\family typewriter
-using LinearAlgebra
-\family default
- first) to compute the QR factorization of 
-\begin_inset Formula $A$
-\end_inset
-
-, and then compute 
-\family typewriter
-B = QR.R * QR.Q
-\family default
-.
- Then find the QR factorization 
-\begin_inset Formula $B=Q'R'$
-\end_inset
-
-, and compute 
-\begin_inset Formula $R'Q'$
-\end_inset
-
-...repeat this process until the matrix converges (maybe writing a loop and/or
- a function).
- From what it converges to, suggest a procedure to compute the eigenvalues
- and eigenvectors of a real-symmetric matrix (no need to prove that it converges
- in general—we will discuss this in class).
 \end_layout
 
 \begin_layout Enumerate
@@ -218,16 +163,7 @@ Schur factorization
  must be diagonal.
  Hence, any normal matrix (e.g.
  unitary or Hermitian matrices) must be unitarily diagonalizable.
- Hint: consider the diagonal entries of 
-\begin_inset Formula $TT^{*}$
-\end_inset
-
- and 
-\begin_inset Formula $T^{*}T$
-\end_inset
-
-, starting from the (1,1) entries and proceeding diagonally downwards by
- induction.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -245,8 +181,7 @@ Given the Schur factorization of an arbitary
 \begin_inset Formula $\pm,\times,\div$
 \end_inset
 
-; for simplicity assume your matrices are all real) should be asymptotically
- 
+; assume that your matrices are all real) should be asymptotically 
 \begin_inset Formula $Km^{3}+O(m^{2})$
 \end_inset
 
@@ -255,11 +190,98 @@ Given the Schur factorization of an arbitary
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Subsection*
-Problem 3: Caches and backsubstitution
+Problem 3: Distribution and association
+\end_layout
+
+\begin_layout Standard
+Suppose you want to compute 
+\begin_inset Formula $x^{T}(AB+CD)y$
+\end_inset
+
+, where 
+\begin_inset Formula $x,y\in\mathbb{R}^{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $A,B,C,D\in\mathbb{R}^{m\times m}$
+\end_inset
+
+ for 
+\begin_inset Formula $m=1000$
+\end_inset
+
+.
+ You code it up in Julia in two ways:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+x' * (A*B + C*D) * y
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+x'*A*B*y + x'*C*D*y
+\end_layout
+
+\begin_layout Enumerate
+Which of these two would you expect to be faster, and why? (Note that 
+\begin_inset Formula $*$
+\end_inset
+
+ in Julia is 
+\begin_inset Quotes eld
+\end_inset
+
+left-associative:
+\begin_inset Quotes erd
+\end_inset
+
+ performed from left to right, unless you change the order with parentheses.)
+\end_layout
+
+\begin_layout Enumerate
+Try it and see if it maches your prediction.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A good package for benchmarking in Julia is BenchmarkTools.jl — install it
+ with 
+\family typewriter
+] add BenchmarkTools
+\family default
+, load it with 
+\family typewriter
+using BenchmarkTools,
+\family default
+ allocate random inputs and time them with e.g.
+ 
+\family typewriter
+@btime $x' * ($A*$B + $C*$D) * $y;
+\family default
+ the 
+\begin_inset Formula $\$$
+\end_inset
+
+ signs tell the benchmark to evaluate the global variables like 
+\family typewriter
+x
+\family default
+ before benchmarking to avoid an artificial slowdown (global variables are
+ otherwise slow in Julia).
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Caches and backsubstitution
 \end_layout
 
 \begin_layout Standard

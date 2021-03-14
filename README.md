@@ -201,8 +201,8 @@ Counting arithmetic operation counts is no longer enough. Illustrate this with s
 ### Lecture 11 (Mar 12)
 
 * [video](https://mit.zoom.us/rec/share/PvQ9R5p3v4NBiUS7xGjcBvPoeHQDaKwqkwAiMHYXNvZKxameHHSSdNRBd0YMdqaF.Ineu4sDc_TkW3dMZ?startTime=1615579182000)
-* pset 2 solutions: to be posted
-* pset 3: to be posted
+* [pset 2 solutions](psets/pset2sol.pdf) and [IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset2sol.ipynb)
+* [pset 3](psets/pset3.pdf): due Friday, March 26 at 3pm
 * [IJulia matrix-multiplication notebook](notes/Memory-and-Matrices.ipynb)
 * [ideal-cache terminology](notes/ideal-cache.pdf)
 
