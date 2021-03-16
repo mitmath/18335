@@ -216,10 +216,11 @@ Discussed some practical difficulties of the blocked matrix multiplication: algo
 
 ### Lecture 12 (Mar 15)
 
-* experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf))
+* [video](https://mit.zoom.us/rec/share/MPW1HsOTWiaCnaZBYqYznuVDM54jrdYDqMXgpgvX-w3tgkEqn0mdK1abDTFjb4KF.t1UOw46myEu3aii6?startTime=1615834826000)
+* experiments with cache-oblivious matrix-multiplication ([handout](notes/oblivious-matmul-handout.pdf) or [full-size slides](notes/oblivious-matmul.pdf)) … see Julia notebook above for more recent results.
 
-Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout and Frigo et. al paper above).
+Introduced the concept of optimal cache-oblivious algorithms. Discussed cache-oblivious matrix multiplication in theory and in practice (see handout, Julia notebook, and Frigo et. al paper above).
 
-Discussion of spatial locality and cache lines, with examples of dot products and matrix additions (both of which are "level 1 BLAS" operations with no temporal locality); you'll do more on this in pset 3.
+Discussion of spatial locality and cache lines, with examples of dot products and matrix additions (both of which are "level 1 BLAS" operations with no temporal locality), and the critical implications for loop ordering when traversing multidimensional arrays.
 
 **Further reading:** Frigo et al. paper from previous lecture. A typical free-software BLAS these days is [OpenBLAS](https://www.openblas.net/). See [Register Allocation in Kernel Generators](http://cscads.rice.edu/workshops/july2007/autotune-slides-07/Frigo.pdf) (talk by M. Frigo, 2007) on the difficulty of optimizing for the last level of cache (the registers) in matrix multiplication (compared to FFTs), and why a simple cache-oblivious algorithm is no longer enough. See e.g. the Wikipedia article on [row-major and column-major order](http://en.wikipedia.org/wiki/Row-major_order) and the resulting [Julia performance tip](https://docs.julialang.org/en/v1/manual/performance-tips/#man-performance-column-major).
