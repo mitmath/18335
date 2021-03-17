@@ -227,6 +227,8 @@ Discussion of spatial locality and cache lines, with examples of dot products an
 
 ### Lecture 13 (Mar 17)
 
+* [video](https://mit.zoom.us/rec/share/BMLfjHa8AsAVvEAJ0SnjXMf_SetO92jRrR6ZB5Asf8Tx6CPm1g4unf6nFyor96kV.wPCbT1L5BKWECOfw?startTime=1616007600000)
+
 Review of **Gaussian elimination**. Reviewed the fact (from 18.06) that this givs an A=LU factorization, and that we then solve Ax=b by solving Ly=b (forward substitution: doing the same steps to b that we did to A during elimination to get y) and then solving Ux=y (backsubstitution). Emphasized that you should **almost never compute A⁻¹** explicitly. It is just as cheap to keep L and U around, since triangular solves are essentially the same cost as a matrix-vector multiplication. Computing A⁻¹ is usually a mistake: you can't do anything with A⁻¹ that you couldn't do with L and U, and you are wasting both computations and accuracy in computing A⁻¹. A⁻¹ is useful in abstract manipulations, but whenever you see "x=A⁻¹b" you should interpret it for computational purposes as solving Ax=b by LU or some other method.
 
 In Julia, `x = A \ b` solves Ax=b by a specialized method depending on the type of `A`, and `F = factorization(A)` followed by `x = F \ b` stores the factorization (e.g. LU) for re-use on subsequent right-hand sides.
