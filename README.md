@@ -237,7 +237,7 @@ In Julia, `x = A \ b` solves Ax=b by a specialized method depending on the type 
 
 ### Lecture 14 (Mar 19)
 
-* video (to be posted)
+* [video](https://mit.zoom.us/rec/share/wMsV8X1FNSZSeZiYtT5ebFaUzzQkhLudRuDww9ma8cAwB4vHeY25Qpb4jJXoYI18.OclUE9JHl9MbHdG3?startTime=1616180412000)
 
 Showed with an example that Gaussian elimination (LU) without row swaps ("pivoting") is numerically unstable.  (In principle, we could instead solve Ax=b with Householder QR, but we'd rather not: QR flop count 2m³ - 2m³/3 = 4m³/3 is double that of LU.)
 
@@ -247,7 +247,7 @@ Discussed Cholesky factorization, which is Gaussian elimation for the special ca
 
 **Further reading:** Trefethen, lectures 20–23.   See all of the [special cases of LAPACK's linear-equation solvers](http://www.netlib.org/lapack/lug/node38.html).
 
-### Lecture 15 (March 24)
+### Lecture 15 (March 24 — NO CLASS MONDAY)
 
 New topic: **eigenproblems**. Reviewed the usual formulation of eigenproblems and the characteristic polynomial, mentioned extensions to generalized eigenproblems and SVDs. Discussed diagonalization, defective matrices, and the generalization ot the Schur factorization.
 
