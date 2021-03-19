@@ -237,6 +237,8 @@ In Julia, `x = A \ b` solves Ax=b by a specialized method depending on the type 
 
 ### Lecture 14 (Mar 19)
 
+* video (to be posted)
+
 Showed with an example that Gaussian elimination (LU) without row swaps ("pivoting") is numerically unstable.  (In principle, we could instead solve Ax=b with Householder QR, but we'd rather not: QR flop count 2m³ - 2m³/3 = 4m³/3 is double that of LU.)
 
 Introduced partial pivoting, and pointed out (omitting bookkeeping details) that this can be expressed as a PA=LU factorization where P is a permutation. Discussed backwards stability of LU, and mentioned example where U matrix grows exponentially fast with _m_ to point out that the backwards stability result is practically useless here, and that the (indisputable) practicality of Gaussian elimination is more a result of the types of matrices that arise in practice.
@@ -245,7 +247,7 @@ Discussed Cholesky factorization, which is Gaussian elimation for the special ca
 
 **Further reading:** Trefethen, lectures 20–23.   See all of the [special cases of LAPACK's linear-equation solvers](http://www.netlib.org/lapack/lug/node38.html).
 
-### Lecture 15 (March 22)
+### Lecture 15 (March 24)
 
 New topic: **eigenproblems**. Reviewed the usual formulation of eigenproblems and the characteristic polynomial, mentioned extensions to generalized eigenproblems and SVDs. Discussed diagonalization, defective matrices, and the generalization ot the Schur factorization.
 
