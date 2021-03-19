@@ -234,3 +234,13 @@ Review of **Gaussian elimination**. Reviewed the fact (from 18.06) that this giv
 In Julia, `x = A \ b` solves Ax=b by a specialized method depending on the type of `A`, and `F = factorization(A)` followed by `x = F \ b` stores the factorization (e.g. LU) for re-use on subsequent right-hand sides.
 
 **Further reading:** Trefethen, lectures 20–22.
+
+### Lecture 14 (Mar 19)
+
+Showed with an example that Gaussian elimination (LU) without row swaps ("pivoting") is numerically unstable.  (In principle, we could instead solve Ax=b with Householder QR, but we'd rather not: QR flop count 2m³ - 2m³/3 = 4m³/3 is double that of LU.)
+
+Introduced partial pivoting, and pointed out (omitting bookkeeping details) that this can be expressed as a PA=LU factorization where P is a permutation. Discussed backwards stability of LU, and mentioned example where U matrix grows exponentially fast with _m_ to point out that the backwards stability result is practically useless here, and that the (indisputable) practicality of Gaussian elimination is more a result of the types of matrices that arise in practice.
+
+Discussed Cholesky factorization, which is Gaussian elimation for the special case of Hermitian positive-definite matrices, where we can save a factor of two in time and memory. More generally, if the matrix A has a special form, one can sometimes take advantage of this to have a more efficient Ax=b solver, for example: Hermitian positive-definite (Cholesky), tridiagonal or banded (linear-time solvers), lower/upper triangular (forward/backsubstitution), generic sparse (A is mostly zero: sparse-direct and iterative solvers, to be discussed later; typically only worthwhile when the matrix is much bigger than 1000×1000).
+
+**Further reading:** Trefethen, lectures 20–23.   See all of the [special cases of LAPACK's linear-equation solvers](http://www.netlib.org/lapack/lug/node38.html).
