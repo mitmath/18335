@@ -102,7 +102,31 @@ Trefethen, problem 10.4.
 \end_layout
 
 \begin_layout Enumerate
-Trefethen, problem 28.2,
+Trefethen, problem 28.2.
+ In the second part, you 
+\emph on
+must
+\emph default
+ additionally assume that 
+\begin_inset Formula $A=A^{*}$
+\end_inset
+
+ (i.e.
+ it is Hermitian tridiagonal), as otherwise (for non-Hermitian tridiagonal
+ 
+\begin_inset Formula $A$
+\end_inset
+
+) 
+\begin_inset Formula $RQ$
+\end_inset
+
+ would 
+\emph on
+not
+\emph default
+ be tridiagonal.
+ (Some editions of the book omitted this requirement.)
 \end_layout
 
 \begin_layout Subsection*
@@ -181,7 +205,11 @@ Given the Schur factorization of an arbitary
 \begin_inset Formula $\pm,\times,\div$
 \end_inset
 
-; assume that your matrices are all real) should be asymptotically 
+; assume that your matrices 
+\begin_inset Formula $A,T,Q$
+\end_inset
+
+ are all real for simplicity) should be asymptotically 
 \begin_inset Formula $Km^{3}+O(m^{2})$
 \end_inset
 
