@@ -263,7 +263,7 @@ However, forming the characteristic polynomial and searching for its roots can b
 
 ### Lecture 16 (March 26)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/6xPglmx5EfRpfoJicepecUYWJTz4AZSowDUZbhxtlvZpqS6lZ15s2b-ynJo8AMmz.ptm-aacmshkD3PkU?startTime=1616785249000)
 * pset 3 solutions: to be posted
 * pset 4: to be posted
 
