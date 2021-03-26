@@ -260,3 +260,15 @@ As a result, all eigenproblem methods must be _iterative_: they must consist of 
 However, forming the characteristic polynomial and searching for its roots can be a terrible way to find eigenvalues if you aren't careful. The problem is that the roots are an exponentially ill-conditioned function of the polynomial coefficients; gave the example of [Wilkinson's polynomial](http://en.wikipedia.org/wiki/Wilkinson%27s_polynomial). If we can compute the characteristic polynomial values implicitly somehow, directly from the determinant, then it is not too bad (if you are looking only for eigenvalues in some known interval, for example), but we haven't learned an efficient way to do that yet. The way LAPACK and Matlab actually compute eigenvalues, the QR method and its descendants, wasn't discovered until 1960.
 
 **Further reading:** Trefethen, lecture 24, 25. See [this Wilkinson polynomial Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring15/notes/Wilkinson-Polynomial.ipynb) for some experiments with polynomial roots in Julia, as well as [this more recent 18.06 notebook](https://nbviewer.jupyter.org/github/stevengj/1806/blob/fall18/lectures/Eigenvalue-Polynomials.ipynb).
+
+### Lecture 16 (March 26)
+
+* video: to be posted
+* pset 3 solutions: to be posted
+* pset 4: to be posted
+
+The key to making most of the eigensolver algorithms efficient is reducing A to **Hessenberg form**: A=QHQᵀ where H is upper triangular plus one nonzero value below each diagonal. Unlike Schur form, Hessenberg factorization _can_ be done exactly in a finite number of steps (in exact arithmetic), Θ(m³) steps to be precise. H and A are similar: they have the same eigenvalues, and the eigenvector are related by Q. And once we reduce to Hessenberg form, all the subsequent operations we might want to do (determinants, LU or QR factorization, etcetera), will be fast. In the case of Hermitian A, showed that H is Hermitian tridiagonal; in this case, most subsequent operations (even LU and QR factorization) will be Θ(m) (you will show this in HW)!  (In fact, you can always arrange that H is a *real* tridiagonal matrix even if A is complex Hermitian.)
+
+Reviewed power method for biggest-|λ| eigenvector/eigenvalue and its the convergence rate.   To get the eigenvalue, we use the Rayleigh quotient of our eigenvector estimate.  Showed that (related to the min–max theorem), for a Hermitian matrix the eigenvectors are all *extrema* of the Rayleigh quotient, and this means that the eigenvalue estimates converge at *twice* the rate (i.e. squared error) of the eigenvectors.
+
+**Further reading:** Trefethen, lecture 25, 26, and and Per Persson's [2006 notes](notes/lec14handout6pp.pdf) on Hessenberg factorization.  The Julia LinearAlgebra provides functions `schur`, `eigen`, and `hessenberg` for the Schur, eigenvector, and Hessenberg factorizations respectively.  (For a large real-symmetric matrix, Hessenberg factorization is about 5× faster than diagonalization, but is only about 40% faster than finding the eigenvalues and not eigenvectors.)
