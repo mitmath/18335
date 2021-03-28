@@ -264,7 +264,7 @@ However, forming the characteristic polynomial and searching for its roots can b
 ### Lecture 16 (March 26)
 
 * [video](https://mit.zoom.us/rec/share/6xPglmx5EfRpfoJicepecUYWJTz4AZSowDUZbhxtlvZpqS6lZ15s2b-ynJo8AMmz.ptm-aacmshkD3PkU?startTime=1616785249000)
-* pset 3 solutions: to be posted
+* [pset 3 solutions](psets/pset3sol.pdf)
 * [pset 4](psets/pset4.pdf): due Friday April 9
 
 The key to making most of the eigensolver algorithms efficient is reducing A to **Hessenberg form**: A=QHQᵀ where H is upper triangular plus one nonzero value below each diagonal. Unlike Schur form, Hessenberg factorization _can_ be done exactly in a finite number of steps (in exact arithmetic), Θ(m³) steps to be precise. H and A are similar: they have the same eigenvalues, and the eigenvector are related by Q. And once we reduce to Hessenberg form, all the subsequent operations we might want to do (determinants, LU or QR factorization, etcetera), will be fast. In the case of Hermitian A, showed that H is Hermitian tridiagonal; in this case, most subsequent operations (even LU and QR factorization) will be Θ(m) (you will show this in HW)!  (In fact, you can always arrange that H is a *real* tridiagonal matrix even if A is complex Hermitian.)
