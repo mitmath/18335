@@ -92,11 +92,140 @@
 \end_layout
 
 \begin_layout Standard
-Due Monday, April 6, 2019.
+Due Friday, April 9, 2021.
 \end_layout
 
 \begin_layout Subsection*
-Problem 1: Shifted-inverse iteration
+Problem 1: Generalized eigenproblems
+\end_layout
+
+\begin_layout Standard
+Consider the 
+\begin_inset Quotes eld
+\end_inset
+
+generalized
+\begin_inset Quotes erd
+\end_inset
+
+ eigenvalue problem 
+\begin_inset Formula $Ax=\lambda Bx$
+\end_inset
+
+ where 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are Hermitian and 
+\begin_inset Formula $B$
+\end_inset
+
+ is positive-definite.
+ You could turn this into an ordinary eigenvalue problem 
+\begin_inset Formula $B^{-1}Ax=\lambda x$
+\end_inset
+
+, but then you disguise the Hermitian nature of the underlying problem.
+\end_layout
+
+\begin_layout Enumerate
+Show that the eigenvalue solutios 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ of 
+\begin_inset Formula $Ax=\lambda Bx$
+\end_inset
+
+ must be real (with 
+\begin_inset Formula $x\ne0$
+\end_inset
+
+ as usual) and that eigenvectors 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ for distinct eigenvalues 
+\begin_inset Formula $\lambda_{1}\ne\lambda_{2}$
+\end_inset
+
+ must satisfy a modified orthogonality relationship 
+\begin_inset Formula $x_{1}^{*}Bx_{2}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+A Hermitian matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ can be diagonalized as 
+\begin_inset Formula $A=Q\Lambda Q^{*}$
+\end_inset
+
+; write down an analogous diagonalization formula arising from the eigenvectors
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ (suitably normalized) and eigenvalues of the generalized problem, in terms
+ of 
+\begin_inset Formula $\{A,B,X,\Lambda\}$
+\end_inset
+
+.
+ (Your formula should contain no matrix inverses, only adjoints like 
+\begin_inset Formula $X^{*}$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Enumerate
+Using the Cholesky factorization of 
+\begin_inset Formula $B$
+\end_inset
+
+, show that you can derive an ordinary Hermitian eigenvalue problem 
+\begin_inset Formula $Hy=\lambda y$
+\end_inset
+
+ where 
+\begin_inset Formula $H=H^{*}$
+\end_inset
+
+ is Hermitian, the eigenvalues 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ are the same as those of 
+\begin_inset Formula $Ax=\lambda Bx$
+\end_inset
+
+, and there is a simple relationship between the corresponding eigenvectors
+ 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Shifted-inverse iteration
 \end_layout
 
 \begin_layout Standard
@@ -104,7 +233,7 @@ Trefethen, problem 27.5.
 \end_layout
 
 \begin_layout Subsection*
-Problem 2: Arnoldi
+Problem 3: Arnoldi
 \end_layout
 
 \begin_layout Standard
