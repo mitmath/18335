@@ -275,7 +275,7 @@ Reviewed power method for biggest-|λ| eigenvector/eigenvalue and its the conver
 
 ### Lecture 17 (March 29)
 
-* video (to pe posted)
+* [video](https://mit.zoom.us/rec/share/OWnsSqgxWK8DzhYDMmOQex-hp9UyMaxED_MWLks4ijOGHexNvSVE9ujB04reF72a.SFChGmWcityiJz9n?startTime=1617044407000)
 
 Finished analyzing rate of convergence of the power method, along with Rayleigh-quotient method for estimating eigenvalues, for Hermitian matrices.
 Mentioned variants of inverse- and shifted-inverse iteration.   (Later on, we will discuss how to accelerate convergence with the Arnoldi algorithm.)
