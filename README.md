@@ -272,3 +272,18 @@ The key to making most of the eigensolver algorithms efficient is reducing A to 
 Reviewed power method for biggest-|λ| eigenvector/eigenvalue and its the convergence rate.   To get the eigenvalue, we use the Rayleigh quotient of our eigenvector estimate.  Showed that (related to the min–max theorem), for a Hermitian matrix the eigenvectors are all *extrema* of the Rayleigh quotient, and this means that the eigenvalue estimates converge at *twice* the rate (i.e. squared error) of the eigenvectors.
 
 **Further reading:** Trefethen, lecture 25, 26, and and Per Persson's [2006 notes](notes/lec14handout6pp.pdf) on Hessenberg factorization.  The Julia LinearAlgebra provides functions `schur`, `eigen`, and `hessenberg` for the Schur, eigenvector, and Hessenberg factorizations respectively.  (For a large real-symmetric matrix, Hessenberg factorization is about 5× faster than diagonalization, but is only about 40% faster than finding the eigenvalues and not eigenvectors.)
+
+### Lecture 17 (March 29)
+
+* video (to pe posted)
+
+Finished analyzing rate of convergence of the power method, along with Rayleigh-quotient method for estimating eigenvalues, for Hermitian matrices.
+Mentioned variants of inverse- and shifted-inverse iteration.   (Later on, we will discuss how to accelerate convergence with the Arnoldi algorithm.)
+
+Discussed how to use the power method to get multiple eigenvalues/vectors of Hermitian matrices by "deflation" (using orthogonality of eigenvectors). Discussed how, in principle, QR factorization of _Aⁿ_ for large _n_ will give the eigenvectors and eigenvalues in descending order of magnitude, but how this is killed by roundoff errors.
+
+Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent (in exact arithmetic) to QR factorizing _Aⁿ_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
+
+To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.  Brief discussion of shifted QR and the Wilkinson shift.
+
+**Further reading:** See Trefethen, lectures 27–30, and Per Persson's [2006 notes](notes/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration and on QR ([part 1](notes/lec15handout6pp.pdf) and [part 2](notes/lec16handout6pp.pdf)).
