@@ -1696,7 +1696,7 @@ recursively for
  of cache misses then satisfies the recurrence: 
 \begin_inset Formula 
 \[
-Q(m)=4Q(m/2)+2f(m)+4m^{2},
+Q(m)=4Q(m/2)+2f(m)+\#m^{2},
 \]
 
 \end_inset
@@ -1706,30 +1706,45 @@ where the
 \end_inset
 
  is for the four recursive backsubsitutions and the 
-\begin_inset Formula $4m^{2}$
+\begin_inset Formula $\#m^{2}$
 \end_inset
 
  is for the two matrix subtractions 
 \begin_inset Formula $B_{1k}-R_{12}X_{2k}$
 \end_inset
 
-.
+ where 
+\begin_inset Formula $\#$
+\end_inset
+
+ is some coefficient.
  This recurrence terminates when the problem fits in cache, i.e.
  when 
 \begin_inset Formula $2m^{2}+m^{2}/2\leq Z$
 \end_inset
 
 , at which point only 
-\begin_inset Formula $\sim3m^{2}/2$
+\begin_inset Formula $\Theta(m^{2})$
 \end_inset
 
- misses are required.
+ misses (more precisely 
+\begin_inset Formula $\approx5m^{2}/2$
+\end_inset
+
+ misses for 
+\begin_inset Formula $R,X,B$
+\end_inset
+
+) are required.
  (Since we are only interested in the asymptotic 
 \begin_inset Formula $\Theta$
 \end_inset
 
- results, these little factors of 3 and 4 don't matter much, and I'll be
- dropping them soon.) Noting that 
+ results, the constant coefficients like 
+\begin_inset Formula $\#$
+\end_inset
+
+ don't matter much, and I'll be dropping them soon.) Noting that 
 \begin_inset Formula $f(m/2)\approx f(m)/8$
 \end_inset
 
@@ -1737,11 +1752,11 @@ where the
  times and seeing the pattern: 
 \begin_inset Formula 
 \begin{eqnarray*}
-Q(m) & \approx & 4[4Q(m/4)+2f(m)/8+4m^{2}/4]+2f(m)+4m^{2}\\
- & = & 4^{2}Q(m/4)+2f(m)\,\left[1+\frac{1}{2}\right]+4m^{2}\,\left[1+1\right]\\
- & \approx & 4^{3}Q(m/8)+2f(m)\,\left[1+\frac{1}{2}+\frac{1}{2^{2}}\right]+4m^{2}\,\left[1+1+1\right]\\
+Q(m) & \approx & 4[4Q(m/4)+2f(m)/8+\#m^{2}/4]+2f(m)+\#m^{2}\\
+ & = & 4^{2}Q(m/4)+2f(m)\,\left[1+\frac{1}{2}\right]+\#m^{2}\,\left[1+1\right]\\
+ & \approx & 4^{3}Q(m/8)+2f(m)\,\left[1+\frac{1}{2}+\frac{1}{2^{2}}\right]+\#m^{2}\,\left[1+1+1\right]\\
  & \approx & \cdots\\
- & \approx & 4^{k}\Theta[(m/2^{k})^{2}]+2f(m)\,\left[1+\frac{1}{2}+\cdots+\frac{1}{2^{k-1}}\right]+4m^{2}\,\left[k\right]\\
+ & \approx & 4^{k}\Theta[(m/2^{k})^{2}]+2f(m)\,\left[1+\frac{1}{2}+\cdots+\frac{1}{2^{k-1}}\right]+\#m^{2}\,\left[k\right]\\
  & \approx & \Theta(m^{2})+\Theta(m^{3}/\sqrt{Z})+\Theta(m^{2})k
 \end{eqnarray*}
 
@@ -1757,7 +1772,7 @@ where
 
  is the number of times we have to divide the problem to fit in cache, i.e.
  
-\begin_inset Formula $3(m/2^{k})^{2}/2\approx Z$
+\begin_inset Formula $5(m/2^{k})^{2}/2\approx Z$
 \end_inset
 
  so 
@@ -1777,7 +1792,7 @@ where
 \begin_inset Formula $m^{3}$
 \end_inset
 
-term dominates over the 
+ term dominates over the 
 \begin_inset Formula $m^{2}$
 \end_inset
 
