@@ -290,6 +290,8 @@ To make the QR method faster, we first reduce to Hessenberg form; you showed in 
 
 ### Lecture 18 (March 31)
 
+* [video](https://mit.zoom.us/rec/share/VDVaIWQ5Mm5pvBzqiMhr5LjaQyqlBpJNU-uiuhyRuFvoL6_-IJg1ozHEr32DUKEG.BSLQvdp2dxtgpk6C?startTime=1617216915000)
+
 Finished discussion of QR method.   Shifted QR, Wilkinson shift for "breaking ties", fact that similar method for non-Hermitian A converges to Schur factor T, brief mention of bidiagonalization for the SVD.
 
 New topic: **iterative linear-algebra algorithms**, usually for sparse matrices, and in general for matrices where you have a fast way to compute _Ax_ matrix–vector products but cannot (practically) mess around with the specific entries of _A_. That is, you have huge matrices (stored in some compressed fashion) where you cannot afford Θ(m³) algorithms or Θ(m²) storage.   New goal: solve Ax=b or Ax=λx by starting with some initial guess (e.g. random numbers) and iteratively converge to a solution *as quickly as possible* using *only* matrix–vector products _Ax_.
