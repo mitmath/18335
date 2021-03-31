@@ -284,6 +284,16 @@ Discussed how to use the power method to get multiple eigenvalues/vectors of Her
 
 Unshifted QR method: proved that repeatedly forming A=QR, then replacing A with RQ (as in pset 3) is equivalent (in exact arithmetic) to QR factorizing _Aⁿ_. But since we do this while only multiplying repeatedly by unitary matrices, it is well conditioned and we get the eigenvalues accurately.
 
-To make the QR method faster, we first reduce to Hessenberg form; you will show in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.  Brief discussion of shifted QR and the Wilkinson shift.
+To make the QR method faster, we first reduce to Hessenberg form; you showed in pset 3 that this is especially fast when A is Hermitian and the Hessenberg form is tridiagonal. Second, we use shifts.  In particular, the worst case for the QR method, just as for the power method, is when eigenvalues are nearly equal. We can fix this by shifting.  Brief discussion of shifted QR and the Wilkinson shift.
 
 **Further reading:** See Trefethen, lectures 27–30, and Per Persson's [2006 notes](notes/lec15handout6pp.pdf) on power/inverse/Rayleigh iteration and on QR ([part 1](notes/lec15handout6pp.pdf) and [part 2](notes/lec16handout6pp.pdf)).
+
+### Lecture 18 (March 31)
+
+Finished discussion of QR method.   Shifted QR and connection to inverse iteration, Wilkinson shift for "breaking ties", brief mention of bidiagonalization for the SVD.
+
+New topic: **iterative linear-algebra algorithms**, usually for sparse matrices, and in general for matrices where you have a fast way to compute _Ax_ matrix–vector products but cannot (practically) mess around with the specific entries of _A_. That is, you have huge matrices (stored in some compressed fashion) where you cannot afford Θ(m³) algorithms or Θ(m²) storage.   New goal: solve Ax=b or Ax=λx by starting with some initial guess (e.g. random numbers) and iteratively converge to a solution *as quickly as possible* using *only* matrix–vector products _Ax_.
+
+Gave simple example of power method, which we already learned. This, however, only keeps the most recent vector Axₙ and throws away the previous ones. Introduced Krylov subspaces, and the idea of Krylov subspace methods: ideally, we want to find the "best" solution in the *whole subspace* 𝒦ₙ spanned by {b,Ab,...,Aⁿ⁻¹b}, which is the *only* subspace you can get starting from b if you are only  allowed linear operations and matrix–vector products.
+
+**Further reading:** Trefethen, lecture 31, 32, 33, 34. The online books, [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html), are useful surveys of iterative methods.   [This 2009 course](https://web.cs.ucdavis.edu/~bai/Winter09/) on numerical linear algebra by Zhaojun Bai has [useful notes](https://web.cs.ucdavis.edu/~bai/Winter09/krylov.pdf) on Krylov methods, including a discussion of the Rayleigh–Ritz procedure.
