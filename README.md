@@ -304,6 +304,8 @@ Gave simple example of power method, which we already learned. This, however, on
 
 ### Lecture 19 (April 2)
 
+* [video](https://mit.zoom.us/rec/share/GFTScHrynRtObn17RP45q9EoHF2WioWQn-nDx50bmVi5i-1_2soZVqgPqPZHpEid.SWLzXR36i_G5Nv5w?startTime=1617390021000)
+
 Presented the **Arnoldi** algorithm. Unlike the book, I _start_ the derivation by viewing it as a modified Gram–Schmidt process, and prove that it is equivalent (in exact arithmetic) to GS on {b,b,Ab,A²b,...}, so it is an orthonormal basis for 𝒦ₙ.  Then we showed that this corresponds to partial Hessenberg factorization: AQₙ = QₙHₙ + h₍ₙ₊₁₎ₙqₙ₊₁eₙᵀ where Hₙ is upper-Hessenberg.
 
 Discussed what it means to find the "best" solution in the Krylov subspace 𝒦ₙ. Discussed the general principle of Rayleigh–Ritz methods for approximately solving the eigenproblem in a subspace: finding the Ritz vectors/values (= eigenvector/value approximations) with a residual perpendicular to the subspace (a special case of a Galerkin method).
