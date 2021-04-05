@@ -18,7 +18,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
-**Grading**: 40% problem sets (about six, ~biweekly). 20% **take-home mid-term exam** (posted Thursday **Apr. 15** and due Friday **Apr. 16**), 40% **final project** ([one-page proposal](psets/proposal.md) due Friday March 26, project due Thursday **May 20**).
+**Grading**: 40% problem sets (about six, ~biweekly). 20% **take-home mid-term exam** (posted Thursday **Apr. 15** at 3pm and due Friday **Apr. 16** at 3pm), 40% **final project** ([one-page proposal](psets/proposal.md) due Friday March 26, project due Thursday **May 20**).
 
 * Psets will be **submitted electronically via Canvas**.  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
