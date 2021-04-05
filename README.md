@@ -316,6 +316,7 @@ For Hermitian matrices A, I showed that the max/min Ritz values are the maximum/
 
 ### Lecture 20 (April 5)
 
+* [video](https://mit.zoom.us/rec/share/VWHBM4qP1hTZf6mYTi5Bn2Jvsyi0se8pwiXsxKElK2BTMxY4x_b2XioSsaWvqvE7.mYWhIdkah_67j9jx?startTime=1617649211000)
 * [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
 * [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
 
