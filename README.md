@@ -327,3 +327,19 @@ Showed some computational examples (notebook above) of Arnoldi convergence. Disc
 A solution to the loss of orthogonality in Lanczos and the growing computational effort in Arnoldi is restarting schemes, where we go for n steps and then restart with the k "best" eigenvectors.   If we restart with k=1 *every* step, then we essentially have the power method, so while restarting makes the convergence worse the algorithm still converges, and converges significantly faster than the power method for k>1.
 
 **Further reading:** Trefethen, lecture 36. See the section on [implicitly restarted Lanczos](http://www.cs.utk.edu/~dongarra/etemplates/node117.html) in [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html).
+
+### Lecture 21 (April 7)
+
+* [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
+
+Explained why restarting properly is nontrivial for k>1: we need to restart in such a way that maintains the Arnoldi (or Lanczos) property AQₙ = QₙHₙ + rₙeₙᵀ where Hₙ is upper-Hessenberg, rₙ is orthogonal to Qₙ, and eₙᵀ is only nonzero in the last column.  In particular, showed that the "obvious" naive restarting algorithm using k Ritz vectors *almost* works, but messes up the eₙᵀ property.  See the notes.
+
+Introduced the **GMRES** algorithm: compute the basis Qₙ for 𝒦ₙ as in Arnoldi, but then minimize the residual ‖Ax-b‖₂ for x∈𝒦ₙ using this basis.  This yields a small (n+1)×n least-squares problem involving Hₙ.
+
+**Further reading:** Trefethen, lectures 34–36. See the section on [implicitly restarted Lanczos](http://www.cs.utk.edu/~dongarra/etemplates/node117.html) in [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html).
+
+### Take-home midterm (April 15)
+
+The 18.335 midterm exam will be posted at 3pm (EDT) on Thursday April 15 and will be due at 3pm (EDT) on Friday April 16.  The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used ("**closed Internet**").  The exam will be designed to take **roughly 2 hours,** but you can take *as much time as you want* within the 24-hour time slot.
+
+It will cover everything in 18.335 up to and including **pset 4** and **lecture 20**.
