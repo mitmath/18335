@@ -342,7 +342,7 @@ Introduced the **GMRES** algorithm: compute the basis Qₙ for 𝒦ₙ as in Arn
 ### Lecture 22 (April 9)
 
 * video: to be posted
-* pset 4 solutions: to be posted
+* [pset 4 solutions](psets/pset4sol.pdf)
 
 Finished writing GMRES convergence in terms of polynomials, and contrasted it to Arnoldi/Lanczos.
 
