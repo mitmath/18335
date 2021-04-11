@@ -95,7 +95,262 @@
 \end_layout
 
 \begin_layout Subsection*
-Problem 1 (15 points)
+Problem 1: ((5+5)+5+5 points)
+\end_layout
+
+\begin_layout Standard
+Consider the 
+\begin_inset Quotes eld
+\end_inset
+
+generalized
+\begin_inset Quotes erd
+\end_inset
+
+ eigenvalue problem 
+\begin_inset Formula $Ax=\lambda Bx$
+\end_inset
+
+ where 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are Hermitian and 
+\begin_inset Formula $B$
+\end_inset
+
+ is positive-definite.
+ You could turn this into an ordinary eigenvalue problem 
+\begin_inset Formula $B^{-1}Ax=\lambda x$
+\end_inset
+
+, but then you disguise the Hermitian nature of the underlying problem.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $Ax=\lambda Bx$
+\end_inset
+
+ for 
+\begin_inset Formula $x\ne0$
+\end_inset
+
+, then 
+\begin_inset Formula $x^{*}Ax=\lambda x^{*}Bx=(Ax)^{*}b=(\lambda Bx)^{*}b=\bar{\lambda}x^{*}Bx$
+\end_inset
+
+, and since 
+\begin_inset Formula $x^{*}Bx>0$
+\end_inset
+
+ (because 
+\begin_inset Formula $B$
+\end_inset
+
+ is positive-definite and 
+\begin_inset Formula $x\ne0$
+\end_inset
+
+), it follows that 
+\begin_inset Formula $\lambda=\bar{\lambda}$
+\end_inset
+
+ (
+\series bold
+real
+\series default
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Suppose 
+\begin_inset Formula $Ax_{1}=\lambda_{1}Bx_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $Ax_{2}=\lambda Bx_{2}$
+\end_inset
+
+ with 
+\begin_inset Formula $\lambda_{1}\ne\lambda_{2}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $x_{1}^{*}Ax_{2}=\lambda_{2}x_{1}^{*}Bx_{2}=(Ax_{1})^{*}x_{2}=(\lambda_{1}Bx_{1})^{*}x_{2}=\lambda_{1}x_{1}^{*}Bx_{2}$
+\end_inset
+
+, hence 
+\begin_inset Formula $(\lambda_{2}-\lambda_{1})x_{1}^{*}Bx_{2}=0$
+\end_inset
+
+, and hence 
+\begin_inset Formula $x_{1}^{*}Bx_{2}=0$
+\end_inset
+
+ (since 
+\begin_inset Formula $\lambda_{2}-\lambda_{1}\ne0$
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(Even if 
+\begin_inset Formula $\lambda_{1}=\lambda_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ are linearly independent, we can choose an orthonormal basis for the span
+ of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ — all linear combinations are also eigenvectors with the same 
+\begin_inset Formula $\lambda$
+\end_inset
+
+— by e.g.
+ Gram–Schmidt.
+ Hence we can choose the eigenvectors to be orthonormal under the 
+\begin_inset Formula $B$
+\end_inset
+
+-weighted inner product.)
+\end_layout
+
+\begin_layout Enumerate
+From the previous part, we can choose the eigenvectors 
+\begin_inset Formula $X$
+\end_inset
+
+ to be 
+\begin_inset Formula $B$
+\end_inset
+
+-orthonormal in the sense that 
+\begin_inset Formula $X^{*}BX=I$
+\end_inset
+
+, and hence 
+\begin_inset Formula $X^{-1}=X^{*}B$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $Ax=\lambda Bx\implies AX=BX\Lambda$
+\end_inset
+
+, it follows that 
+\begin_inset Formula $A=BX\Lambda X^{-1}=\boxed{BX\Lambda X^{*}B}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Since 
+\begin_inset Formula $B$
+\end_inset
+
+ is Hermitian positive-definite, it has a Cholesky factorization 
+\begin_inset Formula $B=R^{*}R$
+\end_inset
+
+ (where 
+\begin_inset Formula $R$
+\end_inset
+
+ is upper-triangular).
+ Therefore, take 
+\begin_inset Formula $Ax=\lambda Bx=\lambda R^{*}(Rx)$
+\end_inset
+
+ and let 
+\begin_inset Formula $\boxed{Rx=y}$
+\end_inset
+
+.
+ It follows that 
+\begin_inset Formula $AR^{-1}y=\lambda R^{*}y$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $Hy=\lambda y$
+\end_inset
+
+ where 
+\begin_inset Formula $\boxed{H=(R^{*})^{-1}AR^{-1}=(R^{-1})^{*}AR^{-1}}$
+\end_inset
+
+ is Hermitian.
+ (A common notation for 
+\begin_inset Formula $(R^{*})^{-1}=(R^{-1})^{*}$
+\end_inset
+
+ is 
+\begin_inset Formula $R^{-*}$
+\end_inset
+
+.)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note that this is quite a practical algorithm, since Cholesky factorization
+ is cheap compared to finding eigenvalues, and forming 
+\begin_inset Formula $(R^{-1})^{*}AR^{-1}$
+\end_inset
+
+ can be done using a sequence of back/forward-substitutions since 
+\begin_inset Formula $R$
+\end_inset
+
+ is upper-triangular.
+ And given an eigenvector 
+\begin_inset Formula $y$
+\end_inset
+
+ of 
+\begin_inset Formula $H$
+\end_inset
+
+ we can find the corresponding generalized eigenvector 
+\begin_inset Formula $x$
+\end_inset
+
+ by a back-substitution solve.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2 (15 points)
 \end_layout
 
 \begin_layout Standard
@@ -326,7 +581,7 @@ Putting these things together, we see that
 \end_layout
 
 \begin_layout Subsection*
-Problem 2 (5+5+5+5+5 pts): 
+Problem 3 (5+5+5+5+5 pts): 
 \end_layout
 
 \begin_layout Standard
