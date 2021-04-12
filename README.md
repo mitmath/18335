@@ -356,6 +356,8 @@ The solution to this problem is **preconditioning**: finding an (easy-to-compute
 
 ### Lecture 23 (April 12)
 
+* [video](https://mit.zoom.us/rec/share/kWU4PPKcx3AeajjVe4Zgnqb6kx9XOK8-8Q0Dy_0kSUx3o9LrNTfZyufRg5nspF4g.tSJCLpKoB7AyqFTR?startTime=1618254043000)
+
 **Conjugate-gradient (CG) methods:**
 
 Began discussing gradient-based iterative solvers for Ax=b linear systems, starting with the case where *A is Hermitian positive-definite*. Our goal is the conjugate-gradient method, but we start with a simpler technique. First, we cast this as a minimization problem for f(x)=xᵀAx-xᵀb-bᵀx, or equivalently f(x)=‖x-xₑ‖²–‖xₑ‖² where xₑ is the exact solution and ‖⋅‖ is the *A-weighted* L2 norm. Then, we perform 1d line minimizations of f(x+αd) for some direction d. If we choose the directions d to be the steepest-descent directions b-Ax, this gives the steepest-descent method. Discussed successive line minimization of f(x), and in particular the steepest-descent choice of d=b-Ax at each step. Explained how this leads to "zig-zag" convergence by a simple two-dimensional example, and in fact the number of steps is proportional to κ(A). We want to improve this by deriving a Krylov-subspace method that minimizes f(x) over _all_ previous search directions simultaneously.
