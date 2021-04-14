@@ -364,8 +364,31 @@ Began discussing gradient-based iterative solvers for Ax=b linear systems, start
 
 **Further reading:** Trefethen, lecture 38 on CG. See also the useful notes, [An introduction to the conjugate gradient method without the agonizing pain](http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf) by J. R. Shewchuk.  There is also a close connection between the conjugate directions of conjugate gradient and the "momentum" terms of stochastic gradient-descent methods; see e.g. [Bhaya (2004)](https://www.sciencedirect.com/science/article/abs/pii/S0893608003001709).
 
+### Lecture 24 (April 14)
+
+Finished derivation of conjugate gradient.
+
+Discussed convergence of conjugate gradient, connecting it to minimizing polynomials at the eigenvalues similar to GMRES.
+
+Derived the preconditioned conjugate gradient method (showing how the apparent non-Hermitian-ness of MA is not actually a problem as long as M is Hermitian positive-definite). Mentioned the connection to approximate Newton methods (which is easy to see if we consider preconditioned steepest-descent with M approximately A⁻¹).
+
+As an alternative to GMRES for non-Hermitian problems, considered the biCG algorithm. Derived it as in the van der Vorst notes below: as PCG on the Hermitian-indefinite matrix B=\[0,A;Aᵀ,0\] with the "preconditioner" \[0,I;I,0\] (in the unpreconditioned case). Because this is Hermitian, there is still a conjugacy condition and it is still a Krylov method. Because it is indefinite, we are finding a saddle point and not a minimum of a quadratic, and _breakdown_ can occur if one of the denominators (e.g. dᵀBd) becomes zero. (This is the same as algorithm 39.1 in Trefethen, but derived very differently.) Because of this, you should almost never use the plain biCG algorithm. However, the biCG idea was the starting point for several "stabilized" refinements, culminating in biCGSTAB(L) that try to avoid breakdown by combining biCG with elements of GMRES. Other iterative Ax=b algorithms worth trying are the QMR and DQGMRES algorithms.
+
+**Further reading:** [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html). A very nice overview of iterative methods for non-Hermitian problems can be found in these 2002 [Lecture Notes on Iterative Methods](http://www.math.uu.nl/people/vorst/lecture.html) by Henk van der Vorst (second section, starting with GMRES).
+
 ### Take-home midterm (April 15)
 
 The 18.335 midterm exam will be posted at 3pm (EDT) on Thursday April 15 and will be due at 3pm (EDT) on Friday April 16.  The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used ("**closed Internet**").  The exam will be designed to take **roughly 2 hours,** but you can take *as much time as you want* within the 24-hour time slot.
 
 It will cover everything in 18.335 up to and including **pset 4** and **lecture 20**.
+
+### Lecture 25 (April 16)
+
+* [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006
+* [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/Nested-Dissection.ipynb)
+
+**Sparse-direct solvers:** For many problems, there is an intermediate between the dense Θ(m³) solvers of LAPACK and iterative algorithms: for a sparse matrix A, we can sometimes perform an LU or Cholesky factorization while maintaining sparsity, storing and computing only nonzero entries for vast savings in storage and work.  One key observation is that the fill-in only depends on the pattern of the matrix, which can be interpreted as a [graph](http://en.wikipedia.org/wiki/Graph_%28mathematics%29): m vertices, and edges for the nonzero entries of A (an [adjacency matrix](http://en.wikipedia.org/wiki/Adjacency_matrix) of the graph), and sparse-direct algorithms are closely related to graph-theory problems.    How efficient the sparse-direct methods are depends on how easy it is to **partition** the graph by chopping it into pieces, and this is **easier for matrices that come from low-dimensional meshes** (e.g. discretized low-dimensional PDEs).  1d meshes are best (giving *banded* matrices with *linear* complexity), 2d meshes are still pretty good, and 3d meshes start to become challenging.  See the scalings in the handout, which are derived in the Davis book below.
+
+Concluded with some rules of thumb about which type of solvers to use: LAPACK for small matrices (< 1000s×1000s), sparse-direct for intermediate-size sparse cases (especially from 1d and 2d meshes), and iterative methods for the largest problems or problems with a fast matrix⋅vector but no sparsity. One important point is that sparse-direct algorithms scale much better for sparse matrices that come from discretization of 2d PDEs than 3d PDEs. In general, some experimentation is required to find the best technique for a given problem, so software like Julia, Scipy, Matlab, or the Petsc library is extremely helpful in providing a quick way to explore many algorithms.
+
+**Further reading:** The book _[Direct Methods for Sparse Linear Systems](http://books.google.com/books?id=TvwiyF8vy3EC&lpg=PR1&ots=odauEC2c4k&dq=direct%20methods%20for%20sparse%20davis&pg=PR1#v=onepage&q&f=false)_ by Davis is a useful reference.
