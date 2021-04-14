@@ -366,6 +366,8 @@ Began discussing gradient-based iterative solvers for Ax=b linear systems, start
 
 ### Lecture 24 (April 14)
 
+* [video](https://mit.zoom.us/rec/share/2rTRTDWECWo7C7pb8q6mWB0k2mxUgs_lqbjsjWxuhSz7g_ww_EFuIV4smqv3OuXi.qFouE3MZds4xGpdW?startTime=1618426846000)
+
 Finished derivation of conjugate gradient.
 
 Discussed convergence of conjugate gradient, connecting it to minimizing polynomials at the eigenvalues similar to GMRES.
