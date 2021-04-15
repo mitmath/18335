@@ -380,6 +380,9 @@ As an alternative to GMRES for non-Hermitian problems, considered the biCG algor
 
 ### Take-home midterm (April 15)
 
+* [midterm](psets/midterm.pdf)
+* solutions: to be posted
+
 The 18.335 midterm exam will be posted at 3pm (EDT) on Thursday April 15 and will be due at 3pm (EDT) on Friday April 16.  The exam is **open notes** and **open book** (including any material posted for the class: pset solutions and handouts).  **No other materials** may be used ("**closed Internet**").  The exam will be designed to take **roughly 2 hours,** but you can take *as much time as you want* within the 24-hour time slot.
 
 It will cover everything in 18.335 up to and including **pset 4** and **lecture 20**.
