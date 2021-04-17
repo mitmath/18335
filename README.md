@@ -389,6 +389,7 @@ It will cover everything in 18.335 up to and including **pset 4** and **lecture 
 
 ### Lecture 25 (April 16)
 
+* [video](https://mit.zoom.us/rec/share/kCxSHyF6hUTOFCmspZPIu_SZ4CqmDuNPynviyZ0gDm9m1oR-1SeGjV-tg2e3Vw6Q.p-GqnPs45BjOUOy7?startTime=1618599650000)
 * [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006
 * [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Nested-Dissection.ipynb)
 
