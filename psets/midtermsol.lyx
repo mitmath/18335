@@ -88,11 +88,757 @@
 \begin_body
 
 \begin_layout Section*
-18.335 Take-Home Midterm Solutions: Spring 2021
+18.335 Take-Home Midterm Exam Solutions: Spring 2021
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (34 points)
 \end_layout
 
 \begin_layout Standard
-To be done.
+As suggested, let's define a recurrence for Horner's rule so that 
+\begin_inset Formula $s_{k}=c_{k}+xs_{k+1}$
+\end_inset
+
+ with 
+\begin_inset Formula $s_{n-1}=c_{n-1}$
+\end_inset
+
+, so that 
+\begin_inset Formula $f=s_{0}$
+\end_inset
+
+ , and hence the corresponding floating-point algorithm for inputs in 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+(as in the summation notes from class, this is just a convenience — inputs
+ in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ would just give some additional 
+\begin_inset Formula $1+\epsilon$
+\end_inset
+
+ factors that we could incorporate into the same analysis) is 
+\begin_inset Formula 
+\[
+\tilde{s}_{n-1}=c_{n-1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\tilde{s}_{k}=c_{k}\oplus(x\otimes\tilde{s}_{k+1})=\left[c_{k}+x\tilde{s}_{k+1}(1+\epsilon_{k})\right](1+\epsilon_{k}')
+\]
+
+\end_inset
+
+for some 
+\begin_inset Formula $|\epsilon_{k}|\leq\epsilon_{\text{machine}}$
+\end_inset
+
+ and 
+\begin_inset Formula $|\epsilon_{k}'|\leq\epsilon_{\text{machine}}$
+\end_inset
+
+, by the fundamental axiom of floating-point arithmetic.
+ Hence
+\begin_inset Formula 
+\[
+\tilde{s}_{k}=\underbrace{\left(c_{k}+c_{k}\epsilon_{k}'+x\tilde{s}_{k+1}[\epsilon_{k}+\epsilon_{k}']\right)}_{\tilde{c}_{k}}+x\tilde{s}_{k+1}=\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k},
+\]
+
+\end_inset
+
+where we have defined 
+\begin_inset Formula $\tilde{c}_{k}$
+\end_inset
+
+.
+ By construction
+\begin_inset Formula 
+\[
+\boxed{\tilde{f}(c,x)=\tilde{s}_{0}=f(\tilde{c},x),}
+\]
+
+\end_inset
+
+i.e.
+ the output of 
+\begin_inset Formula $\tilde{f}$
+\end_inset
+
+ is equal to the exact polynomial output with altered coefficients 
+\begin_inset Formula $\tilde{c}$
+\end_inset
+
+.
+ To establish backwards stability, we now need to show that 
+\begin_inset Formula $\Vert\tilde{c}-c\Vert=\Vert c\Vert O(\epsilon_{\text{machine}})$
+\end_inset
+
+ in some norm.
+ Similar to the summation analysis in class, we will choose the 
+\begin_inset Formula $L^{1}$
+\end_inset
+
+ norm for convenience.
+ In particular, 
+\begin_inset Formula 
+\[
+\left|\tilde{c}_{k}-c_{k}\right|\le|c_{k}|\,|\epsilon_{k}'|+|\epsilon_{k}+\epsilon_{k}'|\,|x|\,\left|\tilde{s}_{k+1}\right|+O(\epsilon_{\text{machine}}^{2}).
+\]
+
+\end_inset
+
+Now, use the fact that 
+\begin_inset Formula 
+\[
+\left|\tilde{s}_{k}\right|=\left|\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k}\right|\leq\left|\sum_{j=k}^{n-1}\tilde{c}_{j}\right|\left(\max\{1,|x|^{n-k}\}\right)\leq\Vert\tilde{c}\Vert_{1}\left(\max\{1,|x|^{n-1}\}\right)
+\]
+
+\end_inset
+
+to obtain 
+\begin_inset Formula 
+\[
+\left|\tilde{c}_{k}-c_{k}\right|\le|c_{k}|\,|\epsilon_{k}'|+|\epsilon_{k}+\epsilon_{k}'|\,|x|\,\Vert\tilde{c}\Vert_{1}\left(\max\{1,|x|^{n-1}\}\right)+O(\epsilon_{\text{machine}}^{2})\le|c_{k}|\epsilon_{\text{machine}}+2|x|\epsilon_{\text{machine}}\Vert\tilde{c}\Vert_{1}\left(\max\{1,|x|^{n-1}\}\right)+O(\epsilon_{\text{machine}}^{2})
+\]
+
+\end_inset
+
+and hence 
+\begin_inset Formula 
+\[
+\Vert\tilde{c}-c\Vert_{1}\le\Vert c\Vert_{1}\epsilon_{\text{machine}}+2n|x|\epsilon_{\text{machine}}\Vert\tilde{c}\Vert_{1}\left(\max\{1,|x|^{n-1}\}\right)+O(\epsilon_{\text{machine}}^{2})=\Vert c\Vert_{1}O(\epsilon_{\text{machine}})+\Vert\tilde{c}\Vert_{1}O(\epsilon_{\text{machine}})
+\]
+
+\end_inset
+
+where we can put any higher-order terms and 
+\begin_inset Formula $c$
+\end_inset
+
+-independent coefficients into the 
+\begin_inset Formula $\epsilon_{\text{machine}}$
+\end_inset
+
+.
+ Finally, exactly as in Sec.
+\begin_inset space ~
+\end_inset
+
+5.1 of the summation-stability notes from class, 
+\begin_inset Formula $\Vert\tilde{c}\Vert_{1}O(\epsilon_{\text{machine}})=\Vert c\Vert_{1}O(\epsilon_{\text{machine}})$
+\end_inset
+
+, because the difference is higher-order in 
+\begin_inset Formula $\epsilon_{\text{machine}}$
+\end_inset
+
+, so we finally have 
+\begin_inset Formula 
+\[
+\boxed{\Vert\tilde{c}-c\Vert_{1}=\Vert c\Vert_{1}O(\epsilon_{\text{machine}})}
+\]
+
+\end_inset
+
+ and our backwards-stability proof is complete.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (20+13 points)
+\end_layout
+
+\begin_layout Standard
+Suppose that 
+\begin_inset Formula 
+\[
+T=\left(\begin{array}{ccccc}
+\alpha_{1} & \beta_{1}\\
+\overline{\beta_{1}} & \alpha_{2} & \beta_{2}\\
+ & \overline{\beta_{2}} & \ddots & \ddots\\
+ &  & \ddots & \alpha_{m-1} & \beta_{m-1}\\
+ &  &  & \overline{\beta_{m-1}} & \alpha_{m}
+\end{array}\right)
+\]
+
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ Hermitian (
+\begin_inset Formula $T=T^{*}$
+\end_inset
+
+) complex tridiagonal matrix.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula 
+\[
+D=\left(\begin{array}{cccc}
+d_{1}\\
+ & d_{2}\\
+ &  & \ddots\\
+ &  &  & d_{m}
+\end{array}\right).
+\]
+
+\end_inset
+
+Then 
+\begin_inset Formula 
+\[
+\hat{T}=D^{-1}TD=\left(\begin{array}{ccccc}
+\alpha_{1} & \beta_{1}\frac{d_{2}}{d_{1}}\\
+\overline{\beta_{1}}\frac{d_{1}}{d_{2}} & \alpha_{2} & \beta_{2}\frac{d_{3}}{d_{2}}\\
+ & \overline{\beta_{2}}\frac{d_{2}}{d_{3}} & \ddots & \ddots\\
+ &  & \ddots & \alpha_{m-1} & \beta_{m-1}\frac{d_{m}}{d_{m-1}}\\
+ &  &  & \overline{\beta_{m-1}}\frac{d_{m-1}}{d_{m}} & \alpha_{m}
+\end{array}\right).
+\]
+
+\end_inset
+
+Note that 
+\begin_inset Formula $\alpha_{k}$
+\end_inset
+
+ is already real since 
+\begin_inset Formula $T=T^{*}$
+\end_inset
+
+, so we only need to choose 
+\begin_inset Formula $D$
+\end_inset
+
+ to make the off-diagonal terms real.
+ Write 
+\begin_inset Formula $\beta_{k}$
+\end_inset
+
+ in polar form as 
+\begin_inset Formula $\beta_{k}=r_{k}e^{i\phi_{k}}$
+\end_inset
+
+.
+ In 
+\begin_inset Formula $D^{-1}TD$
+\end_inset
+
+, this is rescaled in the upper diagonal to 
+\begin_inset Formula $\beta_{k}\frac{d_{k+1}}{d_{k}}$
+\end_inset
+
+.
+ To make this purely real, we therefore want 
+\begin_inset Formula $\frac{d_{k+1}}{d_{k}}=e^{-i\phi_{k}}$
+\end_inset
+
+ (or 
+\begin_inset Formula $-e^{-i\phi_{k}}$
+\end_inset
+
+ would also work).
+ Hence, let us define the diagonals by the recurrence: 
+\begin_inset Formula 
+\begin{align*}
+d_{1} & =1\text{ (arbitrary choice)},\\
+d_{k+1} & =d_{k}e^{-i\phi_{k}}=e^{-i\sum_{j\le k}\phi_{j}}.
+\end{align*}
+
+\end_inset
+
+This also fixes the lower diagonal, since 
+\begin_inset Formula $\frac{d_{k}}{d_{k+1}}=e^{+i\phi_{k}}$
+\end_inset
+
+ and hence:
+\begin_inset Formula 
+\[
+\overline{\beta_{k}}\frac{d_{k}}{d_{k+1}}=r_{k}e^{-i\phi_{k}}\frac{d_{k}}{d_{k+1}}=r_{k}.
+\]
+
+\end_inset
+
+
+\begin_inset Formula $D$
+\end_inset
+
+ is clearly unitary since the diagonal entries all have 
+\begin_inset Formula $|d_{k}|=1$
+\end_inset
+
+ (as long as we chose 
+\begin_inset Formula $|d_{1}|=1$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+We should apply QR iterations to 
+\begin_inset Formula $\hat{T}$
+\end_inset
+
+, which gives the same result because 
+\begin_inset Formula $T$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{T}$
+\end_inset
+
+ are 
+\series bold
+similar
+\series default
+ matrices (differeing only by a unitary change of basis: they have the same
+ eigenvalues, and the eigenvectors differ by a factor of 
+\begin_inset Formula $D$
+\end_inset
+
+), and operating on 
+\begin_inset Formula $\hat{T}$
+\end_inset
+
+ is faster because then the 
+\begin_inset Formula $QR$
+\end_inset
+
+ factors will also be purely real, and operations on real numbers take fewer
+ floating-point operations than corresponding operations on complex numbers
+ (adding complex numbers takes 2
+\begin_inset space ~
+\end_inset
+
+flops and multiplying them takes 6
+\begin_inset space ~
+\end_inset
+
+flops, versus 1 addition and 1 multiplication, respectively, for real numbers).
+ (It also requires half as much memory and hence will be more cache-efficient.)
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (19+14 points)
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is an 
+\begin_inset Formula $m\times n$
+\end_inset
+
+ matrix with 
+\begin_inset Formula $n>m$
+\end_inset
+
+ and rank 
+\begin_inset Formula $m$
+\end_inset
+
+ (linearly independent rows): a 
+\begin_inset Quotes eld
+\end_inset
+
+wide
+\begin_inset Quotes erd
+\end_inset
+
+ matrix.
+ In this case, 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+ has infinitely many solutions 
+\begin_inset Formula $x$
+\end_inset
+
+ for any right-hand side 
+\begin_inset Formula $b\in\mathbb{C}^{m}$
+\end_inset
+
+ (it is an 
+\emph on
+underdetermined
+\emph default
+ system of equations).
+ We compute the QR factorization of the conjugate-transpose 
+\begin_inset Formula $A^{*}=QR=\hat{Q}\hat{R}$
+\end_inset
+
+ by some backwards-stable algorithm (e.g.
+ Householder QR), where 
+\begin_inset Formula $Q$
+\end_inset
+
+ is 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ is 
+\begin_inset Formula $n\times m$
+\end_inset
+
+, and 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ is the 
+\begin_inset Quotes eld
+\end_inset
+
+thin
+\begin_inset Quotes erd
+\end_inset
+
+ QR (the first 
+\begin_inset Formula $m$
+\end_inset
+
+ columns of 
+\begin_inset Formula $Q$
+\end_inset
+
+) and 
+\begin_inset Formula $\hat{R}$
+\end_inset
+
+ is correspondingly the first 
+\begin_inset Formula $m$
+\end_inset
+
+ rows of 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+As suggested by the hint, let's write the solutions in the 
+\begin_inset Formula $Q$
+\end_inset
+
+ basis as 
+\begin_inset Formula 
+\[
+x=Qy=\left(\begin{array}{cc}
+\hat{Q} & Q_{\perp}\end{array}\right)\left(\begin{array}{c}
+\hat{y}\\
+y_{\perp}
+\end{array}\right)=\hat{Q}\hat{y}+Q_{\perp}y_{\perp},
+\]
+
+\end_inset
+
+where we have broken up 
+\begin_inset Formula $y$
+\end_inset
+
+ into the 
+\begin_inset Formula $m$
+\end_inset
+
+ coefficients of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ and the 
+\begin_inset Formula $n-m$
+\end_inset
+
+ coefficients of 
+\begin_inset Formula $Q_{\perp}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\[
+b=Ax=\hat{R}^{*}\hat{Q}^{*}x=\hat{R}^{*}\hat{Q}^{*}\left(\hat{Q}\hat{y}+Q_{\perp}y_{\perp}\right)=\hat{R}^{*}\hat{y},
+\]
+
+\end_inset
+
+since 
+\begin_inset Formula $\hat{Q}^{*}\hat{Q}=I$
+\end_inset
+
+ (being an orthonormal basis) and 
+\begin_inset Formula $\hat{Q}^{*}Q_{\perp}=0$
+\end_inset
+
+ since 
+\begin_inset Formula $Q_{\perp}$
+\end_inset
+
+ spans the orthogonal complement of 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+, which spans the row space 
+\begin_inset Formula $C(A^{*})$
+\end_inset
+
+, and hence 
+\begin_inset Formula $Q_{\perp}$
+\end_inset
+
+ spans 
+\begin_inset Formula $C(A^{*})^{\perp}=N(A)$
+\end_inset
+
+.
+ This tells us several things.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ is uniquely determined by solving the 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ lower-triangular system 
+\begin_inset Formula $\hat{R}^{*}\hat{y}=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+any value of 
+\begin_inset Formula $y_{\perp}$
+\end_inset
+
+ is allowed.
+ (Equivalently, the term 
+\begin_inset Formula $Q_{\perp}y_{\perp}$
+\end_inset
+
+ represents anything in the null space of 
+\begin_inset Formula $A$
+\end_inset
+
+.)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert x\Vert_{2}^{2}=(\hat{Q}\hat{y}+Q_{\perp}y_{\perp})^{*}(\hat{Q}\hat{y}+Q_{\perp}y_{\perp})=\Vert\hat{y}\Vert_{2}^{2}+\Vert y_{\perp}\Vert_{2}^{2}\geq\Vert\hat{y}\Vert_{2}^{2}$
+\end_inset
+
+, which is clearly minimized for 
+\begin_inset Formula $y_{\perp}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Hence the minimum-norm solution is 
+\begin_inset Formula $\boxed{x=\hat{Q}\hat{y}=\hat{Q}\left(\hat{R}^{*}\right)^{-1}b}.$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+As suggested, suppose we are 
+\emph on
+given
+\emph default
+ the 
+\begin_inset Formula $A^{*}=QR$
+\end_inset
+
+ factorization computed by Householder QR, and now we want to work out the
+ additional cost of computing our minimum-norm solution 
+\begin_inset Formula $x$
+\end_inset
+
+ above.
+ Then the additional.
+ cost is to (i) solve 
+\begin_inset Formula $\hat{R}^{*}\hat{y}=b$
+\end_inset
+
+ and (ii) multiply 
+\begin_inset Formula $\hat{Q}\hat{y}$
+\end_inset
+
+.
+ Computation (i) can use forward-substitution since 
+\begin_inset Formula $\hat{R}^{*}$
+\end_inset
+
+ is lower-triangular, so it is 
+\begin_inset Formula $\Theta(m^{2})$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For computation (ii), remember that Householder QR does not actually compute
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+ explicitly — rather, it computes a set of reflectors and provides an efficient
+ method (algorithm
+\begin_inset space ~
+\end_inset
+
+10.3 in the book) to multiply 
+\begin_inset Formula $Q$
+\end_inset
+
+ by vectors as a sequence of reflections.
+ Here, we need to apply that algorithm
+\begin_inset space ~
+\end_inset
+
+10.3, but we are multiplying by 
+\begin_inset Formula $y=\left(\begin{array}{c}
+\hat{y}\\
+0
+\end{array}\right)$
+\end_inset
+
+ so we can maybe save a few operations by skipping multiplications with
+ the zero components.
+ Algorithm 10.3 initializes 
+\begin_inset Formula $x=y$
+\end_inset
+
+ and then computes 
+\begin_inset Formula $x_{k:n}=x_{k:n}-2v_{k}(v_{k}^{*}x_{k:n})$
+\end_inset
+
+ for 
+\begin_inset Formula $k=m$
+\end_inset
+
+ down to 
+\begin_inset Formula $1$
+\end_inset
+
+ (where I've swapped 
+\begin_inset Formula $m$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+ compared to the book).
+ Here, we hope that this simplifies because 
+\begin_inset Formula $y_{m+1:n}=0$
+\end_inset
+
+.
+ However, after the 
+\emph on
+very first 
+\emph default
+(
+\begin_inset Formula $k=m$
+\end_inset
+
+) step of he algorithm, in which 
+\begin_inset Formula $v_{m}^{*}x_{m:n}=\overline{v_{m}[m]}\hat{y}[m]\neq0$
+\end_inset
+
+ in general, we subtract a multiple of 
+\begin_inset Formula $2v_{k}$
+\end_inset
+
+ from 
+\begin_inset Formula $x_{m:n}$
+\end_inset
+
+ and 
+\emph on
+all
+\emph default
+ the components become nonzero for subsequent steps.
+ So, in the end the savings from the zero entries of 
+\begin_inset Formula $y$
+\end_inset
+
+ are asymptotically negligible and the cost of step
+\begin_inset space ~
+\end_inset
+
+(ii) is 
+\begin_inset Formula $\Theta(nm)$
+\end_inset
+
+ exactly as in the book.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(Note that even if you assume we have 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ explicitly, e.g.
+ if you used modified Gram–Schmidt, multiplying it by a vector still has
+ 
+\begin_inset Formula $\Theta(nm)$
+\end_inset
+
+ cost.)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hence, the overall complexity is 
+\begin_inset Formula $\boxed{\Theta(m^{2})+\Theta(nm)=\Theta(mn)}$
+\end_inset
+
+: since 
+\begin_inset Formula $n>m$
+\end_inset
+
+ the step
+\begin_inset space ~
+\end_inset
+
+(ii) dominates.
 \end_layout
 
 \end_body
