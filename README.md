@@ -401,6 +401,7 @@ Concluded with some rules of thumb about which type of solvers to use: LAPACK fo
 
 ### Lecture 26 (April 21)
 
+* [video](https://mit.zoom.us/rec/share/QwT0OMMFfkgi9dD0Zoa_3UK-14LbQR8GFcd7Q-O9PqIJTbbULGYqX3isDkLa1kOw.CNhZ0KukrqW2kxeT?startTime=1619031558000)
 * [overview of optimization](notes/optimization.pdf)
 
 Several of the iterative algorithms so far have worked, conceptually at least, by turning the original linear-algebra problem into a minimization problem. It is natural to ask, then, whether we can use similar ideas to solve more general **optimization problems**, which will be the next major topic in 18.335.
