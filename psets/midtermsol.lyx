@@ -146,10 +146,21 @@ for some
 \end_inset
 
 , by the fundamental axiom of floating-point arithmetic.
- Hence
+\end_layout
+
+\begin_layout Subsubsection*
+First Solution
+\end_layout
+
+\begin_layout Standard
+Hence, dropping 
+\begin_inset Formula $O(\epsilon_{\text{machine}}^{2})$
+\end_inset
+
+ terms, we have:
 \begin_inset Formula 
 \[
-\tilde{s}_{k}=\underbrace{\left(c_{k}+c_{k}\epsilon_{k}'+x\tilde{s}_{k+1}[\epsilon_{k}+\epsilon_{k}']\right)}_{\tilde{c}_{k}}+x\tilde{s}_{k+1}=\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k},
+\tilde{s}_{k}=\underbrace{\left(c_{k}+c_{k}\epsilon_{k}'+x\tilde{s}_{k+1}[\epsilon_{k}+\epsilon_{k}']+O(\epsilon_{\text{machine}}^{2})\right)}_{\tilde{c}_{k}}+x\tilde{s}_{k+1}=\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k},
 \]
 
 \end_inset
@@ -249,6 +260,143 @@ where we can put any higher-order terms and
 \end_inset
 
  and our backwards-stability proof is complete.
+\end_layout
+
+\begin_layout Subsubsection*
+Better Solution
+\end_layout
+
+\begin_layout Standard
+The above solution isn't completely satisfying, because the 
+\begin_inset Formula $\Vert\tilde{c}-c\Vert_{1}$
+\end_inset
+
+ error bound depends on 
+\begin_inset Formula $x$
+\end_inset
+
+, which would be a problem if we wanted to prove backwards stability with
+ respect to 
+\emph on
+both 
+\begin_inset Formula $c$
+\end_inset
+
+ 
+\emph default
+and
+\emph on
+ 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ 
+\emph default
+Instead, we can apply a different formulation.
+ Start with the formula for 
+\begin_inset Formula $\tilde{s}_{k}$
+\end_inset
+
+ at the top, and collect terms as: 
+\begin_inset Formula 
+\[
+\tilde{s}_{k}=c_{k}(1+\epsilon_{k}')+x\tilde{s}_{k+1}(1+\epsilon_{k})(1+\epsilon_{k}').
+\]
+
+\end_inset
+
+By induction on 
+\begin_inset Formula $n$
+\end_inset
+
+, we will show that 
+\begin_inset Formula 
+\[
+\tilde{s}_{k}=\sum_{j=k}^{n-1}\left[c_{j}(1+\epsilon_{j}')x^{j-k}\prod_{\ell=k}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right].
+\]
+
+\end_inset
+
+ It is trivially true for 
+\begin_inset Formula $k=n-1$
+\end_inset
+
+ (with 
+\begin_inset Formula $\epsilon_{n-1}'=0$
+\end_inset
+
+).
+ Proceeding by (downward) induction on 
+\begin_inset Formula $k$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{align*}
+\tilde{s}_{k} & =c_{k}(1+\epsilon_{k}')+x(1+\epsilon_{k})(1+\epsilon_{k}')\sum_{j=k+1}^{n-1}\left[c_{j}(1+\epsilon_{j}')x^{j-k-1}\prod_{\ell=k+1}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right]\\
+ & =c_{k}(1+\epsilon_{k}')+\sum_{j=k+1}^{n-1}\left[c_{j}(1+\epsilon_{j}')x^{j-k}\prod_{\ell=k}^{n-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right]
+\end{align*}
+
+\end_inset
+
+and the result follows.
+ Therefore, 
+\begin_inset Formula 
+\[
+\tilde{f}(c,x)=\tilde{s}_{0}=\sum_{j=0}^{n-1}\left[c_{j}(1+\epsilon_{j}')x\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right].
+\]
+
+\end_inset
+
+we can define (differently from the first solution above!):
+\begin_inset Formula 
+\[
+\boxed{\tilde{c}_{j}=c_{j}(1+\epsilon_{j}')\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')}=c_{j}(1+\epsilon_{j}'+\sum_{\ell=0}^{j-1}\epsilon_{\ell}+\sum_{\ell=0}^{j-1}\epsilon_{\ell}')+O(\epsilon_{\text{machine}}^{2}),
+\]
+
+\end_inset
+
+and it follows that 
+\begin_inset Formula $\tilde{f}(c,x)=\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k}=f(\tilde{c},x)$
+\end_inset
+
+ as desired.
+ Furthermore, we obtain
+\begin_inset Formula 
+\[
+\left|\tilde{c}_{j}-c_{j}\right|\le(2j+1)\epsilon_{\text{machine}}|c_{j}|+O(\epsilon_{\text{machine}}^{2})
+\]
+
+\end_inset
+
+and hence 
+\begin_inset Formula 
+\[
+\Vert\tilde{c}-c\Vert_{1}\le(2n-1)\epsilon_{\text{machine}}\Vert c\Vert_{1}+O(\epsilon_{\text{machine}}^{2})=\Vert c\Vert_{1}O(\epsilon_{\text{machine}})
+\]
+
+\end_inset
+
+ as desired, this time with a coefficient independent of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ (So, if we wanted, we could also say that it is backwards-stable with respect
+ to both 
+\begin_inset Formula $c$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ simultaneously, setting 
+\begin_inset Formula $\tilde{x}=x$
+\end_inset
+
+.)
 \end_layout
 
 \begin_layout Subsection*
