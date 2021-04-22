@@ -349,16 +349,16 @@ and the result follows.
 
 \end_inset
 
-we can define (differently from the first solution above!):
+We can define (differently from the first solution above!):
 \begin_inset Formula 
 \[
-\boxed{\tilde{c}_{j}=c_{j}(1+\epsilon_{j}')\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')}=c_{j}(1+\epsilon_{j}'+\sum_{\ell=0}^{j-1}\epsilon_{\ell}+\sum_{\ell=0}^{j-1}\epsilon_{\ell}')+O(\epsilon_{\text{machine}}^{2}),
+\boxed{\tilde{c}_{j}=c_{j}(1+\epsilon_{j}')\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')}=c_{j}\left(1+\epsilon_{j}'+\sum_{\ell=0}^{j-1}\epsilon_{\ell}+\sum_{\ell=0}^{j-1}\epsilon_{\ell}'\right)+O(\epsilon_{\text{machine}}^{2}),
 \]
 
 \end_inset
 
 and it follows that 
-\begin_inset Formula $\tilde{f}(c,x)=\sum_{j=k}^{n-1}\tilde{c}_{j}x^{j-k}=f(\tilde{c},x)$
+\begin_inset Formula $\tilde{f}(c,x)=\sum_{j=0}^{n-1}\tilde{c}_{j}x^{j}=f(\tilde{c},x)$
 \end_inset
 
  as desired.
