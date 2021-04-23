@@ -412,7 +412,7 @@ Broad overview of optimization problems (see handout). The most general formulat
 
 ### Lecture 27 (April 23)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/I590wu5HQCN2ZJAY9WphZDlH9rk3HRTDo5E7604U3IpzSiXGsIV2Sm091RMvMNgV.1ec5sLzM0JHCppk5?startTime=1619204435000)
 
 CG easily generalizes to the [nonlinear conjugate-gradient algorithm](https://en.wikipedia.org/wiki/Nonlinear_conjugate_gradient_method) to (locally) minimize an *arbitrary* twice-differentiable f(x): the only changes are that r=-∇f is not simply b-Ax  and that the successive line minimizations min f(x+αd) need to be done numerically (an “easy” 1d optimization problem). The key point being that, near a local minimum of a smooth function, the objective is typically roughly quadratic (via Taylor expansion), and when that happens CG greatly accelerates convergence. (Mentioned Polak–Ribiere heuristic to help "reset" the search direction to the gradient if we are far from the minimum and convergence has stalled; see the Hager survey below for many more.)
 
