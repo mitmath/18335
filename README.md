@@ -429,11 +429,16 @@ Discussed some general concepts in local optimization. **Global convergence** me
 * [video](https://mit.zoom.us/rec/share/xLxMyhBSoIhSFxce5lHb1ubItby5BKFs6mgJJ7kMmjotETmaYm4YA22TA8w8n13i.6sTEFrkkloG7LFeR?startTime=1619463273000)
 * [slides](notes/adjoint/adjoint-intro.pdf)
 * [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients
-* [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
-* [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
 
 Introduction to **adjoint** methods and the remarkable fact that one can compute the gradient of a complicated function with about the same number of additional operations as computing the function _once_.
 
 Guest lecture by [Dr. Zin Lin](http://zinlin.mit.edu/home).
 
-**Further reading:** A variant of adjoint methods is the well-known [backpropagation algorithm](https://en.wikipedia.org/wiki/Backpropagation) for neural networks, which can often be thought of as a recurrence relation (one per network layer).  Computers can sometimes now compute derivatives automatically via [automatic differentiation (AD)](https://en.wikipedia.org/wiki/Automatic_differentiation), and adjoint methods correspond to "reverse mode" AD.  For the largest-scale computational problems, solved by very complicated programs (often combining multiple external libraries), AD is still a challenge, however, and hand implementation of adjoint methods is often still required.
+**Further reading:** A variant of adjoint methods is the well-known [backpropagation algorithm](https://en.wikipedia.org/wiki/Backpropagation) for neural networks, which can often be thought of as a recurrence relation (one per network layer).  Computers can sometimes now compute derivatives automatically via [automatic differentiation (AD)](https://en.wikipedia.org/wiki/Automatic_differentiation), and adjoint methods correspond to "reverse mode" AD.  For the largest-scale computational problems, solved by very complicated programs (often combining multiple external libraries), AD is still a challenge, however, and some understanding of adjoint methods is often still required.
+
+### Lecture 29 (Apr 28)
+
+* [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
+* [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
+
+Discussed adjoint methods for recurrence relations, connection to backpropagation in neural nets, and connection to "vector-Jacobian products" in automatic differentiation (AD).
