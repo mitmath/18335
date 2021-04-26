@@ -121,7 +121,8 @@ As suggested, let's define a recurrence for Horner's rule so that
 \begin_inset Formula $1+\epsilon$
 \end_inset
 
- factors that we could incorporate into the same analysis) is 
+ factors that we could trivially incorporate into the same analysis) is
+ 
 \begin_inset Formula 
 \[
 \tilde{s}_{n-1}=c_{n-1}
@@ -344,7 +345,7 @@ and the result follows.
  Therefore, 
 \begin_inset Formula 
 \[
-\tilde{f}(c,x)=\tilde{s}_{0}=\sum_{j=0}^{n-1}\left[c_{j}(1+\epsilon_{j}')x\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right].
+\tilde{f}(c,x)=\tilde{s}_{0}=\sum_{j=0}^{n-1}\left[c_{j}(1+\epsilon_{j}')x^{j}\prod_{\ell=0}^{j-1}(1+\epsilon_{\ell})(1+\epsilon_{\ell}')\right].
 \]
 
 \end_inset
@@ -378,7 +379,7 @@ and hence
 
 \end_inset
 
- as desired, this time with a coefficient independent of 
+as desired, this time with a coefficient independent of 
 \begin_inset Formula $x$
 \end_inset
 
@@ -397,6 +398,10 @@ and hence
 \end_inset
 
 .)
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
