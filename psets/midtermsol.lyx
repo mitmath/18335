@@ -149,6 +149,27 @@ for some
 , by the fundamental axiom of floating-point arithmetic.
 \end_layout
 
+\begin_layout Standard
+
+\emph on
+Note:
+\emph default
+ a common student oversimplification here seems to be to make all of the
+ 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ terms the same — remember, every operation has a 
+\emph on
+different
+\emph default
+ roundoff error in general! Only the bound on 
+\begin_inset Formula $|\epsilon|$
+\end_inset
+
+ is the same.
+\end_layout
+
 \begin_layout Subsubsection*
 First Solution
 \end_layout
@@ -813,6 +834,68 @@ Hence the minimum-norm solution is
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph on
+Note
+\emph default
+: a common student mistake here is to write 
+\begin_inset Formula $Ax=\hat{R}^{*}\hat{Q}^{*}x=b\implies\hat{Q}^{*}x=\left(\hat{R}^{*}\right)^{-1}b$
+\end_inset
+
+, and then 
+\begin_inset Quotes eld
+\end_inset
+
+invert
+\begin_inset Quotes erd
+\end_inset
+
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+unitary
+\begin_inset Quotes erd
+\end_inset
+
+ matrix 
+\begin_inset Formula $\hat{Q}^{*}$
+\end_inset
+
+ by multiplying both sides by 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+, thus obtaining the 
+\begin_inset Quotes eld
+\end_inset
+
+right answer
+\begin_inset Quotes erd
+\end_inset
+
+ for the wrong reason.
+ 
+\begin_inset Formula $\hat{Q}^{*}\hat{Q}=I$
+\end_inset
+
+, but 
+\begin_inset Formula $\hat{Q}\hat{Q}^{*}\ne I$
+\end_inset
+
+ because 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ is not square (and hence not unitary or invertible).
+ You have to be more careful to justify the result above.
 \end_layout
 
 \end_deeper
@@ -851,6 +934,29 @@ given
 
 .
  
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(Note, in particular, that we should 
+\emph on
+not
+\emph default
+ compute the matrix inverse 
+\begin_inset Formula $\left(\hat{R}^{*}\right)^{-1}$
+\end_inset
+
+ explicitly! As emphasized in class, explicit inverses are very rarely used
+ in practical computations.
+ Even though this inverse is lower-triangular, computing it explicitly is
+ 
+\begin_inset Formula $\Theta(m^{3})$
+\end_inset
+
+ as far as I know.)
 \begin_inset Newline newline
 \end_inset
 
@@ -961,7 +1067,7 @@ all
 \begin_inset Newline newline
 \end_inset
 
-(Note that even if you assume we have 
+Even if you assume we have 
 \begin_inset Formula $\hat{Q}$
 \end_inset
 
@@ -971,7 +1077,7 @@ all
 \begin_inset Formula $\Theta(nm)$
 \end_inset
 
- cost.)
+ cost.
 \begin_inset Newline newline
 \end_inset
 
