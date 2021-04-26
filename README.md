@@ -427,7 +427,7 @@ Discussed some general concepts in local optimization. **Global convergence** me
 ### Lecture 28 (Apr 26)
 
 * video: to be posted
-* slides: to be posted
+* [slides](notes/adjoint/adjoint-intro.pdf)
 * [notes on adjoint methods](notes/adjoint/adjoint.pdf) to compute gradients
 * [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
 * [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
