@@ -1332,7 +1332,7 @@ automatically
 \begin_inset Formula $\frac{dg}{dp}$
 \end_inset
 
- for you, applying the analogue of an adjoint method (which called 
+ for you, applying the analogue of an adjoint method (called 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1352,7 +1352,11 @@ cannot differentiate
 \series default
  many types of code, especially code that calls out to external libraries
  written in other programming languages.
- In such cases, however, you can 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In such cases, however, you can 
 \series bold
 supply a 
 \begin_inset Quotes eld
@@ -1369,7 +1373,6 @@ manual
  surrounding pieces.
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 For example, suppose you are performing a composition 
 \begin_inset Formula $g(\vec{x}(\vec{y}(\vec{z}(\vec{p})))$
