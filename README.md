@@ -441,4 +441,4 @@ Guest lecture by [Dr. Zin Lin](http://zinlin.mit.edu/home).
 * [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
 * [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
 
-Discussed adjoint methods for recurrence relations, connection to backpropagation in neural nets, and connection to "vector-Jacobian products" in automatic differentiation (AD).
+Discussed adjoint methods for recurrence relations, connection to backpropagation in neural nets, and connection to "vector-Jacobian products" in automatic differentiation (AD) (section 5 of [the notes on adjoint methods](notes/adjoint/adjoint.pdf)).

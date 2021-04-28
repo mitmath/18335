@@ -72,7 +72,9 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1in
 \topmargin 1in
+\rightmargin 1in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -291,16 +293,7 @@ literal "true"
 
 \end_inset
 
-, including a discussion of the important topic of automatic differentiation
- (for which adjoint or 
-\begin_inset Quotes eld
-\end_inset
-
-reverse
-\begin_inset Quotes erd
-\end_inset
-
- differentiation is a key idea).
+.
 \end_layout
 
 \begin_layout Section
@@ -733,6 +726,13 @@ single
 
 \begin_layout Section
 Nonlinear equations
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Nonlinear-equations"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1009,7 +1009,7 @@ reference "eq:adjoint-eq"
 ) then give: 
 \begin_inset Formula 
 \begin{equation}
-(A-\alpha)\lam=g_{\vec{x}}^{T}-2\beta\vec{x},\label{eq:A-alpha}
+(A-\alpha I)\lam=g_{\vec{x}}^{T}-2\beta\vec{x},\label{eq:A-alpha}
 \end{equation}
 
 \end_inset
@@ -1023,7 +1023,7 @@ reference "eq:adjoint-eq"
 \end_inset
 
  The first equation, at first glance, seems to be problematic: 
-\begin_inset Formula $A-\alpha$
+\begin_inset Formula $A-\alpha I$
 \end_inset
 
  is singular, with a null space of 
@@ -1051,7 +1051,7 @@ exist
 \end_inset
 
  so that it is not in the null space of 
-\begin_inset Formula $A-\alpha$
+\begin_inset Formula $A-\alpha I$
 \end_inset
 
 .
@@ -1074,7 +1074,7 @@ exist
  satisfies: 
 \begin_inset Formula 
 \begin{equation}
-(A-\alpha)\lam=(1-\vec{x}\vec{x}^{T})g_{\vec{x}}^{T}=Pg_{\vec{x}}^{T}\label{eq:eig-lambda}
+(A-\alpha I)\lam=(1-\vec{x}\vec{x}^{T})g_{\vec{x}}^{T}=Pg_{\vec{x}}^{T}\label{eq:eig-lambda}
 \end{equation}
 
 \end_inset
@@ -1204,6 +1204,655 @@ reference "eq:adjoint-dg"
 .
  This is a well-known result from quantum physics and perturbation theory,
  where it is known as the Hellman-Feynman theorem.
+\end_layout
+
+\begin_layout Section
+Vector–Jacobian products (vJp) and automatic differentiation (AD)
+\end_layout
+
+\begin_layout Standard
+Another way of thinking about adjoint methods is that they correspond to
+ the observation that the 
+\series bold
+vector–Jacobian product
+\series default
+ 
+\begin_inset Formula $\vec{v}^{T}\vec{x}_{\vec{p}}$
+\end_inset
+
+ (a 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+vJp
+\series default
+
+\begin_inset Quotes erd
+\end_inset
+
+), for 
+\emph on
+any
+\emph default
+ given vector 
+\begin_inset Formula $\vec{v}\in\mathbb{R}^{M}$
+\end_inset
+
+, is much cheaper to compute than the 
+\begin_inset Formula $M\times P$
+\end_inset
+
+ Jacobian matrix 
+\begin_inset Formula $\vec{x}_{\vec{p}}$
+\end_inset
+
+ itself.
+ In our nonlinear-equation setting 
+\begin_inset Formula $\vec{f}(\vec{x},\vec{p})=0$
+\end_inset
+
+ of Sec.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Nonlinear-equations"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we found that 
+\begin_inset Formula 
+\[
+\vec{v}^{T}\vec{x}_{\vec{p}}=-\lam^{T}\vec{f}_{\vec{p}}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $\lam$
+\end_inset
+
+ solves the adjoint equation 
+\begin_inset Formula $\vec{f}_{\vec{x}}^{T}\lam=\vec{v}$
+\end_inset
+
+.
+ Computing the chain rule 
+\begin_inset Formula $g_{\vec{x}}\vec{x}_{\vec{p}}$
+\end_inset
+
+ (
+\begin_inset Formula $\vec{v}=g_{\vec{x}}^{T}$
+\end_inset
+
+) is just one application of this general principle.
+\end_layout
+
+\begin_layout Standard
+Nowadays, there are many software tools for 
+\begin_inset Quotes eld
+\end_inset
+
+automatic differentiation
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\series bold
+AD
+\series default
+ (such as 
+\emph on
+autograd
+\emph default
+ and 
+\emph on
+JAX
+\emph default
+ in Python or 
+\emph on
+Zygote
+\emph default
+ in Julia): given a computer program to compute 
+\begin_inset Formula $g(p)$
+\end_inset
+
+, they can 
+\emph on
+automatically
+\emph default
+ compute the gradient 
+\begin_inset Formula $\frac{dg}{dp}$
+\end_inset
+
+ for you, applying the analogue of an adjoint method (which called 
+\begin_inset Quotes eld
+\end_inset
+
+reverse-mode
+\begin_inset Quotes erd
+\end_inset
+
+ AD), applying the chain rule from left-to-right as a sequence of vJp operations.
+ It is extremely useful to have an understanding of adjoint methods even
+ if you are using AD tools, however:
+\end_layout
+
+\begin_layout Itemize
+AD tools 
+\series bold
+cannot differentiate
+\series default
+ many types of code, especially code that calls out to external libraries
+ written in other programming languages.
+ In such cases, however, you can 
+\series bold
+supply a 
+\begin_inset Quotes eld
+\end_inset
+
+manual
+\begin_inset Quotes erd
+\end_inset
+
+ vJp
+\series default
+ implementation for the computational steps that AD can't handle, and then
+ AD will automatically compose your vJp into the chain rule for all the
+ surrounding pieces.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For example, suppose you are performing a composition 
+\begin_inset Formula $g(\vec{x}(\vec{y}(\vec{z}(\vec{p})))$
+\end_inset
+
+ of several computations involving intermediate vectors 
+\begin_inset Formula $\{\vec{x},\vec{y},\vec{z}\}$
+\end_inset
+
+, and want the derivative 
+\begin_inset Formula $g_{\vec{x}}\vec{x}_{\vec{y}}\vec{y}_{\vec{z}}\vec{z}_{\vec{p}}$
+\end_inset
+
+, but the AD tool doesn't know how to analyize 
+\begin_inset Formula $\vec{x}(\vec{y}$
+\end_inset
+
+) because it calls an external Fortran linear-algebra library.
+ Then you just need to implement a function that computes the vJp 
+\begin_inset Formula $\vec{v}^{T}\vec{x}_{\vec{y}}$
+\end_inset
+
+ for any given 
+\begin_inset Formula $\vec{v}$
+\end_inset
+
+ using a 
+\begin_inset Quotes eld
+\end_inset
+
+manual
+\begin_inset Quotes erd
+\end_inset
+
+ adjoint method, and the AD system will compute the 
+\emph on
+rest
+\emph default
+ of the derivatives and put them together with your vJp into a chain rule
+ for 
+\begin_inset Formula $\frac{dg}{d\vec{p}}$
+\end_inset
+
+ automatically.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+AD tools often 
+\series bold
+generate suboptimal code for iterative/approximate algorithms
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For example, suppose that you have a program solving for 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ by Newton's method for a nonlinear problem (or perhaps by a Krylov method,
+ such as GMRES, Arnoldi, etc., for a linear problem).
+ If you apply AD 
+\begin_inset Quotes eld
+\end_inset
+
+blindly
+\begin_inset Quotes erd
+\end_inset
+
+ to this program, it will 
+\series bold
+treat it as a generic recurrence 
+\series default
+(see my notes on adjoint methods for recurrences) and try to 
+\series bold
+backpropagate
+\series default
+ adjoint variables through the recurrence, which is costly because it requires
+ 
+\series bold
+storing all intermediate iteration steps
+\series default
+ in general.
+ Instead, you can apply the adjoint method (manually, alas) directly to
+ the final 
+\emph on
+solution
+\emph default
+, which only requires one additional linear solve and no knowledge of the
+ intermediate iterations that yielded the solution.
+\end_layout
+
+\begin_layout Itemize
+Put another way, if you have a function computing 
+\begin_inset Formula $\vec{x}(\vec{p})$
+\end_inset
+
+ 
+\emph on
+approximately
+\emph default
+ (e.g.
+ by Newton iterations), you often only need the 
+\emph on
+approximate gradient
+\emph default
+ as well, as long as you make the error tolerances for both 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ and the vJp 
+\begin_inset Formula $\vec{v}^{T}\vec{x}_{\vec{p}}$
+\end_inset
+
+ sufficiently small.
+ AD cannot do this, and ends up wasting a lot of effort trying to 
+\series bold
+exactly differentiate the 
+\emph on
+error
+\emph default
+ in your approximation
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Initial-value problems
+\end_layout
+
+\begin_layout Standard
+So far, we have looked at 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ that are determined by 
+\begin_inset Quotes eld
+\end_inset
+
+simple
+\begin_inset Quotes erd
+\end_inset
+
+ algebraic equations (which may come from a PDE, etcetera).
+ What if, instead, we are determining 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ by integrating a set of equations in 
+\emph on
+time
+\emph default
+? The simplest example of this is an initial-value problem for a linear,
+ time-independent, homogeneous set of ODEs: 
+\begin_inset Formula 
+\[
+\dot{\vec{x}}=B\vec{x}
+\]
+
+\end_inset
+
+ whose solution after a time 
+\begin_inset Formula $t$
+\end_inset
+
+ for 
+\begin_inset Formula $\vec{x}(0)=\vec{b}$
+\end_inset
+
+ is formally: 
+\begin_inset Formula 
+\[
+\vec{x}=\vec{x}(t)=e^{Bt}\vec{b}.
+\]
+
+\end_inset
+
+ This, however, is exactly a linear equation 
+\begin_inset Formula $A\vec{x}=\vec{b}$
+\end_inset
+
+ with 
+\begin_inset Formula $A=e^{-Bt}$
+\end_inset
+
+, so we can just quote our results from earlier! That is, suppose we are
+ optimizing (or evaluating the sensitivity) of some function 
+\begin_inset Formula $g(\vec{x},\vec{p})$
+\end_inset
+
+ based on the solution 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Then we find the adjoint vector 
+\begin_inset Formula $\lam$
+\end_inset
+
+ via (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:adjoint-eq-linear"
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+e^{-B^{T}t}\lam=g_{\vec{x}}^{T}.
+\]
+
+\end_inset
+
+ Equivalently, 
+\begin_inset Formula $\lam$
+\end_inset
+
+ is the exactly the solution 
+\begin_inset Formula $\lam(t)$
+\end_inset
+
+ after a time 
+\begin_inset Formula $t$
+\end_inset
+
+ of its 
+\emph on
+own
+\emph default
+ adjoint ODE: 
+\begin_inset Formula 
+\[
+\dot{\lam}=B^{T}\lam
+\]
+
+\end_inset
+
+ with initial condition 
+\begin_inset Formula $\lam(0)=g_{\vec{x}}^{T}$
+\end_inset
+
+.
+ We should have expected this by now: solving for 
+\begin_inset Formula $\lam$
+\end_inset
+
+ always involves a task of similar complexity to finding 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+, so if we found 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ by integrating an ODE then we find 
+\begin_inset Formula $\lam$
+\end_inset
+
+ by an ODE too! Of course, we need not solve these ODEs by matrix exponentials;
+ we can use Runge-Kutta, forward Euler, or (if 
+\begin_inset Formula $B$
+\end_inset
+
+ comes from a PDE) whatever scheme we deem appropriate (e.g.
+ Crank-Nicolson).
+\end_layout
+
+\begin_layout Standard
+One important property to worry about is 
+\emph on
+stability
+\emph default
+, and here we are in luck.
+ The eigenvalues of 
+\begin_inset Formula $B$
+\end_inset
+
+ and 
+\begin_inset Formula $B^{T}$
+\end_inset
+
+ are the same, and so if one is stable (eigenvalues with real parts 
+\begin_inset Formula $\leq0$
+\end_inset
+
+) then the other is!
+\end_layout
+
+\begin_layout Standard
+Finally, we can write down the gradient 
+\begin_inset Formula $\frac{dg}{d\vec{p}}$
+\end_inset
+
+ via equation
+\begin_inset space ~
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:adjoint-dg"
+
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).
+\]
+
+\end_inset
+
+ Now, since 
+\begin_inset Formula $A=e^{-Bt}$
+\end_inset
+
+, one might be tempted to write 
+\begin_inset Formula $A_{\vec{p}}=-B_{\vec{p}}t\cdot A$
+\end_inset
+
+, but this is not true except in the 
+\emph on
+very
+\emph default
+ special case where 
+\begin_inset Formula $B_{\vec{p}}$
+\end_inset
+
+ commutes with 
+\begin_inset Formula $B$
+\end_inset
+
+! Unfortunately, the general expression for differentiating a matrix exponential
+ turns out to be more complicated: 
+\begin_inset Formula $A_{\vec{p}}=-\int_{0}^{t}e^{-Bt'}B_{\vec{p}}e^{-B(t-t')}dt'$
+\end_inset
+
+, and so,
+\begin_inset Formula 
+\[
+\frac{dg}{d\vec{p}}=g_{\vec{p}}+\int_{0}^{t}\lam^{T}(t-t')B_{\vec{p}}\vec{x}(t')dt'+\lam^{T}\vec{b}_{\vec{p}}.
+\]
+
+\end_inset
+
+ This is especially unfortunate because it usually means that we have to
+ 
+\emph on
+store
+\emph default
+ 
+\begin_inset Formula $\vec{x}(t')$
+\end_inset
+
+ at all times 
+\begin_inset Formula $0\leq t'\leq t$
+\end_inset
+
+ in order to compute the integral.
+ Adjoint methods are storage-intensive for time-dependent problems!
+\end_layout
+
+\begin_layout Standard
+More generally, of course, one might wish to include time-varying 
+\begin_inset Formula $A$
+\end_inset
+
+, nonlinearities, inhomogeneous (source) terms, etcetera, into the equations
+ to integrate.
+ A very general formulation of the problem, for differential-algebraic equations
+ (DAEs), can be found in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cao03"
+literal "true"
+
+\end_inset
+
+.
+ A similar general principle remains, however: the adjoint variable 
+\begin_inset Formula $\lam$
+\end_inset
+
+ is determined by integrating a similar (adjoint) DAE, using the 
+\emph on
+final
+\emph default
+ value of 
+\begin_inset Formula $\vec{x}(t)$
+\end_inset
+
+ to compute the 
+\emph on
+initial
+\emph default
+ condition of 
+\begin_inset Formula $\lam(0)$
+\end_inset
+
+.
+ In fact, the 
+\begin_inset Formula $\lam(t)$
+\end_inset
+
+ equation is actually often interpreted as being integrated 
+\emph on
+backwards
+\emph default
+ in time from 
+\begin_inset Formula $t$
+\end_inset
+
+ to 
+\begin_inset Formula $0$
+\end_inset
+
+ (a form of 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+backpropagation
+\series default
+
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Alternatively, one can consider a 
+\begin_inset Quotes eld
+\end_inset
+
+discrete-time
+\begin_inset Quotes erd
+\end_inset
+
+ situation of 
+\emph on
+recurrence
+\emph default
+ equations, in which case the adjoint problem is a recurrence 
+\begin_inset Quotes eld
+\end_inset
+
+backward in time
+\begin_inset Quotes erd
+\end_inset
+
+—see my online notes on adjoint methods for recurrences.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "adjoint"
+options "ieeetr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1955,340 +2604,6 @@ filename "schrodinger_fd_adj.m"
 \end_inset
 
 
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Initial-value problems
-\end_layout
-
-\begin_layout Standard
-So far, we have looked at 
-\begin_inset Formula $\vec{x}$
-\end_inset
-
- that are determined by 
-\begin_inset Quotes eld
-\end_inset
-
-simple
-\begin_inset Quotes erd
-\end_inset
-
- algebraic equations (which may come from a PDE, etcetera).
- What if, instead, we are determining 
-\begin_inset Formula $\vec{x}$
-\end_inset
-
- by integrating a set of equations in 
-\emph on
-time
-\emph default
-? The simplest example of this is an initial-value problem for a linear,
- time-independent, homogeneous set of ODEs: 
-\begin_inset Formula 
-\[
-\dot{\vec{x}}=B\vec{x}
-\]
-
-\end_inset
-
- whose solution after a time 
-\begin_inset Formula $t$
-\end_inset
-
- for 
-\begin_inset Formula $\vec{x}(0)=\vec{b}$
-\end_inset
-
- is formally: 
-\begin_inset Formula 
-\[
-\vec{x}=\vec{x}(t)=e^{Bt}\vec{b}.
-\]
-
-\end_inset
-
- This, however, is exactly a linear equation 
-\begin_inset Formula $A\vec{x}=\vec{b}$
-\end_inset
-
- with 
-\begin_inset Formula $A=e^{-Bt}$
-\end_inset
-
-, so we can just quote our results from earlier! That is, suppose we are
- optimizing (or evaluating the sensitivity) of some function 
-\begin_inset Formula $g(\vec{x},\vec{p})$
-\end_inset
-
- based on the solution 
-\begin_inset Formula $\vec{x}$
-\end_inset
-
- at time 
-\begin_inset Formula $t$
-\end_inset
-
-.
- Then we find the adjoint vector 
-\begin_inset Formula $\lam$
-\end_inset
-
- via (
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:adjoint-eq-linear"
-
-\end_inset
-
-): 
-\begin_inset Formula 
-\[
-e^{-B^{T}t}\lam=g_{\vec{x}}^{T}.
-\]
-
-\end_inset
-
- Equivalently, 
-\begin_inset Formula $\lam$
-\end_inset
-
- is the exactly the solution 
-\begin_inset Formula $\lam(t)$
-\end_inset
-
- after a time 
-\begin_inset Formula $t$
-\end_inset
-
- of its 
-\emph on
-own
-\emph default
- adjoint ODE: 
-\begin_inset Formula 
-\[
-\dot{\lam}=B^{T}\lam
-\]
-
-\end_inset
-
- with initial condition 
-\begin_inset Formula $\lam(0)=g_{\vec{x}}^{T}$
-\end_inset
-
-.
- We should have expected this by now: solving for 
-\begin_inset Formula $\lam$
-\end_inset
-
- always involves a task of similar complexity to finding 
-\begin_inset Formula $\vec{x}$
-\end_inset
-
-, so if we found 
-\begin_inset Formula $\vec{x}$
-\end_inset
-
- by integrating an ODE then we find 
-\begin_inset Formula $\lam$
-\end_inset
-
- by an ODE too! Of course, we need not solve these ODEs by matrix exponentials;
- we can use Runge-Kutta, forward Euler, or (if 
-\begin_inset Formula $B$
-\end_inset
-
- comes from a PDE) whatever scheme we deem appropriate (e.g.
- Crank-Nicolson).
-\end_layout
-
-\begin_layout Standard
-One important property to worry about is 
-\emph on
-stability
-\emph default
-, and here we are in luck.
- The eigenvalues of 
-\begin_inset Formula $B$
-\end_inset
-
- and 
-\begin_inset Formula $B^{T}$
-\end_inset
-
- are the same, and so if one is stable (eigenvalues with real parts 
-\begin_inset Formula $\leq0$
-\end_inset
-
-) then the other is!
-\end_layout
-
-\begin_layout Standard
-Finally, we can write down the gradient 
-\begin_inset Formula $\frac{dg}{d\vec{p}}$
-\end_inset
-
- via equation
-\begin_inset space ~
-\end_inset
-
-(
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:adjoint-dg"
-
-\end_inset
-
-): 
-\begin_inset Formula 
-\[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}-\lam^{T}(A_{\vec{p}}\vec{x}-\vec{b}_{\vec{p}}).
-\]
-
-\end_inset
-
- Now, since 
-\begin_inset Formula $A=e^{-Bt}$
-\end_inset
-
-, one might be tempted to write 
-\begin_inset Formula $A_{\vec{p}}=-B_{\vec{p}}t\cdot A$
-\end_inset
-
-, but this is not true except in the 
-\emph on
-very
-\emph default
- special case where 
-\begin_inset Formula $B_{\vec{p}}$
-\end_inset
-
- commutes with 
-\begin_inset Formula $B$
-\end_inset
-
-! Unfortunately, the general expression for differentiating a matrix exponential
- turns out to be more complicated: 
-\begin_inset Formula $A_{\vec{p}}=-\int_{0}^{t}e^{-Bt'}B_{\vec{p}}e^{-B(t-t')}dt'$
-\end_inset
-
-, and so,
-\begin_inset Formula 
-\[
-\frac{dg}{d\vec{p}}=g_{\vec{p}}+\int_{0}^{t}\lam^{T}(t-t')B_{\vec{p}}\vec{x}(t')dt'+\lam^{T}\vec{b}_{\vec{p}}.
-\]
-
-\end_inset
-
- This is especially unfortunate because it usually means that we have to
- 
-\emph on
-store
-\emph default
- 
-\begin_inset Formula $\vec{x}(t')$
-\end_inset
-
- at all times 
-\begin_inset Formula $0\leq t'\leq t$
-\end_inset
-
- in order to compute the integral.
- Adjoint methods are storage-intensive for time-dependent problems!
-\end_layout
-
-\begin_layout Standard
-More generally, of course, one might wish to include time-varying 
-\begin_inset Formula $A$
-\end_inset
-
-, nonlinearities, inhomogeneous (source) terms, etcetera, into the equations
- to integrate.
- A very general formulation of the problem, for differential-algebraic equations
- (DAEs), can be found in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Cao03"
-literal "true"
-
-\end_inset
-
-.
- A similar general principle remains, however: the adjoint variable 
-\begin_inset Formula $\lam$
-\end_inset
-
- is determined by integrating a similar (adjoint) DAE, using the 
-\emph on
-final
-\emph default
- value of 
-\begin_inset Formula $\vec{x}(t)$
-\end_inset
-
- to compute the 
-\emph on
-initial
-\emph default
- condition of 
-\begin_inset Formula $\lam(0)$
-\end_inset
-
-.
- In fact, the 
-\begin_inset Formula $\lam(t)$
-\end_inset
-
- equation is actually often interpreted as being integrated 
-\emph on
-backwards
-\emph default
- in time from 
-\begin_inset Formula $t$
-\end_inset
-
- to 
-\begin_inset Formula $0$
-\end_inset
-
-.
- Alternatively, one can consider a 
-\begin_inset Quotes eld
-\end_inset
-
-discrete-time
-\begin_inset Quotes erd
-\end_inset
-
- situation of 
-\emph on
-recurrence
-\emph default
- equations, in which case the adjoint problem is a recurrence 
-\begin_inset Quotes eld
-\end_inset
-
-backward in time
-\begin_inset Quotes erd
-\end_inset
-
-—see my online notes on adjoint methods for recurrences.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "adjoint"
-options "ieeetr"
-
-\end_inset
-
- 
 \end_layout
 
 \end_body
