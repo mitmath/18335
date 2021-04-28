@@ -438,6 +438,7 @@ Guest lecture by [Dr. Zin Lin](http://zinlin.mit.edu/home).
 
 ### Lecture 29 (Apr 28)
 
+* [video](https://mit.zoom.us/rec/share/MVrErvy33_5BXMimMIad9R_TRhlvCy-nRZZsXO14tl6_mUMnD19jMGkwJ-ziWEYj.RD-_CwwE0pOxyadd?startTime=1619636374000)
 * [notes on adjoint methods for recurrence relations](notes/adjoint/recurrence2.pdf)
 * [adjoint example notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring19/notes/adjoint/Adjoint-method.ipynb)
 
