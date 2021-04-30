@@ -468,4 +468,14 @@ Generalized to the Lagrangian L(x,λ,ν) of the general optimization problem (th
 
 Described the KKT conditions for a (local) optimum/extremum (Boyd, section 5.5.3). These are true in problems with strong duality, as pointed out by Boyd, but they are actually true in much more general conditions. For example, they hold under the "LICQ" condition in which the gradients of all the active constraints are linearly independents. Gave a simple graphical example to illustrate why violating LICQ requires a fairly weird optimum, at a cusp of two constraints.
 
+Explain how duality applies to the CCSA algorithm: for the separable convex approximate optimization problem in gᵢ(x), we can find the dual function g(λ) analytically, which results in a much simpler convex optimization problem with only bound constraints λᵢ≥0.  This can be solved in a variety of ways, but one elegant technique is to apply CCSA recursively to the dual problem. Where on each iteration of the recursive CCSA, we approximate g(λ) by yet another separable convex approximation, and then the dual of *this* approximation has no variables at all (since there were no nonlinear constraints) and hence is trivial.
+
 **Further reading:** _[Convex Optimization](http://www.stanford.edu/~boyd/cvxbook/)_ by Boyd and Vandenberghe (free book online), chapter 5. There are many sources on [Lagrange multipliers](http://en.wikipedia.org/wiki/Lagrange_multipliers) (the special case of equality constraints) online that can be found by googling.
+
+### Lecture 32 (May 5)
+
+* [notes on BFGS and quasi-Newton methods](notes/BFGS.pdf)
+
+Overview of discussing quasi-Newton methods in general, and the BFGS algorithm in particular, following the notes.
+
+**Further reading:** Wikipedia's articles on [quasi-Newton methods](http://en.wikipedia.org/wiki/Quasi-Newton_methods) and the [BFGS method](http://en.wikipedia.org/wiki/BFGS_method) have some useful links and summaries. Helpful derivations of many of the properties of BFGS updates, and many references, can be found in [this 1980 technical report by Dennis and Schnabel](http://www.cs.colorado.edu/department/publications/reports/docs/CU-CS-185-80.pdf) and for a generalization in [this 1994 paper by O'Leary and Yeremin](http://www.cs.umd.edu/~oleary/reprints/j39.pdf), for example.
