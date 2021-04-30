@@ -446,7 +446,7 @@ Discussed adjoint methods for recurrence relations, connection to backpropagatio
 
 ### Lecture 30 (Apr 30)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/UfE3Xn1sL3aU-LORdjfw51VAicWyMkvzMccCx8L8HoQeX3ZZAKOIhXmwfRxo6wGf.0LzPmyFjFpGQheTT?startTime=1619809242000)
 
 Went over a particular example of a nonlinear optimization scheme, solving the full inequality-constrained nonlinear-programming problem: the CCSA algorithms, as refined by Svanberg (2002). This is a surprisingly simple algorithm (the [NLopt](http://ab-initio.mit.edu/nlopt) implementation is only 300 lines of C code), but is robust and provably convergent, and illustrates a number of important ideas in optimization: optimizing an approximation to update the parameters **x**, guarding the approximation with trust regions and penalty terms, and optimizing via the dual function (Lagrange multipliers). Like many optimization algorithms, the general ideas are very straightforward, but getting the details right can be delicate!
 
