@@ -109,15 +109,16 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Given the solution 
-\begin_inset Formula $\vec{x}$
+Given the output 
+\begin_inset Formula $\vec{x}\in\mathbb{R}^{M}$
 \end_inset
 
- of a discretized PDE or some other set of 
+ of a complicated computation, such as the solution of a discretized PDE
+ or some other set of 
 \begin_inset Formula $M$
 \end_inset
 
- equations parameterized by 
+ equations, parameterized by 
 \begin_inset Formula $P$
 \end_inset
 
@@ -143,11 +144,27 @@ decision parameters
 \end_inset
 
  based on the parameters and the solution.
- For example, if the PDE is a wave equation, we might want to know the scattered
+ For example, if we solve a wave equation, we might want to know the scattered
  power in some direction.
  Or, for a mechanical simulation, we might want to know the load-bearing
  capacity of the structure.
- Or for a fluid, we might wish to know the flow rate somewhere.
+ For the output of a neural network, 
+\begin_inset Formula $g$
+\end_inset
+
+ might be the 
+\begin_inset Quotes eld
+\end_inset
+
+loss
+\begin_inset Quotes erd
+\end_inset
+
+ function comparing a prediction 
+\begin_inset Formula $\vec{x}$
+\end_inset
+
+ to data.
  Often, however, we want to know more than just the 
 \emph on
 value
@@ -245,28 +262,55 @@ shape
 \emph on
 topology optimization
 \emph default
-, in which 
+ of PDEs, in which 
 \begin_inset Formula $\vec{p}$
 \end_inset
 
  controls the placement and shape of arbitrary blobs of different materials
- constituting a given structure/design.
+ constituting a given structure/design
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sigmund2013"
+literal "false"
+
+\end_inset
+
+.
  Sometimes, this process is called 
 \emph on
 inverse design
 \emph default
 : finding the problem that yields a given solution instead of the other
  way around.
+ In 
+\emph on
+deep learning
+\emph default
+, one might have neural networks with millions of degrees of freedom parameteriz
+ing artificial 
+\begin_inset Quotes eld
+\end_inset
+
+neurons.
+\begin_inset Quotes erd
+\end_inset
+
  When 
 \begin_inset Formula $P\gg1$
 \end_inset
 
-, the amazing efficiency of adjoint methods makes inverse design possible.
+, the amazing efficiency of adjoint methods makes inverse design and deep
+ learning possible.
 \end_layout
 
 \begin_layout Standard
-I hadn't found any textbook description of adjoint methods that I particularly
- like, which is part of my motivation for writing up these notes.
+When I started these notes in 2006, I hadn't found any textbook description
+ of adjoint methods that I particularly liked, which is part of my motivation
+ for writing up these notes.
  One introduction can be found in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1386,12 +1430,12 @@ For example, suppose you are performing a composition
 \begin_inset Formula $g_{\vec{x}}\vec{x}_{\vec{y}}\vec{y}_{\vec{z}}\vec{z}_{\vec{p}}$
 \end_inset
 
-, but the AD tool doesn't know how to analyize 
+, but the AD tool doesn't know how to analyze 
 \begin_inset Formula $\vec{x}(\vec{y}$
 \end_inset
 
 ) because it calls an external Fortran linear-algebra library.
- Then you just need to implement a function that computes the vJp 
+ You just need to implement a function that computes the vJp 
 \begin_inset Formula $\vec{v}^{T}\vec{x}_{\vec{y}}$
 \end_inset
 
