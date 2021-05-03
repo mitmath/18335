@@ -206,7 +206,7 @@ Hessian
 \end_inset
 
  as well (
-\begin_inset Formula $H_{ij}^{k}=\left.\frac{\partial f}{\partial x_{i}\partial x_{j}}\right|_{x^{k}}$
+\begin_inset Formula $H_{ij}^{k}=\left.\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}\right|_{x^{k}}$
 \end_inset
 
 ), then we could try to make progress via second-order (quadratic) Taylor
