@@ -459,7 +459,7 @@ http://dx.doi.org/10.1137/S1052623499362822) — I used the "linear and separabl
 
 ### Lecture 31 (May 3)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/HuMJZYJx-zEbMv_cvjf1w1Gdim8a5qTbhkcxWZt8VDgQrhUdFoirPg_VW_YrQVFI.0dsbgpiVIDxNkJO9?startTime=1620068445000)
 * [slides from Boyd, chapter 5](notes/boyd-ch5-slides.pdf)
 
 Started by reviewing the basic idea of Lagrange multipliers to find an extremum of one function f₀(x) and one equality constraint h₁(x)=0. We instead find an extremum of L(x,ν₁)=f₀(x)+ν₁h₁(x) over x and the _Lagrange multiplier_ ν₁. The ν₁ partial derivative of L ensures h₁(x)=0, in which case L=f0 and the remaining derivatives extremize f0 along the constraint surface. Noted that ∇L=0 then enforces ∇f₀=0 in the direction parallel to the constraint, whereas perpendicular to the constraint ν₁ represents a "force" that prevents x from leaving the h₁(x)=0 constraint surface.
