@@ -493,7 +493,7 @@ Mentioned multi-start global optimizer algorithms, e.g. MLSL (from [here](https:
 
 ### Lecture 33 (May 10)
 
-* video: to be posted
+* [video](https://mit.zoom.us/rec/share/1gFzJgDzbI2EfQmvLxwPx1jtasu_0VmWj5nm4rys9ilLwYdWly2IijBWSTKK3s-b.pVjBVPPYht8GArAJ?startTime=1620673258000)
 * [Notes](notes/trap-quad.pdf) on error analysis of the trapezoidal rule and Clenshaw-Curtis quadrature in terms of Fourier cosine series, and a [quick review of cosine series](http://math.mit.edu/~stevenj/cosines.pdf).
 
 New topic: **numerical integration** (numerical quadrature). Began by basic definition of the problem (in 1d) and differences from general ODE problems. Then gave trapezoidal quadrature rule, and simple argument why the error generally decreases with the square of the number of function evaluations.
