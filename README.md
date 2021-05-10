@@ -490,3 +490,12 @@ Discussed derivative-free optimization based on quadratic approximation by symme
 Mentioned multi-start global optimizer algorithms, e.g. MLSL (from [here](https://link.springer.com/article/10.1007/BF02592070) (and [here](https://link.springer.com/article/10.1007/BF02592071)) and TikTak.
 
 **Further reading:** The book [Introduction to Derivative-Free Optimization](http://books.google.com/books?id=7c7X6tlcaHEC&lpg=PP1&ots=ljSCrl3WuI&dq=derivative%20free%20optimization%20conn&pg=PP1#v=onepage&q&f=false) by Andrew Conn et al is a reasonable starting point. See also the [derivative-free algorithms in NLopt](https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/) and the references thereof.  Several more stochastic algorithms in Julia are implemented in the [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl) package.
+
+### Lecture 33 (May 10)
+
+* video: to be posted
+* [Notes](notes/trap-quad.pdf) on error analysis of the trapezoidal rule and Clenshaw-Curtis quadrature in terms of Fourier cosine series, and a [quick review of cosine series](http://math.mit.edu/~stevenj/cosines.pdf).
+
+New topic: **numerical integration** (numerical quadrature). Began by basic definition of the problem (in 1d) and differences from general ODE problems. Then gave trapezoidal quadrature rule, and simple argument why the error generally decreases with the square of the number of function evaluations.
+
+Showed numerical experiment (see handout) demonstrating that sometimes the trapezoidal rule can do much better than this: it can even have exponential convergence with the number of points! To understand this at a deeper level, I analyze the problem using Fourier cosine series (see handout), and show that the error in the trapezoidal rule is directly related to the convergence rate of the Fourier series. Claimed that this convergence rate is related to the smoothness of the periodic extension of the function, and in fact an analytic periodic function has Fourier coefficients that vanish exponentially fast, and thus the trapezoidal rule converges exponentially in that case. Proved by integration by parts of the Fourier series. In fact, we find that only the _odd_\-order derivatives at the endpoints need to be periodic to get accelerated convergence.
