@@ -510,6 +510,9 @@ Explained the idea of Clenshaw–Curtis quadrature as a change of variables + a 
 
 ### Lecture 35 (May 14)
 
+* [video](https://mit.zoom.us/rec/share/ZDmD6UIEybtemfOssMgfw6f87E6qZUtmwzWi6DHc4MX-9XfWk4Op2q5Kqng5ky8.Eggn9BlZcz8UxtFt?startTime=1621018860000)
+* [ApproxFun demo](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/ApproxFun-demo.ipynb)
+
 Finished discussion of Clenshaw–Curtis quadrature.
 
 Mentioned (as in the handout) how to precompute the weights in terms of a discrete cosine transform, rather than cosine-transforming the function values every time one needs an integral, via a simple transposition trick.
@@ -518,8 +521,6 @@ Mentioned the utility of **nested quadrature** rules for _a posteriori_ error es
 
 Explained connection of Clenshaw-Curtis quadrature and cosine series to Chebyshev polynomials. This leads into the general topic of Chebyshev approximation, and how we can approximate any smooth function on a finite interval by a polynomial with exponential accuracy (in the degree of the polynomial) as long as we interpolate via Chebyshev points.
 
-Using Chebyshev approximation, explained how lots of problems can be solved by first approximating a nasty function via a polynomial, at which point one can just use easy methods for polynomials. Showed examples of root finding, minimization, integration, and solving ODEs via the [ApproxFun](https://github.com/ApproxFun/ApproxFun.jl) package for Julia, which implements a modern version of these ideas (following in the tracks of the pioneering [chebfun](http://www.chebfun.org/) package for Matlab).
-
-Mentioned integration with weight functions: I = ∫w(x)f(x)dx ≈ Iₙ = ∑wᵢf(xᵢ).  Even if the "weight" w(x) is "nasty" (discontinuous, singular, highly oscillatory…), we can do some (possibly expensive) precomputations of wᵢ and xᵢ *once* and re-use them for integrating many "nice" (smooth) functions f(x) with only a few quadrature points.
+Using Chebyshev approximation, explained how lots of problems can be solved by first approximating a nasty function via a polynomial, at which point one can just use easy methods for polynomials. Showed examples of root finding, minimization, and integration via the [ApproxFun](https://github.com/ApproxFun/ApproxFun.jl) package for Julia, which implements a modern version of these ideas (following in the tracks of the pioneering [chebfun](http://www.chebfun.org/) package for Matlab).
 
 **Further reading**: Lloyd N. Trefethen, "[Is Gauss quadrature better than Clenshaw-Curtis?](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.157.4174)," _SIAM Review_ **50** (1), 67-87 (2008). Pedro Gonnet, [A review of error estimation in adaptive quadrature](http://dl.acm.org/citation.cfm?id=2333117), _ACM Computing Surveys_ **44**, article 22 (2012).  [Chebyshev polynomials on Wikipedia](http://en.wikipedia.org/wiki/Chebyshev_polynomials), free book online [Chebyshev and Fourier Spectral Methods](http://www-personal.umich.edu/~jpboyd/BOOK_Spectral2000.html) by John P. Boyd, the [chebfun package](http://www2.maths.ox.ac.uk/chebfun/) for Matlab by Trefethen et al., and the lecture notes from [Numerical Complex Analysis by Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/teaching/NCA/).
