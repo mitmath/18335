@@ -18,7 +18,7 @@ You should submit:
 
 2. A PDF of your paper (in [SIAM format](http://www.siam.org/journals/auth-info.php) or similar, see above), due on the last day of the term.
 
-3. A .zip or .tar.gz archive containing your source code (in whatever programming language).   A `README` file briefly outlining what is in each file would also be appreciated.  (You don't need to include software packages downloaded from elsewhere and used unmodified, but a note in the `README` about software requirements would be good.)
+3. A `.zip` or `.tar.gz`/`.tgz` archive containing your source code (in whatever programming language).   A `README` file briefly outlining what is in each file would also be appreciated.  (You don't need to include software packages downloaded from elsewhere and used unmodified, but a note in the `README` about software requirements would be good.)
 
 ## Frequently asked questions
 
