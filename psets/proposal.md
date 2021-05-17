@@ -10,6 +10,8 @@ A good final project will include:
 
 * A convincing validation on a representative/quasi-realistic test problem (i.e. show that your code works), along with an informative comparison to important competing algorithms.  For someone who is thinking about using the algorithm, you should strive to give them *useful* guidance on how the algorithm compares to competing algorithms: when/where should you consider using it (if ever)?   Almost never rely on actual timing results — see below!
 
+  - Note that this should be your *own* independent re-implementation of the algorithm (in any language of your choice) based on the mathematical description in the paper(s).  (Not based on other people's code.)  The point is to demonstrate that you understand the algorithm well enough to implement it correctly, and that you understand how to make useful comparisons between algorithms.
+
 ## What to submit
 
 You should submit:
