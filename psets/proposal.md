@@ -10,6 +10,16 @@ A good final project will include:
 
 * A convincing validation on a representative/quasi-realistic test problem (i.e. show that your code works), along with an informative comparison to important competing algorithms.  For someone who is thinking about using the algorithm, you should strive to give them *useful* guidance on how the algorithm compares to competing algorithms: when/where should you consider using it (if ever)?   Almost never rely on actual timing results — see below!
 
+## What to submit
+
+You should submit:
+
+1. A final-project proposal by midway through the term, to get feedback on your project topic and other plans.
+
+2. A PDF of your paper (in [SIAM format](http://www.siam.org/journals/auth-info.php) or similar, see above), due on the last day of the term.
+
+3. A .zip or .tar.gz archive containing your source code (in whatever programming language).   A `README` file briefly outlining what is in each file would also be appreciated.  (You don't need to include software packages downloaded from elsewhere and used unmodified, but a note in the `README` about software requirements would be good.)
+
 ## Frequently asked questions
 
 Frequently asked questions about the final project:
