@@ -524,3 +524,12 @@ Explained connection of Clenshaw-Curtis quadrature and cosine series to Chebyshe
 Using Chebyshev approximation, explained how lots of problems can be solved by first approximating a nasty function via a polynomial, at which point one can just use easy methods for polynomials. Showed examples of root finding, minimization, and integration via the [ApproxFun](https://github.com/ApproxFun/ApproxFun.jl) package for Julia, which implements a modern version of these ideas (following in the tracks of the pioneering [chebfun](http://www.chebfun.org/) package for Matlab).
 
 **Further reading**: Lloyd N. Trefethen, "[Is Gauss quadrature better than Clenshaw-Curtis?](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.157.4174)," _SIAM Review_ **50** (1), 67-87 (2008). Pedro Gonnet, [A review of error estimation in adaptive quadrature](http://dl.acm.org/citation.cfm?id=2333117), _ACM Computing Surveys_ **44**, article 22 (2012).  [Chebyshev polynomials on Wikipedia](http://en.wikipedia.org/wiki/Chebyshev_polynomials), free book online [Chebyshev and Fourier Spectral Methods](http://www-personal.umich.edu/~jpboyd/BOOK_Spectral2000.html) by John P. Boyd, the [chebfun package](http://www2.maths.ox.ac.uk/chebfun/) for Matlab by Trefethen et al., and the lecture notes from [Numerical Complex Analysis by Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/teaching/NCA/).
+
+### Lecture 36 (May 17)
+
+* [notes on FFTs](notes/fft-iap3.pdf)
+* [slides on FFTs and FFTW](notes/FFTW.pdf)
+
+Introduced the [discrete Fourier transform (DFT)](https://en.wikipedia.org/wiki/Discrete_Fourier_transform).   Talked about its history (Gauss!), properties (unitarity, convolution theorem), aliasing, special case of the [type-1 discrete cosine transform (DCT)](https://en.wikipedia.org/wiki/Discrete_cosine_transform), and applications (Chebyshev and other spectral methods for integration, PDEs, etcetera; signal processing, [multiplying large numbers](https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm)), etc.
+
+A [fast Fourier transform (FFT)](https://en.wikipedia.org/wiki/Fast_Fourier_transform) is an O(N log N) algorithm to compute the DFT.  There are many such algorithms, the most famous of which is the Cooley–Tukey algorithm (1965, though there were many precursors dating back to Gauss himself).
