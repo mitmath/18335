@@ -539,3 +539,5 @@ Reviewed the definition of the DFT and some important properties: unitarity/inve
 
 * [notes on FFTs](notes/fft-iap3.pdf)
 * [slides on FFTs and FFTW](notes/FFT.pdf)
+
+**Further reading**: The [Wikipedia FFT article](https://en.wikipedia.org/wiki/Fast_Fourier_transform) (partially written by SGJ) was still not bad last I checked. [Gauss and the history of the fast Fourier transform](https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.309.181) (1985) is a wonderful article on the historical development of the FFT.  [Duhamel & Vetterli (1990)](https://doi.org/10.1016%2F0165-1684%2890%2990158-U) is a classic review article.
