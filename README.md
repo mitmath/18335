@@ -538,4 +538,4 @@ Reviewed the definition of the DFT and some important properties: unitarity/inve
 ### Lecture 37 (May 19)
 
 * [notes on FFTs](notes/fft-iap3.pdf)
-* [slides on FFTs and FFTW](notes/FFTW.pdf)
+* [slides on FFTs and FFTW](notes/FFT.pdf)
