@@ -39,7 +39,7 @@ Lecture Summaries and Handouts
 ### Lecture 1 (January 31)
 
 This course is about Numerical Linear Algebra (NLA) and related numerical methods. But why do we need NLA? How does it fit in to other areas of computational science and engineering (CSE)? Three simple examples illustrate how NLA problems arise naturally when solving problems drawn from across continuous applied mathematics. 
-* Solving Poisson's equation: from charge density to electric potential. (Linear systems: LU and Cholesky, iterative methods for large sparse systems.)
+* Solving Poisson's equation: from charge density to electric potential. (Linear systems: LU and Cholesky, iterative methods.)
 * Schrodinger's equation: quantizing energy at the smallest scales. (Eigenvalue problems: QR algorithm, Krylov iterations.)
 * Dynamic Mode Decomposition: learning models from data. (Least squares: QR factorization, SVD.)
 
