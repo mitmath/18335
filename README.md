@@ -37,3 +37,11 @@ Lecture Summaries and Handouts
 ------------------------------
 
 ### Lecture 1 (January 31)
+
+This course is about Numerical Linear Algebra (NLA) and related numerical methods. But why do we need NLA? How does it fit in to other areas of computational science and engineering (CSE)? Three simple examples illustrate how NLA problems arise naturally when solving problems drawn from across continuous applied mathematics. 
+* Solving Poisson's equation: from charge density to electric potential. (Linear systems: Gaussian elimination and related factorizations.)
+* Schrodinger's equation: quantizing energy at the smallest scales. (Eigenvalue problems: QR algorithm, Krylov iterations.)
+* Dynamic Mode Decomposition: learning models from data. (Least squares: QR factorization, SVD.)
+NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
+
+**Further Reading:** L.N. Trefethen, Appendix. The Definition of Numerical Analysis. 
