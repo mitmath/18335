@@ -50,3 +50,17 @@ This course is about Numerical Linear Algebra (NLA) and related numerical method
 NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
 
 **Further Reading:** L.N. Trefethen, Appendix. The Definition of Numerical Analysis. 
+
+### Lecture 2 (February 2)
+
+To do linear algebra on a computer, we need to approximate real numbers and their arithmetic. Chasing significant digits leads us to _floating point numbers_, which have some excellent approximation properties:
+* For any real number x, there is a floating point x' that satisfies |x' - x| <= 0.5 **epsilon_machine** |x|. **epsilon_machine** is about 1.11e-16 in IEEE double precision.
+* For any two floating point numbers x and y, floating point arithmetic is equivalent to rounding the exact result to the nearest floating point number (we called this _exact rounding_).
+* The above two facts give us the "fundamental theorem of floating point arithmetic" (p. 99, Trefethen), which says the relative error in a single floating point operation (e.g., adding two floating point numbers) is no greater than **epsilon_machine**.
+
+There are a few things to watch out for in floating point arithmetic: overflow and underflow (due to finite exponent), and catastrophic cancellation (when all significant digits cancel).
+
+To develop reliable algorithms for numerical linear algebra, we'll need to understand how rounding errors can accumulate over many floating point operations. The fundamental theorem above will our key tool to understand and control error accumulation.
+
+**Further Reading:** L. N. Trefethen, Lecture 13. 
+
