@@ -21,7 +21,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
-**Grading**: 40% problem sets (about four, ~biweekly). 30% **take-home mid-term exam** (first week of April), 30% **final project** ([one-page proposal](psets/proposal.md) due Wednesday March 30, project due Monday **May 9**).
+**Grading**: 40% problem sets (about four, ~biweekly). 30% **take-home mid-term exam** (first week of April), 30% **final project** ([one-page proposal](project/final_project.md) due Wednesday March 30, project due Monday **May 9**).
 
 * Psets will be **submitted electronically via Canvas**.  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
@@ -35,7 +35,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 * You can use [psetpartners.mit.edu](https://psetpartners.mit.edu/) to help you find classmates to chat with.
 
-**Final Projects**: The final project will be an 8–15 page paper reviewing some interesting numerical algorithm not covered in the course. See the [18.335 final-projects page](psets/proposal.md) for more information, including topics from past semesters.
+**Final Projects**: The final project will be an 8–15 page paper reviewing some interesting numerical algorithm not covered in the course. See the [18.335 final-projects page](project/final_project.md) for more information, including topics from past semesters.
 
 Lecture Summaries and Handouts
 ------------------------------
