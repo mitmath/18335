@@ -37,6 +37,10 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Final Projects**: The final project will be an 8–15 page paper reviewing some interesting numerical algorithm not covered in the course. See the [18.335 final-projects page](project/final_project.md) for more information, including topics from past semesters.
 
+Assignments
+------------
+* [Pset 1](psets/pset1.pdf) is due on Friday, February 18 at 12pm.
+
 Lecture Summaries and Handouts
 ------------------------------
 
