@@ -41,8 +41,8 @@ Lecture Summaries and Handouts
 
 * [video](https://mit.zoom.us/rec/share/OO-jZpJ8Oqgq1uldUFFRTonp1nTS8nZefxAdthbSYENuZbGyAZr0qLC1i02mhWEc.m158MsEBn6vBvI8t?startTime=1613591715000)
 * [handwritten notes](https://www.dropbox.com/s/wxd3pwsy3ijblnp/18.335%20Spring%202021.pdf?dl=0) for this and subsequent lectures
-* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1.ipynb), due Monday, March 1.
-* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Newton-Square-Roots.ipynb).
+* [pset 1](psets/pset1.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/psets/pset1.ipynb), due Monday, March 1.
+* [Newton's method for square roots](notes/newton-sqrt.pdf) and accompanying [notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Newton-Square-Roots.ipynb).
 
 Brief overview of the huge field of numerical methods, and outline of the small portion that this course will cover. Key new concerns in numerical analysis, which don't appear in more abstract mathematics, are (i) performance (traditionally, arithmetic counts, but now memory access often dominates) and (ii) accuracy (both floating-point roundoff errors and also convergence of intrinsic approximations in the algorithms).
 
@@ -55,7 +55,7 @@ As a starting example, considered the convergence of Newton's method (as applied
 
 * [video](https://mit.zoom.us/rec/share/VU1OJIaW5sVyUDONOE9O0EDoGOMJaUxCSKoUZGd8r3kqi0H9L67_785_xSHdhQJK.KvAparctLJ79AwYH?startTime=1613764649000)
 * [notes on floating-point](notes/lec8handout6pp.pdf) (18.335 Fall 2007; also [slides](notes/lec8.pdf))
-* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)
+* Julia [floating-point notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Floating-Point-Intro.ipynb)
 * some [floating-point myths](notes/fp-myths.pdf)
 
 New topic: **Floating-point arithmetic**
@@ -129,7 +129,7 @@ Calculated condition number for square root, summation, and matrix-vector multip
 ### Lecture 6 (Mar 1)
 
 * [video](https://mit.zoom.us/rec/share/2goGg3hqQ3FKzjWgzDT88I46EW2ufwYgnf4Jq_NqTuiQEjtbjMCeSRz2PiRAA0ud.jahcg47feiT9BafU?startTime=1614628812000)
-* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset1sol.ipynb)
+* [pset 1 solutions](psets/pset1sol.pdf) and accompanying [Julia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/psets/pset1sol.ipynb)
 * [pset 2](psets/pset2.pdf): due Friday March 12 at 3pm.
 
 Related matrix L₂ norm to eigenvalues of B=AᵀA (or Āᵀ=A^\* for complex A). B is obviously Hermitian (Bᵀ=B), and with a little more work showed that it is positive semidefinite: xᵀBx≥0 for any x. Reviewed and re-derived properties of eigenvalues and eigenvectors of Hermitian and positive-semidefinite matrices. Hermitian means that the eigenvalues are real, the eigenvectors are orthogonal (or can be chosen orthogonal). Also, a Hermitian matrix must be diagonalizable (I skipped the proof for this; we will prove it later in a more general setting). Positive semidefinite means that the eigenvalues are nonnegative.
@@ -150,7 +150,7 @@ Talked a little about the SVD and low-rank approximations (more on this in homew
 
 Finished SVD topics from last time.
 
-* [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/master/notes/Least-squares.ipynb)
+* [least-squares IJulia notebook](https://github.com/mitmath/18335/blob/spring21/notes/Least-squares.ipynb)
 
 Introduced least-squares problems and went through some examples (notebook).
 
@@ -165,7 +165,7 @@ Finished least-squares notebook. Reviewed some basic consequences of SVD: κ(A) 
 Introduced the alternative of QR factorization (finding an orthonormal basis for the column space of the matrix). Explained why, if we can do it accurately, this will give a good way to solve least-squares problems.
 
 * Per Persson's [2006 18.335 Gram-Schmidt slides](notes/lec5.pdf)
-* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb)
+* [Gram-Schmidt IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Gram-Schmidt.ipynb)
 
 Gave the simple, but unstable, construction of the Gram-Schmidt algorithm, to find a QR factorization.
 
@@ -203,9 +203,9 @@ Counting arithmetic operation counts is no longer enough. Illustrate this with s
 ### Lecture 11 (Mar 12)
 
 * [video](https://mit.zoom.us/rec/share/PvQ9R5p3v4NBiUS7xGjcBvPoeHQDaKwqkwAiMHYXNvZKxameHHSSdNRBd0YMdqaF.Ineu4sDc_TkW3dMZ?startTime=1615579182000)
-* [pset 2 solutions](psets/pset2sol.pdf) and [IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/psets/pset2sol.ipynb)
+* [pset 2 solutions](psets/pset2sol.pdf) and [IJulia notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/psets/pset2sol.ipynb)
 * [pset 3](psets/pset3.pdf): due Friday, March 26 at 3pm
-* [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Memory-and-Matrices.ipynb)
+* [IJulia matrix-multiplication notebook](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Memory-and-Matrices.ipynb)
 * [ideal-cache terminology](notes/ideal-cache.pdf)
 
 Outline of the memory hierarchy: CPU, registers, L1/L2 cache, main memory, and presented simple 2-level ideal-cache model that we can analyze to get the basic ideas.
@@ -317,7 +317,7 @@ For Hermitian matrices A, I showed that the max/min Ritz values are the maximum/
 ### Lecture 20 (April 5)
 
 * [video](https://mit.zoom.us/rec/share/VWHBM4qP1hTZf6mYTi5Bn2Jvsyi0se8pwiXsxKElK2BTMxY4x_b2XioSsaWvqvE7.mYWhIdkah_67j9jx?startTime=1617649211000)
-* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Arnoldi.ipynb)
+* [Arnoldi-iteration experiments](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Arnoldi.ipynb)
 * [notes on restarting Arnoldi](notes/restarting-arnoldi.pdf)
 
 Showed that in the case where A is Hermitian, Hₙ is Hermitian as well, so Hₙ is tridiagonal and most of the dot products in the Arnoldi process are zero.  Hence Arnoldi reduces to a three-term recurrence, and the Ritz matrix is tridiagonal.  This is called the **Lanczos** algorithm.
@@ -391,7 +391,7 @@ It will cover everything in 18.335 up to and including **pset 4** and **lecture 
 
 * [video](https://mit.zoom.us/rec/share/kCxSHyF6hUTOFCmspZPIu_SZ4CqmDuNPynviyZ0gDm9m1oR-1SeGjV-tg2e3Vw6Q.p-GqnPs45BjOUOy7?startTime=1618599650000)
 * [notes on sparse-direct solvers](notes/lec21handout6pp.pdf) from Fall 2006
-* [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/Nested-Dissection.ipynb)
+* [IJulia notebook on sparse-direct solvers](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/Nested-Dissection.ipynb)
 
 **Sparse-direct solvers:** For many problems, there is an intermediate between the dense Θ(m³) solvers of LAPACK and iterative algorithms: for a sparse matrix A, we can sometimes perform an LU or Cholesky factorization while maintaining sparsity, storing and computing only nonzero entries for vast savings in storage and work.  One key observation is that the fill-in only depends on the pattern of the matrix, which can be interpreted as a [graph](http://en.wikipedia.org/wiki/Graph_%28mathematics%29): m vertices, and edges for the nonzero entries of A (an [adjacency matrix](http://en.wikipedia.org/wiki/Adjacency_matrix) of the graph), and sparse-direct algorithms are closely related to graph-theory problems.    How efficient the sparse-direct methods are depends on how easy it is to **partition** the graph by chopping it into pieces, and this is **easier for matrices that come from low-dimensional meshes** (e.g. discretized low-dimensional PDEs).  1d meshes are best (giving *banded* matrices with *linear* complexity), 2d meshes are still pretty good, and 3d meshes start to become challenging.  See the scalings in the handout, which are derived in the Davis book below.
 
@@ -511,7 +511,7 @@ Explained the idea of Clenshaw–Curtis quadrature as a change of variables + a 
 ### Lecture 35 (May 14)
 
 * [video](https://mit.zoom.us/rec/share/ZDmD6UIEybtemfOssMgfw6f87E6qZUtmwzWi6DHc4MX-9XfWk4Op2q5Kqng5ky8.Eggn9BlZcz8UxtFt?startTime=1621018860000)
-* [ApproxFun demo](https://nbviewer.jupyter.org/github/mitmath/18335/blob/master/notes/ApproxFun-demo.ipynb)
+* [ApproxFun demo](https://nbviewer.jupyter.org/github/mitmath/18335/blob/spring21/notes/ApproxFun-demo.ipynb)
 
 Finished discussion of Clenshaw–Curtis quadrature.
 
