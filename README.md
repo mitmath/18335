@@ -37,6 +37,10 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Final Projects**: The final project will be an 8–15 page paper reviewing some interesting numerical algorithm not covered in the course. See the [18.335 final-projects page](project/final_project.md) for more information, including topics from past semesters.
 
+Assignments
+------------
+* [Pset 1](psets/pset1.pdf) is due on Friday, February 18 at 12pm.
+
 Lecture Summaries and Handouts
 ------------------------------
 
@@ -62,5 +66,16 @@ There are a few things to watch out for in floating point arithmetic: overflow a
 
 To develop reliable algorithms for numerical linear algebra, we'll need to understand how rounding errors can accumulate over many floating point operations. The fundamental theorem above will our key tool to understand and control error accumulation.
 
-**Further Reading:** L. N. Trefethen, Lecture 13. 
+**Further Reading:** L. N. Trefethen, Lecture 13.
+
+### Lecture 3 (February 7)
+
+The algorithms of NLA are usually implemented with floating point arithmetic, which introduces rounding errors. The accuracy of our algorithms depends crucially on how these rounding errors propagate and accumulate. Broadly, this will depend on the *conditioning* of the underlying problem and the *stability* of the algorithm.
+* Ideally, we might hope that the relative error in the output of our algorithms is "small" for any allowed input (*forward stability*). However, this is usually placing too much burden on the algorithm. *Ill conditioned* problems can be highly sensitive to perturbations in the input, so rounding errors in the input alone may cause large changes in the output, even if everything afterward is computed perfectly!
+* A fairer way to evaluate our algorithms is to compare them with this idealized algorithm that computes exactly with the rounded inputs. A *backward stable* algorithm computes an exact output for a perturbed input whose relative error is "small" (compared with the exact input).
+
+Backward stable algorithms "give exactly the right answer to nearly the right question" (Trefethen, p. 104). For example, summing a set of floating point numbers by accumulating the partial sums is backward stable - it's as if we summed a slightly perturbed set of numbers in exact arithmetic. The beauty of backward stability analysis is that it separates inherent sensitivity in the problem from the stability of the algorithm used to solve it. Intuitively, backward stable algorithms provide accurate outputs when the problem is not too sensitive to perturbed inputs. To say more, we need to understand *condition numbers*, which attempt to quantify a problem's sensitivity.
+
+**Further Reading:** L. N. Trefethen, Lectures 12, 14, and 15.
+
 
