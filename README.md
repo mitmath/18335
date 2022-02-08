@@ -53,7 +53,7 @@ This course is about Numerical Linear Algebra (NLA) and related numerical method
 
 NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
 
-**Further Reading:** L.N. Trefethen, Appendix. The Definition of Numerical Analysis. 
+**Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
 
 ### Lecture 2 (February 2)
 
