@@ -53,14 +53,14 @@ This course is about Numerical Linear Algebra (NLA) and related numerical method
 
 NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
 
-**Further Reading:** L.N. Trefethen, Appendix. The Definition of Numerical Analysis. 
+**Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
 
 ### Lecture 2 (February 2)
 
 To do linear algebra on a computer, we need to approximate real numbers and their arithmetic. Chasing significant digits leads us to _floating point numbers_, which have some excellent approximation properties:
-* For any real number x, there is a floating point x' that satisfies |x' - x| <= 0.5 **epsilon_machine** |x|. **epsilon_machine** is about 2.22e-16 in IEEE double precision.
+* For any real number x, there is a floating point x' that satisfies |x' - x| <= 0.5 |x| **eps_mach**. **eps_mach** is about 2.22e-16 in IEEE double precision.
 * For any two floating point numbers x and y, floating point arithmetic is equivalent to rounding the exact result to the nearest floating point number (we called this _exact rounding_).
-* The above two facts give us the "fundamental theorem of floating point arithmetic" (p. 99, Trefethen), which says the relative error in a single floating point operation (e.g., adding two floating point numbers) is no greater than **epsilon_machine**.
+* The above two facts give us the "fundamental theorem of floating point arithmetic" (p. 99, Trefethen), which says the relative error in a single floating point operation (e.g., adding two floating point numbers) is no greater than **eps_mach**.
 
 There are a few things to watch out for in floating point arithmetic: overflow and underflow (due to finite exponent), and catastrophic cancellation (when all significant digits cancel).
 
@@ -77,5 +77,15 @@ The algorithms of NLA are usually implemented with floating point arithmetic, wh
 Backward stable algorithms "give exactly the right answer to nearly the right question" (Trefethen, p. 104). For example, summing a set of floating point numbers by accumulating the partial sums is backward stable - it's as if we summed a slightly perturbed set of numbers in exact arithmetic. The beauty of backward stability analysis is that it separates inherent sensitivity in the problem from the stability of the algorithm used to solve it. Intuitively, backward stable algorithms provide accurate outputs when the problem is not too sensitive to perturbed inputs. To say more, we need to understand *condition numbers*, which attempt to quantify a problem's sensitivity.
 
 **Further Reading:** L. N. Trefethen, Lectures 12, 14, and 15.
+
+### Lecture 4 (February 9)
+
+The *condition number* k(x) of a problem quantifies how small perturbations in the inputs affect the outputs. If the condition number is large, small perturbations in the inputs can lead to very large changes in the outputs. We say that such problems are *ill-conditioned*. On the other hand, *well-conditioned* problems have modest condition numbers. Critically, k(x) is **independent** of the algorithm used to solve the problem on a computer. It is an inherent property of the mathematical problem (but may vary by a constant, depending on the norm used to measure perturbations).
+* For differentiable functions the condition number is the (scaled) norm of the Jacobian, the matrix of partial derivatives that governs the first-order linear response in the output.
+* The forward relative error for a backward stable algorithm is on the order of k(x) **eps_mach** (see the [notes](notes/MIT 18.335J notes.pdf) for the precise statement). In general, the backward error of an algorithm can be amplified by the condition number in the forward error.
+* For the summation of n real numbers, k(x) = 1 (in the 1-norm) when the summands are positive, but can be arbitrarily large when there mixed signs lead to large cancellations.
+
+Backward error analysis provides an elegant framework to evaluate the stability of an algorithm. To judge the accuracy of an algorithm's outputs, one then converts backward error bounds to forward error bounds through the condition number.
+
 
 
