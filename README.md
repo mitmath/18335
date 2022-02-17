@@ -17,7 +17,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Prerequisites**: Understanding of linear algebra ([18.06](http://web.mit.edu/18.06/www/), [18.700](http://ocw.mit.edu/OcwWeb/Mathematics/18-700Fall-2005/CourseHome/), or equivalents). 18.335 is a graduate-level subject, however, so much more mathematical maturity, ability to deal with abstractions and proofs, and general exposure to mathematics is assumed than for 18.06!
 
-**Textbook**: The primary textbook for the course is [_Numerical Linear Algebra_ by Trefethen and Bau](http://www.amazon.com/Numerical-Linear-Algebra-Lloyd-Trefethen/dp/0898713617). ([Readable online](http://owens.mit.edu/sfx_local?bookid=9436&rft.genre=book&sid=Barton:Books24x7) with MIT certificates.)
+**Textbook**: The primary textbook for the course is [_Numerical Linear Algebra_ by Trefethen and Bau](http://www.amazon.com/Numerical-Linear-Algebra-Lloyd-Trefethen/dp/0898713617).
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
@@ -86,6 +86,21 @@ The *condition number* k(x) of a problem quantifies how small perturbations in t
 * For the summation of n real numbers, k(x) = 1 (in the 1-norm) when the summands are positive, but can be arbitrarily large when mixed signs lead to large cancellations.
 
 Backward error analysis provides an elegant framework to evaluate the stability of an algorithm. To judge the accuracy of an algorithm's outputs, one then converts backward error bounds to forward error bounds through the condition number. This will be our guiding paradigm when we analyze the accuracy of NLA's foundational algorithms in the coming weeks.
+
+### Lecture 5 (February 14)
+
+A fundamental task of linear algebra is the solution of linear systems of equations. In matrix notation, we write Ax = b where A is an m x n matrix, b is an m x 1 vector, and x is the n x 1 vector of unkowns. In high-level languages like Julia (and Matlab, Python, etc.), one can 'solve' Ax = b with the powerful "backslash" operator: x = A \ b. But what is the backslash operator really doing? Over the next several lectures, we will examine the core NLA algorithms that illuminate the "how" and "why" of backslash for dense, unstructured matrices. To get started, we ask a simpler question: what does it mean to solve Ax = b?
+
+Undergraduate linear algebra teaches us that there may be zero, one, or infinitely many solutions to Ax=b. We can get to the heart of the matter quickly with the singular value decomposition (SVD) of A. The SVD decomposes A into two rotations/reflections and a non-negative diagonal scaling. By rotating the inputs and outputs of our linear system, we can replace A x = b with a simpler diagonal system. The non-negative scaling factors are called _singular values_ of A and the rotated bases are called _singular vectors_.
+* When n = m, we have a square matrix. If A is invertible, we have a unique solution x = inv(A) b. A laundry list of equivalent conditions for invertibility of a square matrix all point to the same picture: the columns of A span the m-dimensional space of outputs and x describes the coordinates of b in the basis of column vectors. A is invertible whenever the singular values are nonzero and we say that A has full rank.
+* When n<m, we have too few equations and too many unkowns. When the singular values of A are nonzero, we say that A has full row rank and we will have infinitely many solutions. Which one should we pick?
+* When n>m, we have too many equations and too few unknowns. If the singular values of A are nonzero, we say that A has full column rank and we cannot solve Ax = b exactly (unless b happens to lie exactly in the column space of A). Instead, we try to minimize the Euclidean length between the left and right-hand side, i.e., min_x ||Ax-b||. The length of the projection of b onto the bottom n-m left singular vectors of A tells us exactly how small we can make ||Ax-b||.
+
+The SVD is extremely powerful, both conceptually and numerically. We'll revisit it's computation when we discuss the eigenvalue decomposition later in the course, but will look at simpler, (often) more efficient methods to solve Ax=b first. In the meantime, we'll often turn to the SVD for insight into the problems and algorithms of NLA.
+
+**Further Reading:** L. N. Trefethen, Lectures 4-5. (Lectures 1-3 are highly recommended for a quick linear algebra review.)
+
+
 
 
 
