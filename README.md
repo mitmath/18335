@@ -102,9 +102,9 @@ The SVD is extremely powerful, both conceptually and numerically. We'll revisit 
 
 ### Lecture 6 (February 16)
 
-The SVD decouples a linear system of equations by _diagonalizing_ the coeffient matrix A. Solving and analyzing a diagonal system is easy because we can calculate all the unkowns independently. However, computing the SVD of A can be fairly expensive on a computer. It is usually cheaper to _triangularize_ A and then solve be forward or backward susbstitution.
+The SVD decouples a linear system of equations by _diagonalizing_ the coeffient matrix A. Solving and analyzing a diagonal system is easy because we can calculate all the unkowns independently. However, computing the SVD of A can be fairly expensive on a computer. It is usually cheaper to _triangularize_ A and then solve with forward or backward susbstitution.
 * Gaussian elimination (without pivoting) triangularizes A with sequences of elementary row operations.
-* In matrix form, elementary row operations are equivalent to left multiplication by structured lower triangular matrices. Inverting these transformations yeilds the factorization A = LU, where L is lower triangular and U is upper triangular
+* In matrix form, elementary row operations are equivalent to left multiplication by structured lower triangular matrices. Inverting these transformations yields the factorization A = LU, where L is lower triangular and U is upper triangular
 * After computing A = LU, solving Ax = b requires two triangular solves.
 
 Unfortunately, solving Ax = b by LU factorization in floating point arithmetic is terrifically unstable. In practice, it is necessary to introduce special row/column permutations during Gaussian elimination, which lead to _pivoting_ strategies.
