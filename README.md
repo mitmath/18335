@@ -23,7 +23,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (first week of April), 30% **final project** ([one-page proposal](project/final_project.md) due Wednesday March 30, project due Monday **May 9**).
 
-* Psets will be **submitted electronically via Canvas**.  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
+* Psets will be **submitted electronically via Canvas** (navigate to the Gradescope tab to submit).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
 * [Piazza discussion board](https://www.piazza.com/mit/spring2022/18335/home)
 
