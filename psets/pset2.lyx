@@ -1,0 +1,312 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 2
+\end_layout
+
+\begin_layout Standard
+Due Fri.
+ Mar 4, 2022, at 12pm.
+ Submit via Gradescope (available from Canvas navigation bar).
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Stability
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 15.1.
+ You will need to review the definition of 
+\begin_inset Quotes eld
+\end_inset
+
+stability,
+\begin_inset Quotes erd
+\end_inset
+
+ of which backwards stability is a (common) special case, in that chapter.
+ [In parts (e) and (f), assume that 
+\begin_inset Formula $\frac{1}{k!}$
+\end_inset
+
+ can be computed to 
+\begin_inset Formula $O(\epsilon_{\mbox{machine}})$
+\end_inset
+
+ and concentrate on the accumulation of errors in the summations.]
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note: in part 15.1(c), the online version of Trefethen has a misprint: it
+ should be 
+\begin_inset Formula $\tilde{f}(x)=x\oslash x$
+\end_inset
+
+ as an algorithm for 
+\begin_inset Formula $f(x)=1$
+\end_inset
+
+, 
+\series bold
+not
+\series default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\tilde{f}(x)=x$
+\end_inset
+
+.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, exercise 16.1.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hint: for 
+\begin_inset Formula $f(A)=QA$
+\end_inset
+
+ where 
+\begin_inset Formula $Q$
+\end_inset
+
+ is unitary, it might be convenient to show that backwards stability of
+ 
+\begin_inset Formula $\tilde{f}(A)$
+\end_inset
+
+ 
+\series bold
+in this case only
+\series default
+ is equivalent to proving 
+\begin_inset Formula $\Vert\tilde{f}(A)-f(A)\Vert=\Vert f(A)\Vert O(\epsilon_{\text{machine}})$
+\end_inset
+
+ if you choose 
+\begin_inset Formula $\Vert\cdot\Vert$
+\end_inset
+
+ to be the 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ induced norm or the Frobenius norm.
+ i.e.
+ for multiplying by a 
+\emph on
+unitary
+\emph default
+ matrix, backwards stability is equivalent to the 
+\emph on
+forwards
+\emph default
+ error being small, which might be easier to analyze.
+ (Essentially, this happens because unitary matrices have condition number
+ 
+\begin_inset Formula $\kappa(Q)=1$
+\end_inset
+
+.) Once you have proved stability for multiplying by 
+\emph on
+one
+\emph default
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+, you can prove backwards stability for multiplying by 
+\emph on
+many
+\emph default
+ 
+\begin_inset Formula $Q$
+\end_inset
+
+'s using induction, for example.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Norms
+\end_layout
+
+\begin_layout Enumerate
+Derive Trefethen eq.
+ (3.10) (for which Trefethen only writes 
+\begin_inset Quotes eld
+\end_inset
+
+by much the same argument
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Find the code that computes the induced 
+\begin_inset Formula $\Vert A\Vert_{\infty}$
+\end_inset
+
+ norm in Julia, the 
+\family typewriter
+opnorm(A, Inf)
+\family default
+ function, on 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+github.com/JuliaLang/julia
+\end_layout
+
+\end_inset
+
+ in stdlib/LinearAlgebra/src/generic.jl and satisfy yourself that it is equivalen
+t to (3.10).
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 3.3.
+ Check that your proposed vectors and matrices achieve equality with 
+\family typewriter
+norm(x)
+\family default
+and/or
+\family typewriter
+ opnorm(A)
+\family default
+ in Julia.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: SVD and low-rank approximations
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 5.2.
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 5.4.
+\end_layout
+
+\begin_layout Subsection*
+Problem 4: Gaussian elimination
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 20.2
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 21.4
+\end_layout
+
+\begin_layout Enumerate
+Trefethen, problem 23.3.
+ Set up each experiment in Julia and compare timings with the results from
+ the 1991 workstation included in the text.
+\end_layout
+
+\end_body
+\end_document
