@@ -23,7 +23,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (first week of April), 30% **final project** ([one-page proposal](project/final_project.md) due Wednesday March 30, project due Monday **May 9**).
 
-* Psets will be **submitted electronically via Canvas**.  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
+* Psets will be **submitted electronically via Canvas** (navigate to the Gradescope tab to submit).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
 * [Piazza discussion board](https://www.piazza.com/mit/spring2022/18335/home)
 
@@ -100,7 +100,16 @@ The SVD is extremely powerful, both conceptually and numerically. We'll revisit 
 
 **Further Reading:** L. N. Trefethen, Lectures 4-5. (Lectures 1-3 are highly recommended for a quick linear algebra review.)
 
+### Lecture 6 (February 16)
 
+The SVD decouples a linear system of equations by _diagonalizing_ the coeffient matrix A. Solving and analyzing a diagonal system is easy because we can calculate all the unkowns independently. However, computing the SVD of A can be fairly expensive on a computer. It is usually cheaper to _triangularize_ A and then solve with forward or backward susbstitution.
+* Gaussian elimination (without pivoting) triangularizes A with sequences of elementary row operations.
+* In matrix form, elementary row operations are equivalent to left multiplication by structured lower triangular matrices. Inverting these transformations yields the factorization A = LU, where L is lower triangular and U is upper triangular
+* After computing A = LU, solving Ax = b requires two triangular solves.
+
+Unfortunately, solving Ax = b by LU factorization in floating point arithmetic is terrifically unstable. In practice, it is necessary to introduce special row/column permutations during Gaussian elimination, which lead to _pivoting_ strategies.
+
+**Further Reading:** L.N. Trefethen, Lectures 20-21.
 
 
 
