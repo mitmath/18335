@@ -121,7 +121,7 @@ Computing A = LU by Gaussian elimination (GE) fails entirely if a row operation 
 
 Because ||L|| = O(1) when partial pivoting is employed, the stability of GE (with partial pivoting) boils down to growth in U relative to A. Are there matrices for which ||U|| is much larger than ||A||? The answer is yes, but they essentially never appear in practice. In theory GE is unstable, but in practice it behaves like a backward stable algorithm when partial pivoting is employed. With a fascinating history strechting back centuries, GE remains the algorithm of choice for solving dense, unstructured m x m linear systems of equations.
 
-**Further Reading:** L.N. Trefethen, Lectures 21-22. [GE Notebook(notes/Is-Gaussian-Elimination_Unstable.ipynb)
+**Further Reading:** L.N. Trefethen, Lectures 21-22. [GE Notebook](notes/Is-Gaussian-Elimination_Unstable.ipynb)
 
 
 
