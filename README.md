@@ -123,5 +123,14 @@ Because ||L|| = O(1) when partial pivoting is employed, the stability of GE (wit
 
 **Further Reading:** L.N. Trefethen, Lectures 21-22. Also, experiment with the [GE notebook](notes/Is-Gaussian-Elimination-Unstable.ipynb).
 
+### Lecture 8
+
+For a symmetric positive definite matrices, Gaussian elimination can be performed twice as fast, without pivoting, and is backward stable. This is the _Cholesky decomposition_, A = R R^T. Cholesky introduces zeros in both columns and rows by applying left and right elimination matrices in a symmetric manner. By preserving symmetry at each step and working only with the lower triangular part of A, one cuts the workload of triangularization in half.
+
+When A has more rows than columns the system is overdetermined and typically does not have an exact solution. The _least-squares_ solution minimizes the residual norm ||Ax-b|| in two steps:
+* Project b onto the column space of A.
+* Solve Ax = Pb with the projected right-hand side.
+
+_Gram-Schmidt orthogonalization_ of the columns of A leads to the _QR factorization_ A = QR. The columns of Q form an orthonormal basis for the column space of A and R is an upper triangular matrix. The least-squares problem becomes Rx = Q^T b, which can be solved efficiently with back-substitution. This "classical" Gram-Schmidt procedure is unstable, so we'll take a closer look at two alternative algorithms for A = QR in Lecture 9.
 
 
