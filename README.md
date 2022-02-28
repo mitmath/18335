@@ -123,5 +123,22 @@ Because ||L|| = O(1) when partial pivoting is employed, the stability of GE (wit
 
 **Further Reading:** L.N. Trefethen, Lectures 21-22. Also, experiment with the [GE notebook](notes/Is-Gaussian-Elimination-Unstable.ipynb).
 
+### Lecture 8
 
+For a symmetric positive definite matrices, Gaussian elimination can be performed twice as fast, without pivoting, and is backward stable. This is the _Cholesky decomposition_, A = R R^T. Cholesky introduces zeros in both columns and rows by applying left and right elimination matrices in a symmetric manner. By preserving symmetry at each step and working only with the lower triangular part of A, one cuts the workload of triangularization in half.
+
+When A has more rows than columns the system is overdetermined and typically does not have an exact solution. The _least-squares_ solution minimizes the residual norm ||Ax-b|| in two steps:
+* Project b onto the column space of A.
+* Solve Ax = Pb with the projected right-hand side.
+
+_Gram-Schmidt orthogonalization_ of the columns of A leads to the _QR factorization_ A = QR. The columns of Q form an orthonormal basis for the column space of A and R is an upper triangular matrix. The least-squares problem becomes Rx = Q^T b, which can be solved efficiently with back-substitution. This "classical" Gram-Schmidt procedure is unstable, so we'll take a closer look at two alternative algorithms for A = QR in Lecture 9.
+
+**Further Reading:** L.N. Trefethen, Lecture 7 and 23.
+
+#### Lecture 9
+Gram-Schmidt orthogonalization in its classical form is unstable, but there is a simple fix: orthogonalize all following columns (j > k) against q_k as soon as q_k is computed. This incremental orthogonalization of the columns has superior stability properties and is usually a better way to compute A = QR. However, both classical and modified Gram-Schmidt may suffer from _loss of orthogonality_: the columns of Q may be far from orthogonal when the columns of A are nearly linearly independent.
+
+Another option when computing A = QR is to triangularize A via orthogonal (or unitary) transformations. Working with orthogonal matrices is a game-changer in numerical analysis, because rotations and reflections don't amplify errors or cancel catastrophically in the way that other transformations (such as elimination matrices) are prone to do. Triangularization of A with orthgonal matrices can be formulated using rotations (Givens) or reflections (Householder). These orthogonal transformations form the foundation of backward stable algorithms throughout NLA.
+
+**Further Reading:** L.N. Trefethen, Lectures 8 and 10.
 
