@@ -148,6 +148,7 @@ Another option when computing A = QR is to triangularize A via orthogonal (or un
 Triangularizing a matrix A with Householder reflections provides the first _backward stable_ factorization algorithm that we have encountered in this course. They key enabling property is that Householder reflections are always orthogonal transformations, even when the generating vectors (reflectors) are computed inexactly in floating point! In practice, the orthogonal factor Q is usually not stored explicitly: instead, the reflectors are stored and used to efficiently and stably apply Q and Q^T to vectors. Consequently, orthogonal Householder transformations
 * avoid large relative errors (e.g., cancellation) in the product QR, and
 * maintain orthogonality even when A is ill-conditioned.
+
 In addition to its superior stability, Householder QR is more efficient (in the classical 'flops' metric) than Gram-Schmidt because it works with submatrices of decreasing row and column dimension (similar to Gaussian elimination), whereas only row dimension decreases during Gram-Schmidt. 
 
 Backward stable factorizations frequently act as building blocks for the design of backward stable algorithms in NLA. For example, Householder QR provides us with an efficient backward stable method for computing least-squares solutions to overdetermined linear systems. Householder QR is typically the method of choice for general purpose "backslash"-style algorithms when confronted with rectangular linear systems.
