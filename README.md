@@ -136,9 +136,20 @@ _Gram-Schmidt orthogonalization_ of the columns of A leads to the _QR factorizat
 **Further Reading:** L.N. Trefethen, Lecture 7 and 23.
 
 #### Lecture 9
+
 Gram-Schmidt orthogonalization in its classical form is unstable, but there is a simple fix: orthogonalize all following columns (j > k) against q_k as soon as q_k is computed. This incremental orthogonalization of the columns has superior stability properties and is usually a better way to compute A = QR. However, both classical and modified Gram-Schmidt may suffer from _loss of orthogonality_: the columns of Q may be far from orthogonal when the columns of A are nearly linearly independent.
 
 Another option when computing A = QR is to triangularize A via orthogonal (or unitary) transformations. Working with orthogonal matrices is a game-changer in numerical analysis, because rotations and reflections don't amplify errors or cancel catastrophically in the way that other transformations (such as elimination matrices) are prone to do. Triangularization of A with orthgonal matrices can be formulated using rotations (Givens) or reflections (Householder). These orthogonal transformations form the foundation of backward stable algorithms throughout NLA.
 
 **Further Reading:** L.N. Trefethen, Lectures 8 and 10.
 
+### Lecture 10
+
+Triangularizing a matrix A with Householder reflections provides the first _backward stable_ factorization algorithm that we have encountered in this course. They key enabling property is that Householder reflections are always orthogonal transformations, even when the generating vectors (reflectors) are computed inexactly in floating point! In practice, the orthogonal factor Q is usually not stored explicitly: instead, the reflectors are stored and used to efficiently and stably apply Q and Q^T to vectors. Consequently, orthogonal Householder transformations
+* avoid large relative errors (e.g., cancellation) in the product QR, and
+* maintain orthogonality even when A is ill-conditioned.
+In addition to its superior stability, Householder QR is more efficient (in the classical 'flops' metric) than Gram-Schmidt because it works with submatrices of decreasing row and column dimension (similar to Gaussian elimination), whereas only row dimension decreases during Gram-Schmidt. 
+
+Backward stable factorizations frequently act as building blocks for the design of backward stable algorithms in NLA. For example, Householder QR provides us with an efficient backward stable method for computing least-squares solutions to overdetermined linear systems. Householder QR is typically the method of choice for general purpose "backslash"-style algorithms when confronted with rectangular linear systems.
+
+**Further Reading:** L.N. Trefethen, Lectures 11, 16, and 19.
