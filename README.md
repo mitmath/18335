@@ -41,6 +41,7 @@ Assignments
 ------------
 * [Pset 1](psets/pset1.pdf) is due on Friday, February 18 at 12pm.
 * [Pset 2](psets/pset2.pdf) is due on Friday, March 4 at 12pm.
+* [Pset 3](psets/pset3.pdf) is due on Friday, March 18 at 12pm.
 
 Lecture Summaries and Handouts
 ------------------------------
