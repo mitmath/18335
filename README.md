@@ -166,4 +166,4 @@ Eigenvalues and eigenvectors appear throughout applied math in a stunning variet
 
 There is no general purpose direct method that computes the eigenvalues of a matrix A in a finite number of algebraic operations on the computer. This is because the eigenvalues of A are the roots of the _characteristic polynomial_ p(lambda) = det(A - lambda * I), and the roots of polynomials (degree => 5) have no closed form expression in terms of algebraic operations (add, multiply, and nth roots). Instead, we'll develop _iterative methods_ that aim to efficiently refine approximate eigenvalues and eigenvectors of A, but usually do not converge to the true values in finitely many operations.
 
-**Further Reading:** L.N.T. Lecture 25 and 27.
+**Further Reading:** L.N.T. Lectures 25 and 27.
