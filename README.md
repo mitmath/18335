@@ -41,6 +41,7 @@ Assignments
 ------------
 * [Pset 1](psets/pset1.pdf) is due on Friday, February 18 at 12pm.
 * [Pset 2](psets/pset2.pdf) is due on Friday, March 4 at 12pm.
+* [Pset 3](psets/pset3.pdf) is due on Friday, March 18 at 12pm.
 
 Lecture Summaries and Handouts
 ------------------------------
@@ -154,3 +155,15 @@ In addition to its superior stability, Householder QR is more efficient (in the 
 Backward stable factorizations frequently act as building blocks for the design of backward stable algorithms in NLA. For example, Householder QR provides us with an efficient backward stable method for computing least-squares solutions to overdetermined linear systems. Householder QR is typically the method of choice for general purpose "backslash"-style algorithms when confronted with rectangular linear systems.
 
 **Further Reading:** L.N. Trefethen, Lectures 11, 16, and 19.
+
+### Lecture 11
+During the past few weeks, we have focused on the numerical solution of linear systems, Ax = b, by _triangularizing_ the coefficient matrix A. We now turn to a second classical problem in linear algebra: the eigenvalue problem, Ax = lambda x. The eigenvalues (lambda) and eigenvectors (x) of matrices play a central role in their _diagonalization_. Not every matrix is diagonalized by its eigenvectors, but every **symmetric matrix is diagonalized by an orthonormal set of eigenvectors**. The eigenvectors of the symmetric nonnegative matrices A * A^T and A^T * A are the left and right singular vectors of A, respectively, while the singular values are the (nonnegative) square roots of their shared eigenvalues. The eigenvalue decomposition of a symmetric nonnegative matrix coincides with its SVD.
+
+Eigenvalues and eigenvectors appear throughout applied math in a stunning variety of roles. Common themes that link their applications are 
+* decoupling equations that evolve linearly over time, where it is important to keep the same basis for inputs and outputs.
+* asymptotic behavior of linear evolution equations.
+* resonant response of linear systems to select inputs (see 18.03 notes).
+
+There is no general purpose direct method that computes the eigenvalues of a matrix A in a finite number of algebraic operations on the computer. This is because the eigenvalues of A are the roots of the _characteristic polynomial_ p(lambda) = det(A - lambda * I), and the roots of polynomials (degree => 5) have no closed form expression in terms of algebraic operations (add, multiply, and nth roots). Instead, we'll develop _iterative methods_ that aim to efficiently refine approximate eigenvalues and eigenvectors of A, but usually do not converge to the true values in finitely many operations.
+
+**Further Reading:** L.N.T. Lectures 25 and 27.
