@@ -177,4 +177,13 @@ The simple form of the QR algorithm can be understood through the lens of _simul
 
 **Further Reading:** L.N.T. Lecture 28.
 
+### Lecture 13
+
+To make the QR algorithm computationally efficient, it is essential that (1) each iteration can be executed efficiently, and (2) the iterates converge rapidly. Two address (1), we split the computation into a direct phase and an iterative phase. For symmetric matrices, this two-phase approach takes the form:
+* **Tridiagonal reduction:** The symmetric matrix A is reduced to tridiagonal form by a finite sequence of orthogonal similarity transformations (i.e., Householder reflections). The tridiagonal output has the same eigenvalues as A and its eigenvectors are related by an orthogonal transformation. This phase costs O(m^3) flops.
+* **Tridiagonal QR iteration:** QR iterations preserve symmetric tridiagonal structure. Moreover, sparsity and symmetry allow rapid execution in this case, taking just O(m) flops / iteration.
+
+Simultaneous power iterations can converge very slowly when the eigenvalues of A are not well-separated and the same problem afflicts generic QR iterations. To accelerate convergence, it is essential to introduce carefully selected _shifts_ at each iteration in the second phase. To see how to select the shifts, we move from power iterations to Rayleigh Quotient iterations (RQI) and discover a hidden link between RQI and the last column of the QR iterates. The last row and column of the tridiagoanl matrix converges (usually) rapdily to zero, except for the diagonal entry (usually) converging rapidly to an eigenvalue of A. _Deflation_ allows us to drop this last row and column, continuing the iteration with the remaining principle (n-1) x (n-1) submatrix, and so forth.
+
+**Further Reading:** L.N.T. Lecture 29. For the curious biography of QR author John Francis, see Gene Golub and Frank Uhlig's [article](https://academic.oup.com/imajna/article-abstract/29/3/467/883213?redirectedFrom=fulltext&login=false).
 
