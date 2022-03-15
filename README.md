@@ -157,6 +157,7 @@ Backward stable factorizations frequently act as building blocks for the design 
 **Further Reading:** L.N. Trefethen, Lectures 11, 16, and 19.
 
 ### Lecture 11
+
 During the past few weeks, we have focused on the numerical solution of linear systems, Ax = b, by _triangularizing_ the coefficient matrix A. We now turn to a second classical problem in linear algebra: the eigenvalue problem, Ax = lambda x. The eigenvalues (lambda) and eigenvectors (x) of matrices play a central role in their _diagonalization_. Not every matrix is diagonalized by its eigenvectors, but every **symmetric matrix is diagonalized by an orthonormal set of eigenvectors**. The eigenvectors of the symmetric nonnegative matrices A * A^T and A^T * A are the left and right singular vectors of A, respectively, while the singular values are the (nonnegative) square roots of their shared eigenvalues. The eigenvalue decomposition of a symmetric nonnegative matrix coincides with its SVD.
 
 Eigenvalues and eigenvectors appear throughout applied math in a stunning variety of roles. Common themes that link their applications are 
@@ -167,3 +168,13 @@ Eigenvalues and eigenvectors appear throughout applied math in a stunning variet
 There is no general purpose direct method that computes the eigenvalues of a matrix A in a finite number of algebraic operations on the computer. This is because the eigenvalues of A are the roots of the _characteristic polynomial_ p(lambda) = det(A - lambda * I), and the roots of polynomials (degree => 5) have no closed form expression in terms of algebraic operations (add, multiply, and nth roots). Instead, we'll develop _iterative methods_ that aim to efficiently refine approximate eigenvalues and eigenvectors of A, but usually do not converge to the true values in finitely many operations.
 
 **Further Reading:** L.N.T. Lectures 25 and 27.
+
+### Lecture 12
+
+In its simplest form, the QR algorithm calculates all of the eigenvalues of a square matrix A by iterating two steps: (1) compute the qr factorization A = QR, and (2) recombine the factors backwards A <= RQ. Remarkably, the diagonal entries of A typically converge to the eigenvalues of the original matrix as the iteration progresses! When A is symmetric, the product of orthogonal factors from each iteration typically converge to the associated eigenvector matrix. But what makes this remarkable iteration converge? 
+
+The simple form of the QR algorithm can be understood through the lens of _simultaneous power iterations_. Power iterations extract approximations to the dominant eigenvalue and eigenvector of A by applying powers of A to an initial "guess" and normalizing. If we apply powers of A simultaneously to a set of m linearly independent vectors and periodically orthgonalize, we can even get approximations to the dominant m eigenpairs. These approximations converge geometrically for (real) symmetric matrices with distinct eigenvalues. The key to understanding the QR iteration is the equivalence between QR iterates and simultaneous power iterates.
+
+**Further Reading:** L.N.T. Lecture 28.
+
+
