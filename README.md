@@ -179,7 +179,7 @@ The simple form of the QR algorithm can be understood through the lens of _simul
 
 ### Lecture 13
 
-To make the QR algorithm computationally efficient, it is essential that (1) each iteration can be executed efficiently, and (2) the iterates converge rapidly. Two address (1), we split the computation into a direct phase and an iterative phase. For symmetric matrices, this two-phase approach takes the form:
+To make the QR algorithm computationally efficient, it is essential that (1) each iteration can be executed efficiently, and (2) the iterates converge rapidly. To address (1), we split the computation into a direct phase and an iterative phase. For symmetric matrices, this two-phase approach takes the form:
 * **Tridiagonal reduction:** The symmetric matrix A is reduced to tridiagonal form by a finite sequence of orthogonal similarity transformations (i.e., Householder reflections). The tridiagonal output has the same eigenvalues as A and its eigenvectors are related by an orthogonal transformation. This phase costs O(m^3) flops.
 * **Tridiagonal QR iteration:** QR iterations preserve symmetric tridiagonal structure. Moreover, sparsity and symmetry allow rapid execution in this case, taking just O(m) flops / iteration.
 
