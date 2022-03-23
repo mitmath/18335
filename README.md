@@ -187,3 +187,13 @@ Simultaneous power iterations can converge very slowly when the eigenvalues of A
 
 **Further Reading:** L.N.T. Lectures 26 and 29. For the curious biography of QR author John Francis, see Gene Golub and Frank Uhlig's [article](https://academic.oup.com/imajna/article-abstract/29/3/467/883213?redirectedFrom=fulltext&login=false).
 
+### Lecture 14
+
+Real symmetric (Hermitian) matrices are always diagonalized by an orthogonal (unitary) basis of eigenvectors. The QR algorithm leverages this property: it diagonalizes real symmetric (Hermitian) matrices by applying a sequence of orthogonal (unitary) similarity transformations to A. Consequently, both phases are backward stable. On the other hand, nonsymmetric matrices may not be diagonalized by an orthogonal basis of eigenvectors. So how should we proceed?
+
+Rather than diagonalizing nonsymmetric matrices, the basic QR iterations _triangularize_ them by unitary similarity transformations. This triangular reduction is called the _Schur form_ of A and the eigenvalues of A are revealed along the diagonal. If A is real but nonsymmetric we can work with the _real Schur form_, which has 2 x 2 real diagonal blocks corresponding to any complex conjugate eigenvalue pairs of A. The two phase QR iteration for nonsymmetric matrices is similar to the symmetric QR algorithm with a few adapations. For example, the symmetric tridiagonal reduction and iterations are replaced by upper Hessenberg reduction and iterations and implicit double shifts accelerate convergence to the real Schur form while avoiding complex arithmetic (see the accompanying notebook).
+
+As an alternative to the eigendecomposition, we can also diagonalize a nonsymmetric matrix A via the SVD. Here, an adaptation of the two phase QR algorithm applies _different_ orthogonal transformations from the left and right to diagonalize A.
+
+**Further Reading:** L.N.T. Lecture 31. For more on the nonsymmetric QR iterations, deflation, and implicit double shifts, see the accompanying iJulia notebook.
+
