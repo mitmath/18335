@@ -197,3 +197,11 @@ As an alternative to the eigendecomposition, we can also diagonalize a nonsymmet
 
 **Further Reading:** L.N.T. Lecture 31. For more on the nonsymmetric QR iterations, deflation, and implicit double shifts, see the accompanying [iJulia notebook](notes/implicit_Q.ipynb).
 
+### Lecture 15
+
+Over the last several weeks, we examined numerical algorithms for the solution of linear systems, least-squares problems, and eigenvalue problems. These algorithms are backward stable (or behaved like backward stable algorithms in practice), meaning they compute exact outputs for slightly perturbed inputs. To understand the accuracy of these algorithms, we turn to perturbation theory and sensitivity analysis.
+
+The _condition number of a matrix_ A bounds the first-order sensitivity of matrix multiplication and the solution of linear systems to perturbed inputs. As the ratio of the largest and smallest singular values, it quantifies how much A can stretch and shrink inputs in different directions. For overdetermined systems, another factor influences the sesnitivity of the least-squares solution: the condition number of the orthogonal projection onto the range of A. Put roughly, both suffer from ill-conditioning when cancellation occurs and the outputs are **much** smaller than the inputs.
+
+**Further Reading:** L.N.T. Lectures 12 and 18.
+
