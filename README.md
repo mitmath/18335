@@ -205,3 +205,12 @@ The _condition number of a matrix_ A bounds the first-order sensitivity of matri
 
 **Further Reading:** L.N.T. Lectures 12 and 18.
 
+### Lecture 16
+
+Given a matrix A, how sensitive are its eigenvalues to small perturbations in the entries of A? Broadly speaking, the eigenvalues of matrices with orthogonal eigenvectors are well conditioned. If the eigenvectors are far from orthogonal, some or all of the eigenvalues may be ill-conditioned.
+* _Wilkinson's condition number_ describes the first-order sensitivity of a simple eigenvalue lamba using _right_ and _left_ eigenvectors.
+* The _epsilon pseudospectrum_ describes how far eigenvalues can travel under perturbations using level sets of the resolvent norm. It is a remarkably versatile tool and recovers classical results like the Bauer-Fike Theorem.
+
+**Further Reading:** See David Bindel's notes on [Gerschgoren disks](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec24.pdf) and [Bauer-Fike](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec25.pdf). Check out the [Pseudospectra Gateway](https://www.cs.ox.ac.uk/pseudospectra/intro.html) for more on the epsilon pseudosepctrum.
+
+
