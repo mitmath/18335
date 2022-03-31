@@ -211,6 +211,6 @@ Given a matrix A, how sensitive are its eigenvalues to small perturbations in th
 * _Wilkinson's condition number_ describes the first-order sensitivity of a simple eigenvalue using _right_ and _left_ eigenvectors.
 * The _epsilon pseudospectrum_ describes how far eigenvalues can travel under perturbations using level sets of the resolvent norm. It is a remarkably versatile tool and recovers classical results like the Bauer-Fike Theorem.
 
-**Further Reading:** See David Bindel's notes on [Gerschgoren disks](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec24.pdf) and [Bauer-Fike](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec25.pdf). Check out the [Pseudospectra Gateway](https://www.cs.ox.ac.uk/pseudospectra/intro.html) for more on the epsilon pseudosepctrum.
+**Further Reading:** See David Bindel's notes on [Gershgorin disks](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec24.pdf) and [Bauer-Fike](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec25.pdf). Check out the [Pseudospectra Gateway](https://www.cs.ox.ac.uk/pseudospectra/intro.html) for more on the epsilon pseudosepctrum.
 
 
