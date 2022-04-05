@@ -205,3 +205,22 @@ The _condition number of a matrix_ A bounds the first-order sensitivity of matri
 
 **Further Reading:** L.N.T. Lectures 12 and 18.
 
+### Lecture 16
+
+Given a matrix A, how sensitive are its eigenvalues to small perturbations in the entries of A? Broadly speaking, the eigenvalues of matrices with orthogonal eigenvectors are well conditioned. If the eigenvectors are far from orthogonal, some or all of the eigenvalues may be ill-conditioned.
+* _Wilkinson's condition number_ describes the first-order sensitivity of a simple eigenvalue using _right_ and _left_ eigenvectors.
+* The _epsilon pseudospectrum_ describes how far eigenvalues can travel under perturbations using level sets of the resolvent norm. It is a remarkably versatile tool and recovers classical results like the Bauer-Fike Theorem.
+
+**Further Reading:** See David Bindel's notes on [Gershgorin disks](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec24.pdf) and [Bauer-Fike](https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec25.pdf). Check out the [Pseudospectra Gateway](https://www.cs.ox.ac.uk/pseudospectra/intro.html) for more on the epsilon pseudosepctrum.
+
+### Lecture 17
+
+The algorithms we have studied so far rely on dense matrix factorizations, which are prohibitively expensive for very large matrices (typically requiring O(m^3) flops). However, when large matrices arise in "real world applications" they are often _data-sparse_. For example, large PDE discretizations usually have only O(m) nonzero entries. Can we leverage such sparsity and design scalable algorithms for very large matrices?
+
+A broad class of data-sparse matrices have a fast "mat-vec": they can be multiplied by a vector using only O(m) or O(mlog(m)) flops. Iterative methods based on _Krylov subspaces_ use this fast mat-vec to build up a subspace from which approximate solutions to, e.g., linear systems, eigenvalues, eigenvectors, and more, can be constructed. Ideally, a Krylov subspace of small dimension contains good approximations so that not many mat-vecs are required.
+
+The naive Krylov basis, matrix powers applied to a starting vector, is famously ill-conditioned. The _Arnoldi iteration_ produces an orthonormal basis for the Krylov subspace by applying a modified Gram-Schmidt procedure to the naive Krylov basis. When projected onto this special orthonormal basis, our matrix is transformed to upper Hessenberg form. This upper Hessenberg matrix is the key to constructing approximations from the Krylov subspace.
+
+**Further Reading:** L.N.T. Lectures 32 and 33.
+
+
