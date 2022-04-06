@@ -1,0 +1,496 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Take-Home Midterm Exam: Spring 2022
+\end_layout
+
+\begin_layout Standard
+Posted 1pm Wednesday April 6, due 
+\series bold
+1pm Friday April 8.
+\end_layout
+
+\begin_layout Subsection*
+Problem 0: Honor code
+\end_layout
+
+\begin_layout Standard
+Copy and sign the following in your solutions:
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+I have not used any resources to complete this exam other than my own 18.335
+ notes, the textbook, running my own Julia code, and posted 18.335 course
+ materials.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 30pt
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 30col%
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0ex"
+width "60col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+your signature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (10+10+8+5 points)
+\end_layout
+
+\begin_layout Standard
+Consider the two real vectors 
+\begin_inset Formula $u=(u_{1},u_{2},\ldots,u_{n})^{T}$
+\end_inset
+
+ and 
+\begin_inset Formula $v=(v_{1},v_{2},\ldots,v_{n})^{T}$
+\end_inset
+
+ and recall that the 1-norm of a vector 
+\begin_inset Formula $x$
+\end_inset
+
+ is defined as 
+\begin_inset Formula $\|x\|_{1}=|x_{1}|+|x_{2}|+\cdots+|x_{n}|$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Show that computing the dot product 
+\begin_inset Formula $f(u,v)=u_{1}v_{1}+u_{2}v_{2}+\cdots+u_{n}v_{n}$
+\end_inset
+
+ in floating point arithmetic with left to right summation is backward stable,
+ and in fact that 
+\begin_inset Formula $\hat{f}(u,v)=f(u+\delta u,v)=f(u,v+\delta v)$
+\end_inset
+
+ for some 
+\begin_inset Formula $\delta u$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta v$
+\end_inset
+
+ satisfying 
+\begin_inset Formula $\|\delta u\|_{1}\leq\|u\|_{1}\mathcal{\mathcal{O}}(\epsilon_{{\rm mach}})$
+\end_inset
+
+ and 
+\begin_inset Formula $\|\delta v\|_{1}\leq\|v\|_{1}\mathcal{\mathcal{O}}(\epsilon_{{\rm mach}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculate the relative condition number of 
+\begin_inset Formula $f(u,v)$
+\end_inset
+
+ with respect to its first input 
+\begin_inset Formula $u$
+\end_inset
+
+ in the 1-norm.
+\end_layout
+
+\begin_layout Enumerate
+Using your results in parts (a) and (b), derive a bound on the forward error
+ in 
+\begin_inset Formula $f(u,v)$
+\end_inset
+
+.
+ You should write the first order term explicitly (don't use 
+\begin_inset Quotes eld
+\end_inset
+
+big-oh
+\begin_inset Quotes erd
+\end_inset
+
+ notation).
+\end_layout
+
+\begin_layout Enumerate
+Explain why computing the outer product 
+\begin_inset Formula $F(u,v)=uv^{T}$
+\end_inset
+
+is not backward stable.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (9 + 9 + 9 + 6 points)
+\end_layout
+
+\begin_layout Standard
+Consider a tall skinny matrix 
+\begin_inset Formula $X$
+\end_inset
+
+ with 
+\begin_inset Formula $m$
+\end_inset
+
+ rows and 
+\begin_inset Formula $n\ll m$
+\end_inset
+
+ linearly independent columns.
+ Let 
+\begin_inset Formula $X=QR$
+\end_inset
+
+ be the reduced QR factorization of 
+\begin_inset Formula $X$
+\end_inset
+
+ and let 
+\begin_inset Formula $A=LL^{T}$
+\end_inset
+
+ be the Cholesky factorization of the 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ symmetric positive definite matrix 
+\begin_inset Formula $A=X^{T}X$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Prove that the triangular factors in the two decompositions are equal, i.e.,
+ that 
+\begin_inset Formula $R=L^{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using (a), describe an algorithm that computes both 
+\begin_inset Formula $Q$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ from the Cholesky factorization of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+How many flops does each step from your algorithm in (b) require? Include
+ the cost of forming 
+\begin_inset Formula $A$
+\end_inset
+
+ and computing the Cholesky decomposition.
+ You should write the leading order terms explicitly, i.e.
+ 
+\begin_inset Formula $\sim2n^{2}$
+\end_inset
+
+, rather than 
+\begin_inset Formula $\mathcal{\mathcal{O}}(n^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Explain why the orthogonal factor 
+\begin_inset Formula $\hat{Q}$
+\end_inset
+
+ computed by the algorithm in (b) in floating point may not be close to
+ an orthogonal matrix when 
+\begin_inset Formula $X$
+\end_inset
+
+ is ill-conditioned.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Remark: 
+\series default
+Although Cholesky-based QR appears unstable, it has excellent communication
+ costs.
+ Remarkably, the instability explored in (d) can be overcome by, essentially,
+ iterating the algorithm three times.
+ The result is a state-of-the-art communication-minimizing algorithm!
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (10 + 18 + 6 points)
+\end_layout
+
+\begin_layout Standard
+In analogy to the QR algorithm for the standard eigenvalue problem 
+\begin_inset Formula $Av=\lambda v$
+\end_inset
+
+, the QZ algorithm is used to compute generalized eigenvalues of the generalized
+ eigenvalue problem 
+\begin_inset Formula $Av=\lambda Bv$
+\end_inset
+
+, where 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ matrices.
+ Like QR, it proceeds in two stages: use orthogonal transformations (e.g.,
+ Householder transformations) applied from the left and right to (i) reduce
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ to upper Hessenberg form and upper triangular form, and (ii) perform QZ
+ iterations that drive the subdiagonal entries of the upper Hessenberg matrix
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ to zero.
+ In this problem, you will work through stage (i) of the QZ algorithm.
+\end_layout
+
+\begin_layout Enumerate
+Apply a sequence of Householder transformations on the left of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ that triangularize 
+\begin_inset Formula $B.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Apply a sequence of Householder transformations on the left and right of
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ that make 
+\begin_inset Formula $A$
+\end_inset
+
+ upper Hessenberg and keep 
+\begin_inset Formula $B$
+\end_inset
+
+ upper triangular.
+ (Hint: use transformations from the left to introduce zeros in 
+\begin_inset Formula $A$
+\end_inset
+
+ and from the right to keep 
+\begin_inset Formula $B$
+\end_inset
+
+ upper triangular.)
+\end_layout
+
+\begin_layout Enumerate
+Is stage (i) backward stable? Give a brief explanation (one or two sentences).
+\end_layout
+
+\begin_layout Standard
+Your answer should include diagrams that show the pattern of zeros and nonzeros
+ after each Householder transformation is applied, as well as Julia code
+ to execute stage (i).
+ You may use Julia code from the notes folder on the course page to compute
+ and apply Householder reflectors.
+\end_layout
+
+\end_body
+\end_document
