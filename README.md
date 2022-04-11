@@ -227,7 +227,7 @@ The naive Krylov basis, matrix powers applied to a starting vector, is famously 
 
 An important application of the Arnoldi iteration is the approximation of a few isolated extremal eigenvalues of a matrix. The approximate eigenvalues are the eigenvalues of the small upper Hessenberg matrix, i.e., the Ritz values obtained from a Rayleigh--Ritz projection step with the Arnoldi basis. Among possible Rayleigh--Ritz approximations, the Arnoldi basis is very special: the eigenvalues of the upper Hessenberg matrix are the roots of a minimizing monic polynomial. We can analyze the convergence of the Ritz-values produced by Arnoldi iterations by studying this (min-max) polynomial optimization problem.
 
-**Further Reading:** L.N.T. Lectures 34. For more about the convergence of Arnoldi's Ritz values, see the illuminating review article by [Arno Kuijlaars](https://epubs.siam.org/doi/10.1137/S0036144504445376)
+**Further Reading:** L.N.T. Lectures 34. For more about the convergence of Arnoldi's Ritz values, see the illuminating review article by [Arno Kuijlaars](https://epubs.siam.org/doi/10.1137/S0036144504445376).
 
 ### Lecture 19
 
