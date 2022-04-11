@@ -223,4 +223,17 @@ The naive Krylov basis, matrix powers applied to a starting vector, is famously 
 
 **Further Reading:** L.N.T. Lectures 32 and 33.
 
+### Lecture 18
+
+An important application of the Arnoldi iteration is the approximation of a few isolated extremal eigenvalues of a matrix. The approximate eigenvalues are the eigenvalues of the small upper Hessenberg matrix, i.e., the Ritz values obtained from a Rayleigh--Ritz projection step with the Arnoldi basis. Among possible Rayleigh--Ritz approximations, the Arnoldi basis is very special: the eigenvalues of the upper Hessenberg matrix are the roots of a minimizing monic polynomial. We can analyze the convergence of the Ritz-values produced by Arnoldi iterations by studying this (min-max) polynomial optimization problem.
+
+**Further Reading:** L.N.T. Lectures 34. For more about the convergence of Arnoldi's Ritz values, see the illuminating review article by [Arno Kuijlaars](https://epubs.siam.org/doi/10.1137/S0036144504445376)
+
+### Lecture 19
+
+Arnoldi is not just useful for eigenvalue problems - it's also the starting point for the Krylov subspace methods used to solve linear systems. The prototype is GMRES, the Generalized Minimal RESidual method. At each step of the Arnoldi iteration, GMRES minimizes the residual Ax - b over the Krylov subspace by solving a small least-squares system involving the rectangular upper Hessenberg matrix from the Arnoldi decomposition.
+
+The convergence of GMRES can again be understood through the lens of an optimal polynomial's size on the spectrum of A. When A has nearly orthogonal eigenvectors and it's spectrum is clustered away from the origin, the residuals often decay rapidly to machine precision, producing excellent approximate solutions to the linear system. However, ill-conditioning, non-normality, and other geometric spectral properties can cause GMRES to converge very slowly and stagnate. In these cases, we typically start looking for a preconditioner.
+
+**Further Reading:** L.N.T. Chapter 35. See the paper by [Driscoll et. al.](https://epubs.siam.org/doi/pdf/10.1137/S0036144596305582) for more about the convergence of GMRES.
 
