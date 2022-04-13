@@ -244,7 +244,7 @@ When the matrix A is symmetric, something remarkable occurs in the Arnoldi itera
 
 This modified iteration, based on 3-term recurrence, is called the Lanczos iteration. Like Arnoldi, it is often used to compute extremal eigenvalues of A and it provides the foundation for analogues of GMRES based on short recurrences rather than explicit orthogonalization. A word of caution: short recurrences usually lead to a loss of orthogonality in floating point, so one typically needs to reorthogonalize the computed Lanczos vectors periodically.
 
-The Conjugate Gradient method (CG) is a particularly powerful analogue of GMRES for symmetric positive definite (SPD) matrices. It relies on short recurrences for fast orthogonal updates of the residual, as well as A-orthogonal updates for special search directions. The sequence of residuals and search directions form, respectively, orthogonal and A-orthogonal bases for the nested Krylov subspaces K_n(A,b). Together, they provide A-optimal approximations to Ax=b from the Krylov subspace.
+The Conjugate Gradient method (CG) is a particularly powerful Krylov method for solving Ax = b when A is a symmetric positive definite (SPD) matrix. It relies on short recurrences for fast orthogonal updates of the residual, as well as A-orthogonal updates for special search directions. The sequence of residuals and search directions form, respectively, orthogonal and A-orthogonal bases for the nested Krylov subspaces K_n(A,b). Together, they provide A-optimal approximations to Ax=b from the Krylov subspace.
 
 **Further Reading:** L.N.T. Chapters 36 and 37.
 
