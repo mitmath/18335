@@ -236,7 +236,7 @@ Arnoldi is not just useful for eigenvalue problems - it's also the starting poin
 
 The convergence of GMRES can again be understood through the lens of an optimal polynomial's size on the spectrum of A. When A has nearly orthogonal eigenvectors and it's spectrum is clustered away from the origin, the residuals often decay rapidly to machine precision, producing excellent approximate solutions to the linear system. However, ill-conditioning, non-normality, and other geometric spectral properties can cause GMRES to converge very slowly and stagnate. In these cases, we typically start looking for a preconditioner.
 
-**Further Reading:** L.N.T. Chapter 35. See the paper by [Driscoll et. al.](https://epubs.siam.org/doi/pdf/10.1137/S0036144596305582) for more about the convergence of GMRES.
+**Further Reading:** L.N.T. Lecture 35. See the paper by [Driscoll et. al.](https://epubs.siam.org/doi/pdf/10.1137/S0036144596305582) for more about the convergence of GMRES.
 
 ### Lecture 20
 
@@ -246,5 +246,5 @@ This modified iteration, based on 3-term recurrence, is called the Lanczos itera
 
 The Conjugate Gradient method (CG) is a particularly powerful Krylov method for solving Ax = b when A is a symmetric positive definite (SPD) matrix. It relies on short recurrences for fast orthogonal updates of the residual, as well as A-orthogonal updates for special search directions. The sequence of residuals and search directions form, respectively, orthogonal and A-orthogonal bases for the nested Krylov subspaces K_n(A,b). Together, they provide A-optimal approximations to Ax = b from the Krylov subspace.
 
-**Further Reading:** L.N.T. Chapters 36 and 37.
+**Further Reading:** L.N.T. Lectures 36 and 37.
 
