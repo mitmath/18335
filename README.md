@@ -238,3 +238,13 @@ The convergence of GMRES can again be understood through the lens of an optimal 
 
 **Further Reading:** L.N.T. Chapter 35. See the paper by [Driscoll et. al.](https://epubs.siam.org/doi/pdf/10.1137/S0036144596305582) for more about the convergence of GMRES.
 
+### Lecture 20
+
+When the matrix A is symmetric, something remarkable occurs in the Arnoldi iteration. The upper Hessenberg matrix inherits the symmetry of A: it is tridiagonal. Consequently, the Arnoldi vectors can be constructed from a 3-term recurrence and do not need to be explicitly orthogonalized against all previous Arnoldi vectors at each iteration! 
+
+This modified iteration, based on 3-term recurrence, is called the Lanczos iteration. Like Arnoldi, it is often used to compute extremal eigenvalues of A and it provides the foundation for analogues of GMRES based on short recurrences rather than explicit orthogonalization. A word of caution: short recurrences usually lead to a loss of orthogonality in floating point, so one typically needs to reorthogonalize the computed Lanczos vectors periodically.
+
+The Conjugate Gradient method (CG) is a particularly powerful analogue of GMRES for symmetric positive definite (SPD) matrices. It relies on short recurrences for fast orthogonal updates of the residual, as well as A-orthogonal updates for special search directions. The sequence of residuals and search directions form, respectively, orthogonal and A-orthogonal bases for the nested Krylov subspaces K_n(A,b). Together, they provide A-optimal approximations to Ax=b from the Krylov subspace.
+
+**Further Reading:** L.N.T. Chapters 36 and 37.
+
