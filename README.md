@@ -260,5 +260,5 @@ GD often gets stuck in an inefficient zig-zag pattern while converging to a mini
 
 Another approach to accelerating convergence is to incorporate higher-order derivative information into the optimization routine. Newton's method is usually taught as a rootfinding method, but it can also be used to find critical points of a smooth objective function when applied to the gradient. For many smooth functions, Newton's method exhibits _quadratic_ asymptotic convergence, although some caveats apply. When a function has multiple local critical points, it is not always easy to predict which initial guess will converge to which critical point.
 
-**Further Reading:** See these [notes](http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf), which introduce CG in a very visual "first-principles" style.
+**Further Reading:** See these [notes](http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf), which introduce CG and GD with a visual "first-principles" style.
 
