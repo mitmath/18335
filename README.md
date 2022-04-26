@@ -248,3 +248,17 @@ The Conjugate Gradient method (CG) is a particularly powerful Krylov method for 
 
 **Further Reading:** L.N.T. Lectures 36 and 37.
 
+### Lecture 21
+
+Like Arnoldi and GMRES, CG comes with it's own polynomial. The CG polynomial for Ax = b at step n minimizes p(A)b in the A-norm over all all degree n polynomials satisfying p(0) = 1. Because SPD matrices have real positive eigenvalues and orthogonal eigenvectors, we can bound the convergence rate of CG by constructing polynomials that are small on the spectrum of A. Typically, CG converges rapidly for well-conditioned matrices. When A is ill-conditioned, we can apply CG to a preconditioned system with a better conditioner. A good preconditioner is highly application-dependent: there is usually a balance between approximating inv(A) well and applying the preconditioner fast.
+
+Steepest Descent, also called Gradient Descent (GD), is a prototypical first-order optimization routine. Given a starting point, GD tries to find the minimum of a smooth function by "walking fast downhill," i.e., along the gradient direction. CG can also be understood as a first-order optimization algorithm applied to a quadratic form of A and b. We can gain insight into both CG and GD by comparing their convergence to the minimum of this form.
+
+### Lecture 22
+
+GD often gets stuck in an inefficient zig-zag pattern while converging to a minimum in a narrow valley with steep sides. In the quadratic setting, CG overcomes this with the use of A-orthogonal search directions - the short recurrences of Lanczos effectively give CG a memory of previous search directions. In more general optimization settings, adding momentum terms or otherwise keeping a memory of past search directions can accelerate convergence.
+
+Another approach to accelerating convergence is to incorporate higher-order derivative information into the optimization routine. Newton's method is usually taught as a rootfinding method, but it can also be used to find critical points of a smooth objective function when applied to the gradient. For many smooth functions, Newton's method exhibits _quadratic_ asymptotic convergence, although some caveats apply. When a function has multiple local critical points, it is not always easy to predict which initial guess will converge to which critical point.
+
+**Further Reading:** See these [notes](http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf), which introduce CG in a very visual "first-principles" style.
+
