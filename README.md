@@ -1,13 +1,13 @@
-#  18.335J/6.337J: Introduction to Numerical Methods
+#  18.335J/6.7310J: Introduction to Numerical Methods
 
-This is the repository of course materials for the 18.335J/6.337J course at MIT, taught by Dr. [Andrew Horning](https://math.mit.edu/directory/profile.php?pid=2334), in Spring 2022.
+This is the repository of course materials for the 18.335J/6.7310J course at MIT, taught by Dr. [Andrew Horning](https://math.mit.edu/directory/profile.php?pid=2334), in Spring 2023.
 
 Syllabus
 --------
 
-**Lectures**: Monday/Wednesday 11am–12:30pm in room 4-237
+**Lectures**: Tuesday/Thursday 11am–12:30pm in room 4-370
 
-**Office Hours:** Tuesday @ 2pm and Wendesday @ 1pm in room 2-238C
+**Office Hours:** TBD in room 2-238C
 
 **Contact:** horninga@mit.edu
 
