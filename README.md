@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Tuesday/Thursday 11am–12:30pm in room 4-370
 
-**Office Hours:** Wednesday 12:30-2:30 and Thursday 1-2 in room 2-238C.
+**Office Hours:** Wednesday 12:30-1:30 and Thursday 1-2 in room 2-238C.
 
 **Contact:** horninga@mit.edu
 
