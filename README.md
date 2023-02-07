@@ -51,6 +51,6 @@ This course is about Numerical Linear Algebra (NLA) and related numerical method
 * Dynamic Mode Decomposition: learning models from data. (Least squares: QR factorization, SVD, low-rank approximation.)
 * Charge density of interacting electrons: NLA in nonlinear problems. (Eigenvalue problem: QR algorithm, iterative methods)
 
-NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
+NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE. The starting point is floating point: how do we respresent _real numbers_ on the computer?
 
 **Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
