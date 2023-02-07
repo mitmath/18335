@@ -61,6 +61,8 @@ A few examples of project topics from past terms are:
 
 * Simultaneous diagonalization of commuting matrices (e.g. [this method](https://doi.org/10.1137/0614062))
 * Nonlinear eigenproblems (e.g. contour-integration methods like [FEAST](http://www.ecs.umass.edu/~polizzi/feast/) or other methods like in [NEP-PACK](https://nep-pack.github.io/NonlinearEigenproblems.jl/)).
+* Iterative methods for large-scale matrix equations (e.g., Lyapanov, Sylvester, or Riccatti equations).
+* Fast algorithms for hierarchical rank-structured matrices.
 * Multidimensional cubature with sparse grids (e.g. Smolyak algorithms)
 * Fast algorithms for Gaussian quadrature (e.g. [these references](https://github.com/JuliaApproximation/FastGaussQuadrature.jl#references)).  Gauss–Patterson rules and other quadrature rules (e.g. quadrature methods for singular integrands or highly oscillatory integrands).
 * Monte-Carlo integration with adaptive importance sampling
@@ -71,7 +73,7 @@ A few examples of project topics from past terms are:
 * Optimization algorithms specifically for least-square fitting or regularized fitting problems.
 * Linear Programming (LP) algorithms (e.g. interior-point or simplex). (My inclination is to *discourage* LP projects, partly because I've seen to many, partly because interior-point methods are very tricky to implement, and mainly because the "fair comparison" part of the project is very difficult.)
 * Quasi-Newton methods for nonlinear systems of equations (e.g. Broyden updates)
-* Rational approximation (e.g. the Remez algorithm)
+* Rational approximation (e.g. the Remez, robust Pade, or AAA algorithms)
 * The Fast Multipole Method for the n-body problem
 * Uncertainy quantification (UQ) algorithms
 * [Numerical continuation](https://en.wikipedia.org/wiki/Numerical_continuation) algorithms (e.g. [pseudo arc-length continuation](https://github.com/rveltz/PseudoArcLengthContinuation.jl))
