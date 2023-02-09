@@ -57,17 +57,9 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 ### Lecture 2 (February 9)
 
-To do linear algebra on a computer, we need to approximate real numbers and their arithmetic. Chasing significant digits leads us to _floating point numbers_, which have some excellent approximation properties:
-* For any real number x, there is a floating point x' that satisfies |x' - x| <= 0.5 |x| **eps_mach**. **eps_mach** is about 2.22e-16 in IEEE double precision.
-* For any two floating point numbers x and y, floating point arithmetic is equivalent to rounding the exact result to the nearest floating point number (we called this _exact rounding_).
-* The above two facts give us the "fundamental theorem of floating point arithmetic" (p. 99, Trefethen), which says the relative error in a single floating point operation (e.g., adding two floating point numbers) is no greater than **eps_mach**.
+* Floating point arithmetic, exact rounding, and the "fundamental axiom"
+* Catastrophic cancellation, overflow, underflow
+* Forward and backward stability
+* Stability of summation algorithms
 
-There are a few things to watch out for in floating point arithmetic: overflow and underflow (due to finite exponent), and catastrophic cancellation (when all significant digits cancel).
-
-The accuracy of algorithms implemented in floating point depend crucially on how rounding errors propagate and accumulate. Broadly, this will depend on the *conditioning* of the underlying problem and the *stability* of the algorithm.
-* Ideally, we might hope that the relative error in the output of our algorithms is "small" for any allowed input (*forward stability*). However, this is usually placing too much burden on the algorithm. *Ill conditioned* problems can be highly sensitive to perturbations in the input, so rounding errors in the input alone may cause large changes in the output, even if everything afterward is computed perfectly!
-* A fairer way to evaluate our algorithms is to compare them with this idealized algorithm that computes exactly with the rounded inputs. A *backward stable* algorithm computes an exact output for a perturbed input whose relative error is "small" (compared with the exact input).
-
-Backward stable algorithms "give exactly the right answer to nearly the right question" (Trefethen, p. 104). For example, summing a set of floating point numbers by accumulating the partial sums is backward stable - it's as if we summed a slightly perturbed set of numbers in exact arithmetic. The beauty of backward stability analysis is that it separates inherent sensitivity in the problem from the stability of the algorithm used to solve it. Intuitively, backward stable algorithms provide accurate outputs when the problem is not too sensitive to perturbed inputs. To say more, we need to understand *condition numbers*, which attempt to quantify a problem's sensitivity.
-
-**Further Reading:** L. N. Trefethen, Lectures 12 - 15.
+**Further Reading:** L. N. Trefethen, Lectures 13 and 14.
