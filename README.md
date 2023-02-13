@@ -63,4 +63,4 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 * Forward and backward stability
 * Stability of summation algorithms
 
-**Further Reading:** L. N. Trefethen, Lectures 13 and 14.
+**Further Reading:** L. N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point.
