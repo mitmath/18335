@@ -40,6 +40,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 Assignments
 ------------
 
+* [Pset 1](https://github.com/mitmath/18335/tree/master/psets) is due on Friday, February 24 at 11:59pm.
 
 Lecture Summaries and Handouts
 ------------------------------
