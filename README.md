@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Tuesday/Thursday 11am–12:30pm in room 4-370
 
-**Office Hours:** TBD in room 2-238C
+**Office Hours:** Wednesday and Thursday at 12:30 - 1:30 in room 2-238C.
 
 **Contact:** horninga@mit.edu
 
@@ -21,9 +21,9 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
-**Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (TBD), 30% **final project** ([one-page proposal](project/final_project.md) due TBD, project due TBD).
+**Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (First week of April), 30% **final project** ([one-page proposal](project/final_project.md) due TBD, project due TBD).
 
-* Psets will be **submitted electronically via Canvas** (navigate to the Gradescope tab to submit).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
+* Psets will be **submitted electronically via [Gradescope](https://www.gradescope.com/)** (sign up for Gradescope with the entry code on Canvas).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
 * [Piazza discussion board](https://www.piazza.com/mit/spring2022/18335/home)
 
@@ -46,11 +46,20 @@ Lecture Summaries and Handouts
 
 ### Lecture 1 (February 7)
 
-This course is about Numerical Linear Algebra (NLA) and related numerical methods. But why do we need NLA? How does it fit in to other areas of computational science and engineering (CSE)? Three simple examples illustrate how NLA problems arise naturally when solving problems drawn from across continuous applied mathematics. 
+This course is about Numerical Linear Algebra (NLA) and related numerical methods. But why do we need NLA? How does it fit in to other areas of computational science and engineering (CSE)? Three simple examples demonstrate how NLA problems arise naturally when solving problems drawn from across continuous applied mathematics. 
 * Solving Poisson's equation: from charge density to electric potential. (Linear systems: LU and Cholesky, iterative methods.)
-* Schrodinger's equation: quantizing energy at the smallest scales. (Eigenvalue problems: QR algorithm, Krylov iterations.)
-* Dynamic Mode Decomposition: learning models from data. (Least squares: QR factorization, SVD.)
+* Dynamic Mode Decomposition: learning models from data. (Least squares: QR factorization, SVD, low-rank approximation.)
+* Charge density of interacting electrons: NLA in nonlinear problems. (Eigenvalue problem: QR algorithm, iterative methods)
 
-NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE.
+NLA is often applied in tandem with tools from other fields of mathematics: approximation theory, functional analysis, and statistics, to name a few. We'll focus on NLA, which is a computational workhorse within CSE. The starting point is floating point: how do we respresent _real numbers_ on the computer?
 
 **Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
+
+### Lecture 2 (February 9)
+
+* Floating point arithmetic, exact rounding, and the "fundamental axiom"
+* Catastrophic cancellation, overflow, underflow
+* Forward and backward stability
+* Stability of summation algorithms
+
+**Further Reading:** L. N. Trefethen, Lectures 13 and 14.
