@@ -40,6 +40,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 Assignments
 ------------
 
+* [Pset 1](https://github.com/mitmath/18335/tree/master/psets) is due on Friday, February 24 at 11:59pm.
 
 Lecture Summaries and Handouts
 ------------------------------
@@ -62,4 +63,12 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 * Forward and backward stability
 * Stability of summation algorithms
 
-**Further Reading:** L. N. Trefethen, Lectures 13 and 14.
+**Further Reading:** L. N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point.
+
+### Lecture 3 (February 14)
+
+* Vector and matrix norms
+* Jacobian and condition numbers
+* Accuracy <= backward stable _algorithms_ + well-conditioned _problems_
+
+**Further Reading:** L. N. Trefethen, Lectures 12 and 15.
