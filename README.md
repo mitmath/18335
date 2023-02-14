@@ -64,3 +64,11 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 * Stability of summation algorithms
 
 **Further Reading:** L. N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point.
+
+### Lecture 3 (February 14)
+
+* Vector and Matrix norms
+* Jacobian and condition numbers
+* Accuracy <= backward stabile _algorithms_ + well-conditioned _problems_
+
+**Further Reading:** L. N. Trefethen, Lectures 12 and 15.
