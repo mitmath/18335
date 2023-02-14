@@ -67,7 +67,7 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 ### Lecture 3 (February 14)
 
-* Vector and Matrix norms
+* Vector and matrix norms
 * Jacobian and condition numbers
 * Accuracy <= backward stable _algorithms_ + well-conditioned _problems_
 
