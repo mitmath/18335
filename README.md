@@ -72,3 +72,13 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 * Accuracy <= backward stable _algorithms_ + well-conditioned _problems_
 
 **Further Reading:** L. N. Trefethen, Lectures 12 and 15.
+
+### Lecture 4 (February 16)
+
+* Solving Ax = b
+* Condition number of A
+* Orthgonal/Unitary matrices
+* The singular value decomposition (SVD)
+
+** Further Reading:** L.N. Trefethen, Lectures 4 and 5.
+
