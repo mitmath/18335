@@ -90,6 +90,6 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 * Solving Ax=b via A=LU: when to save L?
 * Partial pivoting and backward stability (counterexamples)
 
-** Further Reading:** L. N. Trefethen, Lectures 20, 21, and 22. Can you bring GE's instability to life in this [example](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb)?
+** Further Reading:** L. N. Trefethen, Lectures 20, 21, and 22. Can you bring GE's instability to life in this [example](https://github.com/mitmath/18335/blob/master/notes/Is-Gaussian-Elimination-Unstable.ipynb)?
 
 
