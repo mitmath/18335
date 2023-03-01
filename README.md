@@ -96,4 +96,11 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
 
+* Partial pivoting and PA=LU
+* Solving Ax=b via PA=LU
+* Backward stability of PA=LU in theory and in practice
+* Sparse LU factors via row and column pivoting
+
+** Further Reading:** L. N. Trefethen, Lectures 21 and 22. See the [MATLAB docs](https://www.mathworks.com/help/matlab/ref/lu.html) for PA=LU for more examples of pivoting in action.
+
 
