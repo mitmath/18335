@@ -83,7 +83,7 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 ** Further Reading:** L. N. Trefethen, Lectures 4 and 5.
 
 
-### Lecture 7 (February 23)
+### Lecture 5 (February 23)
 
 * Gaussian elimination and A = LU (no row interchanges)
 * Cost (flops) for A = LU and Ux = b
@@ -92,7 +92,7 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 ** Further Reading:** L. N. Trefethen, Lectures 20, 21, and 22. Can you bring GE's instability to life in this [example](https://github.com/mitmath/18335/blob/master/notes/Is-Gaussian-Elimination-Unstable.ipynb)?
 
-### Lecture 8 (February 28)
+### Lecture 6 (February 28)
 
 This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
 
