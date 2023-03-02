@@ -103,4 +103,12 @@ This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
 
 ** Further Reading:** L. N. Trefethen, Lectures 21 and 22. See the [MATLAB docs](https://www.mathworks.com/help/matlab/ref/lu.html) for PA=LU for more examples of pivoting in action.
 
+### Lecture 7 (March 2)
+
+* The Cholesky decomposition: symmetric elimination for symmetric positive definite (SPD) matrices
+* Cost (1/2 of A=LU) and stability (backward stable, no pivoting) of Cholesky
+* Column and row pivoting to improve sparsity
+* Least-squares solutions to overdetermined linear systems
+
+** Further Reading:** L. N. Trefethen, Lecture 23. See the MATLAB docs for [Cholesky](https://www.mathworks.com/help/matlab/ref/chol.html) and, e.g., [approximate minimal degree (AMD)](https://www.mathworks.com/help/matlab/ref/amd.html) reordering to reduce fill-in.
 
