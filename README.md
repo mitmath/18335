@@ -77,7 +77,7 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 * Solving Ax = b
 * Condition number of A
-* Orthgonal/Unitary matrices
+* Orthogonal/Unitary matrices
 * The singular value decomposition (SVD)
 
 ** Further Reading:** L. N. Trefethen, Lectures 4 and 5.
