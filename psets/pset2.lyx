@@ -384,11 +384,11 @@ u(t_{k},x_{1}), & u(t_{k},x_{2}), & \ldots, & u(t_{k},x_{n})\end{array}\right)^{
 \begin_inset Formula 
 \[
 D=\left(\begin{array}{ccccc}
-0 & 2/3 & 1/12\\
+0 & 2/3 & -1/12\\
 -2/3 & 0 & 2/3 & \ddots\\
--1/12 & -2/3 & 0 & \ddots & 1/12\\
+1/12 & -2/3 & 0 & \ddots & -1/12\\
  & \ddots & \ddots & \ddots & 2/3\\
- &  & -1/12 & -2/3 & 0
+ &  & 1/12 & -2/3 & 0
 \end{array}\right).
 \]
 
