@@ -42,6 +42,10 @@ Assignments
 
 * [Pset 1](https://github.com/mitmath/18335/tree/master/psets) is due on Friday, February 24 at 11:59pm.
 
+* [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on Friday, March 17 at 11:59pm.
+
+
+
 Lecture Summaries and Handouts
 ------------------------------
 
