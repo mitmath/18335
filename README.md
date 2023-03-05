@@ -77,8 +77,38 @@ NLA is often applied in tandem with tools from other fields of mathematics: appr
 
 * Solving Ax = b
 * Condition number of A
-* Orthgonal/Unitary matrices
+* Orthogonal/Unitary matrices
 * The singular value decomposition (SVD)
 
-** Further Reading:** L.N. Trefethen, Lectures 4 and 5.
+** Further Reading:** L. N. Trefethen, Lectures 4 and 5.
+
+
+### Lecture 5 (February 23)
+
+* Gaussian elimination and A = LU (no row interchanges)
+* Cost (flops) for A = LU and Ux = b
+* Solving Ax=b via A=LU: when to save L?
+* Partial pivoting and backward stability (counterexamples)
+
+** Further Reading:** L. N. Trefethen, Lectures 20, 21, and 22. Can you bring GE's instability to life in this [example](https://github.com/mitmath/18335/blob/master/notes/Is-Gaussian-Elimination-Unstable.ipynb)?
+
+### Lecture 6 (February 28)
+
+This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
+
+* Partial pivoting and PA=LU
+* Solving Ax=b via PA=LU
+* Backward stability of PA=LU in theory and in practice
+* Sparse LU factors via row and column pivoting
+
+** Further Reading:** L. N. Trefethen, Lectures 21 and 22. See the [MATLAB docs](https://www.mathworks.com/help/matlab/ref/lu.html) for PA=LU for more examples of pivoting in action.
+
+### Lecture 7 (March 2)
+
+* The Cholesky decomposition: symmetric elimination for symmetric positive definite (SPD) matrices
+* Cost (1/2 of A=LU) and stability (backward stable, no pivoting) of Cholesky
+* Column and row pivoting to improve sparsity
+* Least-squares solutions to overdetermined linear systems
+
+** Further Reading:** L. N. Trefethen, Lecture 23. See the MATLAB docs for [Cholesky](https://www.mathworks.com/help/matlab/ref/chol.html) and, e.g., [approximate minimal degree (AMD)](https://www.mathworks.com/help/matlab/ref/amd.html) reordering to reduce fill-in.
 
