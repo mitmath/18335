@@ -539,6 +539,16 @@ Under what conditions on
 \end_layout
 
 \begin_layout Enumerate
+Describe a structure-exploiting Givens-based QR solver for the equivalent
+ standard least-squares problem in part (a).
+ How does the flop count compare to the standard QR solver for 
+\begin_inset Formula ${\rm argmin}||Ax-b\|_{2}^{2}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
 (Not for credit.) Play with the example in the accompanying Julia notebook!
 \end_layout
 
