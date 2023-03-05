@@ -1,0 +1,546 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 2
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Problem Set 2
+\end_layout
+
+\begin_layout Standard
+Due March 17, 2023 at 11:59pm.
+ You should submit your problem set 
+\series bold
+electronically
+\series default
+ on the 18.335 Gradescope page.
+ Submit 
+\series bold
+both
+\series default
+ a 
+\emph on
+scan
+\emph default
+ of any handwritten solutions (I recommend an app like TinyScanner or similar
+ to create a good-quality black-and-white 
+\begin_inset Quotes eld
+\end_inset
+
+thresholded
+\begin_inset Quotes erd
+\end_inset
+
+ scan) and 
+\series bold
+also
+\series default
+ a 
+\emph on
+PDF printout 
+\emph default
+of the Julia notebook of your computer solutions.
+ A 
+\series bold
+template Julia notebook is posted
+\series default
+ in the 18.335 web site to help you get started.
+\end_layout
+
+\begin_layout Subsection*
+Problem 0: Pset Honor Code
+\end_layout
+
+\begin_layout Standard
+Include the following statement in your solutions:
+\end_layout
+
+\begin_layout Quotation
+
+\emph on
+I will not look at 18.335 pset solutions from previous semesters.
+ I may discuss problems with my classmates or others, but I will write up
+ my solutions on my own.
+ <your
+\begin_inset space ~
+\end_inset
+
+signature>
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: Stability and conditioning for linear systems
+\end_layout
+
+\begin_layout Enumerate
+(From Trefethen and Bau, Exercise 18.1.) Consider the example
+\begin_inset Formula 
+\[
+A=\left(\begin{array}{cc}
+1 & 1\\
+1 & 1.0001\\
+1 & 1.0001
+\end{array}\right),\text{  }b=\left(\begin{array}{c}
+2\\
+0.0001\\
+4.0001
+\end{array}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What are the matrices 
+\begin_inset Formula $A^{+}$
+\end_inset
+
+ and 
+\begin_inset Formula $P$
+\end_inset
+
+ in this example? Give exact answers.
+\end_layout
+
+\begin_layout Enumerate
+Find the exact solutions 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y=Ax$
+\end_inset
+
+ to the least squares problem 
+\begin_inset Formula ${\rm x=argmin}_{v}\|Av-b\|_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+What are 
+\begin_inset Formula $\kappa(A)$
+\end_inset
+
+, 
+\begin_inset Formula $\theta$
+\end_inset
+
+, and 
+\begin_inset Formula $\eta$
+\end_inset
+
+? Numerical answers computed with, e.g., Julia, are acceptable.
+\end_layout
+
+\begin_layout Enumerate
+What numerical values do the four condition numbers of Theorem 18.1 take
+ for this problem?
+\end_layout
+
+\begin_layout Enumerate
+Give examples of perturbations 
+\begin_inset Formula $\delta b$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta$
+\end_inset
+
+A that approximately attain these four condition numbers.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(From Trefethen and Bau, Exercise 21.6.) Suppose 
+\begin_inset Formula $A\in\mathbb{\mathbb{C}}^{m\times m}$
+\end_inset
+
+ is 
+\emph on
+strictly column diagonally dominant
+\emph default
+, which means that for each column index 
+\begin_inset Formula $k$
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+|a_{kk}|>\sum_{j\neq k}|a_{jk}|.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Show that if Gaussian elimination with partial pivoting is applied to 
+\begin_inset Formula $A$
+\end_inset
+
+, no row interchanges take place.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(From Trefethen and Bau, Exercise 23.2.) Using the proof of Theorem 16.2 as
+ a guide, derive Theorem 23.3 from Theorems 23.2 and 17.1.
+ In other words, show that solving symmetric positive definite (SPD) linear
+ systems with a Cholesky factorization followed by forward and backward
+ substitution is backward stable.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: Banded factorization of a finite-difference matrix
+\end_layout
+
+\begin_layout Standard
+Consider the advection equation 
+\begin_inset Formula $\frac{\partial u}{\partial t}+\frac{\partial u}{\partial x}=0$
+\end_inset
+
+ with 
+\begin_inset Formula $(t,x)\in[0,T]\times[0,1]$
+\end_inset
+
+for some 
+\begin_inset Formula $T>0$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $u(x,t)$
+\end_inset
+
+ have initial condition 
+\begin_inset Formula $u(x,0)=b(x)$
+\end_inset
+
+ and boundary conditions 
+\begin_inset Formula $u(0,t)=u(1,t)=0$
+\end_inset
+
+.
+ For numerical approximation with finite-differences at equispaced times
+ 
+\begin_inset Formula $0<t_{1},t_{2},\ldots,t_{m}<T$
+\end_inset
+
+ and points 
+\begin_inset Formula $0<x_{1},x_{2},\ldots,x_{n}<1$
+\end_inset
+
+, we can approximate
+\begin_inset Formula 
+\[
+\frac{\partial u_{jk}}{\partial t}\approx\frac{u_{jk}-u_{j(k-1)}}{\Delta t},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $u_{jk}=u(x_{j},t_{k}),$
+\end_inset
+
+ 
+\begin_inset Formula $\Delta t=t_{k}-t_{k-1}$
+\end_inset
+
+, 
+\begin_inset Formula $\Delta x=x_{j}-x_{j-1}$
+\end_inset
+
+, and
+\begin_inset Formula 
+\[
+\frac{\partial u_{jk}}{\partial x}\approx\frac{-u_{(j+2)k}+8u_{(j+1)k}-8u_{(j-1)k}+u_{(j-2)k}}{12\Delta x}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Show that the vector 
+\begin_inset Formula $u_{k}=\left(\begin{array}{cccc}
+u(t_{k},x_{1}), & u(t_{k},x_{2}), & \ldots, & u(t_{k},x_{n})\end{array}\right)^{T}$
+\end_inset
+
+, representing an approximate solution on the grid at time 
+\begin_inset Formula $t_{k}$
+\end_inset
+
+, can be obtained from 
+\begin_inset Formula $u_{k-1}$
+\end_inset
+
+ by solving the 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ linear system 
+\begin_inset Formula $(I+\sigma\,D)u_{k}=u_{k-1},$
+\end_inset
+
+ where 
+\begin_inset Formula $\sigma=\Delta t/\Delta x<1$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+D=\left(\begin{array}{ccccc}
+0 & 2/3 & 1/12\\
+-2/3 & 0 & 2/3 & \ddots\\
+-1/12 & -2/3 & 0 & \ddots & 1/12\\
+ & \ddots & \ddots & \ddots & 2/3\\
+ &  & -1/12 & -2/3 & 0
+\end{array}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Describe a banded elimination algorithm to factor the matrix 
+\begin_inset Formula $A=I+\sigma\,D$
+\end_inset
+
+ into the product 
+\begin_inset Formula $A=LDU$
+\end_inset
+
+: here, 
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $U^{T}$
+\end_inset
+
+ are lower triangular with unit diagonal and have the same lower bandwidth
+ as 
+\begin_inset Formula $A$
+\end_inset
+
+, while 
+\begin_inset Formula $D$
+\end_inset
+
+ is a diagonal matrix.
+ How does the memory cost (number of nonzeros stored explicitly) and flop
+ count for your algorithm scale as 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+? Implement your algorithm in the accompanying Julia notebook.
+\end_layout
+
+\begin_layout Enumerate
+Can your algorithm fail without pivoting when 
+\begin_inset Formula $\sigma\leq1$
+\end_inset
+
+? How should one refine the approximation in space (decrease 
+\begin_inset Formula $\Delta x)$
+\end_inset
+
+ and in time (decrease 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+) to maintain stability without row exchanges? Explain why.
+ (Hint: Problem 1(b) may be useful here.)
+\end_layout
+
+\begin_layout Enumerate
+Use 
+\begin_inset Formula $A=LDU$
+\end_inset
+
+ to compute solutions 
+\begin_inset Formula $u_{1},u_{2},\ldots,u_{k}$
+\end_inset
+
+, with the problem parameters set in the accompanying Julia notebook.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: Regularized least-squares
+\end_layout
+
+\begin_layout Standard
+Consider the regularized least-squares problem with regularization parameter
+ 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+, given by
+\begin_inset Formula 
+\[
+x_{*}={\rm argmin}_{x}\|Ax-b\|_{2}^{2}+\lambda\|x\|_{2}^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Show that the regularized least-squares problem is equivalent to a standard
+ least-squares problem, 
+\begin_inset Formula 
+\[
+x_{*}={\rm argmin}_{x}\left\Vert \left(\begin{array}{c}
+A\\
+\sqrt{\lambda}I
+\end{array}\right)x-\left(\begin{array}{c}
+b\\
+0
+\end{array}\right)\right\Vert _{2}^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If the SVD of 
+\begin_inset Formula $A$
+\end_inset
+
+ is 
+\begin_inset Formula $A=U\Sigma V^{*}$
+\end_inset
+
+, show that the unique solution is 
+\begin_inset Formula 
+\[
+x_{*}=V(\Sigma^{*}\Sigma+\lambda I)^{-1}\Sigma^{*}U^{*}b.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Under what conditions on 
+\begin_inset Formula $A$
+\end_inset
+
+ does the regularized solution converge to the usual least-squares solution
+ 
+\begin_inset Formula ${\rm argmin}_{x}||Ax-b\|_{2}^{2}$
+\end_inset
+
+ in the limit 
+\begin_inset Formula $\lambda\rightarrow0$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+(Not for credit.) Play with the example in the accompanying Julia notebook!
+\end_layout
+
+\end_body
+\end_document
