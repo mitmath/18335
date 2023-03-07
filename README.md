@@ -116,3 +116,14 @@ This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
 
 ** Further Reading:** L. N. Trefethen, Lecture 23. See the MATLAB docs for [Cholesky](https://www.mathworks.com/help/matlab/ref/chol.html) and, e.g., [approximate minimal degree (AMD)](https://www.mathworks.com/help/matlab/ref/amd.html) reordering to reduce fill-in.
 
+### Lecture 8 (March 7)
+
+Three ways to compute least-squares solutions to overdetermined linear systems
+* The normal equations 
+* The singular value decomposition
+* The QR decomposition
+
+All three formulations lead to the pseudoinverse of A and are mathematically equivalent, but not numerically equivalent. The SVD approach leverages orthogonal projections to simplify the pseudoinverse and avoid squaring the condition number of the resulting n x n diagonal system for the least-squares solution. While the SVD diagonalizes A by rotating/reflecting inputs and outputs, the QR decomposition triangularizes A by rotating/reflecting outputs. The result is an orthogonal basis for the column space of A and a triangular n x n system to solve for the least-squares solution.
+
+**Further Reading:** L. N. Trefethen, Lectures 11, 18, and 19.
+
