@@ -127,3 +127,11 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** L. N. Trefethen, Lectures 11, 18, and 19.
 
+### Lecture 9 (March 9)
+
+* Sensitivity and conditioning of least-squares solutions
+* Gram-Schmidt orthogonalization and A = QR
+* Loss of orthogonality and modified Gram-Schmidt
+* Householder triangularization
+
+**Further Reading:** L. N. Trefethen, Lectures 7, 9, and 9.
