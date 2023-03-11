@@ -377,7 +377,7 @@ u(t_{k},x_{1}), & u(t_{k},x_{2}), & \ldots, & u(t_{k},x_{n})\end{array}\right)^{
 \end_inset
 
  where 
-\begin_inset Formula $\sigma=\Delta t/\Delta x<1$
+\begin_inset Formula $\sigma=\Delta t/\Delta x<2/3$
 \end_inset
 
  and
@@ -434,7 +434,7 @@ Describe a banded elimination algorithm to factor the matrix
 
 \begin_layout Enumerate
 Can your algorithm fail without pivoting when 
-\begin_inset Formula $\sigma\leq1$
+\begin_inset Formula $\sigma<2/3$
 \end_inset
 
 ? How should one refine the approximation in space (decrease 
