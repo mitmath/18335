@@ -17,7 +17,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Prerequisites**: Understanding of linear algebra ([18.06](http://web.mit.edu/18.06/www/), [18.700](http://ocw.mit.edu/OcwWeb/Mathematics/18-700Fall-2005/CourseHome/), or equivalents). 18.335 is a graduate-level subject, however, so much more mathematical maturity, ability to deal with abstractions and proofs, and general exposure to mathematics is assumed than for 18.06!
 
-**Textbook**: The primary textbook for the course is [_Numerical Linear Algebra_ by Trefethen and Bau](http://www.amazon.com/Numerical-Linear-Algebra-Lloyd-Trefethen/dp/0898713617).
+**Textbook**: The primary textbook for the course is [_Numerical Linear Algebra_ by Trefethen and Bau](http://www.amazon.com/Numerical-Linear-Algebra-Lloyd-Trefethen/dp/0898713617). For a classical (and rigorous) treatment, see Nick Higham's [Accuracy and Stability of Numerical Algorithms](https://epubs.siam.org/doi/book/10.1137/1.9780898718027).
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
@@ -116,3 +116,22 @@ This lecture is remote (MIT only): https://mit.zoom.us/j/96174583317
 
 ** Further Reading:** L. N. Trefethen, Lecture 23. See the MATLAB docs for [Cholesky](https://www.mathworks.com/help/matlab/ref/chol.html) and, e.g., [approximate minimal degree (AMD)](https://www.mathworks.com/help/matlab/ref/amd.html) reordering to reduce fill-in.
 
+### Lecture 8 (March 7)
+
+Three ways to compute least-squares solutions to overdetermined linear systems
+* The normal equations 
+* The singular value decomposition
+* The QR decomposition
+
+All three formulations lead to the pseudoinverse of A and are mathematically equivalent, but not numerically equivalent. The SVD approach leverages orthogonal projections to simplify the pseudoinverse and avoid squaring the condition number of the resulting n x n diagonal system for the least-squares solution. While the SVD diagonalizes A by rotating/reflecting inputs and outputs, the QR decomposition triangularizes A by rotating/reflecting outputs. The result is an orthogonal basis for the column space of A and a triangular n x n system to solve for the least-squares solution.
+
+**Further Reading:** L. N. Trefethen, Lectures 11, 18, and 19.
+
+### Lecture 9 (March 9)
+
+* Sensitivity and conditioning of least-squares solutions
+* Gram-Schmidt orthogonalization and A = QR
+* Loss of orthogonality and modified Gram-Schmidt
+* Householder triangularization
+
+**Further Reading:** L. N. Trefethen, Lectures 7, 8, and 9.
