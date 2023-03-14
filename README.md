@@ -138,6 +138,8 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 ### Lecture 10 (March 14)
 
+* Triangularization vs orthogonalization
+* "Thin" and "full" QR decompositions
 * Computing and applying Householder reflectors
 * Householder QR algorithm
 * Flop count and backward stability
