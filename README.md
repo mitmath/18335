@@ -144,4 +144,4 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Householder QR algorithm
 * Flop count and backward stability
 
-**Further Reading:** L. N. Trefethen, Lectures 10 and 16. For proofs, see Chapter 18.3 of Higham.
+**Further Reading:** L. N. Trefethen, Lectures 10 and 16. For backward stability analysis, see Chapter 18.3 of Higham.
