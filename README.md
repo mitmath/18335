@@ -135,3 +135,11 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Householder triangularization
 
 **Further Reading:** L. N. Trefethen, Lectures 7, 8, and 9.
+
+### Lecture 10 (March 14)
+
+* Computing and applying Householder reflectors
+* Householder QR algorithm
+* Flop count and backward stability
+
+**Further Reading:** L. N. Trefethen, Lectures 10 and 16. For proofs, see Chapter 18.3 of Higham.
