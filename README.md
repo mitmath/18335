@@ -145,3 +145,11 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Flop count and backward stability
 
 **Further Reading:** L. N. Trefethen, Lectures 10 and 16. For backward stability analysis, see Chapter 18.3 of Higham.
+
+### Lecture 11 (March 16)
+
+* Householder reflections and Givens rotations demos
+* Eigenvalues, eigenvectors, and diagonalizable matrices
+* Why do we need eigenvectors? (And not just the SVD)
+
+**Further Reading:** L. N. Trefethen, Lecture 24. Explore the [reflections-and-rotations notebook](https://github.com/mitmath/18335/blob/master/notes/Reflections-Rotations-And-Orthogonal-Transformations.ipynb) and the [least-squares notebook](https://github.com/mitmath/18335/blob/master/notes/Three-Ways-To-Solve-Least-Squares.ipynb) for more computational demos with least-squares and A=QR in Julia.
