@@ -153,3 +153,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Why do we need eigenvectors? (And not just the SVD)
 
 **Further Reading:** L. N. Trefethen, Lecture 24. Explore the [reflections-and-rotations notebook](https://github.com/mitmath/18335/blob/master/notes/Reflections-Rotations-And-Orthogonal-Transformations.ipynb) and the [least-squares notebook](https://github.com/mitmath/18335/blob/master/notes/Three-Ways-To-Solve-Least-Squares.ipynb) for more computational demos with least-squares and A=QR in Julia.
+
+### Lecture 12 (March 21)
+
+* Eigensolvers must be iterative
+* Simultaneous power iterations
+* The QR iteration for eigenvalues
+* Convergence of QR iterations
+
+**Further Reading:** L. N. Trefethen, Lecture 25 and 28. For the remarkable stories of John Francis and Vera Kublanovskaya, who independently proposed and analyzed the QR algorithm, see Gene Golub and Frank Uhlig's [article](https://academic.oup.com/imajna/article-abstract/29/3/467/883213?redirectedFrom=fulltext&login=false). 
