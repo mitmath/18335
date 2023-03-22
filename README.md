@@ -21,7 +21,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) are useful surveys.
 
-**Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (First week of April), 30% **final project** ([one-page proposal](project/final_project.md) due TBD, project due TBD).
+**Grading**: 40% problem sets (four psets due / released every other Friday), 30% **take-home mid-term exam** (second week of April), 30% **final project** ([one-page proposal](project/final_project.md) due Friday April 7, project due Tuesday May 16).
 
 * Psets will be **submitted electronically via [Gradescope](https://www.gradescope.com/)** (sign up for Gradescope with the entry code on Canvas).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
@@ -153,3 +153,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Why do we need eigenvectors? (And not just the SVD)
 
 **Further Reading:** L. N. Trefethen, Lecture 24. Explore the [reflections-and-rotations notebook](https://github.com/mitmath/18335/blob/master/notes/Reflections-Rotations-And-Orthogonal-Transformations.ipynb) and the [least-squares notebook](https://github.com/mitmath/18335/blob/master/notes/Three-Ways-To-Solve-Least-Squares.ipynb) for more computational demos with least-squares and A=QR in Julia.
+
+### Lecture 12 (March 21)
+
+* Eigensolvers must be iterative
+* Simultaneous power iterations
+* The QR iteration for eigenvalues
+* Convergence of QR iterations
+
+**Further Reading:** L. N. Trefethen, Lecture 25 and 28. For the remarkable stories of John Francis and Vera Kublanovskaya, who independently proposed and analyzed the QR algorithm, see Gene Golub and Frank Uhlig's [article](https://academic.oup.com/imajna/article-abstract/29/3/467/883213?redirectedFrom=fulltext&login=false). 
