@@ -162,3 +162,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Convergence of QR iterations
 
 **Further Reading:** L. N. Trefethen, Lecture 25 and 28. For the remarkable stories of John Francis and Vera Kublanovskaya, who independently proposed and analyzed the QR algorithm, see Gene Golub and Frank Uhlig's [article](https://academic.oup.com/imajna/article-abstract/29/3/467/883213?redirectedFrom=fulltext&login=false). 
+
+### Lecture 13 (March 23)
+
+* Accelerating power iterations with shift-and-invert
+* Rayleigh quotient iterations
+* QR iterations with shifts
+* Tridiagonal reduction and QR iterations
+
+**Further Reading:** L. N. Trefethen, Lectures 26, 27, and 29.
