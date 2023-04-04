@@ -180,5 +180,5 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * "Sine Theta" theorem for eigenvectors of Hermitian matrices
 * The pseudospectrum of a matrix
 
-**Further Reading:** Check out the [Pseudospectral Gateway]https://www.cs.ox.ac.uk/pseudospectra/index.html) for more about pseudospectral analysis and its remarkable power in applications across applied math. For more about the perturbation theory of invariant subspaces, see Prof. Ipsen [excellent summary](https://link.springer.com/chapter/10.1007/978-0-8176-4968-5_7) of Pete Stewart's contributions to the area.
+**Further Reading:** Check out the [Pseudospectral Gateway](https://www.cs.ox.ac.uk/pseudospectra/index.html) for more about pseudospectral analysis and its remarkable power in applications across applied math. For more about the perturbation theory of invariant subspaces, see Prof. Ipsen [excellent summary](https://link.springer.com/chapter/10.1007/978-0-8176-4968-5_7) of Pete Stewart's contributions to the area.
 
