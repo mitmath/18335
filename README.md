@@ -44,6 +44,8 @@ Assignments
 
 * [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on Friday, March 17 at 11:59pm.
 
+* [Pset 3](https://github.com/mitmath/18335/blob/master/psets/pset3.pdf) is due on Friday, April 14 at 11:59pm.
+
 
 
 Lecture Summaries and Handouts
@@ -171,3 +173,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Tridiagonal reduction and QR iterations
 
 **Further Reading:** L. N. Trefethen, Lectures 26, 27, and 29.
+
+### Lecture 14 (March 24)
+
+* Wilkinson's condition number for simple eigenvalues
+* "Sine Theta" theorem for eigenvectors of Hermitian matrices
+* The pseudospectrum of a matrix
+
+**Further Reading:** Check out the [Pseudospectral Gateway](https://www.cs.ox.ac.uk/pseudospectra/index.html) for more about pseudospectral analysis and its remarkable power in applications across applied math. For more about the perturbation theory of invariant subspaces, see Prof. Ipsen [excellent summary](https://link.springer.com/chapter/10.1007/978-0-8176-4968-5_7) of Pete Stewart's contributions to the area.
+
