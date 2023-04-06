@@ -174,7 +174,7 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** L. N. Trefethen, Lectures 26, 27, and 29.
 
-### Lecture 14 (March 24)
+### Lecture 14 (April 4)
 
 * Wilkinson's condition number for simple eigenvalues
 * "Sine Theta" theorem for eigenvectors of Hermitian matrices
@@ -182,3 +182,10 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** Check out the [Pseudospectral Gateway](https://www.cs.ox.ac.uk/pseudospectra/index.html) for more about pseudospectral analysis and its remarkable power in applications across applied math. For more about the perturbation theory of invariant subspaces, see Prof. Ipsen [excellent summary](https://link.springer.com/chapter/10.1007/978-0-8176-4968-5_7) of Pete Stewart's contributions to the area.
 
+### Lecture 15 (April 6)
+
+* Iterative methods and mat-vec paradigm
+* Build a subspace and extract approximations: Galerkin and Rayleigh-Ritz projections 
+* Arnoldi iteration: power iteration meets modified Gram-Schmidt
+
+**Further Reading**: L. N. Trefethen, Lectures 32 and 33. Check out the [SuiteSparse Matrix Collection](http://sparse.tamu.edu/) for four decades worth of sparse, structured matrix examples.
