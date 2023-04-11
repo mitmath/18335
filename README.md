@@ -196,4 +196,4 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Approximating eigenvalues with Arnoldi
 * Convergence of Ritz values
 
-**Further Reading:** L. N. Trefethen, Lectures 33 and 34. For a beautiful explanation of the Ritz values' behavior using potential theory, see the [SIAM review paper](https://www.jstor.org/stable/20453747) by Arno Kuijlaars. You can also read about the implicitly restarted Arnoldi iteration and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484) that made it a standard iterative eigensolver for non-Hermitian matrices.
+**Further Reading:** L. N. Trefethen, Lectures 33 and 34. For a beautiful explanation of the Ritz values' behavior using potential theory, see the [SIAM review paper](https://www.jstor.org/stable/20453747) by Arno Kuijlaars. You can also read about the [implicitly restarted Arnoldi iteration](https://github.com/mitmath/18335/blob/master/notes/restarting-arnoldi.pdf) and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484) that made it a standard iterative eigensolver for non-Hermitian matrices.
