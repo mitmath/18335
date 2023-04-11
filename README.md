@@ -188,4 +188,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Build a subspace and extract approximations: Galerkin and Rayleigh-Ritz projections 
 * Arnoldi iteration: power iteration meets modified Gram-Schmidt
 
-**Further Reading**: L. N. Trefethen, Lectures 32 and 33. Check out the [SuiteSparse Matrix Collection](http://sparse.tamu.edu/) for four decades worth of sparse, structured matrix examples.
+**Further Reading:** L. N. Trefethen, Lectures 32 and 33. Check out the [SuiteSparse Matrix Collection](http://sparse.tamu.edu/) for four decades worth of sparse, structured matrix examples.
+
+### Lecture 16 (April 11)
+
+* Arnoldi decomposition
+* Approximating eigenvalues with Arnoldi
+* Convergence of Ritz values
+
+**Further Reading:** L. N. Trefethen, Lectures 33 and 34. For a beautiful explanation of the Ritz values' behavior using potential theory, see the [SIAM review paper](https://www.jstor.org/stable/20453747) by Arno Kuijlaars. You can also read about the implicitly restarted Arnoldi iteration and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484) that made it a standard iterative eigensolver for non-Hermitian matrices.
