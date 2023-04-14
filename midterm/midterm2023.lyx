@@ -1,0 +1,628 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Take-Home Midterm Exam: Spring 2023
+\end_layout
+
+\begin_layout Standard
+Posted Friday 12:30pm April 14, due 
+\series bold
+11:59pm Monday April 17.
+\end_layout
+
+\begin_layout Subsection*
+Problem 0: Honor code
+\end_layout
+
+\begin_layout Standard
+Copy and sign the following in your solutions:
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+I have not used any resources to complete this exam other than my own 18.335
+ notes, the textbook, running my own Julia code, and posted 18.335 course
+ materials.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 30pt
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 30col%
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0ex"
+width "60col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+your signature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (32 points)
+\end_layout
+
+\begin_layout Standard
+Given two real vectors 
+\begin_inset Formula $u=(u_{1},u_{2},\ldots,u_{n})^{T}$
+\end_inset
+
+ and 
+\begin_inset Formula $v=(v_{1},v_{2},\ldots,v_{n})^{T}$
+\end_inset
+
+, computing the dot product 
+\begin_inset Formula $f(u,v)=u_{1}v_{1}+u_{2}v_{2}+\cdots+u_{n}v_{n}=u^{T}v$
+\end_inset
+
+ in floating point arithmetic with left to right summation is backward stable.
+ The computed dot product 
+\begin_inset Formula $\hat{f}(u,v)$
+\end_inset
+
+ satisfies the 
+\emph on
+component-wise
+\emph default
+ backward error criteria
+\begin_inset Formula 
+\[
+\hat{f}(u,v)=(u+\delta u)^{T}v,\qquad\text{where}\ensuremath{\qquad|\delta u|\leq n\epsilon_{{\rm mach}}|u|+\mathcal{O}(\epsilon_{{\rm mach}}^{2})}.
+\]
+
+\end_inset
+
+The notation 
+\begin_inset Formula $|w|$
+\end_inset
+
+ indicates the vector 
+\begin_inset Formula $|w|=(|w_{1}|,|w_{2}|,\ldots,|w_{n}|)^{T}$
+\end_inset
+
+, i.e., the vector obtained by taking the absolute value of each entry of
+ 
+\begin_inset Formula $w$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using the dot product algorithm 
+\begin_inset Formula $\hat{f}(u,v)$
+\end_inset
+
+, derive an algorithm 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ for computing the matrix-vector product 
+\begin_inset Formula $g(A,b)=Ab$
+\end_inset
+
+ in floating point arithmetic, and show that it satisfies the component-wise
+ backward stability criteria
+\begin_inset Formula 
+\[
+\hat{g}(A,b)=(A+\delta A)b,\qquad\text{where\ensuremath{\qquad}|\ensuremath{\delta A|\leq n\epsilon_{{\rm mach}}|A|+\mathcal{O}(\epsilon_{{\rm mach}}^{2}),}}
+\]
+
+\end_inset
+
+where the notation 
+\begin_inset Formula $|B|$
+\end_inset
+
+ indicates the matrix obtained by taking the absolute value of each entry
+ of 
+\begin_inset Formula $B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose the algorithm 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ is used to compute matrix-matrix products 
+\begin_inset Formula $C=AB$
+\end_inset
+
+ by computing one column of the matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ at a time.
+ Is the resulting floating-point algorithm 
+\begin_inset Formula $\hat{h}(A,B)$
+\end_inset
+
+ component-wise backward stable in the sense that there is a matrix 
+\begin_inset Formula $\delta A$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\hat{h}(A,B)=(A+\delta A)B,\qquad\text{where\ensuremath{\qquad|\delta A|\leq n\epsilon_{{\rm mach}}|A|}+\ensuremath{\mathcal{O}(\epsilon_{{\rm mach}}^{2})}}?
+\]
+
+\end_inset
+
+ Explain why or why not.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (32 points)
+\end_layout
+
+\begin_layout Standard
+Given an 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional subspace 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+, the standard Rayleigh–Ritz projection approximates a few (
+\begin_inset Formula $n\ll m$
+\end_inset
+
+) eigenvalues of an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ by finding a scalar 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathcal{V}$
+\end_inset
+
+ such that 
+\begin_inset Formula $Ax-\lambda x\perp\mathcal{V}$
+\end_inset
+
+, i.e., the residual is perpendicular to the subspace.
+ A 
+\emph on
+two-sided 
+\emph default
+Rayleigh–Ritz projection uses a second subspace 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+ (not orthogonal to 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+) and searches for a scalar 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathcal{V}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\begin{equation}
+Ax-\lambda x\perp\mathcal{\mathcal{W}},\qquad\text{and\ensuremath{\qquad x\in\mathcal{V}},}
+\end{equation}
+
+\end_inset
+
+i.e., the residual is perpendicular to the 
+\emph on
+second
+\emph default
+ subspace.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $V$
+\end_inset
+
+ and 
+\begin_inset Formula $W$
+\end_inset
+
+ be orthonormal bases for 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+, and let 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ solve the eigenvalue problem 
+\begin_inset Formula $Bw=\lambda Mw$
+\end_inset
+
+, where 
+\begin_inset Formula $B=W^{T}AV$
+\end_inset
+
+ and 
+\begin_inset Formula $M=W^{T}V$
+\end_inset
+
+.
+ Show that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x=Vw$
+\end_inset
+
+ satisfy the criteria in (1).
+\end_layout
+
+\begin_layout Enumerate
+Show that if 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ is a 
+\emph on
+right invariant subspace
+\emph default
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+ with associated 
+\emph on
+left invariant subspace
+\emph default
+ 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+, then 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ in part (a) satisfy the original eigenvalue problem 
+\begin_inset Formula $Ax=\lambda x$
+\end_inset
+
+.
+ HINT: show that 
+\begin_inset Formula $\|W^{T}(Ax-\lambda x)\|=0$
+\end_inset
+
+ can only happen if 
+\begin_inset Formula $Ax=\lambda x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+right invariant subspace
+\emph default
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+ is invariant under multiplication by 
+\begin_inset Formula $A$
+\end_inset
+
+ from the right: 
+\begin_inset Formula $Ax\in\mathcal{V}$
+\end_inset
+
+ for all 
+\begin_inset Formula $x\in\mathcal{V}$
+\end_inset
+
+.
+ A 
+\emph on
+left invariant subspace
+\emph default
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+ is invariant under multiplication by 
+\begin_inset Formula $A$
+\end_inset
+
+ from the left: 
+\begin_inset Formula $A^{T}y\in\mathcal{\mathcal{W}}$
+\end_inset
+
+ for all 
+\begin_inset Formula $y\in\mathcal{\mathcal{W}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (36 points)
+\end_layout
+
+\begin_layout Standard
+The method of Generalized Minimal RESiduals (GMRES) uses 
+\begin_inset Formula $n$
+\end_inset
+
+ iterations of the Arnoldi method to construct a sequence of approximate
+ solutions 
+\begin_inset Formula $x_{1},x_{2},\ldots,x_{n}$
+\end_inset
+
+ to the 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ linear system 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+.
+ At the 
+\begin_inset Formula $n^{{\rm th}}$
+\end_inset
+
+ iteration, the approximate solution 
+\begin_inset Formula $x_{n}=Q_{n}y_{n}$
+\end_inset
+
+ is constructed by solving the least-squares problem,
+\begin_inset Formula 
+\[
+y_{n}={\rm argmin}_{y}\|\tilde{H}_{n}y-\|b\|e_{1}\|,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ is an 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ upper Hessenberg matrix and 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ is the usual orthonormal basis for the Krylov subspace 
+\begin_inset Formula $\mathcal{K}_{n}(A,b)={\rm span}\{b,Ab,A^{2}b,\ldots,A^{n-1}b\}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Describe an algorithm based on Givens rotations that exploits the upper
+ Hessenberg structure of 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ to solve the 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ least-squares problem in 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+If the QR factorization 
+\begin_inset Formula $\tilde{H}_{n-1}=\Omega_{n-1}R_{n-1}$
+\end_inset
+
+ is known from the previous iteration, explain how to update the QR factorizatio
+n to 
+\begin_inset Formula $\tilde{H}_{n}=\Omega_{n}R_{n}$
+\end_inset
+
+ cheaply using a single Givens rotation.
+\end_layout
+
+\begin_layout Enumerate
+Using your result from part (b), explain how the solution to the least-squares
+ problem can also be updated cheaply from the solution at the previous iteration.
+\end_layout
+
+\begin_layout Enumerate
+What is the approximate flop count for updating the least-squares solution
+ at the 
+\begin_inset Formula $n^{{\rm th}}$
+\end_inset
+
+ step of GMRES? You may use big-
+\begin_inset Formula $O$
+\end_inset
+
+ notation to express the asymptotic scaling in 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
