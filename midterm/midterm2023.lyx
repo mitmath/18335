@@ -373,6 +373,11 @@ i.e., the residual is perpendicular to the
 second
 \emph default
  subspace.
+ In this problem, 
+\begin_inset Formula $A$
+\end_inset
+
+ is diagonalizable.
 \end_layout
 
 \begin_layout Enumerate
@@ -384,7 +389,7 @@ Let
 \begin_inset Formula $W$
 \end_inset
 
- be orthonormal bases for 
+ be a pair of bases for 
 \begin_inset Formula $\mathcal{V}$
 \end_inset
 
@@ -396,7 +401,7 @@ Let
 \begin_inset Formula $\lambda$
 \end_inset
 
- and 
+ (finite) and 
 \begin_inset Formula $w$
 \end_inset
 
@@ -425,27 +430,56 @@ Let
 \end_layout
 
 \begin_layout Enumerate
-Show that if 
-\begin_inset Formula $\mathcal{V}$
+Suppose that 
+\begin_inset Formula $\mathcal{V}={\rm span}\{x_{1},\ldots,x_{n}\}$
 \end_inset
 
- is a 
+ and 
+\begin_inset Formula $\mathcal{W={\rm span}}\{y_{1},\ldots,y_{n}\}$
+\end_inset
+
+, where 
+\begin_inset Formula $Ax_{i}=\lambda_{i}x_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{i}^{T}A=\lambda_{i}y_{i}^{T}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+, are a pair of 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional 
 \emph on
-right invariant subspace
+right and left invariant subspaces
 \emph default
  of 
 \begin_inset Formula $A$
 \end_inset
 
- with associated 
-\emph on
-left invariant subspace
-\emph default
- 
-\begin_inset Formula $\mathcal{W}$
+.
+ If the bases 
+\begin_inset Formula $V$
 \end_inset
 
-, then 
+ and 
+\begin_inset Formula $W$
+\end_inset
+
+ are chosen to be 
+\emph on
+bi-orthonormal
+\emph default
+, meaning that 
+\begin_inset Formula $W^{T}V=I$
+\end_inset
+
+, show that 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -453,65 +487,49 @@ left invariant subspace
 \begin_inset Formula $x$
 \end_inset
 
- in part (a) satisfy the original eigenvalue problem 
-\begin_inset Formula $Ax=\lambda x$
+ from part (a) are an eigenpair of the full 
+\begin_inset Formula $m\times m$
 \end_inset
 
-.
- HINT: show that 
-\begin_inset Formula $\|W^{T}(Ax-\lambda x)\|=0$
-\end_inset
-
- can only happen if 
-\begin_inset Formula $Ax=\lambda x$
+ matrix 
+\begin_inset Formula $A$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-A 
-\emph on
-right invariant subspace
-\emph default
- of 
-\begin_inset Formula $A$
+
+\series bold
+Hint 1:
+\series default
+ In part (b), consider the similarity transform 
+\begin_inset Formula $[W\,W_{\perp}]^{T}A[V\,V_{\perp}],$
 \end_inset
 
- is invariant under multiplication by 
-\begin_inset Formula $A$
+where 
+\begin_inset Formula $V_{\perp}$
 \end_inset
 
- from the right: 
-\begin_inset Formula $Ax\in\mathcal{V}$
+ and 
+\begin_inset Formula $W_{\perp}$
 \end_inset
 
- for all 
-\begin_inset Formula $x\in\mathcal{V}$
+ are a biorthonormal basis for the orthogonal complements, 
+\begin_inset Formula $\mathcal{V}^{\perp}$
 \end_inset
 
-.
- A 
-\emph on
-left invariant subspace
-\emph default
- of 
-\begin_inset Formula $A$
+ and 
+\begin_inset Formula $\mathcal{W}^{\perp}$
 \end_inset
 
- is invariant under multiplication by 
-\begin_inset Formula $A$
-\end_inset
+, respectively.
 
- from the left: 
-\begin_inset Formula $A^{T}y\in\mathcal{\mathcal{W}}$
-\end_inset
-
- for all 
-\begin_inset Formula $y\in\mathcal{\mathcal{W}}$
-\end_inset
-
-.
+\series bold
+ Hint 2:
+\series default
+ The right and left eigenvectors of a diagonalizable matrix can be made
+ biorthonormal (why?).
 \end_layout
 
 \begin_layout Subsection*
