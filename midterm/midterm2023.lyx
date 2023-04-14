@@ -443,7 +443,7 @@ Suppose that
 \end_inset
 
  and 
-\begin_inset Formula $y_{i}^{T}A=\lambda_{i}y_{i}^{T}$
+\begin_inset Formula $A^{T}y_{i}=\lambda_{i}y_{i}$
 \end_inset
 
  for 
