@@ -508,23 +508,23 @@ bi-orthonormal
 Hint 1:
 \series default
  In part (b), consider the similarity transform 
-\begin_inset Formula $[W\,W_{\perp}]^{T}A[V\,V_{\perp}],$
+\begin_inset Formula $[W\quad W_{2}]^{T}A[V\quad V_{2}],$
 \end_inset
 
 where 
-\begin_inset Formula $V_{\perp}$
+\begin_inset Formula $V_{2}$
 \end_inset
 
  and 
-\begin_inset Formula $W_{\perp}$
+\begin_inset Formula $W_{2}$
 \end_inset
 
- are a biorthonormal basis for the orthogonal complements, 
-\begin_inset Formula $\mathcal{V}^{\perp}$
+ are biorthonormal bases for the subspaces 
+\begin_inset Formula $\mathcal{V}_{2}=\{x_{n+1},\ldots,x_{m}\}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathcal{W}^{\perp}$
+\begin_inset Formula $\mathcal{W}_{2}=\{y_{n+1},\ldots,y_{m}\}$
 \end_inset
 
 , respectively.
@@ -538,7 +538,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\mathcal{W}^{\perp}$
+\begin_inset Formula $\mathcal{W}_{2}$
 \end_inset
 
  are orthogonal subspaces.
