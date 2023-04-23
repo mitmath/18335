@@ -197,3 +197,19 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Convergence of Ritz values
 
 **Further Reading:** L. N. Trefethen, Lectures 33 and 34. For a beautiful explanation of the Ritz values' behavior using potential theory, see the [SIAM review paper](https://www.jstor.org/stable/20453747) by Arno Kuijlaars. You can also read about the [implicitly restarted Arnoldi iteration](https://github.com/mitmath/18335/blob/master/notes/restarting-arnoldi.pdf) and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484) that made it a standard iterative eigensolver for non-Hermitian matrices.
+
+### Lecture 17 (April 13)
+
+* Arnoldi for Ax=b
+* The method of Generalized Minimal Residuals (GMRES)
+* Convergence of GMRES
+
+**Further Reading:** L. N. Trefethen, Lecture 35.
+
+### Lecture 18 (April 20)
+
+* Symmetric and symmetric positive definite matrices
+* The Lanczos iteration
+* The method of Conjugate Gradients (CG)
+
+**Further Reading:** L. N. Trefethen, Lectures 36 and 38.
