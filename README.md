@@ -218,8 +218,16 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 * Convergence of CG
 * CG as an optimization algorithm
-* Steepest descent
+* Gradient descent
 
-** Further Reading:** L. N. Trefethen, Lecture 38. See this excellent [introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf) from first principles.
+** Further Reading:** L. N. Trefethen, Lecture 38.
+
+### Lecture 20 (April 27)
+
+* Convergence of gradient descent
+* CG vs gradient descent
+* Newton's method
+
+** Further Reading:** See this excellent [introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf) from first principles. 
 
 
