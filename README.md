@@ -220,7 +220,7 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * CG as an optimization algorithm
 * Gradient descent
 
-** Further Reading:** L. N. Trefethen, Lecture 38.
+**Further Reading:** L. N. Trefethen, Lecture 38.
 
 ### Lecture 20 (April 27)
 
@@ -228,6 +228,14 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * CG vs gradient descent
 * Newton's method
 
-** Further Reading:** See this excellent [introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf) from first principles. 
+**Further Reading:** See this excellent [introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf) from first principles. 
+
+### Lecture 21 (May 2)
+
+* Newton's method in higher dimensions
+* Secant and quasi-Newton methods
+* Broyden's updates and BFGS
+
+**Further Reading:** See Prof. Johnson's BFGS notes on preserving the SPD property during quasi-Newton updates and the original references of Broyden, Fletcher, Goldfarb, and Shanno. For a modern perspective on secant and multi-secant methods, see [Feng and Saad](https://doi.org/10.1002/nla.617).
 
 
