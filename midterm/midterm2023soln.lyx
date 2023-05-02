@@ -1,0 +1,1655 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+
+\newcommand{\tr}{\operatorname{tr}}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+18.335 Take-Home Midterm Exam: Spring 2023
+\end_layout
+
+\begin_layout Standard
+Posted Friday 12:30pm April 14, due 
+\series bold
+11:59pm Monday April 17.
+\end_layout
+
+\begin_layout Subsection*
+Problem 0: Honor code
+\end_layout
+
+\begin_layout Standard
+Copy and sign the following in your solutions:
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+I have not used any resources to complete this exam other than my own 18.335
+ notes, the textbook, running my own Julia code, and posted 18.335 course
+ materials.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 30pt
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 30col%
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0ex"
+width "60col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+your signature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Problem 1: (32 points)
+\end_layout
+
+\begin_layout Standard
+Given two real vectors 
+\begin_inset Formula $u=(u_{1},u_{2},\ldots,u_{n})^{T}$
+\end_inset
+
+ and 
+\begin_inset Formula $v=(v_{1},v_{2},\ldots,v_{n})^{T}$
+\end_inset
+
+, computing the dot product 
+\begin_inset Formula $f(u,v)=u_{1}v_{1}+u_{2}v_{2}+\cdots+u_{n}v_{n}=u^{T}v$
+\end_inset
+
+ in floating point arithmetic with left to right summation is backward stable.
+ The computed dot product 
+\begin_inset Formula $\hat{f}(u,v)$
+\end_inset
+
+ satisfies the 
+\emph on
+component-wise
+\emph default
+ backward error criteria
+\begin_inset Formula 
+\[
+\hat{f}(u,v)=(u+\delta u)^{T}v,\qquad\text{where}\ensuremath{\qquad|\delta u|\leq n\epsilon_{{\rm mach}}|u|+\mathcal{O}(\epsilon_{{\rm mach}}^{2})}.
+\]
+
+\end_inset
+
+The notation 
+\begin_inset Formula $|w|$
+\end_inset
+
+ indicates the vector 
+\begin_inset Formula $|w|=(|w_{1}|,|w_{2}|,\ldots,|w_{n}|)^{T}$
+\end_inset
+
+, i.e., the vector obtained by taking the absolute value of each entry of
+ 
+\begin_inset Formula $w$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Using the dot product algorithm 
+\begin_inset Formula $\hat{f}(u,v)$
+\end_inset
+
+, derive an algorithm 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ for computing the matrix-vector product 
+\begin_inset Formula $g(A,b)=Ab$
+\end_inset
+
+ in floating point arithmetic, and show that it satisfies the component-wise
+ backward stability criteria
+\begin_inset Formula 
+\[
+\hat{g}(A,b)=(A+\delta A)b,\qquad\text{where\ensuremath{\qquad}|\ensuremath{\delta A|\leq n\epsilon_{{\rm mach}}|A|+\mathcal{O}(\epsilon_{{\rm mach}}^{2}),}}
+\]
+
+\end_inset
+
+where the notation 
+\begin_inset Formula $|B|$
+\end_inset
+
+ indicates the matrix obtained by taking the absolute value of each entry
+ of 
+\begin_inset Formula $B$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ The 
+\begin_inset Formula $i^{{\rm th}}$
+\end_inset
+
+ entry of the matrix-vector product 
+\begin_inset Formula $Ab$
+\end_inset
+
+ is the dot product of the 
+\begin_inset Formula $i^{{\rm th}}$
+\end_inset
+
+ row of 
+\begin_inset Formula $A$
+\end_inset
+
+ with the vector 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ Using the floating-point algorithm 
+\begin_inset Formula $\hat{f}(u,v)$
+\end_inset
+
+ for each of these dot products results in a computed vector 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ whose 
+\begin_inset Formula $i^{{\rm th}}$
+\end_inset
+
+ entry is 
+\begin_inset Formula $\hat{f}(A_{i,:},b)=(A_{i,:}+\delta A_{i})b$
+\end_inset
+
+.
+ Denoting the matrix whose 
+\begin_inset Formula $i^{{\rm th}}$
+\end_inset
+
+ row is 
+\begin_inset Formula $\delta A_{i}$
+\end_inset
+
+ by 
+\begin_inset Formula $\delta A$
+\end_inset
+
+, we have that 
+\begin_inset Formula $\hat{g}(A,b)=(A+\delta A)b$
+\end_inset
+
+ as desired.
+ The componentwise bounds on 
+\begin_inset Formula $|\delta A|$
+\end_inset
+
+ follow immediately from the component-wise backward error bounds for 
+\begin_inset Formula $\hat{f}(A_{:,i},b)$
+\end_inset
+
+, i.e., the component-wise bounds on the rows 
+\begin_inset Formula $\delta A_{i}$
+\end_inset
+
+, for 
+\begin_inset Formula $1\leq i\leq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose the algorithm 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ is used to compute matrix-matrix products 
+\begin_inset Formula $C=AB$
+\end_inset
+
+ by computing one column of the matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ at a time.
+ Is the resulting floating-point algorithm 
+\begin_inset Formula $\hat{h}(A,B)$
+\end_inset
+
+ component-wise backward stable in the sense that there is a matrix 
+\begin_inset Formula $\delta A$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\hat{h}(A,B)=(A+\delta A)B,\qquad\text{where\ensuremath{\qquad|\delta A|\leq n\epsilon_{{\rm mach}}|A|}+\ensuremath{\mathcal{O}(\epsilon_{{\rm mach}}^{2})}}?
+\]
+
+\end_inset
+
+ Explain why or why not.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ We can apply the matrix-vector product algorithm 
+\begin_inset Formula $\hat{g}(A,b)$
+\end_inset
+
+ from part (a) to compute one column of 
+\begin_inset Formula $C=AB$
+\end_inset
+
+ at a time.
+ The columns of the computed matrix 
+\begin_inset Formula $\hat{C}=\hat{h}(A,b)$
+\end_inset
+
+ then satisfy 
+\begin_inset Formula $\hat{C}_{:,j}=\hat{g}(A,B_{:,j})=(A+\delta A_{j})B_{:,j}$
+\end_inset
+
+.
+ The problem here is that the 
+\begin_inset Formula $j^{{\rm th}}$
+\end_inset
+
+ computed column of 
+\begin_inset Formula $\hat{C}$
+\end_inset
+
+ is the result of multiplying a column of 
+\begin_inset Formula $B$
+\end_inset
+
+ by a 
+\emph on
+different
+\emph default
+ perturbed matrix 
+\begin_inset Formula $A+\delta A_{j}$
+\end_inset
+
+, so it is impossible to express 
+\begin_inset Formula $\hat{C}$
+\end_inset
+
+ as a product of 
+\begin_inset Formula $B$
+\end_inset
+
+ with a single perturbed matrix: 
+\begin_inset Formula $\hat{C}\neq(A+\delta A)B$
+\end_inset
+
+ for some 
+\begin_inset Formula $\delta A$
+\end_inset
+
+.
+ Matrix-matrix multiplication is 
+\emph on
+not
+\emph default
+ backward stable.
+ See Higham's book (chapter 3.5) for more discussion and complimentary forward
+ error bounds.
+\end_layout
+
+\begin_layout Subsection*
+Problem 2: (32 points)
+\end_layout
+
+\begin_layout Standard
+Given an 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional subspace 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+, the standard Rayleigh–Ritz projection approximates a few (
+\begin_inset Formula $n\ll m$
+\end_inset
+
+) eigenvalues of an 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ by finding a scalar 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathcal{V}$
+\end_inset
+
+ such that 
+\begin_inset Formula $Ax-\lambda x\perp\mathcal{V}$
+\end_inset
+
+, i.e., the residual is perpendicular to the subspace.
+ A 
+\emph on
+two-sided 
+\emph default
+Rayleigh–Ritz projection uses a second subspace 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+ (not orthogonal to 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+) and searches for a scalar 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x\in\mathcal{V}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\begin{equation}
+Ax-\lambda x\perp\mathcal{\mathcal{W}},\qquad\text{and\ensuremath{\qquad x\in\mathcal{V}},}
+\end{equation}
+
+\end_inset
+
+i.e., the residual is perpendicular to the 
+\emph on
+second
+\emph default
+ subspace.
+ In this problem, 
+\begin_inset Formula $A$
+\end_inset
+
+ is diagonalizable.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $V$
+\end_inset
+
+ and 
+\begin_inset Formula $W$
+\end_inset
+
+ be a pair of bases for 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+, and let 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ (finite) and 
+\begin_inset Formula $w$
+\end_inset
+
+ solve the eigenvalue problem 
+\begin_inset Formula $Bw=\lambda Mw$
+\end_inset
+
+, where 
+\begin_inset Formula $B=W^{T}AV$
+\end_inset
+
+ and 
+\begin_inset Formula $M=W^{T}V$
+\end_inset
+
+.
+ Show that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x=Vw$
+\end_inset
+
+ satisfy the criteria in (1).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ Since the columns of 
+\begin_inset Formula $V$
+\end_inset
+
+ form a basis for 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+, the vector 
+\begin_inset Formula $x=Vw\in\mathcal{V}$
+\end_inset
+
+ as it is a linear combination of the columns of 
+\begin_inset Formula $V$
+\end_inset
+
+.
+ On the other hand, we have that 
+\begin_inset Formula 
+\[
+Bw-\lambda Mw=W^{T}AVw-\lambda W^{T}Vw=W^{T}(Ax-\lambda x)=0,
+\]
+
+\end_inset
+
+which means that the residual 
+\begin_inset Formula $Ax-\lambda x$
+\end_inset
+
+ is orthogonal to the columns of 
+\begin_inset Formula $W$
+\end_inset
+
+.
+ Since the columns of 
+\begin_inset Formula $W$
+\end_inset
+
+ form a basis for 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+, the residual is orthogonal to the whole subspace 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+, i.e., 
+\begin_inset Formula $Ax-\lambda x\perp\mathcal{W}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Suppose that 
+\begin_inset Formula $\mathcal{V}={\rm span}\{x_{1},\ldots,x_{n}\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W={\rm span}}\{y_{1},\ldots,y_{n}\}$
+\end_inset
+
+, where 
+\begin_inset Formula $Ax_{i}=\lambda_{i}x_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $A^{T}y_{i}=\lambda_{i}y_{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,\ldots,n$
+\end_inset
+
+, are a pair of 
+\begin_inset Formula $n$
+\end_inset
+
+-dimensional 
+\emph on
+right and left invariant subspaces
+\emph default
+ of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ If the bases 
+\begin_inset Formula $V$
+\end_inset
+
+ and 
+\begin_inset Formula $W$
+\end_inset
+
+ are chosen to be 
+\emph on
+bi-orthonormal
+\emph default
+, meaning that 
+\begin_inset Formula $W^{T}V=I$
+\end_inset
+
+, show that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ from part (a) are an eigenpair of the full 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix 
+\begin_inset Formula $A$
+\end_inset
+
+, i.e., that 
+\begin_inset Formula $Ax=\lambda x$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ If the bases 
+\begin_inset Formula $V$
+\end_inset
+
+ and 
+\begin_inset Formula $W$
+\end_inset
+
+ are biorthonormal, the generalized eigenvalue problem from part (a) becomes
+ the standard eigenvalue problem 
+\begin_inset Formula $Bw=\lambda w$
+\end_inset
+
+.
+ Following the first hint, we consider the similarity transform 
+\begin_inset Formula 
+\[
+D=\left(\begin{array}{cc}
+W & W_{2}\end{array}\right)^{T}A\left(\begin{array}{cc}
+V & V_{2}\end{array}\right)=\left(\begin{array}{cc}
+W^{T}AV & W^{T}AV_{2}\\
+W_{2}^{T}AV & W_{2}^{T}AV_{2}
+\end{array}\right).
+\]
+
+\end_inset
+
+First, we can verify that this is indeed a similarity transform because
+ 
+\begin_inset Formula $[W\quad W_{2}]^{T}[V\quad V_{2}]=I$
+\end_inset
+
+ by the biorthogonality conditions and, therefore, 
+\begin_inset Formula $[W\quad W_{2}]^{T}=[V\quad V_{2}]^{-1}$
+\end_inset
+
+.
+ Similar matrices have the same eigenvalues, so 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $A$
+\end_inset
+
+ have the same eigenvalues.
+ Second, notice that the upper left block is the matrix 
+\begin_inset Formula $W^{T}AV=B$
+\end_inset
+
+.
+ What about the remaining blocks? By the second hint, 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+ are orthogonal to 
+\begin_inset Formula $\mathcal{W}_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{V}_{2}$
+\end_inset
+
+, respectively.
+ Now, 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+ are right and left invariant subspaces of 
+\begin_inset Formula $A$
+\end_inset
+
+ so the columns of 
+\begin_inset Formula $AV$
+\end_inset
+
+ are vectors in 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and the rows of 
+\begin_inset Formula $W^{T}A$
+\end_inset
+
+ are vectors in 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+.
+ Therefore, the off-diagonal blocks vanish because the columns of 
+\begin_inset Formula $AV$
+\end_inset
+
+ are orthogonal to the rows of 
+\begin_inset Formula $W_{2}^{T}$
+\end_inset
+
+ and the rows of 
+\begin_inset Formula $W^{T}A$
+\end_inset
+
+ are orthogonal to the columns of 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+.
+ The eigenvalues of a block diagonal matrix are the eigenvalues of the diagonal
+ blocks, so the eigenavalues of the upper left block 
+\begin_inset Formula $B$
+\end_inset
+
+ are eigenvalues of the full matrix 
+\begin_inset Formula $D$
+\end_inset
+
+, which are eigenvalues of 
+\begin_inset Formula $A$
+\end_inset
+
+ by similarity.
+ Thefore, if 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is an eigenvalue of 
+\begin_inset Formula $B$
+\end_inset
+
+, it is also an eigenvalue of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+How are the eigenvectors of 
+\begin_inset Formula $B$
+\end_inset
+
+ related to eigenvectors of 
+\begin_inset Formula $A$
+\end_inset
+
+? First, by similarity, the right eigenvectors of 
+\begin_inset Formula $A$
+\end_inset
+
+ are related to those of 
+\begin_inset Formula $D$
+\end_inset
+
+ by
+\begin_inset Formula 
+\[
+x_{i}=\left(\begin{array}{cc}
+V & V_{2}\end{array}\right)\chi_{i},\qquad\text{where\ensuremath{\qquad D\chi_{i}=\lambda_{i}\chi_{i}.}}
+\]
+
+\end_inset
+
+Consider the vector 
+\begin_inset Formula $\chi=[w\quad0]^{T}$
+\end_inset
+
+ of length 
+\begin_inset Formula $m$
+\end_inset
+
+, and, using that 
+\begin_inset Formula $Bw=\lambda w$
+\end_inset
+
+, calculate directly that
+\begin_inset Formula 
+\[
+D\chi=\left(\begin{array}{cc}
+W^{T}AV\\
+ & W_{2}^{T}AV_{2}
+\end{array}\right)\left(\begin{array}{c}
+w\\
+0
+\end{array}\right)=\left(\begin{array}{c}
+Bw\\
+0
+\end{array}\right)=\lambda\left(\begin{array}{c}
+w\\
+0
+\end{array}\right).
+\]
+
+\end_inset
+
+So, 
+\begin_inset Formula $\chi=[w\quad0]^{T}$
+\end_inset
+
+ is an eigenvector of 
+\begin_inset Formula $D$
+\end_inset
+
+ with eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, and therefore, using the connection between eigenvectors of similar matrices
+ from above, we have that
+\begin_inset Formula 
+\[
+\left(\begin{array}{cc}
+V & V_{2}\end{array}\right)\left(\begin{array}{c}
+w\\
+0
+\end{array}\right)=Vw=x
+\]
+
+\end_inset
+
+is an eigenvector of 
+\begin_inset Formula $A$
+\end_inset
+
+ with eigenvalue 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\begin_inset VSpace defskip
+\end_inset
+
+There is an alternative elegant way to prove the statement using orthogonality
+ relations for the residual.
+ From part (a) we know that 
+\begin_inset Formula $Ax-\lambda x\perp\mathcal{W}$
+\end_inset
+
+ when 
+\begin_inset Formula $x=Vw$
+\end_inset
+
+ and 
+\begin_inset Formula $(\lambda,w)$
+\end_inset
+
+ solves 
+\begin_inset Formula $Bw=\lambda Mw$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ is also invariant under 
+\begin_inset Formula $A$
+\end_inset
+
+, then we also have that 
+\begin_inset Formula $Ax-\lambda x\in\mathcal{V}$
+\end_inset
+
+.
+ This implies 
+\begin_inset Formula $Ax-\lambda x\perp\mathcal{W}_{2}$
+\end_inset
+
+ because 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}_{2}$
+\end_inset
+
+ are orthogonal subspaces.
+ Since 
+\begin_inset Formula $A$
+\end_inset
+
+ is diagonalizable, 
+\begin_inset Formula $\mathcal{W}\bigcup\mathcal{W}_{2}=\mathbb{R}^{m}$
+\end_inset
+
+ so the only vector orthogonal to both is the zero vector, which means that
+ 
+\begin_inset Formula $Ax-\lambda x=0$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Hint 1:
+\series default
+ In part (b), consider the similarity transform 
+\begin_inset Formula $[W\quad W_{2}]^{T}A[V\quad V_{2}],$
+\end_inset
+
+where 
+\begin_inset Formula $V_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $W_{2}$
+\end_inset
+
+ are biorthonormal bases for the subspaces 
+\begin_inset Formula $\mathcal{V}_{2}=\{x_{n+1},\ldots,x_{m}\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}_{2}=\{y_{n+1},\ldots,y_{m}\}$
+\end_inset
+
+, respectively.
+
+\series bold
+ Hint 2:
+\series default
+ The right and left eigenvectors of a diagonalizable matrix can be made
+ biorthonormal (why?), so 
+\begin_inset Formula $\mathcal{V}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}_{2}$
+\end_inset
+
+ are orthogonal subspaces.
+\end_layout
+
+\begin_layout Subsection*
+Problem 3: (36 points)
+\end_layout
+
+\begin_layout Standard
+The method of Generalized Minimal RESiduals (GMRES) uses 
+\begin_inset Formula $n$
+\end_inset
+
+ iterations of the Arnoldi method to construct a sequence of approximate
+ solutions 
+\begin_inset Formula $x_{1},x_{2},\ldots,x_{n}$
+\end_inset
+
+ to the 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ linear system 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+.
+ At the 
+\begin_inset Formula $n^{{\rm th}}$
+\end_inset
+
+ iteration, the approximate solution 
+\begin_inset Formula $x_{n}=Q_{n}y_{n}$
+\end_inset
+
+ is constructed by solving the least-squares problem,
+\begin_inset Formula 
+\[
+y_{n}={\rm argmin}_{y}\|\tilde{H}_{n}y-\|b\|e_{1}\|,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ is an 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ upper Hessenberg matrix and 
+\begin_inset Formula $Q_{n}$
+\end_inset
+
+ is the usual orthonormal basis for the Krylov subspace 
+\begin_inset Formula $\mathcal{K}_{n}(A,b)={\rm span}\{b,Ab,A^{2}b,\ldots,A^{n-1}b\}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Describe an algorithm based on Givens rotations that exploits the upper
+ Hessenberg structure of 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ to solve the 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ least-squares problem in 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ flops.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ The 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ upper Hessenberg matrix 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ has 
+\begin_inset Formula $n$
+\end_inset
+
+ (potentially) nonzero entries on the subdiagonal.
+ We can compute its QR factorization efficiently by applying Givens rotations
+ to eliminate these subdiagonal entries and triangularize 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+.
+ We begin by applying a Givens rotation, 
+\begin_inset Formula $G_{1}$
+\end_inset
+
+, that mixes the first two rows in order to eliminate the 
+\begin_inset Formula $(2,1)$
+\end_inset
+
+ entry:
+\begin_inset Formula 
+\[
+\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+\times & \times & \times & \cdots & \times\\
+ & \times & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & \times & \times\\
+ &  &  &  & \times
+\end{array}\right)\qquad\implies\qquad G_{1}\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\boxtimes & \boxtimes & \boxtimes & \cdots & \boxtimes\\
+0 & \boxtimes & \boxtimes & \cdots & \boxtimes\\
+ & \times & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & \times & \times\\
+ &  &  &  & \times
+\end{array}\right).
+\]
+
+\end_inset
+
+Note that only the first two rows are affected by the first Givens rotation
+ and no new nonzeros appear below the first subdiagonal.
+ Next, we apply a Givens rotation, 
+\begin_inset Formula $G_{2}$
+\end_inset
+
+, that mixes the second two rows in order to eliminate the 
+\begin_inset Formula $(3,2)$
+\end_inset
+
+ entry:
+\begin_inset Formula 
+\[
+G_{1}\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \times & \times & \cdots & \times\\
+ & \times & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & \times & \times\\
+ &  &  &  & \times
+\end{array}\right)\qquad\implies\qquad G_{2}G_{1}\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \boxtimes & \boxtimes & \cdots & \boxtimes\\
+ & 0 & \boxtimes & \cdots & \boxtimes\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & \times & \times\\
+ &  &  &  & \times
+\end{array}\right).
+\]
+
+\end_inset
+
+Note that only the second and third row are affected by the second Givens
+ rotation and there is no fill-in (the introduction of 
+\begin_inset Quotes eld
+\end_inset
+
+unwanted
+\begin_inset Quotes erd
+\end_inset
+
+ nonzeros) below the diagonal.
+ We continue applying Givens rotations, eliminating the 
+\begin_inset Formula $(k+1,k)$
+\end_inset
+
+ entry with 
+\begin_inset Formula $G_{k}$
+\end_inset
+
+, which mixes rows 
+\begin_inset Formula $k$
+\end_inset
+
+ and 
+\begin_inset Formula $k+1$
+\end_inset
+
+ at the 
+\begin_inset Formula $k$
+\end_inset
+
+th step.
+ After 
+\begin_inset Formula $n-1$
+\end_inset
+
+ Givens rotations, we apply a final Givens rotation to eliminate the single
+ nonzer entry in the last row of the rectangular Hessenberg matrix 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+G_{n-1}G_{1}\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \times & \times & \cdots & \times\\
+ & 0 & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & 0 & \times\\
+ &  &  &  & \times
+\end{array}\right)\qquad\implies\qquad G_{2}G_{1}\tilde{H}_{n}=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \times & \times & \cdots & \times\\
+ & 0 & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & 0 & \boxtimes\\
+ &  &  &  & 0
+\end{array}\right).
+\]
+
+\end_inset
+
+Now, 
+\begin_inset Formula $G_{n}\ldots G_{1}\tilde{H}_{n}=R_{n}$
+\end_inset
+
+ is an 
+\begin_inset Formula $(n+1)\times n$
+\end_inset
+
+ upper triangular matrix, 
+\begin_inset Formula $\Omega_{n}=G_{1}^{T}\ldots G_{n}^{T}$
+\end_inset
+
+ is an 
+\begin_inset Formula $(n+1)\times(n+1)$
+\end_inset
+
+ orthogonal matrix (usually 
+\emph on
+not
+\emph default
+ stored explicitly), and 
+\begin_inset Formula $\tilde{H}_{n}=\Omega_{n}R_{n}$
+\end_inset
+
+.
+ We can use the QR factorization to solve the least squares problem in the
+ usual way by appying the Givens rotations to the right-hand side, 
+\begin_inset Formula $d=\|b\|\Omega_{n}^{T}e_{1}=\|b\|G_{n}\ldots G_{1}e_{1}$
+\end_inset
+
+, and solving the 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ triangular system 
+\begin_inset Formula $(R_{n})_{1:n,n}y_{n}=d_{1:n}$
+\end_inset
+
+ with backsubstitution.
+ The 
+\begin_inset Formula $k$
+\end_inset
+
+th step of the QR factorization of 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ requires 
+\begin_inset Formula $\mathcal{O}(n-k)$
+\end_inset
+
+ flops because rows of length 
+\begin_inset Formula $n-k+1$
+\end_inset
+
+ are combined by the Givens rotation 
+\begin_inset Formula $G_{k}$
+\end_inset
+
+.
+ After 
+\begin_inset Formula $n$
+\end_inset
+
+ steps, the total flop count is 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+.
+ Applying the 
+\begin_inset Formula $n$
+\end_inset
+
+ Givens rotations to 
+\begin_inset Formula $e_{1}$
+\end_inset
+
+ costs 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+ flops and backsubstitution for the triangular system costs 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ flops.
+ Therefore, the total cost of computing the least-squares solution is 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If the QR factorization 
+\begin_inset Formula $\tilde{H}_{n-1}=\Omega_{n-1}R_{n-1}$
+\end_inset
+
+ is known from the previous iteration, explain how to update the QR factorizatio
+n to 
+\begin_inset Formula $\tilde{H}_{n}=\Omega_{n}R_{n}$
+\end_inset
+
+ cheaply using a single Givens rotation.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ If the QR factorization is known at the previous iteration, we can write
+ 
+\begin_inset Formula $\tilde{H}_{n}$
+\end_inset
+
+ in the block form
+\begin_inset Formula 
+\[
+\tilde{H}_{n}=\left(\begin{array}{cc}
+\Omega_{n-1}R_{n-1} & h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right)=\left(\begin{array}{cc}
+\Omega_{n-1}\\
+ & 1
+\end{array}\right)\left(\begin{array}{cc}
+R_{n-1} & \Omega_{n-1}^{T}h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right).
+\]
+
+\end_inset
+
+Using the full QR decomposition (as in part (a)), note that 
+\begin_inset Formula $R_{n-1}$
+\end_inset
+
+ is a 
+\begin_inset Formula $n\times(n-1)$
+\end_inset
+
+ rectangular upper triangular matrix and 
+\begin_inset Formula $\Omega_{n-1}$
+\end_inset
+
+ is a 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ orthogonal matrix.
+ Therefore, the first factor is an 
+\begin_inset Formula $(n+1)\times(n+1)$
+\end_inset
+
+ orthogonal matrix and the first 
+\begin_inset Formula $n-1$
+\end_inset
+
+ columns of the second factor are already upper triangular.
+ It remains to apply a single additional Givens rotation to the second factor,
+ mixing the last two rows to eliminate the single subdiagonal entry 
+\begin_inset Formula $h_{n,n+1}$
+\end_inset
+
+.
+ We start with the structure
+\begin_inset Formula 
+\[
+\left(\begin{array}{cc}
+R_{n-1} & \Omega_{n-1}^{T}h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right)=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \times & \times & \cdots & \times\\
+ & 0 & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & 0 & \times\\
+ &  &  &  & \times
+\end{array}\right),
+\]
+
+\end_inset
+
+and end up with the structure 
+\begin_inset Formula 
+\[
+G\left(\begin{array}{cc}
+R_{n-1} & \Omega_{n-1}^{T}h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right)=\left(\begin{array}{ccccc}
+\times & \times & \times & \cdots & \times\\
+0 & \times & \times & \cdots & \times\\
+ & 0 & \times & \cdots & \times\\
+ &  & \ddots & \ddots & \vdots\\
+ &  &  & 0 & \boxtimes\\
+ &  &  &  & 0
+\end{array}\right)
+\]
+
+\end_inset
+
+Since Givens rotations are orthogonal matrices, we have that 
+\begin_inset Formula $G^{T}G=I$
+\end_inset
+
+, and we can reformulate
+\begin_inset Formula 
+\[
+\tilde{H}_{n}=\left(\begin{array}{cc}
+\Omega_{n-1}R_{n-1} & h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right)=\left(\begin{array}{cc}
+\Omega_{n-1}\\
+ & 1
+\end{array}\right)G^{T}G\left(\begin{array}{cc}
+R_{n-1} & \Omega_{n-1}^{T}h_{1:n,n}\\
+ & h_{n,n+1}
+\end{array}\right).
+\]
+
+\end_inset
+
+The product of the first two matrices on the right is the orthogonal matrix
+ 
+\begin_inset Formula $\Omega_{n}$
+\end_inset
+
+ and the product of the second two matrices on the right is the triangular
+ matrix 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+.
+ Note that computing the updated QR factorization means applying the previous
+ Givens rotations to the new column 
+\begin_inset Formula $h_{1:n,n}$
+\end_inset
+
+, i.e., computing 
+\begin_inset Formula $\Omega_{n-1}^{T}h_{1:n,n}$
+\end_inset
+
+, and then computing and applying the new Givens rotation 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ The total cost of the update is 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+Using your result from part (b), explain how the solution to the least-squares
+ problem can also be updated cheaply from the solution at the previous iteration.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ After computing 
+\begin_inset Formula $\tilde{H}_{n}=\Omega_{n}R_{n}$
+\end_inset
+
+ using the fast update in part (b), we simply solve the triangular system
+ 
+\begin_inset Formula $(R_{n})_{1:n,n}y_{n}=d_{1:n}^{(n)}$
+\end_inset
+
+, where
+\begin_inset Formula 
+\[
+d^{(n)}=\|b\|\Omega_{n}^{T}e_{1}=\|b\|G\left(\begin{array}{cc}
+\Omega_{n-1}^{T}\\
+ & 1
+\end{array}\right)e_{1}=G\left(\begin{array}{c}
+d^{(n-1)}\\
+0
+\end{array}\right).
+\]
+
+\end_inset
+
+In other words, we apply the new Givens rotation 
+\begin_inset Formula $G$
+\end_inset
+
+ (from the QR update) to update the right-hand side from 
+\begin_inset Formula $d^{(n-1)}$
+\end_inset
+
+ to 
+\begin_inset Formula $d^{(n)}$
+\end_inset
+
+ and then solve the new triangular system by backsubstitution as usual.
+\end_layout
+
+\begin_layout Enumerate
+What is the approximate flop count for updating the least-squares solution
+ at the 
+\begin_inset Formula $n^{{\rm th}}$
+\end_inset
+
+ step of GMRES? You may use big-
+\begin_inset Formula $O$
+\end_inset
+
+ notation to express the asymptotic scaling in 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\series bold
+\color blue
+Solution:
+\series default
+ In part (a), both the Hessenberg QR factorization and the solution of the
+ triangular system were 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ flops.
+ Using the fast QR update from part (b), we can reduce the cost of the QR
+ factorization, but the solution of the triangular system remains at 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ flops.
+ Therefore, updating the least-squares solution at the 
+\begin_inset Formula $n$
+\end_inset
+
+th step of of GMRES remains 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+.
+ Note that both the 
+\begin_inset Formula $m\times m$
+\end_inset
+
+ matrix-vector multiplication and the 
+\begin_inset Formula $\mathcal{O}(mn^{2})$
+\end_inset
+
+ orthogonalization cost of the Arnoldi process are typically much more expensive
+ than the 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ cost of the least-squares update in GMRES, since 
+\begin_inset Formula $n\ll m$
+\end_inset
+
+ in almost all practical situations.
+\end_layout
+
+\end_body
+\end_document
