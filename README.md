@@ -236,6 +236,6 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 * Secant and quasi-Newton methods
 * Broyden's updates and BFGS
 
-**Further Reading:** See Prof. Johnson's BFGS notes on preserving the SPD property during quasi-Newton updates and the original references of Broyden, Fletcher, Goldfarb, and Shanno. For a modern perspective on secant and multi-secant methods, see [Feng and Saad](https://doi.org/10.1002/nla.617).
+**Further Reading:** See Prof. Johnson's [notes](https://github.com/mitmath/18335/blob/master/notes/BFGS_SJnotes.pdf) on the BFGS update (find there also the original references of Broyden, Fletcher, Goldfarb, and Shanno). For a modern perspective on secant and multi-secant methods, see [Feng and Saad](https://doi.org/10.1002/nla.617).
 
 
