@@ -238,4 +238,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** See Prof. Johnson's [notes](https://github.com/mitmath/18335/blob/master/notes/BFGS_SJnotes.pdf) on the BFGS update (find there also the original references of Broyden, Fletcher, Goldfarb, and Shanno). For a modern perspective on secant and multi-secant methods, see [Feng and Saad](https://doi.org/10.1002/nla.617).
 
+### Lecture 22 (May 4)
+
+* Many big data matrices are _approximately_ low-rank
+* Optimal low-rank approximation and the SVD
+* Randomized range-finders
+
+**Further Reading:** See the now classic [review paper](https://epubs.siam.org/doi/10.1137/090771806) by Halko, Martinsson, and Tropp for an introduction to randomized range-finders and approximate matrix decompositions. This interesting [paper](https://epubs.siam.org/doi/10.1137/18M1183480) by Udell and Townsend explores the origins of low-rank structure in big-data matrices.
+
 
