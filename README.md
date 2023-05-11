@@ -257,7 +257,7 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 ### Lecture 24 (May 11)
 
 * Dynamic Mode Decomposition (DMD)
-* Procustes problems over matrix manifolds
+* Procrustes problems over matrix manifolds
 * physics informed Dynamic Mode Decomposition (piDMD)
 
 **Further Reading:** Check out Steven Brunton's [youtube channel](https://www.youtube.com/watch?v=sQvrK8AGCAo) for a variety of wonderful presentations on DMD and its applications, including a video on [piDMD](https://www.youtube.com/watch?v=lx-msllg1kU) by Peter Baddoo. You can also find the piDMD paper [here](https://royalsocietypublishing.org/doi/10.1098/rspa.2022.0576).
