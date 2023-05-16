@@ -262,4 +262,12 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** Check out Steven Brunton's [youtube channel](https://www.youtube.com/watch?v=sQvrK8AGCAo) for a variety of wonderful presentations on DMD and its applications, including a video on [piDMD](https://www.youtube.com/watch?v=lx-msllg1kU) by Peter Baddoo. You can also find the piDMD paper [here](https://royalsocietypublishing.org/doi/10.1098/rspa.2022.0576).
 
+### Lecture 25 (May 16)
+
+* Why (and when) do we count flops?
+* Memory hierarchy and the "ideal cache"
+* Cache-aware matrix-matrix multiplication
+
+**Further Reading:** Check out these [slides and experiments](https://github.com/mitmath/18335/blob/master/notes/matrix-mult-experiments.pdf) by Prof. Johnson from 2008 on the memory hierarchy.
+
 
