@@ -246,4 +246,20 @@ All three formulations lead to the pseudoinverse of A and are mathematically equ
 
 **Further Reading:** See the now classic [review paper](https://epubs.siam.org/doi/10.1137/090771806) by Halko, Martinsson, and Tropp for an introduction to randomized range-finders and approximate matrix decompositions. This interesting [paper](https://epubs.siam.org/doi/10.1137/18M1183480) by Udell and Townsend explores the origins of low-rank structure in big-data matrices.
 
+### Lecture 23 (May 9)
+
+* Accuracy of randomized range-finders
+* Oversampling and failure probability
+* Accelerating NLA via "sketch-and-solve"
+
+**Further Reading:** Read, for example, the recent work of [Nakatsukasa and Tropp](https://arxiv.org/abs/2111.00113) to see how randomized "sketch-and-solve" techniques can accelerate established iterative methods for linear systems and the eigenproblem.
+
+### Lecture 24 (May 11)
+
+* Dynamic Mode Decomposition (DMD)
+* Procrustes problems over matrix manifolds
+* physics informed Dynamic Mode Decomposition (piDMD)
+
+**Further Reading:** Check out Steven Brunton's [youtube channel](https://www.youtube.com/watch?v=sQvrK8AGCAo) for a variety of wonderful presentations on DMD and its applications, including a video on [piDMD](https://www.youtube.com/watch?v=lx-msllg1kU) by Peter Baddoo. You can also find the piDMD paper [here](https://royalsocietypublishing.org/doi/10.1098/rspa.2022.0576).
+
 
