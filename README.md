@@ -7,11 +7,11 @@ Syllabus
 
 **Lectures**: Monday/Wednesday 9:30am–11am in room 2-190
 
-**Office Hours:** TBD in room 2-239B.
+**Office Hours:** Monday/Wednesday 11am–12pm in room 2-239.
 
 **Contact:** schen636@mit.edu
 
-**Topics**: Advanced introduction to numerical linear algebra and related numerical methods. Topics include direct and iterative methods for linear systems, eigenvalue decompositions and QR/SVD factorizations, stability and accuracy of numerical algorithms, the IEEE floating-point standard, sparse and structured matrices, and linear algebra software. Other topics may include memory hierarchies and the impact of caches on algorithms, nonlinear optimization, numerical integration, FFTs, and sensitivity analysis. Problem sets will involve use of [Julia](http://julialang.org/), a Matlab-like environment (little or no prior experience required; you will learn as you go).
+**Topics**: Advanced introduction to numerical linear algebra and related numerical methods. Topics include direct and iterative methods for linear systems, eigenvalue decompositions and QR/SVD factorizations, stability and accuracy of numerical algorithms, the IEEE floating-point standard. Other topics may include nonlinear optimization, numerical integration, and FFTs. Problem sets will involve use of [Julia](http://julialang.org/), a Matlab-like environment (little or no prior experience required; you will learn as you go).
 
 Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mitmath/binder-env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fmitmath%252F18335%26urlpath%3Dtree%252F18335%252F%26branch%3Dmaster)
 
@@ -21,7 +21,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 **Other Reading**: Previous terms can be found in [branches of the 18335 git repository](https://github.com/mitmath/18335/branches). The [course notes from 18.335 in much earlier terms](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-fall-2010/) can be found on OpenCourseWare. For a review of iterative methods, the online books [Templates for the Solution of Linear Systems](http://www.netlib.org/linalg/html_templates/Templates.html) (Barrett et al.) and [Templates for the Solution of Algebraic Eigenvalue Problems](http://www.cs.utk.edu/~dongarra/etemplates/book.html) (Bai et al.) are useful surveys.
 
-**Grading**: 40% problem sets (three psets due / released every other Friday), 30% **take-home mid-term exam** (second week of April), 30% **final project** ([one-page proposal](project/final_project.md) due Sunday April 6, project due Thursday May 15).
+**Grading**: 40% problem sets (three psets due / released every other Friday), 30% **take-home mid-term exam** (second week of April), 30% **final project** (See details below).
 
 * Psets will be **submitted electronically via [Gradescope](https://www.gradescope.com/)** (sign up for Gradescope with the entry code on Canvas).  Submit a good-quality PDF *scan* of any handwritten solutions and *also* a PDF *printout* of a Julia notebook of your computational solutions.
 
@@ -33,7 +33,13 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 
 * You can use [psetpartners.mit.edu](https://psetpartners.mit.edu/) to help you find classmates to chat with.
 
-**Final Projects**: The final project will be an 8–15 page paper reviewing some interesting numerical algorithm not covered in the course. See the [18.335 final-projects page](project/final_project.md) for more information, including topics from past semesters.
+**Final Projects**: The final project will explore a numerical topic of your choice that is related to the course material but has not been covered in depth during lectures or problem sets. The project consists of two components:
+* **Proposal (due by 11:59 PM, Sunday, April 6)**: A one-page summary outlining your chosen topic and its relevance.
+* Final submission: You may choose one of the following formats:
+    * **Technical report (5–15 pages)** reviewing an interesting numerical algorithm not covered in the course, due by **11:59 PM, Thursday, May 15**.
+    * **Technical presentation (35-minute in-class lecture)**. Limited spots are available, and you may collaborate with one other classmate.
+
+Further details will be provided as the semester progresses.
 
 Assignments
 ------------
