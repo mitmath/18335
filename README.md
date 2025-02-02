@@ -55,6 +55,7 @@ Lecture Summaries and Handouts
 ------------------------------
 
 ### Lecture 1 (February 3)
-
+* **Scope of Numerical Methods and the key concerns:** A broad introduction to the vast field of numerical methods. Unlike pure mathematics, numerical analysis must account for performance (efficiency) and accuracy (precision and stability).
+* **The Importance of Numerical Linear Algebra (NLA):** Why is NLA fundamental? Through examples, we demonstrate how NLA naturally arises in solving a wide range of problems in continuous mathematics.
 
 
