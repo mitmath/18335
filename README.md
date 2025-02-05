@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Monday/Wednesday 9:30am–11am in room 2-190
 
-**Office Hours:** Monday/Wednesday 11am–12pm in room 2-239.
+**Office Hours:** Monday 11am–12pm and Friday 3pm-4pm in room 2-239.
 
 **Contact:** schen636@mit.edu
 
@@ -44,11 +44,11 @@ Further details will be provided as the semester progresses.
 Assignments
 ------------
 
-* [Pset 1](https://github.com/mitmath/18335/tree/master/psets) is due on TBD at 11:59pm.
+* Pset 1 is due on TBD at 11:59pm.
 
-* [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on TBD at 11:59pm.
+* Pset 2 is due on TBD at 11:59pm.
 
-* [Pset 3](https://github.com/mitmath/18335/blob/master/psets/pset3.pdf) is due on TBD at 11:59pm.
+* Pset 3 is due on TBD at 11:59pm.
 
 
 Lecture Summaries and Handouts
@@ -60,3 +60,9 @@ Lecture Summaries and Handouts
 
 **Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
 
+### Lecture 2 (February 5)
+* Floating point arithmetic, exact rounding, and the "fundamental axiom"
+* Stability of summation algorithms
+* Forward and backward stability
+
+**Further Reading:**  L.N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point.
