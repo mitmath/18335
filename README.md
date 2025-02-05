@@ -58,11 +58,24 @@ Lecture Summaries and Handouts
 * **Scope of Numerical Methods and the key concerns:** A broad introduction to the vast field of numerical methods. Unlike pure mathematics, numerical analysis must account for performance (efficiency) and accuracy (precision and stability).
 * **The Importance of Numerical Linear Algebra (NLA):** Why is NLA fundamental? Through examples, we demonstrate how NLA naturally arises in solving a wide range of problems in continuous mathematics.
 
-**Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html). 
+**Further Reading:** L.N. Trefethen, [The Definition of Numerical Analysis](https://people.maths.ox.ac.uk/trefethen/essays.html), [Lecture notes 1](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture1.pdf).
 
 ### Lecture 2 (February 5)
 * Floating point arithmetic, exact rounding, and the "fundamental axiom"
 * Stability of summation algorithms
 * Forward and backward stability
 
-**Further Reading:**  L.N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point.
+**Further Reading:**  L.N. Trefethen, Lectures 13 and 14. Also, see the [notebook](https://github.com/mitmath/18335/blob/master/notes/Floating-Point-Intro.ipynb) about floating point, [Lecture notes 2](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture2.pdf).
+
+### Lecture 3 (February 10)
+* Recap on forward and backward stability, and condition numbers
+* Accuracy <= backward stable algorithms + well-conditioned problems
+* Vector and matrix norms
+**Further Reading:** L. N. Trefethen, Lectures 12 and 15.
+
+### Lecture 4 (February 12)
+* Solving Ax = b
+* Condition number of A
+* Orthogonal/Unitary matrices
+* The singular value decomposition (SVD)
+**Further Reading:** L. N. Trefethen, Lectures 4 and 5.
