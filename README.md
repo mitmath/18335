@@ -71,6 +71,7 @@ Lecture Summaries and Handouts
 * Recap on forward and backward stability, and condition numbers
 * Accuracy <= backward stable algorithms + well-conditioned problems
 * Vector and matrix norms
+
 **Further Reading:** L. N. Trefethen, Lectures 12 and 15. Also, see the notes about [stability of sum](https://github.com/mitmath/18335/blob/spring21/notes/summation-stability.pdf) and [equivalence of norms](https://github.com/mitmath/18335/blob/spring21/notes/norm-equivalence.pdf), [Lecture notes 3](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture3.pdf).
 
 ### Lecture 4 (February 12)
@@ -78,4 +79,5 @@ Lecture Summaries and Handouts
 * Condition number of A
 * Orthogonal/Unitary matrices
 * The singular value decomposition (SVD)
+
 **Further Reading:** L. N. Trefethen, Lectures 4 and 5.
