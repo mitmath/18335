@@ -80,4 +80,4 @@ Lecture Summaries and Handouts
 * Orthogonal/Unitary matrices
 * The singular value decomposition (SVD)
 
-**Further Reading:** L. N. Trefethen, Lectures 4 and 5.
+**Further Reading:** L. N. Trefethen, Lectures 4 and 5. [Lecture notes 4](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture4.pdf).
