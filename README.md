@@ -44,7 +44,7 @@ Further details will be provided as the semester progresses.
 Assignments
 ------------
 
-* Pset 1 is due on TBD at 11:59pm.
+* [Pset](https://github.com/mitmath/18335/blob/master/psets/pset1.pdf) 1 is due on March 2 at 11:59pm.
 
 * Pset 2 is due on TBD at 11:59pm.
 
