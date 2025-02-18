@@ -81,3 +81,19 @@ Lecture Summaries and Handouts
 * The singular value decomposition (SVD)
 
 **Further Reading:** L. N. Trefethen, Lectures 4 and 5. [Lecture notes 4](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture4.pdf).
+
+### Lecture 5 (February 18)
+
+* Recap on SVD and its applications
+* Least-squares solutions to overdetermined linear systems
+* Normal equations and pseudoinverse
+* QR factorization
+
+**Further Reading:** L. N. Trefethen, Lectures 11, 18 and 19. Also, see the notes about [least-squares](https://github.com/mitmath/18335/blob/master/notes/Three-Ways-To-Solve-Least-Squares.ipynb), [Lecture notes 5](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture5.pdf).
+
+### Lecture 6 (February 19)
+
+* Gram-Schmidt orthogonalization and its stability
+* Householder transform, Householder QR algorithm and its stability
+
+**Further Reading:** L. N. Trefethen, Lectures 7, 8 and 10. Also, see the notes about [Gram-Schmidt](https://github.com/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb).
