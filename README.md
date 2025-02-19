@@ -96,4 +96,4 @@ Lecture Summaries and Handouts
 * Gram-Schmidt orthogonalization and its stability
 * Householder transform, Householder QR algorithm and its stability
 
-**Further Reading:** L. N. Trefethen, Lectures 7, 8 and 10. Also, see the notes about [Gram-Schmidt](https://github.com/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb).
+**Further Reading:** L. N. Trefethen, Lectures 7, 8 and 10. Also, see the notes about [Gram-Schmidt](https://github.com/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb), [Lecture notes 6](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture6.pdf).
