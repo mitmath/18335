@@ -97,3 +97,34 @@ Lecture Summaries and Handouts
 * Householder transform, Householder QR algorithm and its stability
 
 **Further Reading:** L. N. Trefethen, Lectures 7, 8 and 10. Also, see the notes about [Gram-Schmidt](https://github.com/mitmath/18335/blob/master/notes/Gram-Schmidt.ipynb), [Lecture notes 6](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture6.pdf).
+
+### Lecture 7 (February 24)
+
+* Solving Ax=b via QR factorization: flops and stability
+* Solving Ax=b via LU factorization: Gaussian elimination, flops and stability
+
+**Further Reading:** L. N. Trefethen, Lectures 20, 21, and 22. [Lecture notes 7](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture7.pdf)
+
+### Lecture 8 (February 26)
+
+* Pivoting in LU factorization
+* LU factorization for symmetric positive definite matrix: Cholesky factorization
+
+**Further Reading:** L. N. Trefethen, Lectures 21, and 22. [Lecture notes 8](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture8.pdf). Can you bring GE's instability to life in this [example](https://github.com/mitmath/18335/blob/master/notes/Is-Gaussian-Elimination-Unstable.ipynb)?
+
+### Lecture 9 (March 3)
+
+* Iterative methods for linear systems
+* Convergence of vector sequence
+* Matrix splittings and examples
+* Convergence of stationary iterative methods
+
+**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch4).
+
+### Lecture 10 (March 5)
+
+* Jacobi iteration
+* Gauss-Seidel iteration
+* Successive over-relaxation (SOR) and optimal relaxation parameter
+
+**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch4).
