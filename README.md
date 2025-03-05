@@ -127,4 +127,4 @@ Lecture Summaries and Handouts
 * Gauss-Seidel iteration
 * Successive over-relaxation (SOR) and optimal relaxation parameter
 
-**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch4).
+**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch4). [Lecture notes 10](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture10.pdf).
