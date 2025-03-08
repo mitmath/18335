@@ -38,6 +38,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 * Final submission: You may choose one of the following formats:
     * **Technical report (5–15 pages)** reviewing an interesting numerical algorithm not covered in the course, due by **11:59 PM, Thursday, May 15**.
     * **Technical presentation (35-minute in-class lecture)**. Limited spots are available, and you may collaborate with one other classmate.
+See [this page](https://github.com/mitmath/18335/blob/master/project/final_project_spring2025.pdf) for more details.
 
 Further details will be provided as the semester progresses.
 
