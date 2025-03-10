@@ -128,3 +128,11 @@ Lecture Summaries and Handouts
 * Successive over-relaxation (SOR) and optimal relaxation parameter
 
 **Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch4). [Lecture notes 10](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture10.pdf).
+
+### Lecutre 11 (March 10)
+
+* Review basics of eigenvalue problems
+* Schur factorization
+* Stability/perturbation theory of eigenvalue problems
+
+**Further Reading:** L. N. Trefethen, Lectures 24, and 25, [Lecture notes 11](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture11.pdf)
