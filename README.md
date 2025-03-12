@@ -136,3 +136,11 @@ Lecture Summaries and Handouts
 * Stability/perturbation theory of eigenvalue problems
 
 **Further Reading:** L. N. Trefethen, Lectures 24, and 25, [Lecture notes 11](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture11.pdf)
+
+### Lecutre 12 (March 12)
+
+* Power methods
+* Rayleigh quotient methods
+* Simultaneous power iteration
+
+**Further Reading:**L. N. Trefethen, Lectures 27, and 28, [Lecture notes 12](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture12.pdf).
