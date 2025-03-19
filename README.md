@@ -144,3 +144,18 @@ Lecture Summaries and Handouts
 * Simultaneous power iteration
 
 **Further Reading:**L. N. Trefethen, Lectures 27, and 28, [Lecture notes 12](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture12.pdf).
+
+### Lecutre 13 (March 17)
+
+* QR algorithm
+* Upper Hessenberg factorization
+* QR algorithm with shift
+
+**Further Reading:**L. N. Trefethen, Lectures 26, and 29, [Lecture notes 13](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture13.pdf).
+
+### Lecutre 14 (March 19)
+
+* Other eigenvalue algorithms
+* Computing SVD
+
+**Further Reading:** L. N. Trefethen, Lectures 30 and 31, [Lecture notes 14](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture14.pdf) 
