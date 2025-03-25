@@ -34,7 +34,7 @@ Launch a Julia environment in the cloud: [![Binder](https://mybinder.org/badge_l
 * You can use [psetpartners.mit.edu](https://psetpartners.mit.edu/) to help you find classmates to chat with.
 
 **Final Projects**: The final project will explore a numerical topic of your choice that is related to the course material but has not been covered in depth during lectures or problem sets. The project consists of two components:
-* **Proposal (due by 11:59 PM, Sunday, April 6)**: A one-page summary outlining your chosen topic and its relevance.
+* **Proposal (due by 11:59 PM, Sunday, April 13)**: A one-page summary outlining your chosen topic and its relevance.
 * Final submission: You may choose one of the following formats:
     * **Technical report (5–15 pages)** reviewing an interesting numerical algorithm not covered in the course, due by **11:59 PM, Thursday, May 15**.
     * **Technical presentation (35-minute in-class lecture)**. Limited spots are available, and you may collaborate with one other classmate. You need to submit your code
@@ -46,7 +46,7 @@ Assignments
 
 * [Pset 1](https://github.com/mitmath/18335/blob/master/psets/pset1.pdf) is due on March 2 at 11:59pm.
 
-* [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on March 30 at 11:59pm.
+* [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on April 6 at 11:59pm.
 
 * Pset 3 is due on TBD at 11:59pm.
 
