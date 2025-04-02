@@ -167,3 +167,9 @@ Lecture Summaries and Handouts
 * Arnoldi's iteration for finding orthonormal basis in Krylov subspaces
 
 **Further Reading:** L. N. Trefethen, Lectures 30 and 31, [Lecture notes 15](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture15.pdf) 
+
+### Lecture 16 (April 2)
+
+* Arnoldi's method for Hermitian matrices, and Lanczos algorithm for sparse eigenvalue problems
+* Convergence of Lanczos algorithm and Arnoldi's method
+**Further Reading:** L. N. Trefethen, Lectures 33 and 34, [Lecture notes 16](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture16.pdf). You can read about the [implicitly restarted Arnoldi iteration](https://github.com/mitmath/18335/blob/master/notes/restarting-arnoldi.pdf) and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484). that made it [a standard iterative eigensolver](https://epubs.siam.org/doi/book/10.1137/1.9780898719628) for non-Hermitian sparse matrices.
