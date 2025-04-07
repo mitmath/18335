@@ -173,3 +173,11 @@ Lecture Summaries and Handouts
 * Arnoldi's method for Hermitian matrices, and Lanczos algorithm for sparse eigenvalue problems
 * Convergence of Lanczos algorithm and Arnoldi's method
 **Further Reading:** L. N. Trefethen, Lectures 33 and 34, [Lecture notes 16](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture16.pdf). You can read about the [implicitly restarted Arnoldi iteration](https://github.com/mitmath/18335/blob/master/notes/restarting-arnoldi.pdf) and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484). that made it [a standard iterative eigensolver](https://epubs.siam.org/doi/book/10.1137/1.9780898719628) for non-Hermitian sparse matrices.
+
+### Lecture 17 (April 7)
+
+* Krylov subspace methods for linear system
+* Projection methods
+* Arnoldi's method for linear systems
+
+**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 5.1](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch5), and [6.4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch6), [Lecture notes 17](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture16.pdf) 
