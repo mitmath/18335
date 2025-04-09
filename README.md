@@ -180,4 +180,10 @@ Lecture Summaries and Handouts
 * Projection methods
 * Arnoldi's method for linear systems
 
-**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 5.1](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch5), and [6.4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch6), [Lecture notes 17](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture16.pdf) 
+**Further Reading:** Y. Saad, Iterative Methods for Sparse Linear Systems, [Chapter 5.1](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch5), and [6.4](https://epubs.siam.org/doi/10.1137/1.9780898718003.ch6), [Lecture notes 17](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture17.pdf) 
+
+### Lecture 18 (April 9)
+
+* GMRES as a projection problem and a least-square problem
+* Convergence of GMRES
+**Further Reading:**L. N. Trefethen, Lectures 35, [Lecture notes 18](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture18.pdf).
