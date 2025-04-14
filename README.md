@@ -186,4 +186,11 @@ Lecture Summaries and Handouts
 
 * GMRES as a projection problem and a least-square problem
 * Convergence of GMRES
-**Further Reading:**L. N. Trefethen, Lectures 35, [Lecture notes 18](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture18.pdf).
+**Further Reading:** L. N. Trefethen, Lectures 35, [Lecture notes 18](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture18.pdf).
+
+### Lecture 19 (April 14)
+
+* Steepest Gradient Descent
+* Conjugate Gradient (CG)
+* Convergence of CG
+**Further Reading:** L. N. Trefethen, Lectures 38, [Introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf), [Lecture notes 19](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture19.pdf).
