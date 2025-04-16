@@ -194,3 +194,9 @@ Lecture Summaries and Handouts
 * Conjugate Gradient (CG)
 * Convergence of CG
 **Further Reading:** L. N. Trefethen, Lectures 38, [Introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf), [Lecture notes 19](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture19.pdf).
+
+### Lecture 20 (April 16)
+
+* Preconditioning
+* Biorthogonalization methods
+**Further Reading:** L. N. Trefethen, Lectures 39, [Lecture notes 20](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture20.pdf), [Notes on different options for solving Ax=b](https://github.com/mitmath/18335/blob/master/notes/solver-options.pdf).
