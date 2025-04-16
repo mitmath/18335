@@ -48,7 +48,7 @@ Assignments
 
 * [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on April 6 at 11:59pm.
 
-* Pset 3 is due on TBD at 11:59pm.
+* [Pset 3](https://github.com/mitmath/18335/blob/master/psets/pset3.pdf) is due on May 4 at 11:59pm.
 
 
 Lecture Summaries and Handouts
