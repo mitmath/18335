@@ -172,6 +172,7 @@ Lecture Summaries and Handouts
 
 * Arnoldi's method for Hermitian matrices, and Lanczos algorithm for sparse eigenvalue problems
 * Convergence of Lanczos algorithm and Arnoldi's method
+
 **Further Reading:** L. N. Trefethen, Lectures 33 and 34, [Lecture notes 16](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture16.pdf). You can read about the [implicitly restarted Arnoldi iteration](https://github.com/mitmath/18335/blob/master/notes/restarting-arnoldi.pdf) and the [bells and whistles](https://epubs.siam.org/doi/10.1137/S0895479895281484). that made it [a standard iterative eigensolver](https://epubs.siam.org/doi/book/10.1137/1.9780898719628) for non-Hermitian sparse matrices.
 
 ### Lecture 17 (April 7)
@@ -186,6 +187,7 @@ Lecture Summaries and Handouts
 
 * GMRES as a projection problem and a least-square problem
 * Convergence of GMRES
+
 **Further Reading:** L. N. Trefethen, Lectures 35, [Lecture notes 18](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture18.pdf).
 
 ### Lecture 19 (April 14)
@@ -193,12 +195,14 @@ Lecture Summaries and Handouts
 * Steepest Gradient Descent
 * Conjugate Gradient (CG)
 * Convergence of CG
+
 **Further Reading:** L. N. Trefethen, Lectures 38, [Introduction to CG](https://github.com/mitmath/18335/blob/master/notes/painless-conjugate-gradient.pdf), [Lecture notes 19](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture19.pdf).
 
 ### Lecture 20 (April 16)
 
 * Preconditioning
 * Biorthogonalization methods
+
 **Further Reading:** L. N. Trefethen, Lectures 39, [Lecture notes 20](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture20.pdf), [Notes on different options for solving Ax=b](https://github.com/mitmath/18335/blob/master/notes/solver-options.pdf).
 
 ### Lecture 21 (April 23)
@@ -206,4 +210,5 @@ Lecture Summaries and Handouts
 * Many big data matrices are approximately low-rank
 * Optimal low-rank approximation and the SVD
 * Randomized range-finders
+
 **Further Reading:** See the now classic review paper by [Halko, Martinsson, and TroppLinks](https://epubs.siam.org/doi/10.1137/090771806). for an introduction to randomized range-finders and approximate matrix decompositions. This interesting paper by [Udell and TownsendLinks](https://epubs.siam.org/doi/10.1137/18M1183480). explores the origins of low-rank structure in big-data matrices.
