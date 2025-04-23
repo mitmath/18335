@@ -200,3 +200,10 @@ Lecture Summaries and Handouts
 * Preconditioning
 * Biorthogonalization methods
 **Further Reading:** L. N. Trefethen, Lectures 39, [Lecture notes 20](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture20.pdf), [Notes on different options for solving Ax=b](https://github.com/mitmath/18335/blob/master/notes/solver-options.pdf).
+
+### Lecture 21 (April 23)
+
+* Many big data matrices are approximately low-rank
+* Optimal low-rank approximation and the SVD
+* Randomized range-finders
+**Further Reading:** See the now classic review paper by [Halko, Martinsson, and TroppLinks](https://epubs.siam.org/doi/10.1137/090771806). for an introduction to randomized range-finders and approximate matrix decompositions. This interesting paper by [Udell and TownsendLinks](https://epubs.siam.org/doi/10.1137/18M1183480). explores the origins of low-rank structure in big-data matrices.
