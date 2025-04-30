@@ -143,7 +143,7 @@ Lecture Summaries and Handouts
 * Rayleigh quotient methods
 * Simultaneous power iteration
 
-**Further Reading:**L. N. Trefethen, Lectures 27, and 28, [Lecture notes 12](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture12.pdf).
+**Further Reading:** L. N. Trefethen, Lectures 27, and 28, [Lecture notes 12](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture12.pdf).
 
 ### Lecutre 13 (March 17)
 
@@ -151,7 +151,7 @@ Lecture Summaries and Handouts
 * Upper Hessenberg factorization
 * QR algorithm with shift
 
-**Further Reading:**L. N. Trefethen, Lectures 26, and 29, [Lecture notes 13](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture13.pdf).
+**Further Reading:** L. N. Trefethen, Lectures 26, and 29, [Lecture notes 13](https://github.com/mitmath/18335/blob/master/notes/18.335_Lecture13.pdf).
 
 ### Lecutre 14 (March 19)
 
