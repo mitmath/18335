@@ -211,4 +211,36 @@ Lecture Summaries and Handouts
 * Optimal low-rank approximation and the SVD
 * Randomized range-finders
 
-**Further Reading:** See the now classic review paper by [Halko, Martinsson, and TroppLinks](https://epubs.siam.org/doi/10.1137/090771806). for an introduction to randomized range-finders and approximate matrix decompositions. This interesting paper by [Udell and TownsendLinks](https://epubs.siam.org/doi/10.1137/18M1183480). explores the origins of low-rank structure in big-data matrices.
+**Further Reading:** See the now classic review paper by [Halko, Martinsson, and TroppLinks](https://epubs.siam.org/doi/10.1137/090771806) for an introduction to randomized range-finders and approximate matrix decompositions. This interesting paper by [Udell and TownsendLinks](https://epubs.siam.org/doi/10.1137/18M1183480). explores the origins of low-rank structure in big-data matrices.
+
+### Lecture 22 (April 28)
+
+* Accuracy of randomized range-finders
+* Oversampling and failure probability
+
+**Further Reading:** See for example this [repo](https://github.com/JuliaLinearAlgebra/LowRankApprox.jl/tree/master) for a Julia implementation of randomized low-rank approximation.
+
+### Lecture 23 (April 30)
+
+Guest lecture by Dr. [Ziang Chen](https://sites.mit.edu/ziangchen/) on Graph Neural Networks
+
+### Lecture 24 (May 5)
+
+Student Presentation I:
+
+* **Anghel David-Andrei, Paulius Aleknavicius:** Fast matrix multiplication
+* **Mary Foxen, John Readlinger:** Fast discrete cosine transforms
+
+### Lecture 25 (May 7)
+
+Student Presentation II:
+
+* **Akhil Sadam:** Adjoints for SDEs
+* **Zimi Zhang, Cynthia Cao:** Fast Multipole Methods for N-Body Problems
+
+### Lecture 26 (May 12)
+
+Student Presentation III:
+
+* **Julia Zhao, Gandhar Mahadeshwar:** Monte-Carlo Integration with Adaptive Importance Sampling
+* **Max Misterka, Tristan Kay:** Nonlinear Complementarity
