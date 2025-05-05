@@ -228,7 +228,7 @@ Guest lecture by Dr. [Ziang Chen](https://sites.mit.edu/ziangchen/) on Graph Neu
 
 Student Presentation I:
 
-* **Anghel David-Andrei, Paulius Aleknavicius:** Fast matrix multiplication
+* **Anghel David-Andrei, Aleknavicius Paulius:** Fast matrix multiplication
 * **Mary Foxen, John Readlinger:** Fast discrete cosine transforms
 
 ### Lecture 25 (May 7)
