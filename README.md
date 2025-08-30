@@ -5,9 +5,9 @@ This is the repository of course materials for the 18.335J/6.7310J course at MIT
 Syllabus
 --------
 
-**Lectures**: Monday/Wednesday 9:30am–11am in room 4-159
+**Lectures**: Monday/Wednesday 9:30am–11am in room 6-120
 
-**Office Hours:** TBD in room 2-239B.
+**Office Hours:** TBD in room 2-239.
 
 **Contact:** schen636@mit.edu
 
