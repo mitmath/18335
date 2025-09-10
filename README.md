@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Monday/Wednesday 9:30am–11am in room 6-120
 
-**Office Hours:** TBD in room 2-239.
+**Office Hours:** Tuesday 4 pm - 5 pm and Thursday 3 pm - 4 pm in room 2-239.
 
 **Contact:** schen636@mit.edu
 
@@ -72,7 +72,7 @@ Lecture Summaries and Handouts
 * Accuracy <= backward stable algorithms + well-conditioned problems
 * Vector and matrix norms
 
-**Further Reading:** L. N. Trefethen, Lectures 12 and 15. Also, see the notes about [stability of sum](https://github.com/mitmath/18335/blob/spring21/notes/summation-stability.pdf) and [equivalence of norms](https://github.com/mitmath/18335/blob/spring21/notes/norm-equivalence.pdf).
+**Further Reading:** L. N. Trefethen, Lectures 12 and 15. Also, see the notes about [stability of sum](https://github.com/mitmath/18335/blob/spring21/notes/summation-stability.pdf) and [equivalence of norms](https://github.com/mitmath/18335/blob/spring21/notes/norm-equivalence.pdf). If you are interested in learning more about [Julia](http://julialang.org/), take a look at this [video tutorial](https://mit.zoom.us/rec/share/Q31OQsQ_BdyRaWkdL7Yfib3Dc_uiUYXzEtqvrpjk_ePslt6QcIyvdPU9dnwBEuI.bCSR-o__1yxMIo5r?startTime=1613772007000) offered by Steven Johnson, and also this [repo](https://github.com/mitmath/julia-mit).
 
 ### Lecture 4 (September 15)
 * Solving Ax = b
