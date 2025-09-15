@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Monday/Wednesday 9:30am–11am in room 6-120
 
-**Office Hours:** Tuesday 4 pm - 5 pm and Thursday 3 pm - 4 pm in room 2-239.
+**Office Hours:** Tuesday 4 pm - 5 pm in room 2-131 and Thursday 3 pm - 4 pm in room 2-147.
 
 **Contact:** schen636@mit.edu
 
@@ -44,7 +44,7 @@ See [this page](https://github.com/mitmath/18335/blob/master/project/final_proje
 Assignments
 ------------
 
-* Pset 1 will be availble on September 10, and will be due on October 5 at 11:59pm.
+* [Pset 1](https://github.com/mitmath/18335/blob/master/psets/pset1.pdf) is due on October 5 at 11:59pm.
 
 * Pset 2 will be availble on October 1, and will be due on November 2 at 11:59pm.
 
