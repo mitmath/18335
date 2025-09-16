@@ -7,7 +7,7 @@ Syllabus
 
 **Lectures**: Monday/Wednesday 9:30am–11am in room 6-120
 
-**Office Hours:** Tuesday 4 pm - 5 pm in room 2-131 and Thursday 3 pm - 4 pm in room 2-147.
+**Office Hours:** Tuesday 4 pm - 5 pm in 2-147 and Thursday 3 pm - 4 pm in 2-131.
 
 **Contact:** schen636@mit.edu
 
