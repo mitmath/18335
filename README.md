@@ -46,9 +46,9 @@ Assignments
 
 * [Pset 1](https://github.com/mitmath/18335/blob/master/psets/pset1.pdf) is due on October 5 at 11:59pm.
 
-* Pset 2 will be availble on October 1, and will be due on November 2 at 11:59pm.
+* Pset 2 will be availble on October 6, and will be due on November 2 at 11:59pm.
 
-* Pset 3 will be availble on October 29, and will be due on November 23 at 11:59pm.
+* Pset 3 will be availble on November 3, and will be due on November 23 at 11:59pm.
 
 
 Lecture Summaries and Handouts
