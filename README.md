@@ -46,9 +46,9 @@ Assignments
 
 * [Pset 1](https://github.com/mitmath/18335/blob/master/psets/pset1.pdf) is due on October 5 at 11:59pm.
 
-* Pset 2 will be availble on October 6, and will be due on November 2 at 11:59pm.
+* [Pset 2](https://github.com/mitmath/18335/blob/master/psets/pset2.pdf) is due on November 2 at 11:59pm.
 
-* Pset 3 will be availble on November 3, and will be due on November 23 at 11:59pm.
+* [Pset 3](https://github.com/mitmath/18335/blob/master/psets/pset3.pdf) is due on November 23 at 11:59pm.
 
 
 Lecture Summaries and Handouts
@@ -194,9 +194,9 @@ Lecture Summaries and Handouts
 ### Lecture 19 (November 12)
 
 * Preconditioning and CG
-* Nonlinear CG
+* Biorthogonalization methods
 
-**Further Reading:** J. Nocedal and S. J. Wright, [Chapter 5](https://link.springer.com/chapter/10.1007/978-0-387-40065-5_5). [Notes on different options for solving Ax=b](https://github.com/mitmath/18335/blob/master/notes/solver-options.pdf).
+**Further Reading:** Further Reading: L. N. Trefethen, Lectures 39. [Notes on different options for solving Ax=b](https://github.com/mitmath/18335/blob/master/notes/solver-options.pdf).
 
 ### Lecture 20 (November 17)
 
