@@ -200,13 +200,18 @@ Lecture Summaries and Handouts
 
 ### Lecture 20 (November 17)
 
-* Newton method and quasi-Newton methods
+* Newton's method
+* Newton's method in high dimensions
+* Secant and quasi-Newton methods
+* Broyden's updates and BFGS
 
-**Further Reading:** J. Nocedal and S. J. Wright, [Chapter 6](https://link.springer.com/chapter/10.1007/978-0-387-40065-5_6).
+**Further Reading:** See Prof. Johnson's [notes](https://github.com/mitmath/18335/blob/master/notes/BFGS.pdf) on BFGS update. See also J. Nocedal and S. J. Wright, [Chapter 6](https://link.springer.com/chapter/10.1007/978-0-387-40065-5_6) for more about quasi-Newton methods.
 
 ### Lecture 21 (November 19)
 
-* Sampling as optimization over the space of probability measures
+* Monte Carlo methods and Monte Carlo integration
+* Sampling problems and inverse transform method
+* Markov Chain Monte Carlo, Langevin algorithm and its connection to optimization
 
 ### Lecture 22 (November 24)
 
