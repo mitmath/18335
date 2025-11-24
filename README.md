@@ -215,14 +215,16 @@ Lecture Summaries and Handouts
 
 ### Lecture 22 (November 24)
 
-* Trace estimation
+* Randomized Numerical Linear Algebra (RandNLA)
+* Randomized matrix-matrix multiplication
+* Hutchson's stochastic trace estimation
 * Optimal low-rank approximation and the SVD
-* Randomized SVD
 
 **Further Reading:** See the now classic review paper by [Halko, Martinsson, and Tropp](https://epubs.siam.org/doi/10.1137/090771806) for an introduction to randomized range-finders and approximate matrix decompositions.
 
 ### Lecture 23 (November 26)
 
+* Randomized SVD
 * Randomized range-finders
 * Accuracy of randomized range-finders
 * Oversampling and failure probability
