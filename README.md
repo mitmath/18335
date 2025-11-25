@@ -237,6 +237,8 @@ Lecture Summaries and Handouts
 * Memory hierarchy and the "ideal cache"
 * Cache-aware matrix-matrix multiplication
 
+**Further Reading:** Check out these [notebook](https://github.com/mitmath/18335/blob/master/notes/Memory-and-Matrices-latest.ipynb), [slides](https://github.com/mitmath/18335/blob/master/notes/matmuls.pdf), [notes](https://github.com/mitmath/18335/blob/master/notes/ideal-cache.pdf), and [experiments](https://github.com/mitmath/18335/blob/master/notes/oblivious-matmul.pdf) by Prof. Johnson on the memory hierarchy.
+
 ### Lecture 25 (December 3)
 
 Student Presentation I
