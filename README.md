@@ -241,12 +241,23 @@ Lecture Summaries and Handouts
 
 ### Lecture 25 (December 3)
 
-Student Presentation I
+Student Presentation I:
+
+* Gregory Eslinger: Pines' Algorithm
+* Aloysius Ng & Riley Kong: Plotting the Mandelbrot Set
 
 ### Lecture 26 (December 8)
 
-Student Presentation II
+Student Presentation II:
+
+* Christine Hao: Informing a property-based galaxy cluster boundary with a Self-Organizing Map
+* Hara Moraitaki & Skyler Pulling: Scalable Bayesian Optimization via Randomized Linear Algebra
+* Diego Caballero Ricaurte & George Cao: Numerical Algorithms for Tensor-Train Decomposition
 
 ### Lecture 27 (December 10)
 
-Student Presentation III
+Student Presentation III:
+
+* Julianna Lian: Newton-Raphson Method for Chemical Equibrium Problems
+* Hugh Cairney & Andrew Welter: DGGMRES
+* Bella Stewart & Viki Mancoridis: BiCGSTAB and Related Methods: Fast Solvers for Nonsymmetric Sparse Systems
